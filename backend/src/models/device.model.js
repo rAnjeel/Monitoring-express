@@ -1,35 +1,30 @@
-const db = require('../config/db');
+const { mysqlTable, int, varchar, float, boolean, datetime, text } = require('drizzle-orm/mysql-core');
 
-async function getAllDevices() {
-  const [rows] = await db.query('SELECT * FROM devices');
-  return rows;
-}
+const devices = mysqlTable('devices', {
+  id: int('id').primaryKey().autoincrement(),
+  ip: varchar('ip', { length: 30 }).notNull(),
+  hostname: varchar('hostname', { length: 50 }).notNull(),
+  status: int('status'),
+  type_id: int('type_id'),
+  location_id: int('location_id'),
+  details_id: int('details_id'),
+  monitoring_id: int('monitoring_id'),
+  codesite: varchar('codesite', { length: 45 }),
+  loss: float('loss'),
+  avg: float('avg').default(0),
+  min: float('min').default(0),
+  max: float('max').default(0),
+  uptime: datetime('uptime'),
+  snmp_enabled: boolean('snmp_enabled').default(false),
+  community: text('community'),
+  authlevel: text('authlevel'),
+  authname: text('authname'),
+  authpass: text('authpass'),
+  authalgo: text('authalgo'),
+  cryptopass: text('cryptopass'),
+  cryptoalgo: text('cryptoalgo'),
+  snmpver: text('snmpver'),
+  ne_id: varchar('ne_id', { length: 45 }).notNull(),
+});
 
-async function getDeviceById(id) {
-  const [rows] = await db.query('SELECT * FROM devices WHERE id = ?', [id]);
-  return rows[0];
-}
-
-async function createDevice(device) {
-  const { ip, hostname, status, type_id, location_id, details_id, ne_id } = device;
-  const [result] = await db.query(
-    `INSERT INTO devices (ip, hostname, status, type_id, location_id, details_id, ne_id)
-     VALUES (?, ?, ?, ?, ?, ?, ?)`,
-    [ip, hostname, status, type_id, location_id, details_id, ne_id]
-  );
-  return result.insertId;
-}
-
-async function updateDevice(id, device) {
-  const { ip, hostname, status, type_id, location_id, details_id, ne_id } = device;
-  await db.query(
-    `UPDATE devices SET ip=?, hostname=?, status=?, type_id=?, location_id=?, details_id=?, ne_id=? WHERE id=?`,
-    [ip, hostname, status, type_id, location_id, details_id, ne_id, id]
-  );
-}
-
-async function deleteDevice(id) {
-  await db.query('DELETE FROM devices WHERE id=?', [id]);
-}
-
-module.exports = { getAllDevices, getDeviceById, createDevice, updateDevice, deleteDevice };
+module.exports = { devices };

@@ -1,29 +1,31 @@
 const deviceService = require('../services/device.service');
 
-async function getDevices(req, res) {
-  const devices = await deviceService.listDevices();
-  res.json(devices);
+class DeviceController {
+  async getAll(req, res) {
+    const devices = await deviceService.list();
+    res.json(devices);
+  }
+
+  async getById(req, res) {
+    const device = await deviceService.get(req.params.id);
+    if (!device.length) return res.status(404).json({ message: 'Device not found' });
+    res.json(device[0]);
+  }
+
+  async create(req, res) {
+    const id = await deviceService.create(req.body);
+    res.status(201).json({ id });
+  }
+
+  async update(req, res) {
+    await deviceService.update(req.params.id, req.body);
+    res.json({ message: 'Device updated' });
+  }
+
+  async delete(req, res) {
+    await deviceService.delete(req.params.id);
+    res.json({ message: 'Device deleted' });
+  }
 }
 
-async function getDevice(req, res) {
-  const device = await deviceService.getDevice(req.params.id);
-  if (!device) return res.status(404).json({ message: 'Device not found' });
-  res.json(device);
-}
-
-async function createDevice(req, res) {
-  const id = await deviceService.addDevice(req.body);
-  res.status(201).json({ id });
-}
-
-async function updateDevice(req, res) {
-  await deviceService.modifyDevice(req.params.id, req.body);
-  res.json({ message: 'Device updated' });
-}
-
-async function deleteDevice(req, res) {
-  await deviceService.removeDevice(req.params.id);
-  res.json({ message: 'Device deleted' });
-}
-
-module.exports = { getDevices, getDevice, createDevice, updateDevice, deleteDevice };
+module.exports = new DeviceController();
