@@ -9,3 +9,153 @@
 2025-09-15 14:55:32 [INFO]: Server running on port 3000
 2025-09-15 14:55:35 [INFO]: Server running on port 3000
 2025-09-15 15:04:09 [INFO]: Server running on port 3000
+2025-09-15 15:05:49 [INFO]: Server running on port 3000
+2025-09-15 15:05:51 [INFO]: Server running on port 3000
+2025-09-15 15:06:35 [INFO]: Server running on port 3000
+2025-09-15 15:06:38 [INFO]: Server running on port 3000
+2025-09-15 15:07:00 [INFO]: Server running on port 3000
+2025-09-15 15:07:02 [INFO]: Server running on port 3000
+2025-09-15 15:08:09 [INFO]: Server running on port 3000
+2025-09-15 15:08:11 [INFO]: Server running on port 3000
+2025-09-15 15:09:01 [INFO]: Server running on port 3000
+2025-09-15 15:10:58 [INFO]: Server running on port 3000
+2025-09-15 15:11:08 [INFO]: Fetching all type_devices
+2025-09-15 15:12:26 [INFO]: Fetching all type_devices
+2025-09-15 15:14:29 [INFO]: Fetching type_device with id=1
+2025-09-15 15:14:29 [ERROR]: typeDevices.id.eq is not a function
+2025-09-15 15:24:59 [INFO]: Server running on port 3000
+2025-09-15 15:25:04 [INFO]: Fetching all type_devices
+2025-09-15 15:25:04 [ERROR]: testConnection is not defined
+2025-09-15 15:37:47 [INFO]: Fetching all type_devices
+2025-09-15 15:37:47 [ERROR]: testConnection is not defined
+2025-09-15 15:38:00 [INFO]: Server running on port 3000
+2025-09-15 15:38:03 [INFO]: Server running on port 3000
+2025-09-15 15:38:11 [INFO]: Fetching all type_devices
+2025-09-15 15:41:45 [INFO]: Server running on port 3000
+2025-09-15 15:41:48 [INFO]: Server running on port 3000
+2025-09-15 15:42:20 [INFO]: Server running on port 3000
+2025-09-15 15:42:28 [INFO]: Server running on port 3000
+2025-09-15 15:47:45 [INFO]: Server running on port 3000
+2025-09-15 15:47:49 [INFO]: Fetching all type_devices
+2025-09-15 15:47:51 [INFO]: Fetching all type_devices
+2025-09-15 15:50:18 [INFO]: Testing database connection...
+2025-09-15 15:50:18 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:50:18 [INFO]: Server running on port 3000
+2025-09-15 15:50:24 [INFO]: Testing database connection...
+2025-09-15 15:50:24 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:50:24 [INFO]: Server running on port 3000
+2025-09-15 15:51:39 [INFO]: Fetching all type_devices
+2025-09-15 15:51:52 [INFO]: Fetching all type_devices
+2025-09-15 15:52:00 [INFO]: Fetching all type_devices
+2025-09-15 15:55:32 [INFO]: Testing database connection...
+2025-09-15 15:55:32 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:55:32 [INFO]: Server running on port 3000
+2025-09-15 15:55:38 [INFO]: Testing database connection...
+2025-09-15 15:55:38 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:55:38 [INFO]: Server running on port 3000
+2025-09-15 15:57:02 [INFO]: Testing database connection...
+2025-09-15 15:57:02 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:57:02 [INFO]: Server running on port 3000
+2025-09-15 15:57:06 [INFO]: Testing database connection...
+2025-09-15 15:57:06 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:57:06 [INFO]: Server running on port 3000
+2025-09-15 15:57:09 [INFO]: Testing database connection...
+2025-09-15 15:57:09 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:57:09 [INFO]: Server running on port 3000
+2025-09-15 15:57:10 [INFO]: Testing database connection...
+2025-09-15 15:57:10 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:57:10 [INFO]: Server running on port 3000
+2025-09-15 15:57:18 [INFO]: Testing database connection...
+2025-09-15 15:57:18 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:57:18 [INFO]: Server running on port 3000
+2025-09-15 15:57:34 [INFO]: Testing database connection...
+2025-09-15 15:57:34 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:57:34 [INFO]: Server running on port 3000
+2025-09-15 15:57:37 [INFO]: Testing database connection...
+2025-09-15 15:57:37 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:57:37 [INFO]: Server running on port 3000
+2025-09-15 15:57:39 [INFO]: Testing database connection...
+2025-09-15 15:57:39 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:57:39 [INFO]: Server running on port 3000
+2025-09-15 15:57:41 [INFO]: Testing database connection...
+2025-09-15 15:57:41 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:57:41 [INFO]: Server running on port 3000
+2025-09-15 15:57:44 [INFO]: Testing database connection...
+2025-09-15 15:57:44 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:57:44 [INFO]: Server running on port 3000
+2025-09-15 15:57:47 [INFO]: Testing database connection...
+2025-09-15 15:57:47 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:57:47 [INFO]: Server running on port 3000
+2025-09-15 15:58:04 [INFO]: Testing database connection...
+2025-09-15 15:58:04 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:58:04 [INFO]: Server running on port 3000
+2025-09-15 15:58:37 [INFO]: Fetching type_device id=debug
+2025-09-15 15:59:18 [INFO]: Testing database connection...
+2025-09-15 15:59:18 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:59:18 [INFO]: Server running on port 3000
+2025-09-15 15:59:21 [INFO]: Testing database connection...
+2025-09-15 15:59:22 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:59:22 [INFO]: Server running on port 3000
+2025-09-15 15:59:23 [INFO]: Testing database connection...
+2025-09-15 15:59:23 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:59:23 [INFO]: Server running on port 3000
+2025-09-15 15:59:29 [INFO]: Fetching type_device id=debug
+2025-09-15 15:59:43 [INFO]: Testing database connection...
+2025-09-15 15:59:43 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 15:59:43 [INFO]: Server running on port 3000
+2025-09-15 15:59:56 [INFO]: Fetching type_device id=debug
+2025-09-15 16:00:20 [INFO]: Testing database connection...
+2025-09-15 16:00:20 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 16:00:20 [INFO]: Server running on port 3000
+2025-09-15 16:00:23 [INFO]: Testing database connection...
+2025-09-15 16:00:23 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 16:00:23 [INFO]: Server running on port 3000
+2025-09-15 16:02:51 [INFO]: Testing database connection...
+2025-09-15 16:02:51 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 16:02:51 [INFO]: Server running on port 3000
+2025-09-15 16:02:55 [INFO]: Testing database connection...
+2025-09-15 16:02:55 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 16:02:55 [INFO]: Server running on port 3000
+2025-09-15 16:02:57 [INFO]: Testing database connection...
+2025-09-15 16:02:57 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 16:02:57 [INFO]: Server running on port 3000
+2025-09-15 16:03:03 [INFO]: Testing database connection...
+2025-09-15 16:03:03 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 16:03:03 [INFO]: Server running on port 3000
+2025-09-15 16:03:05 [INFO]: Testing database connection...
+2025-09-15 16:03:05 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 16:03:05 [INFO]: Server running on port 3000
+2025-09-15 16:03:11 [INFO]: Testing database connection...
+2025-09-15 16:03:11 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 16:03:11 [INFO]: Server running on port 3000
+2025-09-15 16:03:14 [INFO]: Testing database connection...
+2025-09-15 16:03:14 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 16:03:14 [INFO]: Server running on port 3000
+2025-09-15 16:03:17 [INFO]: Testing database connection...
+2025-09-15 16:03:17 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 16:03:17 [INFO]: Server running on port 3000
+2025-09-15 16:03:23 [INFO]: Testing database connection...
+2025-09-15 16:03:23 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 16:03:23 [INFO]: Server running on port 3000
+2025-09-15 16:03:30 [INFO]: Testing database connection...
+2025-09-15 16:03:30 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 16:03:30 [INFO]: Server running on port 3000
+2025-09-15 16:08:18 [INFO]: Testing database connection...
+2025-09-15 16:08:18 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 16:08:18 [INFO]: Server running on port 3000
+2025-09-15 16:10:24 [INFO]: Testing database connection...
+2025-09-15 16:10:25 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 16:10:25 [INFO]: Server running on port 3000
+2025-09-15 16:10:44 [INFO]: Testing database connection...
+2025-09-15 16:10:44 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 16:10:44 [INFO]: Server running on port 3000
+2025-09-15 16:11:05 [INFO]: Testing database connection...
+2025-09-15 16:11:05 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 16:11:05 [INFO]: Server running on port 3000
+2025-09-15 16:11:08 [INFO]: Testing database connection...
+2025-09-15 16:11:08 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 16:11:08 [INFO]: Server running on port 3000
+2025-09-15 16:11:15 [INFO]: Testing database connection...
+2025-09-15 16:11:15 [INFO]: Database connection OK. Test query result: [{"result":2}]
+2025-09-15 16:11:15 [INFO]: Server running on port 3000
+2025-09-15 16:12:41 [INFO]: Server running on port 3000
