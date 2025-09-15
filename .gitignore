@@ -1,0 +1,22 @@
+# Dossiers et fichiers générés par Node
+node_modules/
+dist/
+build/
+coverage/
+
+# Fichiers de log et de cache
+npm-debug.log*
+yarn-debug.log*
+.npm
+.yarn-integrity
+.eslintcache
+.vscode/
+
+# Fichiers de l'IDE et du système d'exploitation
+.DS_Store
+.env*
+.env.production
+.env.development
+.env.local
+.history
+.settings
