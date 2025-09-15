@@ -1,30 +1,58 @@
-const deviceService = require('../services/device.service');
+const logger = require('../logger/logger');
+const service = require('../services/device.service')
 
 class DeviceController {
   async getAll(req, res) {
-    const devices = await deviceService.list();
-    res.json(devices);
+    try {
+      const items = await service.list();
+      res.json(items);
+    } catch (error) {
+      logger.error(`Controller error (getAll): ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
   }
 
   async getById(req, res) {
-    const device = await deviceService.get(req.params.id);
-    if (!device.length) return res.status(404).json({ message: 'Device not found' });
-    res.json(device[0]);
+    try {
+      const item = await service.get(req.params.id);
+      if (!item.length) {
+        return res.status(404).json({ message: 'Not found' });
+      }
+      res.json(item[0]);
+    } catch (error) {
+      logger.error(`Controller error (getById): ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
   }
 
   async create(req, res) {
-    const id = await deviceService.create(req.body);
-    res.status(201).json({ id });
+    try {
+      const id = await service.create(req.body);
+      res.status(201).json({ id });
+    } catch (error) {
+      logger.error(`Controller error (create): ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
   }
 
   async update(req, res) {
-    await deviceService.update(req.params.id, req.body);
-    res.json({ message: 'Device updated' });
+    try {
+      await service.update(req.params.id, req.body);
+      res.json({ message: 'Updated successfully' });
+    } catch (error) {
+      logger.error(`Controller error (update): ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
   }
 
   async delete(req, res) {
-    await deviceService.delete(req.params.id);
-    res.json({ message: 'Device deleted' });
+    try {
+      await service.delete(req.params.id);
+      res.json({ message: 'Deleted successfully' });
+    } catch (error) {
+      logger.error(`Controller error (delete): ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
   }
 }
 
