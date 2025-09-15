@@ -11,6 +11,7 @@ yarn-debug.log*
 .yarn-integrity
 .eslintcache
 .vscode/
+/logs/app.log
 
 # Fichiers de l'IDE et du système d'exploitation
 .DS_Store
