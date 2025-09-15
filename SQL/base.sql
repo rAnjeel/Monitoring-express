@@ -1,5 +1,5 @@
-CREATE DATABASE  IF NOT EXISTS monitoring_equipment;
-USE monitoring_equipment;
+CREATE DATABASE  IF NOT EXISTS monitoring;
+USE monitoring;
 
 CREATE TABLE type_device (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -27,8 +27,8 @@ CREATE TABLE devices (
     ip VARCHAR(30) NOT NULL,
     hostname varchar(50) NOT NULL,
     status INT DEFAULT NULL,
-    type_id INT NOT NULL,
-    location_id INT NOT NULL,
+    type_id INT,
+    location_id INT,
     details_id INT,
     monitoring_id INT,
     codesite varchar(45) DEFAULT NULL,
@@ -91,20 +91,6 @@ CREATE TABLE port_events (
   duration INT DEFAULT NULL,
   message VARCHAR(255) DEFAULT NULL,
   FOREIGN KEY (port_id) REFERENCES ports(id) ON DELETE CASCADE
-);
-
-
-CREATE TABLE `devices_details` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `os` text,
-  `serial` text,
-  `icon` text,
-  `notes` text,
-  `display` varchar(45) DEFAULT NULL,
-  `protocol` varchar(255) DEFAULT NULL,
-  `tags` varchar(255) DEFAULT NULL,
-  `is_remote_lnms` tinyint DEFAULT '0',
-  PRIMARY KEY (`id`,`hostname`)
 );
 
 
