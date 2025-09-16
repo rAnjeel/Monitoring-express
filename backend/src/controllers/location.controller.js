@@ -1,14 +1,16 @@
 const locationService = require('../services/location.service');
 const logger = require('../logger/logger');
+const LocationDTO = require('../dtos/location.dto');
 
 class LocationController {
   async getAll(req, res) {
     try {
       const items = await locationService.list();
+      logger.info(`LocationController: returning ${items.length} locations`);
       res.json(items);
     } catch (error) {
       logger.error(`LocationController getAll error: ${error.message}`);
-      res.status(500).json({ message: error.message });
+      res.status(500).json({ message: 'Internal Server Error' });
     }
   }
 
@@ -16,42 +18,49 @@ class LocationController {
     try {
       const item = await locationService.get(req.params.id);
       if (!item.length) {
-        return res.status(404).json({ message: 'Location not found' });
+        logger.warn(`LocationController: location id=${req.params.id} not found`);
+        return res.status(404).json({ message: 'Not found' });
       }
+      logger.info(`LocationController: returning location id=${req.params.id}`);
       res.json(item[0]);
     } catch (error) {
       logger.error(`LocationController getById error: ${error.message}`);
-      res.status(500).json({ message: error.message });
+      res.status(500).json({ message: 'Internal Server Error' });
     }
   }
 
   async create(req, res) {
     try {
-      const id = await locationService.create(req.body);
+      const dto = new LocationDTO(req.body);
+      logger.info(`LocationController: creating location with data=${JSON.stringify(dto)}`);
+      const id = await locationService.create(dto);
       res.status(201).json({ id });
     } catch (error) {
       logger.error(`LocationController create error: ${error.message}`);
-      res.status(500).json({ message: error.message });
+      res.status(500).json({ message: 'Internal Server Error' });
     }
   }
 
   async update(req, res) {
     try {
-      await locationService.update(req.params.id, req.body);
-      res.json({ message: 'Location updated successfully' });
+      const dto = new LocationDTO(req.body);
+      logger.info(`LocationController: updating location id=${req.params.id} with data=${JSON.stringify(dto)}`);
+      await locationService.update(req.params.id, dto);
+      res.json({ message: 'Updated successfully' });
     } catch (error) {
       logger.error(`LocationController update error: ${error.message}`);
-      res.status(500).json({ message: error.message });
+      res.status(500).json({ message: 'Internal Server Error' });
     }
   }
 
   async delete(req, res) {
     try {
+      logger.info(`LocationController: deleting location id=${req.params.id}`);
       await locationService.delete(req.params.id);
-      res.json({ message: 'Location deleted successfully' });
+      res.json({ message: 'Deleted successfully' });
     } catch (error) {
       logger.error(`LocationController delete error: ${error.message}`);
-      res.status(500).json({ message: error.message });
+      res.status(500).json({ message: 'Internal Server Error' });
     }
   }
 }
