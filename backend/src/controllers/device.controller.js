@@ -1,6 +1,6 @@
 const logger = require('../logger/logger');
 const service = require('../services/device.service');
-const DeviceDTO = require('../dtos/device.dto');
+const DeviceDTO = require('../dto/device.dto');
 
 class DeviceController {
   async getAll(req, res) {

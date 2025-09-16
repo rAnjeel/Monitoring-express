@@ -1,6 +1,6 @@
 const locationService = require('../services/location.service');
 const logger = require('../logger/logger');
-const LocationDTO = require('../dtos/location.dto');
+const LocationDTO = require('../dto/location.dto');
 
 class LocationController {
   async getAll(req, res) {

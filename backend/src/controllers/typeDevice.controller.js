@@ -1,6 +1,6 @@
 const typeDeviceService = require('../services/typeDevice.service');
 const logger = require('../logger/logger');
-const TypeDeviceDTO = require('../dtos/typeDevice.dto');
+const TypeDeviceDTO = require('../dto/typeDevice.dto');
 
 class TypeDeviceController {
   async getAll(req, res) {

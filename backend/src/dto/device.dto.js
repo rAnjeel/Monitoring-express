@@ -1,40 +1,55 @@
-const Joi = require('joi');
-
-const deviceSchema = Joi.object({
-  ip: Joi.string().ip({ version: ['ipv4', 'ipv6'] }).required(),
-  hostname: Joi.string().max(50).required(),
-  status: Joi.number().optional(),
-  type_id: Joi.number().optional(),
-  location_id: Joi.number().optional(),
-  details_id: Joi.number().optional(),
-  monitoring_id: Joi.number().optional(),
-  codesite: Joi.string().max(45).optional(),
-  loss: Joi.number().optional(),
-  avg: Joi.number().optional(),
-  min: Joi.number().optional(),
-  max: Joi.number().optional(),
-  uptime: Joi.date().optional(),
-  snmp_enabled: Joi.boolean().optional(),
-  community: Joi.string().optional(),
-  authlevel: Joi.string().optional(),
-  authname: Joi.string().optional(),
-  authpass: Joi.string().optional(),
-  authalgo: Joi.string().optional(),
-  cryptopass: Joi.string().optional(),
-  cryptoalgo: Joi.string().optional(),
-  snmpver: Joi.string().optional(),
-  ne_id: Joi.string().max(45).required(),
-});
-
-function validateDevice(req, res, next) {
-  const { error } = deviceSchema.validate(req.body, { abortEarly: false });
-  if (error) {
-    return res.status(400).json({
-      message: 'Validation error',
-      details: error.details.map(d => d.message)
-    });
+class DeviceDTO {
+  constructor({
+    id,
+    ip,
+    hostname,
+    status,
+    type_id,
+    location_id,
+    details_id,
+    monitoring_id,
+    codesite,
+    loss,
+    avg,
+    min,
+    max,
+    uptime,
+    snmp_enabled,
+    community,
+    authlevel,
+    authname,
+    authpass,
+    authalgo,
+    cryptopass,
+    cryptoalgo,
+    snmpver,
+    ne_id,
+  }) {
+    this.id = id;
+    this.ip = ip;
+    this.hostname = hostname;
+    this.status = status;
+    this.type_id = type_id;
+    this.location_id = location_id;
+    this.details_id = details_id;
+    this.monitoring_id = monitoring_id;
+    this.codesite = codesite;
+    this.loss = loss;
+    this.avg = avg;
+    this.min = min;
+    this.max = max;
+    this.uptime = uptime;
+    this.snmp_enabled = snmp_enabled;
+    this.community = community;
+    this.authlevel = authlevel;
+    this.authname = authname;
+    this.authpass = authpass;
+    this.authalgo = authalgo;
+    this.cryptopass = cryptopass;
+    this.cryptoalgo = cryptoalgo;
+    this.snmpver = snmpver;
+    this.ne_id = ne_id;
   }
-  next();
 }
 
-module.exports = validateDevice;
+module.exports = DeviceDTO;

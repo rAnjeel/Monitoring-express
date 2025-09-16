@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const locationController = require('../controllers/location.controller');
-const validateLocation = require('../middlewares/locationValidation');
+const validateLocation = require('../middlewares/location.middleware');
 
 router.get('/', locationController.getAll.bind(locationController));
 router.get('/:id', locationController.getById.bind(locationController));

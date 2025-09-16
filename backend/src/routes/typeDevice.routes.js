@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const typeDeviceController = require('../controllers/typeDevice.controller');
-const validateTypeDevice = require('../middlewares/typeDeviceValidation');
+const validateTypeDevice = require('../middlewares/typeDevice.middleware');
 
 router.get('/', typeDeviceController.getAll.bind(typeDeviceController));
 router.get('/:id', typeDeviceController.getById.bind(typeDeviceController));
