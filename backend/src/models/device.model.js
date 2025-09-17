@@ -8,8 +8,6 @@ const devices = mysqlTable('devices', {
   status: int('status'),
   type_id: int('type_id'),
   location_id: int('location_id'),
-  details_id: int('details_id'),
-  monitoring_id: int('monitoring_id'),
   codesite: varchar('codesite', { length: 45 }),
   loss: float('loss'),
   avg: float('avg').default(0),

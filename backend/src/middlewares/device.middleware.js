@@ -2,13 +2,11 @@ const Joi = require('joi');
 
 const deviceSchema = Joi.object({
   device_id: Joi.number().required(),
-  ip: Joi.string().ip({ version: ['ipv4', 'ipv6'] }).required(),
+  ip: Joi.string(),
   hostname: Joi.string().max(50).required(),
   status: Joi.number().optional(),
   type_id: Joi.number().optional(),
   location_id: Joi.number().optional(),
-  details_id: Joi.number().optional(),
-  monitoring_id: Joi.number().optional(),
   codesite: Joi.string().max(45).optional(),
   loss: Joi.number().optional(),
   avg: Joi.number().optional(),

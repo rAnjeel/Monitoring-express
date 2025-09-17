@@ -58,12 +58,10 @@ class DeviceController {
 
   async importCSV(req, res) {
     try {
-      if (!req.file) {
-        return res.status(400).json({ message: 'CSV file is required' });
+      if (!Array.isArray(req.body)) {
+        return res.status(400).json({ message: 'Payload must be an array of rows' });
       }
-
-      logger.info(`Starting CSV import: ${req.file.originalname}`);
-      const count = await deviceService.importDataCSV(req.file.path);
+      const count = await deviceService.importDataCSV(req.body);
       logger.info(`Successfully imported ${count} devices`);
 
       res.json({ message: `Imported ${count} devices successfully` });

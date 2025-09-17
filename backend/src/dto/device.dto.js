@@ -6,8 +6,6 @@ class DeviceDTO {
     status,
     type_id,
     location_id,
-    details_id,
-    monitoring_id,
     codesite,
     loss,
     avg,
@@ -31,8 +29,6 @@ class DeviceDTO {
     this.status = status;
     this.type_id = type_id;
     this.location_id = location_id;
-    this.details_id = details_id;
-    this.monitoring_id = monitoring_id;
     this.codesite = codesite;
     this.loss = loss;
     this.avg = avg;

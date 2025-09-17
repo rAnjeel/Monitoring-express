@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const deviceRoutes = require('./routes/device.routes');
 const typeDeviceRoutes = require('./routes/typeDevice.routes');
 const locationRoutes = require('./routes/location.routes');  
@@ -9,6 +10,12 @@ const errorHandler = require('./middlewares/error.middleware');
 
 const app = express();
 app.use(bodyParser.json());
+
+app.use(cors({
+  origin: ['http://localhost:8080', 'http://localhost:8081'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
 app.use('/devices', deviceRoutes);
 app.use('/type-devices', typeDeviceRoutes);
