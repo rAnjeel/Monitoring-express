@@ -1,4 +1,5 @@
 const logger = require('../logger/logger');
+const deviceService = require('../services/device.service');
 const service = require('../services/device.service')
 
 class DeviceController {
@@ -52,6 +53,23 @@ class DeviceController {
     } catch (error) {
       logger.error(`Controller error (delete): ${error.message}`);
       res.status(500).json({ message: error.message });
+    }
+  }
+
+  async importCSV(req, res) {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: 'CSV file is required' });
+      }
+
+      logger.info(`Starting CSV import: ${req.file.originalname}`);
+      const count = await deviceService.importFromCSV(req.file.path);
+      logger.info(`Successfully imported ${count} devices`);
+
+      res.json({ message: `Imported ${count} devices successfully` });
+    } catch (error) {
+      logger.error(`Import error: ${error.message}`);
+      res.status(500).json({ message: 'Error importing devices', error: error.message });
     }
   }
 }

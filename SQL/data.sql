@@ -8,7 +8,7 @@ INSERT INTO `locations` VALUES (3,'TNR',36.650627,-94.443550,'2018-08-31 15:45:0
 
 -- Extract to csv devices
 SELECT device_id,id,ip,hostname,status,type_device_id,location_id,codesite,loss,avg,min,max,uptime,snmp_disable,community,authlevel,authname,authpass,authalgo,cryptopass,cryptoalgo,snmpver,ne_id
-FROM devices
+FROM devices WHERE id >0 AND id<=20
 INTO OUTFILE '/var/lib/mysql-files/devices.csv'
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'

@@ -1,3 +1,5 @@
+const fs = require('fs');
+const csv = require('csv-parser');
 const db = require('../config/db');
 const { devices } = require('../models/device.model');
 const { eq } = require('drizzle-orm');
@@ -66,6 +68,60 @@ class DeviceService {
       logger.error(`Error deleting device id=${id}: ${error.message}`);
       throw new Error('Database error while deleting device');
     }
+  }
+
+  async importFromCSV(filePath) {
+    return new Promise((resolve, reject) => {
+      const results = [];
+
+      fs.createReadStream(filePath)
+        .pipe(csv())
+        .on('data', (row) => {
+          // Nettoyage des valeurs
+          const device = {
+            id: row.id && row.id !== '\\N' ? parseInt(row.id, 10) : null,
+            ip: row.ip && row.ip !== '\\N' ? row.ip : null,
+            hostname: row.hostname && row.hostname !== '\\N' ? row.hostname : null,
+            status: row.status ? parseInt(row.status, 10) : null,
+            type_id: row.type_device_id ? parseInt(row.type_device_id, 10) : null,
+            location_id: row.location_id ? parseInt(row.location_id, 10) : null,
+            codesite: row.codesite && row.codesite !== '\\N' ? row.codesite : null,
+            loss: row.loss ? parseFloat(row.loss) : null,
+            avg: row.avg ? parseFloat(row.avg) : null,
+            min: row.min ? parseFloat(row.min) : null,
+            max: row.max ? parseFloat(row.max) : null,
+            uptime: row.uptime && row.uptime !== '\\N' ? new Date(row.uptime) : null,
+            snmp_enabled: row.snmp_disable === '0' ? true : false,
+            community: row.community && row.community !== '\\N' ? row.community : null,
+            authlevel: row.authlevel && row.authlevel !== '\\N' ? row.authlevel : null,
+            authname: row.authname && row.authname !== '\\N' ? row.authname : null,
+            authpass: row.authpass && row.authpass !== '\\N' ? row.authpass : null,
+            authalgo: row.authalgo && row.authalgo !== '\\N' ? row.authalgo : null,
+            cryptopass: row.cryptopass && row.cryptopass !== '\\N' ? row.cryptopass : null,
+            cryptoalgo: row.cryptoalgo && row.cryptoalgo !== '\\N' ? row.cryptoalgo : null,
+            snmpver: row.snmpver && row.snmpver !== '\\N' ? row.snmpver : null,
+            ne_id: row.ne_id && row.ne_id !== '\\N' ? row.ne_id : null,
+          };
+          results.push(device);
+        })
+        .on('end', async () => {
+          try {
+            logger.info(`Importing ${results.length} devices from CSV`);
+            for (const device of results) {
+              await db.insert(devices).values(device);
+              logger.info(`Inserted device ip=${device.ip} hostname=${device.hostname}`);
+            }
+            resolve(results.length);
+          } catch (err) {
+            logger.error(`Database error during import: ${err.message}`);
+            reject(err);
+          }
+        })
+        .on('error', (err) => {
+          logger.error(`CSV parsing error: ${err.message}`);
+          reject(err);
+        });
+    });
   }
 }
 
