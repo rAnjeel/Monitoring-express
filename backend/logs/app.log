@@ -180,3 +180,7 @@
 2025-09-15 16:34:25 [INFO]: Fetching all locations
 2025-09-15 16:48:58 [INFO]: Server running on port 3000
 2025-09-15 16:51:29 [INFO]: Fetching all type_devices
+2025-09-16 14:07:32 [INFO]: Server running on port 3000
+2025-09-16 14:08:03 [INFO]: Fetching all locations
+2025-09-16 14:08:03 [INFO]: Fetched 63 locations
+2025-09-16 14:08:03 [INFO]: LocationController: returning 63 locations
