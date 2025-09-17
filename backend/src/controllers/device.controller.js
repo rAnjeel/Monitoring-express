@@ -1,16 +1,15 @@
 const logger = require('../logger/logger');
-const service = require('../services/device.service');
-const DeviceDTO = require('../dto/device.dto');
+const deviceService = require('../services/device.service');
+const service = require('../services/device.service')
 
 class DeviceController {
   async getAll(req, res) {
     try {
       const items = await service.list();
-      logger.info(`DeviceController: returning ${items.length} devices`);
       res.json(items);
     } catch (error) {
-      logger.error(`DeviceController getAll error: ${error.message}`);
-      res.status(500).json({ message: 'Internal Server Error' });
+      logger.error(`Controller error (getAll): ${error.message}`);
+      res.status(500).json({ message: error.message });
     }
   }
 
@@ -18,49 +17,59 @@ class DeviceController {
     try {
       const item = await service.get(req.params.id);
       if (!item.length) {
-        logger.warn(`DeviceController: device id=${req.params.id} not found`);
         return res.status(404).json({ message: 'Not found' });
       }
-      logger.info(`DeviceController: returning device id=${req.params.id}`);
       res.json(item[0]);
     } catch (error) {
-      logger.error(`DeviceController getById error: ${error.message}`);
-      res.status(500).json({ message: 'Internal Server Error' });
+      logger.error(`Controller error (getById): ${error.message}`);
+      res.status(500).json({ message: error.message });
     }
   }
 
   async create(req, res) {
     try {
-      const dto = new DeviceDTO(req.body);
-      logger.info(`DeviceController: creating device with data=${JSON.stringify(dto)}`);
-      const id = await service.create(dto);
+      const id = await service.create(req.body);
       res.status(201).json({ id });
     } catch (error) {
-      logger.error(`DeviceController create error: ${error.message}`);
-      res.status(500).json({ message: 'Internal Server Error' });
+      logger.error(`Controller error (create): ${error.message}`);
+      res.status(500).json({ message: error.message });
     }
   }
 
   async update(req, res) {
     try {
-      const dto = new DeviceDTO(req.body);
-      logger.info(`DeviceController: updating device id=${req.params.id} with data=${JSON.stringify(dto)}`);
-      await service.update(req.params.id, dto);
+      await service.update(req.params.id, req.body);
       res.json({ message: 'Updated successfully' });
     } catch (error) {
-      logger.error(`DeviceController update error: ${error.message}`);
-      res.status(500).json({ message: 'Internal Server Error' });
+      logger.error(`Controller error (update): ${error.message}`);
+      res.status(500).json({ message: error.message });
     }
   }
 
   async delete(req, res) {
     try {
-      logger.info(`DeviceController: deleting device id=${req.params.id}`);
       await service.delete(req.params.id);
       res.json({ message: 'Deleted successfully' });
     } catch (error) {
-      logger.error(`DeviceController delete error: ${error.message}`);
-      res.status(500).json({ message: 'Internal Server Error' });
+      logger.error(`Controller error (delete): ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  async importCSV(req, res) {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ message: 'CSV file is required' });
+      }
+
+      logger.info(`Starting CSV import: ${req.file.originalname}`);
+      const count = await deviceService.importDataCSV(req.file.path);
+      logger.info(`Successfully imported ${count} devices`);
+
+      res.json({ message: `Imported ${count} devices successfully` });
+    } catch (error) {
+      logger.error(`Import error: ${error.message}`);
+      res.status(500).json({ message: 'Error importing devices', error: error.message });
     }
   }
 }
