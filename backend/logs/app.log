@@ -559,3 +559,23 @@ params: 99,,154.126.76.14,1,1,9,,0,5.571,5.37,5.781,2025-04-29 17:15:23.000,fals
 params: 100,,154.126.76.11,1,1,9,,0,6.266,5.413,10.739,2025-04-29 17:15:23.000,false,753con159v2,,,,,,,v2c,8370,,154.126.76.11,1,1,9,,0,6.266,5.413,10.739,2025-04-29 17:15:23.000,false,753con159v2,,,,,,,v2c,8370 (ip=\N)
 2025-09-17 16:29:02 [INFO]: Successfully imported 0 devices
 2025-09-17 16:29:02 [INFO]: Successfully imported [object Object] devices
+2025-09-17 16:32:58 [INFO]: Server running on port 3000
+2025-09-17 16:33:09 [INFO]: Received data for CSV import:
+2025-09-17 16:33:09 [INFO]: Successfully imported undefined devices
+2025-09-17 16:33:36 [INFO]: Received data for CSV import:
+2025-09-17 16:33:36 [INFO]: Successfully imported undefined devices
+2025-09-17 16:35:42 [INFO]: Server running on port 3000
+2025-09-17 16:35:50 [INFO]: Received CSV import payload:
+2025-09-17 16:35:50 [INFO]: Received data for CSV import:
+2025-09-17 16:35:50 [INFO]: Successfully imported undefined devices
+2025-09-17 16:36:39 [INFO]: Server running on port 3000
+2025-09-17 16:36:49 [INFO]: Received CSV import payload:
+2025-09-17 16:36:49 [INFO]: Received data for CSV import:
+2025-09-17 16:36:49 [INFO]: Successfully imported undefined devices
+2025-09-17 16:39:36 [INFO]: Received CSV import payload:
+2025-09-17 16:39:36 [INFO]: Received data for CSV import:
+2025-09-17 16:39:36 [INFO]: Successfully imported undefined devices
+2025-09-17 16:43:07 [INFO]: Server running on port 3000
+2025-09-17 16:43:14 [INFO]: Received CSV import payload:
+2025-09-17 16:43:14 [INFO]: Received data for CSV import:
+2025-09-17 16:43:14 [INFO]: Successfully imported undefined devices

@@ -61,6 +61,7 @@ class DeviceController {
       if (!Array.isArray(req.body)) {
         return res.status(400).json({ message: 'Payload must be an array of rows' });
       }
+      logger.info('Received CSV import payload:', req.body); 
       const count = await deviceService.importDataCSV(req.body);
       logger.info(`Successfully imported ${count} devices`);
 

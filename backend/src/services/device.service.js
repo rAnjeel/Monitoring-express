@@ -71,7 +71,7 @@ class DeviceService {
   }
 
   async importDataCSV(data) {
-    logger.info('data ')
+    logger.info('Received data for CSV import:', data); // This logs the string AND the content of the variable  
   }
 
 }
