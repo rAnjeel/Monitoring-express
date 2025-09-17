@@ -23,6 +23,7 @@ CREATE TABLE device_details (
 );
 
 CREATE TABLE devices (
+    device_id INT UNIQUE NOT NULL,
     id INT AUTO_INCREMENT PRIMARY KEY,
     ip VARCHAR(30) NOT NULL,
     hostname varchar(50) NOT NULL,

@@ -1,6 +1,7 @@
 const { mysqlTable, int, varchar, float, boolean, datetime, text } = require('drizzle-orm/mysql-core');
 
 const devices = mysqlTable('devices', {
+  device_id: int('device_id'),
   id: int('id').primaryKey().autoincrement(),
   ip: varchar('ip', { length: 30 }).notNull(),
   hostname: varchar('hostname', { length: 50 }).notNull(),

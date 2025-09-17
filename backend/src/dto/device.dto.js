@@ -1,6 +1,6 @@
 class DeviceDTO {
   constructor({
-    id,
+    device_id,
     ip,
     hostname,
     status,
@@ -25,7 +25,7 @@ class DeviceDTO {
     snmpver,
     ne_id,
   }) {
-    this.id = id;
+    this.device_id = device_id;
     this.ip = ip;
     this.hostname = hostname;
     this.status = status;
