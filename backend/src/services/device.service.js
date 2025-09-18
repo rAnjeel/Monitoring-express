@@ -138,8 +138,6 @@ class DeviceService {
 
       return dto;
     });
-    logger.info(`Transformed payload for import: ${JSON.stringify(transformed)}`);
-
     // Helper to convert uptime string/number into Date or null
     const toDateOrNull = (value) => {
       if (value === null || value === undefined || value === '') return null;
