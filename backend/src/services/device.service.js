@@ -1,5 +1,7 @@
 const db = require('../config/db');
 const { devices } = require('../models/device.model');
+const { locations } = require('../models/location.model');
+const { typeDevices } = require('../models/typeDevice.model');
 const { eq } = require('drizzle-orm');
 const logger = require('../logger/logger');
 
@@ -70,6 +72,43 @@ class DeviceService {
 
   async importDataCSV(data) {
     logger.info('Received data for CSV import:', data); 
+  }
+
+  async getFullList() {
+    try {
+      const rows = await db
+        .select({
+          device_id: devices.device_id,
+          id: devices.id,
+          hostname: devices.hostname,
+          type_device: typeDevices.name,
+          location: locations.name,
+          status: devices.status,
+          codesite: devices.codesite,
+          loss: devices.loss,
+          avg: devices.avg,
+          min: devices.min,
+          max: devices.max,
+          uptime: devices.uptime,
+          snmp_disabled: devices.snmp_disabled,
+          community: devices.community,
+          authlevel: devices.authlevel,
+          authname: devices.authname,
+          authpass: devices.authpass,
+          authalgo: devices.authalgo,
+          cryptopass: devices.cryptopass,
+          cryptoalgo: devices.cryptoalgo,
+          snmpver: devices.snmpver,
+          ne_id: devices.ne_id,
+        })
+        .from(devices)
+        .leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
+        .leftJoin(locations, eq(locations.id, devices.location_id));
+      return rows;
+    } catch (error) {
+      logger.error(`Error fetching devices with names (drizzle): ${error.message}`);
+      throw error;
+    }
   }
 
 }
