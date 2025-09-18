@@ -1,5 +1,3 @@
-const fs = require('fs');
-const csv = require('csv-parser');
 const db = require('../config/db');
 const { devices } = require('../models/device.model');
 const { eq } = require('drizzle-orm');
