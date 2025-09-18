@@ -13,7 +13,7 @@ class DeviceController {
     }
   }
 
-  async getFullList(req, res) {
+  async getList(req, res) {
     try {
       const items = await service.getFullList();
       res.json(items);

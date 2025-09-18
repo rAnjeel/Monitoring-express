@@ -81,6 +81,8 @@ class DeviceService {
           device_id: devices.device_id,
           id: devices.id,
           hostname: devices.hostname,
+          type_device: typeDevices.name,
+          location: locations.name,
           status: devices.status,
           codesite: devices.codesite,
           loss: devices.loss,
@@ -88,7 +90,7 @@ class DeviceService {
           min: devices.min,
           max: devices.max,
           uptime: devices.uptime,
-          snmp_enabled: devices.snmp_enabled,
+          snmp_disabled: devices.snmp_disabled,
           community: devices.community,
           authlevel: devices.authlevel,
           authname: devices.authname,
@@ -98,11 +100,9 @@ class DeviceService {
           cryptoalgo: devices.cryptoalgo,
           snmpver: devices.snmpver,
           ne_id: devices.ne_id,
-          type_name: typeDevices.name,
-          location_name: locations.name,
         })
         .from(devices)
-        .leftJoin(typeDevices, eq(typeDevices.id, devices.type_id))
+        .leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
         .leftJoin(locations, eq(locations.id, devices.location_id));
       return rows;
     } catch (error) {
