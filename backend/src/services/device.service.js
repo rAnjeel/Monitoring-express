@@ -113,10 +113,11 @@ class DeviceService {
 
       const dto = new DeviceDTO({
         device_id: toIntOrNull(row.device_id),
+        id: toIntOrNull(row.id),
         ip: toNull(row.ip),
         hostname: toNull(row.hostname),
         status: toIntOrNull(row.status),
-        type_device_id: toIntOrNull(row.type_device_id ?? row.type_id),
+        type_device_id: toIntOrNull(row.type_device_id),
         location_id: toIntOrNull(row.location_id),
         codesite: toNull(row.codesite),
         loss: toFloatOrNull(row.loss),
@@ -124,7 +125,7 @@ class DeviceService {
         min: toFloatOrNull(row.min),
         max: toFloatOrNull(row.max),
         uptime: toNull(row.uptime),
-        snmp_disabled: toSnmpDisabled(row.snmp_disabled ?? row.snmp_disable ?? (row.snmp_enabled !== undefined ? (!row.snmp_enabled ? 1 : 0) : null)),
+        snmp_disabled: toSnmpDisabled(row.snmp_disabled),
         community: toNull(row.community),
         authlevel: toNull(row.authlevel),
         authname: toNull(row.authname),
@@ -158,11 +159,11 @@ class DeviceService {
     for (const dto of transformed) {
       const row = {
         device_id: dto.device_id,
-        // id omitted for AUTO_INCREMENT
+        id: dto.id,
         ip: dto.ip,
         hostname: dto.hostname,
         status: dto.status,
-        type_id: dto.type_device_id,
+        type_device_id: dto.type_device_id,
         location_id: dto.location_id,
         codesite: dto.codesite,
         loss: dto.loss,
@@ -191,7 +192,7 @@ class DeviceService {
               ip: row.ip,
               hostname: row.hostname,
               status: row.status,
-              type_id: row.type_id,
+              type_device_id: row.type_device_id,
               location_id: row.location_id,
               codesite: row.codesite,
               loss: row.loss,

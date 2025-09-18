@@ -10,7 +10,7 @@ SELECT
   d.min,
   d.max,
   d.uptime,
-  d.snmp_disable,
+  d.snmp_disabled,
   d.community,
   d.authlevel,
   d.authname,

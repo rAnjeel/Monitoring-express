@@ -1,6 +1,7 @@
 class DeviceDTO {
   constructor({
     device_id,
+    id,
     ip,
     hostname,
     status,
@@ -24,6 +25,7 @@ class DeviceDTO {
     ne_id,
   }) {
     this.device_id = device_id;
+    this.id = id;
     this.ip = ip;
     this.hostname = hostname;
     this.status = status;

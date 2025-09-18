@@ -23,7 +23,7 @@ CREATE TABLE device_details (
 );
 
 CREATE TABLE devices (
-    device_id INT UNIQUE NOT NULL,
+    device_id INT UNIQUE DEFAULT NULL,
     id INT AUTO_INCREMENT PRIMARY KEY,
     ip VARCHAR(30),
     hostname varchar(50) NOT NULL,
@@ -34,9 +34,9 @@ CREATE TABLE devices (
     monitoring_id INT DEFAULT NULL,
     codesite varchar(45) DEFAULT NULL,
     loss FLOAT DEFAULT NULL,
-    avg FLOAT DEFAULT 0,
-    min FLOAT DEFAULT 0,
-    max FLOAT DEFAULT 0,
+    avg FLOAT DEFAULT NULL,
+    min FLOAT DEFAULT NULL,
+    max FLOAT DEFAULT NULL,
     uptime datetime,
     snmp_disabled BOOLEAN DEFAULT FALSE,
     community text,
