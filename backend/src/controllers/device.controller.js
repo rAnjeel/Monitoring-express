@@ -71,11 +71,14 @@ class DeviceController {
       if (!Array.isArray(req.body)) {
         return res.status(400).json({ message: 'Payload must be an array of rows' });
       }
-      logger.info('Received CSV import payload:', req.body); 
-      const count = await deviceService.importDataCSV(req.body);
-      logger.info(`Successfully imported ${count} devices`);
+      const result = await deviceService.importDataCSV(req.body);
+      logger.info(`Import received ${result.count} rows`);
 
-      res.json({ message: `Imported ${count} devices successfully` });
+      res.json({
+        message: `Payload reçu: ${result.count} lignes`,
+        data: result.received,
+        count: result.count,
+      });
     } catch (error) {
       logger.error(`Import error: ${error.message}`);
       res.status(500).json({ message: 'Error importing devices', error: error.message });
