@@ -13,6 +13,16 @@ class DeviceController {
     }
   }
 
+  async getFullList(req, res) {
+    try {
+      const items = await service.getFullList();
+      res.json(items);
+    } catch (error) {
+      logger.error(`Controller error (getAll): ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
+  }
+
   async getById(req, res) {
     try {
       const item = await service.get(req.params.id);
