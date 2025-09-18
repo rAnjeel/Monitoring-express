@@ -579,3 +579,11 @@ params: 100,,154.126.76.11,1,1,9,,0,6.266,5.413,10.739,2025-04-29 17:15:23.000,f
 2025-09-17 16:43:14 [INFO]: Received CSV import payload:
 2025-09-17 16:43:14 [INFO]: Received data for CSV import:
 2025-09-17 16:43:14 [INFO]: Successfully imported undefined devices
+2025-09-18 08:36:46 [INFO]: Server running on port 3000
+2025-09-18 08:36:51 [INFO]: Fetching all devices
+2025-09-18 08:36:51 [ERROR]: Error fetching devices: Failed query: select `device_id`, `id`, `ip`, `hostname`, `status`, `type_id`, `location_id`, `codesite`, `loss`, `avg`, `min`, `max`, `uptime`, `snmp_enabled`, `community`, `authlevel`, `authname`, `authpass`, `authalgo`, `cryptopass`, `cryptoalgo`, `snmpver`, `ne_id` from `devices`
+params: 
+2025-09-18 08:36:51 [ERROR]: Controller error (getAll): Database error while fetching devices
+2025-09-18 08:38:42 [INFO]: Server running on port 3000
+2025-09-18 08:38:45 [INFO]: Fetching all devices
+2025-09-18 08:38:45 [INFO]: Fetched 19 devices

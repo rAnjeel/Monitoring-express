@@ -4,7 +4,7 @@ class DeviceDTO {
     ip,
     hostname,
     status,
-    type_id,
+    type_device_id,
     location_id,
     codesite,
     loss,
@@ -12,7 +12,7 @@ class DeviceDTO {
     min,
     max,
     uptime,
-    snmp_enabled,
+    snmp_disabled,
     community,
     authlevel,
     authname,
@@ -27,7 +27,7 @@ class DeviceDTO {
     this.ip = ip;
     this.hostname = hostname;
     this.status = status;
-    this.type_id = type_id;
+    this.type_device_id = type_device_id;
     this.location_id = location_id;
     this.codesite = codesite;
     this.loss = loss;
@@ -35,7 +35,7 @@ class DeviceDTO {
     this.min = min;
     this.max = max;
     this.uptime = uptime;
-    this.snmp_enabled = snmp_enabled;
+    this.snmp_disabled = snmp_disabled;
     this.community = community;
     this.authlevel = authlevel;
     this.authname = authname;
