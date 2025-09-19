@@ -15,8 +15,8 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
 
 SELECT id, port_id, device_id, ifName, ifIndex, ifSpeed, ifConnectorPresent, ifPromiscuousMode, ifHighSpeed, ifDescr, ifAlias, ifInOctets, ifOutOctets, ifOperStatus, ifAdminStatus, ifMtu, ifType, ifPhysAddress, ne_id 
-FROM ports LIMIT 10
-INTO OUTFILE '/var/lib/mysql-files/ports2.csv'
+FROM ports
+INTO OUTFILE '/var/lib/mysql-files/ports.csv'
 FIELDS TERMINATED BY ','
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n';
