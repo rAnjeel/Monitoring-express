@@ -35,6 +35,18 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
+INSERT INTO ports (id, port_id, device_id, ifName, ifIndex, ifSpeed, ifConnectorPresent, ifPromiscuousMode, ifHighSpeed, ifDescr, ifAlias, ifInOctets, ifOutOctets, ifOperStatus, ifAdminStatus, ifMtu, ifType, ifPhysAddress, ne_id) VALUES
+(1, 473, 8, 'Cpos1/0/0', 100, 155000000, TRUE, FALSE, 155, 'Cpos1/0/0', 'Cpos1/0/0', 0, 0, 'up', 'up', 0, 'pos', '0', NULL),
+(2, 474, 8, 'Cpos1/0/1', 101, 155000000, TRUE, FALSE, 155, 'Cpos1/0/1', 'Cpos1/0/1', 0, 0, 'down', 'down', 0, 'pos', '0', NULL),
+(3, 475, 8, 'Cpos1/0/2', 102, 155000000, TRUE, FALSE, 155, 'Cpos1/0/2', 'Cpos1/0/2', 0, 0, 'down', 'down', 0, 'pos', '0', NULL),
+(4, 476, 8, 'Cpos1/0/3', 103, 155000000, TRUE, FALSE, 155, 'Cpos1/0/3', 'Cpos1/0/3', 0, 0, 'down', 'down', 0, 'pos', '0', NULL),
+(5, 11422, 18, 'NULL0', 1, 0, FALSE, FALSE, 0, 'NULL0', 'NULL0', 0, 0, 'up', 'up', 1500, 'other', '0', NULL),
+(6, 11423, 18, 'InLoopBack0', 2, 0, FALSE, FALSE, 0, 'InLoopBack0', 'InLoopBack0', 0, 0, 'up', 'up', 1500, 'softwareLoopback', '0', NULL),
+(7, 11424, 18, 'GigabitEthernet0/0/0', 3, 10000000, TRUE, FALSE, 10, 'GigabitEthernet0/0/0', 'acces|0|nsb-hlv-ar-1-outband-mgt', 0, 0, 'down', 'up', 1500, 'ethernetCsmacd', '04bd70f8d880', NULL),
+(8, 11425, 2, 'InLoopBack0', 1, 0, FALSE, FALSE, 0, 'InLoopBack0', 'HUAWEI, InLoopBack0 Interface', 48948201, 2290756, 'up', 'up', 1500, 'softwareLoopback', '0', NULL),
+(9, 11426, 2, 'NULL0', 2, 0, FALSE, FALSE, 0, 'NULL0', 'HUAWEI, NULL0 Interface', 0, 0, 'up', 'up', 1500, 'other', '0', NULL),
+(10, 11427, 2, 'Console0/0/0', 3, 0, TRUE, FALSE, 0, 'Console0/0/0', 'HUAWEI, Console0/0/0 Interface', 0, 0, 'up', 'up', 0, 'other', '0', NULL);
+
 
 
 
