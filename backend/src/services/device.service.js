@@ -4,6 +4,47 @@ const { locations } = require('../models/location.model');
 const { typeDevices } = require('../models/typeDevice.model');
 const { eq } = require('drizzle-orm');
 const logger = require('../logger/logger');
+const DeviceDTO = require('../dto/device.dto');
+
+
+const toNull = (v) => {
+  if (v === undefined || v === null) return null;
+  const s = typeof v === 'string' ? v.trim() : v;
+  if (s === '' || s === '\\N' || s === '\\n' || s === 'NULL' || s === 'null') return null;
+  return s;
+};
+const toIntOrNull = (v) => {
+  const x = toNull(v);
+  if (x === null) return null;
+  const n = Number(x);
+  return Number.isFinite(n) ? Math.trunc(n) : null;
+};
+const toFloatOrNull = (v) => {
+  const x = toNull(v);
+  if (x === null) return null;
+  const n = Number(x);
+  return Number.isFinite(n) ? n : null;
+};
+const toSnmpDisabled = (v) => {
+  const x = toNull(v);
+  if (x === null) return 0; // default 0 as in example
+  if (typeof x === 'boolean') return x ? 1 : 0;
+  if (x === '1' || x === 1 || x === 'true') return 1;
+  if (x === '0' || x === 0 || x === 'false') return 0;
+  return 0;
+};
+const toDateOrNull = (value) => {
+  if (value === null || value === undefined || value === '') return null;
+  if (value instanceof Date) return value;
+  const n = Number(value);
+  if (!Number.isNaN(n) && Number.isFinite(n)) {
+    const millis = String(Math.trunc(n)).length === 10 ? n * 1000 : n;
+    const d = new Date(millis);
+    return Number.isNaN(d.getTime()) ? null : d;
+  }
+  const parsed = Date.parse(String(value));
+  return Number.isNaN(parsed) ? null : new Date(parsed);
+};
 
 class DeviceService {
   async list() {
@@ -71,7 +112,130 @@ class DeviceService {
   }
 
   async importDataCSV(data) {
-    logger.info('Received data for CSV import:', data); 
+    if (!Array.isArray(data)) {
+      logger.warn('importDataCSV received non-array payload');
+      return { data: [], count: 0 };
+    }
+
+    const transformed = data.map((row, index) => {
+      try {
+        logger.info(`CSV row ${index + 1}: ${JSON.stringify(row)}`);
+      } catch {
+        logger.warn(`CSV row ${index + 1}: [unserializable row]`);
+      }
+
+      const dto = new DeviceDTO({
+        device_id: toIntOrNull(row.device_id),
+        id: toIntOrNull(row.id),
+        ip: toNull(row.ip),
+        hostname: toNull(row.hostname),
+        status: toIntOrNull(row.status),
+        type_device_id: toIntOrNull(row.type_device_id),
+        location_id: toIntOrNull(row.location_id),
+        codesite: toNull(row.codesite),
+        loss: toFloatOrNull(row.loss),
+        avg: toFloatOrNull(row.avg),
+        min: toFloatOrNull(row.min),
+        max: toFloatOrNull(row.max),
+        uptime: toNull(row.uptime),
+        snmp_disabled: toSnmpDisabled(row.snmp_disabled),
+        community: toNull(row.community),
+        authlevel: toNull(row.authlevel),
+        authname: toNull(row.authname),
+        authpass: toNull(row.authpass),
+        authalgo: toNull(row.authalgo),
+        cryptopass: toNull(row.cryptopass),
+        cryptoalgo: toNull(row.cryptoalgo),
+        snmpver: toNull(row.snmpver),
+        ne_id: toIntOrNull(row.ne_id),
+      });
+
+      return dto;
+    });
+
+    // Helper to map DTO to DB row (parses uptime once)
+    const mapDtoToRow = (dto) => ({
+      device_id: dto.device_id,
+      id: dto.id,
+      ip: dto.ip,
+      hostname: dto.hostname,
+      status: dto.status,
+      type_device_id: dto.type_device_id,
+      location_id: dto.location_id,
+      codesite: dto.codesite,
+      loss: dto.loss,
+      avg: dto.avg,
+      min: dto.min,
+      max: dto.max,
+      uptime: toDateOrNull(dto.uptime),
+      snmp_enabled: dto.snmp_disabled === 1 ? false : true,
+      community: dto.community,
+      authlevel: dto.authlevel,
+      authname: dto.authname,
+      authpass: dto.authpass,
+      authalgo: dto.authalgo,
+      cryptopass: dto.cryptopass,
+      cryptoalgo: dto.cryptoalgo,
+      snmpver: dto.snmpver,
+      ne_id: dto.ne_id,
+    });
+
+    // Create or update each transformed DTO
+    let createdOrUpdated = 0;
+    const errors = [];
+    const successHostnames = [];
+    const errorHostnames = [];
+    for (const dto of transformed) {
+      const row = mapDtoToRow(dto);
+
+      try {
+        await db
+          .insert(devices)
+          .values(row)
+          .onDuplicateKeyUpdate({
+            set: {
+              device_id: row.device_id,
+              ip: row.ip,
+              hostname: row.hostname,
+              status: row.status,
+              type_device_id: row.type_device_id,
+              location_id: row.location_id,
+              codesite: row.codesite,
+              loss: row.loss,
+              avg: row.avg,
+              min: row.min,
+              max: row.max,
+              uptime: row.uptime,
+              snmp_enabled: row.snmp_enabled,
+              community: row.community,
+              authlevel: row.authlevel,
+              authname: row.authname,
+              authpass: row.authpass,
+              authalgo: row.authalgo,
+              cryptopass: row.cryptopass,
+              cryptoalgo: row.cryptoalgo,
+              snmpver: row.snmpver,
+              ne_id: row.ne_id,
+            },
+          });
+        logger.info(`Created/updated device_id=${row.device_id} hostname=${row.hostname}`);
+        if (row.hostname) successHostnames.push(row.hostname);
+        createdOrUpdated += 1;
+      } catch (e) {
+        logger.error(`Insert/upsert failed for device_id=${row.device_id}: ${e.message}`);
+        errors.push({ device_id: row.device_id, hostname: row.hostname, error: e.message });
+        if (row.hostname) errorHostnames.push(row.hostname);
+      }
+    }
+
+    return {
+      data: transformed,
+      count: transformed.length,
+      createdOrUpdated,
+      errors,
+      successHostnames,
+      errorHostnames,
+    };
   }
 
   async getFullList() {
