@@ -3,6 +3,7 @@ node_modules/
 dist/
 build/
 coverage/
+logs
 
 # Fichiers de log et de cache
 npm-debug.log*
@@ -11,7 +12,7 @@ yarn-debug.log*
 .yarn-integrity
 .eslintcache
 .vscode/
-/logs/app.log
+
 
 # Fichiers de l'IDE et du système d'exploitation
 .DS_Store
