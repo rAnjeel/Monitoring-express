@@ -40,7 +40,7 @@ CREATE TABLE devices (
     min FLOAT DEFAULT NULL,
     max FLOAT DEFAULT NULL,
     uptime datetime,
-    snmp_disabled BOOLEAN DEFAULT FALSE,
+    snmp_disable BOOLEAN,
     community text,
     authlevel text,
     authname text,

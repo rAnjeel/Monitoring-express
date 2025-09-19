@@ -25,7 +25,7 @@ const toFloatOrNull = (v) => {
   const n = Number(x);
   return Number.isFinite(n) ? n : null;
 };
-const toSnmpDisabled = (v) => {
+const toBoolean = (v) => {
   const x = toNull(v);
   if (x === null) return 0; // default 0 as in example
   if (typeof x === 'boolean') return x ? 1 : 0;
@@ -128,7 +128,9 @@ class DeviceService {
         device_id: toIntOrNull(row.device_id),
         id: toIntOrNull(row.id),
         ip: toNull(row.ip),
+        sysName: toNull(row.sysName),
         hostname: toNull(row.hostname),
+        ping_status: toBoolean(row.Ping_status),
         status: toIntOrNull(row.status),
         type_device_id: toIntOrNull(row.type_device_id),
         location_id: toIntOrNull(row.location_id),
@@ -138,7 +140,7 @@ class DeviceService {
         min: toFloatOrNull(row.min),
         max: toFloatOrNull(row.max),
         uptime: toNull(row.uptime),
-        snmp_disabled: toSnmpDisabled(row.snmp_disabled),
+        snmp_disable: toBoolean(row.snmp_disable),
         community: toNull(row.community),
         authlevel: toNull(row.authlevel),
         authname: toNull(row.authname),
@@ -158,7 +160,9 @@ class DeviceService {
       device_id: dto.device_id,
       id: dto.id,
       ip: dto.ip,
+      sysName: dto.sysName,
       hostname: dto.hostname,
+      ping_status: dto.ping_status,
       status: dto.status,
       type_device_id: dto.type_device_id,
       location_id: dto.location_id,
@@ -168,7 +172,7 @@ class DeviceService {
       min: dto.min,
       max: dto.max,
       uptime: toDateOrNull(dto.uptime),
-      snmp_enabled: dto.snmp_disabled === 1 ? false : true,
+      snmp_disable: dto.snmp_disable === 1 ? false : true,
       community: dto.community,
       authlevel: dto.authlevel,
       authname: dto.authname,
@@ -196,7 +200,9 @@ class DeviceService {
             set: {
               device_id: row.device_id,
               ip: row.ip,
+              sysName: row.sysName,
               hostname: row.hostname,
+              ping_status: row.ping_status,
               status: row.status,
               type_device_id: row.type_device_id,
               location_id: row.location_id,
@@ -206,7 +212,7 @@ class DeviceService {
               min: row.min,
               max: row.max,
               uptime: row.uptime,
-              snmp_enabled: row.snmp_enabled,
+              snmp_disable: row.snmp_disable,
               community: row.community,
               authlevel: row.authlevel,
               authname: row.authname,
@@ -244,9 +250,11 @@ class DeviceService {
         .select({
           device_id: devices.device_id,
           id: devices.id,
+          sysName: devices.sysName,
           hostname: devices.hostname,
           type_device: typeDevices.name,
           location: locations.name,
+          ping_status: devices.ping_status,
           status: devices.status,
           codesite: devices.codesite,
           loss: devices.loss,
@@ -254,7 +262,7 @@ class DeviceService {
           min: devices.min,
           max: devices.max,
           uptime: devices.uptime,
-          snmp_disabled: devices.snmp_disabled,
+          snmp_disable: devices.snmp_disable,
           community: devices.community,
           authlevel: devices.authlevel,
           authname: devices.authname,

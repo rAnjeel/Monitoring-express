@@ -3,7 +3,9 @@ const Joi = require('joi');
 const deviceSchema = Joi.object({
   device_id: Joi.number().required(),
   ip: Joi.string(),
+  sysName: Joi.string().max(200).optional(),
   hostname: Joi.string().max(50).required(),
+  ping_status: Joi.boolean().optional(),
   status: Joi.number().optional(),
   type_device_id: Joi.number().optional(),
   location_id: Joi.number().optional(),
