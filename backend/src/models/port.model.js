@@ -1,4 +1,4 @@
-const { mysqlTable, int, text, bigint, varchar, mysqlEnum } = require('drizzle-orm/mysql-core');
+const { mysqlTable, int, text, bigint, varchar, boolean } = require('drizzle-orm/mysql-core');
 
 const ports = mysqlTable('ports', {
   id: int('id').primaryKey().autoincrement(),
@@ -7,9 +7,19 @@ const ports = mysqlTable('ports', {
   ifName: text('ifName'),
   ifDescr: text('ifDescr'),
   ifAlias: text('ifAlias'),
-  in_octets: bigint('in_octets', { mode: 'number' }).default(0),
-  out_octets: bigint('out_octets', { mode: 'number' }).default(0),
-  status: mysqlEnum('status', ['up', 'down', 'warning']).notNull(),
+  ifInOctets: bigint('ifInOctets', { mode: 'number' }),
+  ifOutOctets: bigint('ifOutOctets', { mode: 'number' }),
+  ifOperStatus: varchar('ifOperStatus', { length: 45 }),
+  ifAdminStatus: varchar('ifAdminStatus', { length: 45 }),
+  ifMtu: int('ifMtu'),
+  ifType: varchar('ifType', { length: 45 }),
+  ifPhysAddress: varchar('ifPhysAddress', { length: 45 }),
+  ifLastChange: int('ifLastChange'),
+  ifHighSpeed: int('ifHighSpeed'),
+  ifPromiscuousMode: boolean('ifPromiscuousMode'),
+  ifConnectorPresent: boolean('ifConnectorPresent'),
+  ifSpeed: int('ifSpeed'),
+  ifIndex: int('ifIndex'),
   ne_id: varchar('ne_id', { length: 45 }).notNull(),
 });
 

@@ -6,9 +6,19 @@ class PortDTO {
     ifName,
     ifDescr,
     ifAlias,
-    in_octets,
-    out_octets,
-    status,
+    ifInOctets,
+    ifOutOctets,
+    ifOperStatus,
+    ifAdminStatus,
+    ifMtu,
+    ifType,
+    ifPhysAddress,
+    ifLastChange,
+    ifHighSpeed,
+    ifPromiscuousMode,
+    ifConnectorPresent,
+    ifSpeed,
+    ifIndex,
     ne_id,
   }) {
     this.id = id;
@@ -17,9 +27,19 @@ class PortDTO {
     this.ifName = ifName;
     this.ifDescr = ifDescr;
     this.ifAlias = ifAlias;
-    this.in_octets = in_octets;
-    this.out_octets = out_octets;
-    this.status = status;
+    this.ifInOctets = ifInOctets;
+    this.ifOutOctets = ifOutOctets;
+    this.ifOperStatus = ifOperStatus;
+    this.ifAdminStatus = ifAdminStatus;
+    this.ifMtu = ifMtu;
+    this.ifType = ifType;
+    this.ifPhysAddress = ifPhysAddress;
+    this.ifLastChange = ifLastChange;
+    this.ifHighSpeed = ifHighSpeed;
+    this.ifPromiscuousMode = ifPromiscuousMode;
+    this.ifConnectorPresent = ifConnectorPresent;
+    this.ifSpeed = ifSpeed;
+    this.ifIndex = ifIndex;
     this.ne_id = ne_id;
   }
 }
