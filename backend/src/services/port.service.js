@@ -107,7 +107,7 @@ class PortService {
     for (const row of rows) {
       try {
         await db
-          .insert(ports) // ⚠️ table "ports"
+          .insert(ports)
           .values(row)
           .onDuplicateKeyUpdate({ set: { ...row } });
 
