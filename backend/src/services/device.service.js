@@ -117,14 +117,14 @@ class DeviceService {
       return { data: [], count: 0 };
     }
 
-    const transformed = data.map((row, index) => {
+    const rows = data.map((row, index) => {
       try {
         logger.info(`CSV row ${index + 1}: ${JSON.stringify(row)}`);
       } catch {
         logger.warn(`CSV row ${index + 1}: [unserializable row]`);
       }
 
-      const dto = new DeviceDTO({
+      return {
         device_id: toIntOrNull(row.device_id),
         id: toIntOrNull(row.id),
         ip: toNull(row.ip),
@@ -139,8 +139,8 @@ class DeviceService {
         avg: toFloatOrNull(row.avg),
         min: toFloatOrNull(row.min),
         max: toFloatOrNull(row.max),
-        uptime: toNull(row.uptime),
-        snmp_disable: toBoolean(row.snmp_disable),
+        uptime: toDateOrNull(row.uptime),
+        snmp_disable: row.snmp_disable ? toBoolean(row.snmp_disable) : true,
         community: toNull(row.community),
         authlevel: toNull(row.authlevel),
         authname: toNull(row.authname),
@@ -150,83 +150,24 @@ class DeviceService {
         cryptoalgo: toNull(row.cryptoalgo),
         snmpver: toNull(row.snmpver),
         ne_id: toIntOrNull(row.ne_id),
-      });
-
-      return dto;
+      };
     });
 
-    // Helper to map DTO to DB row (parses uptime once)
-    const mapDtoToRow = (dto) => ({
-      device_id: dto.device_id,
-      id: dto.id,
-      ip: dto.ip,
-      sysName: dto.sysName,
-      hostname: dto.hostname,
-      ping_status: dto.ping_status,
-      status: dto.status,
-      type_device_id: dto.type_device_id,
-      location_id: dto.location_id,
-      codesite: dto.codesite,
-      loss: dto.loss,
-      avg: dto.avg,
-      min: dto.min,
-      max: dto.max,
-      uptime: toDateOrNull(dto.uptime),
-      snmp_disable: dto.snmp_disable === 1 ? false : true,
-      community: dto.community,
-      authlevel: dto.authlevel,
-      authname: dto.authname,
-      authpass: dto.authpass,
-      authalgo: dto.authalgo,
-      cryptopass: dto.cryptopass,
-      cryptoalgo: dto.cryptoalgo,
-      snmpver: dto.snmpver,
-      ne_id: dto.ne_id,
-    });
-
-    // Create or update each transformed DTO
     let createdOrUpdated = 0;
     const errors = [];
     const successHostnames = [];
     const errorHostnames = [];
-    for (const dto of transformed) {
-      const row = mapDtoToRow(dto);
 
+    for (const row of rows) {
       try {
         await db
           .insert(devices)
           .values(row)
-          .onDuplicateKeyUpdate({
-            set: {
-              device_id: row.device_id,
-              ip: row.ip,
-              sysName: row.sysName,
-              hostname: row.hostname,
-              ping_status: row.ping_status,
-              status: row.status,
-              type_device_id: row.type_device_id,
-              location_id: row.location_id,
-              codesite: row.codesite,
-              loss: row.loss,
-              avg: row.avg,
-              min: row.min,
-              max: row.max,
-              uptime: row.uptime,
-              snmp_disable: row.snmp_disable,
-              community: row.community,
-              authlevel: row.authlevel,
-              authname: row.authname,
-              authpass: row.authpass,
-              authalgo: row.authalgo,
-              cryptopass: row.cryptopass,
-              cryptoalgo: row.cryptoalgo,
-              snmpver: row.snmpver,
-              ne_id: row.ne_id,
-            },
-          });
+          .onDuplicateKeyUpdate({ set: { ...row } });
+
         logger.info(`Created/updated device_id=${row.device_id} hostname=${row.hostname}`);
         if (row.hostname) successHostnames.push(row.hostname);
-        createdOrUpdated += 1;
+        createdOrUpdated++;
       } catch (e) {
         logger.error(`Insert/upsert failed for device_id=${row.device_id}: ${e.message}`);
         errors.push({ device_id: row.device_id, hostname: row.hostname, error: e.message });
@@ -235,8 +176,8 @@ class DeviceService {
     }
 
     return {
-      data: transformed,
-      count: transformed.length,
+      data: rows,
+      count: rows.length,
       createdOrUpdated,
       errors,
       successHostnames,
