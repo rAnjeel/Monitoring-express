@@ -4,7 +4,9 @@ class DeviceDTO {
     id,
     ip,
     hostname,
+    sysName,
     status,
+    ping_status,
     type_device_id,
     location_id,
     codesite,
@@ -13,7 +15,7 @@ class DeviceDTO {
     min,
     max,
     uptime,
-    snmp_disabled,
+    snmp_disable,
     community,
     authlevel,
     authname,
@@ -28,7 +30,9 @@ class DeviceDTO {
     this.id = id;
     this.ip = ip;
     this.hostname = hostname;
+    this.sysName = sysName;
     this.status = status;
+    this.ping_status = ping_status;
     this.type_device_id = type_device_id;
     this.location_id = location_id;
     this.codesite = codesite;
@@ -37,7 +41,7 @@ class DeviceDTO {
     this.min = min;
     this.max = max;
     this.uptime = uptime;
-    this.snmp_disabled = snmp_disabled;
+    this.snmp_disable = snmp_disable;
     this.community = community;
     this.authlevel = authlevel;
     this.authname = authname;
