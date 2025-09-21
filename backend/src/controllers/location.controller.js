@@ -3,7 +3,7 @@ const logger = require('../logger/logger');
 const LocationDTO = require('../dto/location.dto');
 
 class LocationController {
-  async getAll(req, res) {
+  getAll = async (req, res) => {
     try {
       const items = await locationService.list();
       logger.info(`LocationController: returning ${items.length} locations`);
@@ -14,7 +14,7 @@ class LocationController {
     }
   }
 
-  async getById(req, res) {
+  getById = async (req, res) => {
     try {
       const item = await locationService.get(req.params.id);
       if (!item.length) {
@@ -29,7 +29,7 @@ class LocationController {
     }
   }
 
-  async create(req, res) {
+  create = async (req, res) => {
     try {
       const dto = new LocationDTO(req.body);
       logger.info(`LocationController: creating location with data=${JSON.stringify(dto)}`);
@@ -41,7 +41,7 @@ class LocationController {
     }
   }
 
-  async update(req, res) {
+  update = async (req, res) => {
     try {
       const dto = new LocationDTO(req.body);
       logger.info(`LocationController: updating location id=${req.params.id} with data=${JSON.stringify(dto)}`);
@@ -53,7 +53,7 @@ class LocationController {
     }
   }
 
-  async delete(req, res) {
+  delete = async (req, res) => {
     try {
       logger.info(`LocationController: deleting location id=${req.params.id}`);
       await locationService.delete(req.params.id);

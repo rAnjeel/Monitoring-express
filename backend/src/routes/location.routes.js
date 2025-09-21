@@ -3,10 +3,10 @@ const router = express.Router();
 const locationController = require('../controllers/location.controller');
 const validateLocation = require('../middlewares/location.middleware');
 
-router.get('/', locationController.getAll.bind(locationController));
-router.get('/:id', locationController.getById.bind(locationController));
-router.post('/', validateLocation, locationController.create.bind(locationController));
-router.put('/:id', validateLocation, locationController.update.bind(locationController));
-router.delete('/:id', locationController.delete.bind(locationController));
+router.get('/', (req, res) => locationController.getAll(req, res));
+router.get('/:id', (req, res) => locationController.getById(req, res));
+router.post('/', validateLocation, (req, res) => locationController.create(req, res));
+router.put('/:id', validateLocation, (req, res) => locationController.update(req, res));
+router.delete('/:id', (req, res) => locationController.delete(req, res));
 
 module.exports = router;

@@ -1,10 +1,10 @@
 const logger = require('../logger/logger');
-const service = require('../services/port.service');
+const portService = require('../services/port.service');
 
 class PortController {
-  async getAll(req, res) {
+  getAll = async (req, res) => {
     try {
-      const items = await service.list();
+      const items = await portService.list();
       res.json(items);
     } catch (error) {
       logger.error(`Controller error (getAll ports): ${error.message}`);
@@ -12,9 +12,9 @@ class PortController {
     }
   }
 
-  async getById(req, res) {
+  getById = async (req, res) => {
     try {
-      const item = await service.get(req.params.id);
+      const item = await portService.get(req.params.id);
       if (!item.length) {
         return res.status(404).json({ message: 'Not found' });
       }
@@ -25,9 +25,9 @@ class PortController {
     }
   }
 
-  async create(req, res) {
+  create = async (req, res) => {
     try {
-      const id = await service.create(req.body);
+      const id = await portService.create(req.body);
       res.status(201).json({ id });
     } catch (error) {
       logger.error(`Controller error (create port): ${error.message}`);
@@ -35,9 +35,9 @@ class PortController {
     }
   }
 
-  async update(req, res) {
+  update = async (req, res) => {
     try {
-      await service.update(req.params.id, req.body);
+      await portService.update(req.params.id, req.body);
       res.json({ message: 'Updated successfully' });
     } catch (error) {
       logger.error(`Controller error (update port): ${error.message}`);
@@ -45,9 +45,9 @@ class PortController {
     }
   }
 
-  async delete(req, res) {
+  delete = async (req, res) => {
     try {
-      await service.delete(req.params.id);
+      await portService.delete(req.params.id);
       res.json({ message: 'Deleted successfully' });
     } catch (error) {
       logger.error(`Controller error (delete port): ${error.message}`);

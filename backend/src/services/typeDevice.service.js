@@ -4,7 +4,7 @@ const { eq } = require('drizzle-orm');
 const logger = require('../logger/logger');
 
 class TypeDeviceService {
-  async list() {
+  list = async () => {
     try {
       logger.info('Fetching all type_devices');
       const result = await db.select().from(typeDevices);
@@ -16,7 +16,7 @@ class TypeDeviceService {
     }
   }
 
-  async get(id) {
+  get = async (id) => {
     try {
       logger.info(`Fetching type_device id=${id}`);
       const result = await db.select().from(typeDevices).where(eq(typeDevices.id, id));
@@ -32,7 +32,7 @@ class TypeDeviceService {
     }
   }
 
-  async create(data) {
+  create = async (data) => {
     try {
       logger.info(`Creating type_device name=${data.name}`);
       const result = await db.insert(typeDevices).values(data);
@@ -44,7 +44,7 @@ class TypeDeviceService {
     }
   }
 
-  async update(id, data) {
+  update = async (id, data) => {
     try {
       logger.info(`Updating type_device id=${id}`);
       const result = await db.update(typeDevices).set(data).where(eq(typeDevices.id, id));
@@ -56,7 +56,7 @@ class TypeDeviceService {
     }
   }
 
-  async delete(id) {
+  delete = async (id) => {
     try {
       logger.info(`Deleting type_device id=${id}`);
       const result = await db.delete(typeDevices).where(eq(typeDevices.id, id));

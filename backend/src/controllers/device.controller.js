@@ -1,11 +1,10 @@
 const logger = require('../logger/logger');
 const deviceService = require('../services/device.service');
-const service = require('../services/device.service')
 
 class DeviceController {
-  async getAll(req, res) {
+  getAll = async (req, res) => {
     try {
-      const items = await service.list();
+      const items = await deviceService.list();
       res.json(items);
     } catch (error) {
       logger.error(`Controller error (getAll): ${error.message}`);
@@ -13,9 +12,9 @@ class DeviceController {
     }
   }
 
-  async getList(req, res) {
+  getList = async (req, res) => {
     try {
-      const items = await service.getFullList();
+      const items = await deviceService.getFullList();
       res.json(items);
     } catch (error) {
       logger.error(`Controller error (getAll): ${error.message}`);
@@ -23,9 +22,9 @@ class DeviceController {
     }
   }
 
-  async getById(req, res) {
+  getById = async (req, res) => {
     try {
-      const item = await service.get(req.params.id);
+      const item = await deviceService.get(req.params.id);
       if (!item.length) {
         return res.status(404).json({ message: 'Not found' });
       }
@@ -36,9 +35,9 @@ class DeviceController {
     }
   }
 
-  async create(req, res) {
+  create = async (req, res) => {
     try {
-      const id = await service.create(req.body);
+      const id = await deviceService.create(req.body);
       res.status(201).json({ id });
     } catch (error) {
       logger.error(`Controller error (create): ${error.message}`);
@@ -46,9 +45,9 @@ class DeviceController {
     }
   }
 
-  async update(req, res) {
+  update = async (req, res) => {
     try {
-      await service.update(req.params.id, req.body);
+      await deviceService.update(req.params.id, req.body);
       res.json({ message: 'Updated successfully' });
     } catch (error) {
       logger.error(`Controller error (update): ${error.message}`);
@@ -56,9 +55,9 @@ class DeviceController {
     }
   }
 
-  async delete(req, res) {
+  delete = async (req, res) => {
     try {
-      await service.delete(req.params.id);
+      await deviceService.delete(req.params.id);
       res.json({ message: 'Deleted successfully' });
     } catch (error) {
       logger.error(`Controller error (delete): ${error.message}`);
@@ -66,7 +65,7 @@ class DeviceController {
     }
   }
 
-  async importCSV(req, res) {
+  importCSV = async (req, res) => {
     try {
       if (!Array.isArray(req.body)) {
         return res.status(400).json({ message: 'Payload must be an array of rows' });

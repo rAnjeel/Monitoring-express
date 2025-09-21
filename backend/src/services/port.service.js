@@ -2,9 +2,10 @@ const db = require('../config/db');
 const { ports } = require('../models/port.model');
 const { eq } = require('drizzle-orm');
 const logger = require('../logger/logger');
+const utilService = require('./util.service');
 
 class PortService {
-  async list() {
+  list = async () => {
     try {
       logger.info('Fetching all ports');
       const result = await db.select().from(ports);
@@ -16,7 +17,7 @@ class PortService {
     }
   }
 
-  async get(id) {
+  get = async (id) => {
     try {
       logger.info(`Fetching port id=${id}`);
       const result = await db.select().from(ports).where(eq(ports.id, id));
@@ -27,7 +28,7 @@ class PortService {
     }
   }
 
-  async create(data) {
+  create = async (data) => {
     try {
       logger.info(`Creating port for device_id=${data.device_id} ifName=${data.ifName || ''}`);
       const result = await db.insert(ports).values(data);
@@ -39,7 +40,7 @@ class PortService {
     }
   }
 
-  async update(id, data) {
+  update = async (id, data) => {
     try {
       logger.info(`Updating port id=${id}`);
       const result = await db.update(ports).set(data).where(eq(ports.id, id));
@@ -50,7 +51,7 @@ class PortService {
     }
   }
 
-  async delete(id) {
+  delete = async (id) => {
     try {
       logger.info(`Deleting port id=${id}`);
       const result = await db.delete(ports).where(eq(ports.id, id));
@@ -60,6 +61,85 @@ class PortService {
       throw new Error('Database error while deleting port');
     }
   }
+
+  importPortsCSV = async (data) => {
+    if (!Array.isArray(data)) {
+      logger.warn('importPortsCSV received non-array payload');
+      return { data: [], count: 0 };
+    }
+
+    const rows = data.map((row, index) => {
+      try {
+        logger.info(`CSV port row ${index + 1}: ${JSON.stringify(row)}`);
+      } catch {
+        logger.warn(`CSV port row ${index + 1}: [unserializable row]`);
+      }
+
+      return {
+        id: utilService.toIntOrNull(row.id),
+        port_id: utilService.toIntOrNull(row.port_id),
+        device_id: utilService.toIntOrNull(row.device_id),
+        ifName: utilService.toNull(row.ifName),
+        ifDescr: utilService.toNull(row.ifDescr),
+        ifAlias: utilService.toNull(row.ifAlias),
+        ifInOctets: utilService.toIntOrNull(row.ifInOctets),
+        ifOutOctets: utilService.toIntOrNull(row.ifOutOctets),
+        ifOperStatus: utilService.toNull(row.ifOperStatus),
+        ifAdminStatus: utilService.toNull(row.ifAdminStatus),
+        ifMtu: utilService.toIntOrNull(row.ifMtu),
+        ifType: utilService.toNull(row.ifType),
+        ifPhysAddress: utilService.toNull(row.ifPhysAddress),
+        ifLastChange: utilService.toIntOrNull(row.ifLastChange),
+        ifHighSpeed: utilService.toIntOrNull(row.ifHighSpeed),
+        ifPromiscuousMode: utilService.toBoolean(row.ifPromiscuousMode),
+        ifConnectorPresent: utilService.toBoolean(row.ifConnectorPresent),
+        ifSpeed: utilService.toIntOrNull(row.ifSpeed),
+        ifIndex: utilService.toIntOrNull(row.ifIndex),
+        ne_id: utilService.toNull(row.ne_id),
+      };
+    });
+
+    let createdOrUpdated = 0;
+    const errors = [];
+    const successPorts = [];
+    const errorPorts = [];
+
+    for (const row of rows) {
+      try {
+        await db
+          .insert(ports) // ⚠️ table "ports"
+          .values(row)
+          .onDuplicateKeyUpdate({ set: { ...row } });
+
+        logger.info(
+          `Created/updated port_id=${row.port_id} device_id=${row.device_id} ifName=${row.ifName}`
+        );
+
+        if (row.ifName) successPorts.push(row.ifName);
+        createdOrUpdated++;
+      } catch (e) {
+        logger.error(
+          `Insert/upsert failed for port_id=${row.port_id} device_id=${row.device_id}: ${e.message}`
+        );
+        errors.push({
+          port_id: row.port_id,
+          device_id: row.device_id,
+          ifName: row.ifName,
+          error: e.message,
+        });
+        if (row.ifName) errorPorts.push(row.ifName);
+      }
+    }
+
+    return {
+      data: rows,
+      count: rows.length,
+      createdOrUpdated,
+      errors,
+      successPorts,
+      errorPorts,
+    };
+  }  
 }
 
 module.exports = new PortService();

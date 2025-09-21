@@ -4,7 +4,7 @@ const { eq } = require('drizzle-orm');
 const logger = require('../logger/logger');
 
 class LocationService {
-  async list() {
+  list = async () => {
     try {
       logger.info('Fetching all locations');
       const result = await db.select().from(locations);
@@ -16,7 +16,7 @@ class LocationService {
     }
   }
 
-  async get(id) {
+  get = async (id) => {
     try {
       logger.info(`Fetching location id=${id}`);
       const result = await db.select().from(locations).where(eq(locations.id, id));
@@ -32,7 +32,7 @@ class LocationService {
     }
   }
 
-  async create(data) {
+  create = async (data) => {
     try {
       logger.info(`Creating location name=${data.name}`);
       const result = await db.insert(locations).values(data);
@@ -44,7 +44,7 @@ class LocationService {
     }
   }
 
-  async update(id, data) {
+  update = async (id, data) => {
     try {
       logger.info(`Updating location id=${id}`);
       const result = await db.update(locations).set(data).where(eq(locations.id, id));
@@ -56,7 +56,7 @@ class LocationService {
     }
   }
 
-  async delete(id) {
+  delete = async (id) => {
     try {
       logger.info(`Deleting location id=${id}`);
       const result = await db.delete(locations).where(eq(locations.id, id));

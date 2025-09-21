@@ -4,50 +4,10 @@ const { locations } = require('../models/location.model');
 const { typeDevices } = require('../models/typeDevice.model');
 const { eq } = require('drizzle-orm');
 const logger = require('../logger/logger');
-const DeviceDTO = require('../dto/device.dto');
-
-
-const toNull = (v) => {
-  if (v === undefined || v === null) return null;
-  const s = typeof v === 'string' ? v.trim() : v;
-  if (s === '' || s === '\\N' || s === '\\n' || s === 'NULL' || s === 'null') return null;
-  return s;
-};
-const toIntOrNull = (v) => {
-  const x = toNull(v);
-  if (x === null) return null;
-  const n = Number(x);
-  return Number.isFinite(n) ? Math.trunc(n) : null;
-};
-const toFloatOrNull = (v) => {
-  const x = toNull(v);
-  if (x === null) return null;
-  const n = Number(x);
-  return Number.isFinite(n) ? n : null;
-};
-const toBoolean = (v) => {
-  const x = toNull(v);
-  if (x === null) return 0; // default 0 as in example
-  if (typeof x === 'boolean') return x ? 1 : 0;
-  if (x === '1' || x === 1 || x === 'true') return 1;
-  if (x === '0' || x === 0 || x === 'false') return 0;
-  return 0;
-};
-const toDateOrNull = (value) => {
-  if (value === null || value === undefined || value === '') return null;
-  if (value instanceof Date) return value;
-  const n = Number(value);
-  if (!Number.isNaN(n) && Number.isFinite(n)) {
-    const millis = String(Math.trunc(n)).length === 10 ? n * 1000 : n;
-    const d = new Date(millis);
-    return Number.isNaN(d.getTime()) ? null : d;
-  }
-  const parsed = Date.parse(String(value));
-  return Number.isNaN(parsed) ? null : new Date(parsed);
-};
+const utilService = require('./util.service');
 
 class DeviceService {
-  async list() {
+  list = async () => {
     try {
       logger.info('Fetching all devices');
       const result = await db.select().from(devices);
@@ -59,7 +19,7 @@ class DeviceService {
     }
   }
 
-  async get(id) {
+  get = async (id) => {
     try {
       logger.info(`Fetching device id=${id}`);
       const result = await db.select().from(devices).where(eq(devices.id, id));
@@ -75,7 +35,7 @@ class DeviceService {
     }
   }
 
-  async create(data) {
+  create = async (data) => {
     try {
       logger.info(`Creating device ip=${data.ip}, hostname=${data.hostname}`);
       const result = await db.insert(devices).values(data);
@@ -87,7 +47,7 @@ class DeviceService {
     }
   }
 
-  async update(id, data) {
+  update = async (id, data) => {
     try {
       logger.info(`Updating device id=${id}`);
       const result = await db.update(devices).set(data).where(eq(devices.id, id));
@@ -99,7 +59,7 @@ class DeviceService {
     }
   }
 
-  async delete(id) {
+  delete = async (id) => {
     try {
       logger.info(`Deleting device id=${id}`);
       const result = await db.delete(devices).where(eq(devices.id, id));
@@ -111,7 +71,7 @@ class DeviceService {
     }
   }
 
-  async importDataCSV(data) {
+  importDataCSV = async (data) => {
     if (!Array.isArray(data)) {
       logger.warn('importDataCSV received non-array payload');
       return { data: [], count: 0 };
@@ -125,31 +85,31 @@ class DeviceService {
       }
 
       return {
-        device_id: toIntOrNull(row.device_id),
-        id: toIntOrNull(row.id),
-        ip: toNull(row.ip),
-        sysName: toNull(row.sysName),
-        hostname: toNull(row.hostname),
-        ping_status: toBoolean(row.Ping_status),
-        status: toIntOrNull(row.status),
-        type_device_id: toIntOrNull(row.type_device_id),
-        location_id: toIntOrNull(row.location_id),
-        codesite: toNull(row.codesite),
-        loss: toFloatOrNull(row.loss),
-        avg: toFloatOrNull(row.avg),
-        min: toFloatOrNull(row.min),
-        max: toFloatOrNull(row.max),
-        uptime: toDateOrNull(row.uptime),
-        snmp_disable: row.snmp_disable ? toBoolean(row.snmp_disable) : true,
-        community: toNull(row.community),
-        authlevel: toNull(row.authlevel),
-        authname: toNull(row.authname),
-        authpass: toNull(row.authpass),
-        authalgo: toNull(row.authalgo),
-        cryptopass: toNull(row.cryptopass),
-        cryptoalgo: toNull(row.cryptoalgo),
-        snmpver: toNull(row.snmpver),
-        ne_id: toIntOrNull(row.ne_id),
+        device_id: utilService.toIntOrNull(row.device_id),
+        id: utilService.toIntOrNull(row.id),
+        ip: utilService.toNull(row.ip),
+        sysName: utilService.toNull(row.sysName),
+        hostname: utilService.toNull(row.hostname),
+        ping_status: utilService.toBoolean(row.Ping_status),
+        status: utilService.toIntOrNull(row.status),
+        type_device_id: utilService.toIntOrNull(row.type_device_id),
+        location_id: utilService.toIntOrNull(row.location_id),
+        codesite: utilService.toNull(row.codesite),
+        loss: utilService.toFloatOrNull(row.loss),
+        avg: utilService.toFloatOrNull(row.avg),
+        min: utilService.toFloatOrNull(row.min),
+        max: utilService.toFloatOrNull(row.max),
+        uptime: utilService.toDateOrNull(row.uptime),
+        snmp_disable: row.snmp_disable ? utilService.toBoolean(row.snmp_disable) : true,
+        community: utilService.toNull(row.community),
+        authlevel: utilService.toNull(row.authlevel),
+        authname: utilService.toNull(row.authname),
+        authpass: utilService.toNull(row.authpass),
+        authalgo: utilService.toNull(row.authalgo),
+        cryptopass: utilService.toNull(row.cryptopass),
+        cryptoalgo: utilService.toNull(row.cryptoalgo),
+        snmpver: utilService.toNull(row.snmpver),
+        ne_id: utilService.toIntOrNull(row.ne_id),
       };
     });
 
@@ -185,7 +145,7 @@ class DeviceService {
     };
   }
 
-  async getFullList() {
+  getFullList = async () => {
     try {
       const rows = await db
         .select({

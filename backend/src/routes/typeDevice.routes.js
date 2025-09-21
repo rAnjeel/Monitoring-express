@@ -3,10 +3,10 @@ const router = express.Router();
 const typeDeviceController = require('../controllers/typeDevice.controller');
 const validateTypeDevice = require('../middlewares/typeDevice.middleware');
 
-router.get('/', typeDeviceController.getAll.bind(typeDeviceController));
-router.get('/:id', typeDeviceController.getById.bind(typeDeviceController));
-router.post('/', validateTypeDevice, typeDeviceController.create.bind(typeDeviceController));
-router.put('/:id', validateTypeDevice, typeDeviceController.update.bind(typeDeviceController));
-router.delete('/:id', typeDeviceController.delete.bind(typeDeviceController));
+router.get('/', (req, res) => typeDeviceController.getAll(req, res));
+router.get('/:id', (req, res) => typeDeviceController.getById(req, res));
+router.post('/', validateTypeDevice, (req, res) => typeDeviceController.create(req, res));
+router.put('/:id', validateTypeDevice, (req, res) => typeDeviceController.update(req, res));
+router.delete('/:id', (req, res) => typeDeviceController.delete(req, res));
 
 module.exports = router;

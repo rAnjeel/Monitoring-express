@@ -3,7 +3,7 @@ const logger = require('../logger/logger');
 const TypeDeviceDTO = require('../dto/typeDevice.dto');
 
 class TypeDeviceController {
-  async getAll(req, res) {
+  getAll = async (req, res) => {
     try {
       const items = await typeDeviceService.list();
       logger.info(`TypeDeviceController: returning ${items.length} type_devices`);
@@ -14,7 +14,7 @@ class TypeDeviceController {
     }
   }
 
-  async getById(req, res) {
+  getById = async (req, res) => {
     try {
       const item = await typeDeviceService.get(req.params.id);
       if (!item.length) {
@@ -29,7 +29,7 @@ class TypeDeviceController {
     }
   }
 
-  async create(req, res) {
+  create = async (req, res) => {
     try {
       const dto = new TypeDeviceDTO(req.body);
       logger.info(`TypeDeviceController: creating type_device with data=${JSON.stringify(dto)}`);
@@ -41,7 +41,7 @@ class TypeDeviceController {
     }
   }
 
-  async update(req, res) {
+  update = async (req, res) => {
     try {
       const dto = new TypeDeviceDTO(req.body);
       logger.info(`TypeDeviceController: updating type_device id=${req.params.id} with data=${JSON.stringify(dto)}`);
@@ -53,7 +53,7 @@ class TypeDeviceController {
     }
   }
 
-  async delete(req, res) {
+  delete = async (req, res) => {
     try {
       logger.info(`TypeDeviceController: deleting type_device id=${req.params.id}`);
       await typeDeviceService.delete(req.params.id);
