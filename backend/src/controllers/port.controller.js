@@ -54,6 +54,16 @@ class PortController {
       res.status(500).json({ message: error.message });
     }
   }
+
+  importCSV = async (req, res) => {
+    try {
+      const result = await portService.importPortsCSV(req.body);
+      res.json(result);
+    } catch (error) {
+      logger.error(`Controller error (importCSV port): ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
+  }
 }
 
 module.exports = new PortController();
