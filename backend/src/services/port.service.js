@@ -1,5 +1,6 @@
 const db = require('../config/db');
 const { ports } = require('../models/port.model');
+const { devices } = require('../models/device.model');
 const { eq } = require('drizzle-orm');
 const logger = require('../logger/logger');
 const utilService = require('./util.service');
@@ -140,6 +141,44 @@ class PortService {
       errorPorts,
     };
   }  
+
+  getFullList = async () => {
+    try {
+      logger.info('Fetching ports with device names');
+      const rows = await db
+        .select({
+          id: ports.id,
+          port_id: ports.port_id,
+          device_id: ports.device_id,
+          hostname: devices.hostname,
+          sysName: devices.sysName,
+          ifName: ports.ifName,
+          ifDescr: ports.ifDescr,
+          ifAlias: ports.ifAlias,
+          ifInOctets: ports.ifInOctets,
+          ifOutOctets: ports.ifOutOctets,
+          ifOperStatus: ports.ifOperStatus,
+          ifAdminStatus: ports.ifAdminStatus,
+          ifMtu: ports.ifMtu,
+          ifType: ports.ifType,
+          ifPhysAddress: ports.ifPhysAddress,
+          ifLastChange: ports.ifLastChange,
+          ifHighSpeed: ports.ifHighSpeed,
+          ifPromiscuousMode: ports.ifPromiscuousMode,
+          ifConnectorPresent: ports.ifConnectorPresent,
+          ifSpeed: ports.ifSpeed,
+          ifIndex: ports.ifIndex,
+          ne_id: ports.ne_id,
+        })
+        .from(ports)
+        .leftJoin(devices, eq(devices.id, ports.device_id));
+      logger.info(`Fetched ${rows.length} ports (with device names)`);
+      return rows;
+    } catch (error) {
+      logger.error(`Error fetching ports with device names (drizzle): ${error.message}`);
+      throw error;
+    }
+  }
 }
 
 module.exports = new PortService();

@@ -5,6 +5,7 @@ const validatePort = require('../middlewares/port.middleware');
 const router = express.Router();
 
 router.get('/', (req, res) => portController.getAll(req, res));
+router.get('/list', (req, res) => portController.getList(req, res));
 router.get('/:id', (req, res) => portController.getById(req, res));
 router.post('/', validatePort, (req, res) => portController.create(req, res));
 router.post('/import', (req, res) => portController.importCSV(req, res));

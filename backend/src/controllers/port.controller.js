@@ -12,6 +12,16 @@ class PortController {
     }
   }
 
+  getList = async (req, res) => {
+    try{
+      const items = await portService.getFullList();
+      res.json(items);
+    } catch (error) {
+      logger.error(`Controller error (getFullList ports): ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
+  }
+
   getById = async (req, res) => {
     try {
       const item = await portService.get(req.params.id);
