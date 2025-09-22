@@ -36,7 +36,7 @@ LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
 -- Split ports.csv into 1000 lines each
-split -l 1000 ports.csv port_
+split -l 30000 ports.csv port_
 
 INSERT INTO ports (id, port_id, device_id, ifName, ifIndex, ifSpeed, ifConnectorPresent, ifPromiscuousMode, ifHighSpeed, ifDescr, ifAlias, ifInOctets, ifOutOctets, ifOperStatus, ifAdminStatus, ifMtu, ifType, ifPhysAddress, ne_id) VALUES
 (1, 473, 8, 'Cpos1/0/0', 100, 155000000, TRUE, FALSE, 155, 'Cpos1/0/0', 'Cpos1/0/0', 0, 0, 'up', 'up', 0, 'pos', '0', NULL),

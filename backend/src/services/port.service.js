@@ -77,7 +77,6 @@ class PortService {
       }
 
       return {
-        id: utilService.toIntOrNull(row.id),
         port_id: utilService.toIntOrNull(row.port_id),
         device_id: utilService.toIntOrNull(row.device_id),
         ifName: utilService.toNull(row.ifName),

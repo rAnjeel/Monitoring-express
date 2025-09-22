@@ -3,7 +3,7 @@ const { mysqlTable, int, text, bigint, varchar, boolean } = require('drizzle-orm
 const ports = mysqlTable('ports', {
   id: int('id').primaryKey().autoincrement(),
   port_id: int('port_id'),
-  device_id: int('device_id').notNull(),
+  device_id: int('device_id'),
   ifName: text('ifName'),
   ifDescr: text('ifDescr'),
   ifAlias: text('ifAlias'),
@@ -20,7 +20,7 @@ const ports = mysqlTable('ports', {
   ifConnectorPresent: boolean('ifConnectorPresent'),
   ifSpeed: int('ifSpeed'),
   ifIndex: int('ifIndex'),
-  ne_id: varchar('ne_id', { length: 45 }).notNull(),
+  ne_id: varchar('ne_id', { length: 45 }),
 });
 
 module.exports = { ports };
