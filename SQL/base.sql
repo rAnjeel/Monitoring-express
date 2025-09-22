@@ -70,7 +70,7 @@ CREATE TABLE device_events (
 
 CREATE TABLE ports (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    port_id INT,
+    port_id INT UNIQUE DEFAULT NULL,
     device_id INT NOT NULL,
     ifName text,
     ifDescr text,

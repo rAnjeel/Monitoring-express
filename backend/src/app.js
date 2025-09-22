@@ -10,8 +10,8 @@ const db = require('./config/db');
 const errorHandler = require('./middlewares/error.middleware');
 
 const app = express();
-app.use(bodyParser.json({ limit: '10mb' }));
-app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+app.use(bodyParser.json({ limit: '20mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '20mb' }));
 
 app.use(cors({
   origin: ['http://localhost:8080', 'http://localhost:8081'],

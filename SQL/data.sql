@@ -35,6 +35,8 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
+split -l 1000 ports.csv port_
+
 INSERT INTO ports (id, port_id, device_id, ifName, ifIndex, ifSpeed, ifConnectorPresent, ifPromiscuousMode, ifHighSpeed, ifDescr, ifAlias, ifInOctets, ifOutOctets, ifOperStatus, ifAdminStatus, ifMtu, ifType, ifPhysAddress, ne_id) VALUES
 (1, 473, 8, 'Cpos1/0/0', 100, 155000000, TRUE, FALSE, 155, 'Cpos1/0/0', 'Cpos1/0/0', 0, 0, 'up', 'up', 0, 'pos', '0', NULL),
 (2, 474, 8, 'Cpos1/0/1', 101, 155000000, TRUE, FALSE, 155, 'Cpos1/0/1', 'Cpos1/0/1', 0, 0, 'down', 'down', 0, 'pos', '0', NULL),

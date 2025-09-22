@@ -20,7 +20,7 @@ const portSchema = Joi.object({
   ifConnectorPresent: Joi.boolean().optional(),
   ifSpeed: Joi.number().integer().optional(),
   ifIndex: Joi.number().integer().optional(),
-  ne_id: Joi.string().max(45).required(),
+  ne_id: Joi.string().max(45),
 });
 
 function validatePort(req, res, next) {
