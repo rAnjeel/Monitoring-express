@@ -1,0 +1,432 @@
+2025-09-23 09:43:13 [INFO]: Server running on port 3000
+2025-09-23 09:45:42 [INFO]: Fetching all type_devices
+2025-09-23 09:45:42 [INFO]: Fetched 10 type_devices
+2025-09-23 09:45:42 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:47:21 [INFO]: Fetching all type_devices
+2025-09-23 09:47:21 [INFO]: Fetched 10 type_devices
+2025-09-23 09:47:21 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:47:21 [INFO]: Fetching all type_devices
+2025-09-23 09:47:21 [INFO]: Fetched 10 type_devices
+2025-09-23 09:47:21 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:47:21 [INFO]: Fetching all type_devices
+2025-09-23 09:47:21 [INFO]: Fetched 10 type_devices
+2025-09-23 09:47:21 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:47:21 [INFO]: Fetching all type_devices
+2025-09-23 09:47:21 [INFO]: Fetched 10 type_devices
+2025-09-23 09:47:21 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:47:33 [INFO]: Fetching all type_devices
+2025-09-23 09:47:33 [INFO]: Fetched 10 type_devices
+2025-09-23 09:47:33 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:49:08 [INFO]: Fetching all type_devices
+2025-09-23 09:49:08 [INFO]: Fetched 10 type_devices
+2025-09-23 09:49:08 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:49:42 [INFO]: Fetching all type_devices
+2025-09-23 09:49:42 [INFO]: Fetched 10 type_devices
+2025-09-23 09:49:42 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:49:44 [INFO]: Fetching all type_devices
+2025-09-23 09:49:44 [INFO]: Fetched 10 type_devices
+2025-09-23 09:49:44 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:51:04 [INFO]: Fetching all type_devices
+2025-09-23 09:51:04 [INFO]: Fetched 10 type_devices
+2025-09-23 09:51:04 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:51:09 [INFO]: Fetching all type_devices
+2025-09-23 09:51:09 [INFO]: Fetched 10 type_devices
+2025-09-23 09:51:09 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:51:13 [INFO]: Fetching all type_devices
+2025-09-23 09:51:13 [INFO]: Fetched 10 type_devices
+2025-09-23 09:51:13 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:51:46 [INFO]: Fetching all type_devices
+2025-09-23 09:51:46 [INFO]: Fetched 10 type_devices
+2025-09-23 09:51:46 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:52:01 [INFO]: Fetching all type_devices
+2025-09-23 09:52:01 [INFO]: Fetched 10 type_devices
+2025-09-23 09:52:01 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:52:03 [INFO]: Fetching all type_devices
+2025-09-23 09:52:03 [INFO]: Fetched 10 type_devices
+2025-09-23 09:52:03 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:52:05 [INFO]: Fetching all type_devices
+2025-09-23 09:52:05 [INFO]: Fetched 10 type_devices
+2025-09-23 09:52:05 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:52:10 [INFO]: Fetching all type_devices
+2025-09-23 09:52:10 [INFO]: Fetched 10 type_devices
+2025-09-23 09:52:10 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:52:32 [INFO]: Fetching all type_devices
+2025-09-23 09:52:32 [INFO]: Fetched 10 type_devices
+2025-09-23 09:52:32 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:56:02 [INFO]: Fetching all type_devices
+2025-09-23 09:56:02 [INFO]: Fetched 10 type_devices
+2025-09-23 09:56:02 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:59:46 [INFO]: Fetching all type_devices
+2025-09-23 09:59:46 [INFO]: Fetched 10 type_devices
+2025-09-23 09:59:46 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:59:47 [INFO]: Fetching all type_devices
+2025-09-23 09:59:47 [INFO]: Fetched 10 type_devices
+2025-09-23 09:59:47 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 09:59:52 [INFO]: Fetching all type_devices
+2025-09-23 09:59:52 [INFO]: Fetched 10 type_devices
+2025-09-23 09:59:52 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:00:02 [INFO]: Fetching all type_devices
+2025-09-23 10:00:02 [INFO]: Fetched 10 type_devices
+2025-09-23 10:00:02 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:00:10 [INFO]: Fetching all type_devices
+2025-09-23 10:00:10 [INFO]: Fetched 10 type_devices
+2025-09-23 10:00:10 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:00:12 [INFO]: Fetching all type_devices
+2025-09-23 10:00:12 [INFO]: Fetched 10 type_devices
+2025-09-23 10:00:12 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:01:24 [INFO]: Fetching all type_devices
+2025-09-23 10:01:24 [INFO]: Fetched 10 type_devices
+2025-09-23 10:01:24 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:01:35 [INFO]: Fetching all type_devices
+2025-09-23 10:01:35 [INFO]: Fetched 10 type_devices
+2025-09-23 10:01:35 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:03:06 [INFO]: Fetching all type_devices
+2025-09-23 10:03:06 [INFO]: Fetched 10 type_devices
+2025-09-23 10:03:06 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:03:21 [INFO]: Fetching all type_devices
+2025-09-23 10:03:21 [INFO]: Fetched 10 type_devices
+2025-09-23 10:03:21 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:04:04 [INFO]: Fetching all type_devices
+2025-09-23 10:04:04 [INFO]: Fetched 10 type_devices
+2025-09-23 10:04:04 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:04:15 [INFO]: Fetching all type_devices
+2025-09-23 10:04:15 [INFO]: Fetched 10 type_devices
+2025-09-23 10:04:15 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:04:18 [INFO]: Fetching all type_devices
+2025-09-23 10:04:18 [INFO]: Fetched 10 type_devices
+2025-09-23 10:04:18 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:04:23 [INFO]: Fetching all type_devices
+2025-09-23 10:04:23 [INFO]: Fetched 10 type_devices
+2025-09-23 10:04:23 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:04:28 [INFO]: Fetching all type_devices
+2025-09-23 10:04:28 [INFO]: Fetched 10 type_devices
+2025-09-23 10:04:28 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:04:34 [INFO]: Fetching all type_devices
+2025-09-23 10:04:34 [INFO]: Fetched 10 type_devices
+2025-09-23 10:04:34 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:04:51 [INFO]: Fetching all type_devices
+2025-09-23 10:04:51 [INFO]: Fetched 10 type_devices
+2025-09-23 10:04:51 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:04:53 [INFO]: Fetching all type_devices
+2025-09-23 10:04:53 [INFO]: Fetched 10 type_devices
+2025-09-23 10:04:53 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:04:56 [INFO]: Fetching all type_devices
+2025-09-23 10:04:56 [INFO]: Fetched 10 type_devices
+2025-09-23 10:04:56 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:08:34 [INFO]: Fetching all type_devices
+2025-09-23 10:08:34 [INFO]: Fetched 10 type_devices
+2025-09-23 10:08:34 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:08:34 [INFO]: Fetching all type_devices
+2025-09-23 10:08:34 [INFO]: Fetched 10 type_devices
+2025-09-23 10:08:34 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:08:34 [INFO]: Fetching all type_devices
+2025-09-23 10:08:34 [INFO]: Fetched 10 type_devices
+2025-09-23 10:08:34 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:08:34 [INFO]: Fetching all type_devices
+2025-09-23 10:08:34 [INFO]: Fetched 10 type_devices
+2025-09-23 10:08:34 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:08:36 [INFO]: Fetching all type_devices
+2025-09-23 10:08:36 [INFO]: Fetched 10 type_devices
+2025-09-23 10:08:36 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:09:19 [INFO]: Fetching all type_devices
+2025-09-23 10:09:19 [INFO]: Fetched 10 type_devices
+2025-09-23 10:09:19 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:09:21 [INFO]: Fetching all type_devices
+2025-09-23 10:09:21 [INFO]: Fetched 10 type_devices
+2025-09-23 10:09:21 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:09:25 [INFO]: Fetching all type_devices
+2025-09-23 10:09:25 [INFO]: Fetched 10 type_devices
+2025-09-23 10:09:25 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:09:40 [INFO]: Fetching all type_devices
+2025-09-23 10:09:40 [INFO]: Fetched 10 type_devices
+2025-09-23 10:09:40 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:09:41 [INFO]: Fetching all type_devices
+2025-09-23 10:09:41 [INFO]: Fetched 10 type_devices
+2025-09-23 10:09:41 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:10:12 [INFO]: Fetching all type_devices
+2025-09-23 10:10:12 [INFO]: Fetched 10 type_devices
+2025-09-23 10:10:12 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:10:17 [INFO]: Fetching all type_devices
+2025-09-23 10:10:17 [INFO]: Fetched 10 type_devices
+2025-09-23 10:10:17 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:10:19 [INFO]: Fetching all type_devices
+2025-09-23 10:10:19 [INFO]: Fetched 10 type_devices
+2025-09-23 10:10:19 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:10:25 [INFO]: Fetching all type_devices
+2025-09-23 10:10:25 [INFO]: Fetched 10 type_devices
+2025-09-23 10:10:25 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:11:00 [INFO]: Fetching all type_devices
+2025-09-23 10:11:00 [INFO]: Fetched 10 type_devices
+2025-09-23 10:11:00 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:11:09 [INFO]: Fetching all type_devices
+2025-09-23 10:11:09 [INFO]: Fetched 10 type_devices
+2025-09-23 10:11:09 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:11:12 [INFO]: Fetching all type_devices
+2025-09-23 10:11:12 [INFO]: Fetched 10 type_devices
+2025-09-23 10:11:12 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:14:39 [INFO]: Fetching all type_devices
+2025-09-23 10:14:39 [INFO]: Fetched 10 type_devices
+2025-09-23 10:14:39 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:17:15 [INFO]: Fetching all type_devices
+2025-09-23 10:17:15 [INFO]: Fetched 10 type_devices
+2025-09-23 10:17:15 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:17:17 [INFO]: Fetching all type_devices
+2025-09-23 10:17:17 [INFO]: Fetched 10 type_devices
+2025-09-23 10:17:17 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:17:26 [INFO]: Fetching all type_devices
+2025-09-23 10:17:26 [INFO]: Fetched 10 type_devices
+2025-09-23 10:17:26 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:17:27 [INFO]: Fetching all type_devices
+2025-09-23 10:17:27 [INFO]: Fetched 10 type_devices
+2025-09-23 10:17:27 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:17:46 [INFO]: Fetching all type_devices
+2025-09-23 10:17:46 [INFO]: Fetched 10 type_devices
+2025-09-23 10:17:46 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:17:50 [INFO]: Fetching all type_devices
+2025-09-23 10:17:50 [INFO]: Fetched 10 type_devices
+2025-09-23 10:17:50 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:18:31 [INFO]: Fetching all type_devices
+2025-09-23 10:18:31 [INFO]: Fetched 10 type_devices
+2025-09-23 10:18:31 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:19:03 [INFO]: Fetching all type_devices
+2025-09-23 10:19:03 [INFO]: Fetched 10 type_devices
+2025-09-23 10:19:03 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:19:05 [INFO]: Fetching all type_devices
+2025-09-23 10:19:05 [INFO]: Fetched 10 type_devices
+2025-09-23 10:19:05 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:19:08 [INFO]: Fetching all type_devices
+2025-09-23 10:19:08 [INFO]: Fetched 10 type_devices
+2025-09-23 10:19:08 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:19:14 [INFO]: Fetching all type_devices
+2025-09-23 10:19:14 [INFO]: Fetched 10 type_devices
+2025-09-23 10:19:14 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:19:42 [INFO]: Fetching all type_devices
+2025-09-23 10:19:42 [INFO]: Fetched 10 type_devices
+2025-09-23 10:19:42 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:19:46 [INFO]: Fetching all type_devices
+2025-09-23 10:19:46 [INFO]: Fetched 10 type_devices
+2025-09-23 10:19:46 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:20:45 [INFO]: Fetching all type_devices
+2025-09-23 10:20:45 [INFO]: Fetched 10 type_devices
+2025-09-23 10:20:45 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:21:15 [INFO]: Fetching all type_devices
+2025-09-23 10:21:15 [INFO]: Fetched 10 type_devices
+2025-09-23 10:21:15 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:21:25 [INFO]: Fetching all type_devices
+2025-09-23 10:21:25 [INFO]: Fetched 10 type_devices
+2025-09-23 10:21:25 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:22:07 [INFO]: Fetching all type_devices
+2025-09-23 10:22:07 [INFO]: Fetched 10 type_devices
+2025-09-23 10:22:07 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:22:07 [INFO]: Fetching all type_devices
+2025-09-23 10:22:07 [INFO]: Fetched 10 type_devices
+2025-09-23 10:22:07 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:22:40 [INFO]: Fetching all type_devices
+2025-09-23 10:22:40 [INFO]: Fetched 10 type_devices
+2025-09-23 10:22:40 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:22:40 [INFO]: Fetching all type_devices
+2025-09-23 10:22:40 [INFO]: Fetched 10 type_devices
+2025-09-23 10:22:40 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:22:40 [INFO]: Fetching all type_devices
+2025-09-23 10:22:40 [INFO]: Fetched 10 type_devices
+2025-09-23 10:22:40 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:22:40 [INFO]: Fetching all type_devices
+2025-09-23 10:22:40 [INFO]: Fetched 10 type_devices
+2025-09-23 10:22:40 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:22:41 [INFO]: Fetching all type_devices
+2025-09-23 10:22:41 [INFO]: Fetched 10 type_devices
+2025-09-23 10:22:41 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:22:45 [INFO]: Fetching all type_devices
+2025-09-23 10:22:45 [INFO]: Fetched 10 type_devices
+2025-09-23 10:22:45 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:22:48 [INFO]: Fetching all type_devices
+2025-09-23 10:22:48 [INFO]: Fetched 10 type_devices
+2025-09-23 10:22:48 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:22:58 [INFO]: Fetching all type_devices
+2025-09-23 10:22:58 [INFO]: Fetched 10 type_devices
+2025-09-23 10:22:58 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:23:26 [INFO]: Fetching all type_devices
+2025-09-23 10:23:26 [INFO]: Fetched 10 type_devices
+2025-09-23 10:23:26 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:23:26 [INFO]: Fetching all type_devices
+2025-09-23 10:23:26 [INFO]: Fetched 10 type_devices
+2025-09-23 10:23:26 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:23:34 [INFO]: Fetching all type_devices
+2025-09-23 10:23:34 [INFO]: Fetched 10 type_devices
+2025-09-23 10:23:34 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:23:35 [INFO]: Fetching all type_devices
+2025-09-23 10:23:35 [INFO]: Fetched 10 type_devices
+2025-09-23 10:23:35 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:23:53 [INFO]: Fetching all type_devices
+2025-09-23 10:23:53 [INFO]: Fetched 10 type_devices
+2025-09-23 10:23:53 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:23:57 [INFO]: Fetching all type_devices
+2025-09-23 10:23:57 [INFO]: Fetched 10 type_devices
+2025-09-23 10:23:57 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:24:07 [INFO]: Fetching all type_devices
+2025-09-23 10:24:07 [INFO]: Fetched 10 type_devices
+2025-09-23 10:24:07 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:24:10 [INFO]: Fetching all type_devices
+2025-09-23 10:24:10 [INFO]: Fetched 10 type_devices
+2025-09-23 10:24:10 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:24:14 [INFO]: Fetching all type_devices
+2025-09-23 10:24:14 [INFO]: Fetched 10 type_devices
+2025-09-23 10:24:14 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:24:35 [INFO]: Fetching all type_devices
+2025-09-23 10:24:35 [INFO]: Fetched 10 type_devices
+2025-09-23 10:24:35 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:28:05 [INFO]: Fetching all type_devices
+2025-09-23 10:28:05 [INFO]: Fetched 10 type_devices
+2025-09-23 10:28:05 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:31:02 [INFO]: Fetching all type_devices
+2025-09-23 10:31:02 [INFO]: Fetched 10 type_devices
+2025-09-23 10:31:02 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:31:21 [INFO]: Fetching all type_devices
+2025-09-23 10:31:21 [INFO]: Fetched 10 type_devices
+2025-09-23 10:31:21 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:31:53 [INFO]: Fetching all type_devices
+2025-09-23 10:31:53 [INFO]: Fetched 10 type_devices
+2025-09-23 10:31:53 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:31:54 [INFO]: Fetching all type_devices
+2025-09-23 10:31:54 [INFO]: Fetched 10 type_devices
+2025-09-23 10:31:54 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:31:54 [INFO]: Fetching all type_devices
+2025-09-23 10:31:54 [INFO]: Fetched 10 type_devices
+2025-09-23 10:31:54 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:31:54 [INFO]: Fetching all type_devices
+2025-09-23 10:31:54 [INFO]: Fetched 10 type_devices
+2025-09-23 10:31:54 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:31:54 [INFO]: Fetching all type_devices
+2025-09-23 10:31:54 [INFO]: Fetched 10 type_devices
+2025-09-23 10:31:54 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:31:54 [INFO]: Fetching all type_devices
+2025-09-23 10:31:54 [INFO]: Fetched 10 type_devices
+2025-09-23 10:31:54 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:31:55 [INFO]: Fetching all type_devices
+2025-09-23 10:31:55 [INFO]: Fetched 10 type_devices
+2025-09-23 10:31:55 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:31:56 [INFO]: Fetching all type_devices
+2025-09-23 10:31:56 [INFO]: Fetched 10 type_devices
+2025-09-23 10:31:56 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:31:59 [INFO]: Fetching all type_devices
+2025-09-23 10:31:59 [INFO]: Fetched 10 type_devices
+2025-09-23 10:31:59 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:32:04 [INFO]: Fetching all type_devices
+2025-09-23 10:32:04 [INFO]: Fetched 10 type_devices
+2025-09-23 10:32:04 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:35:14 [INFO]: Fetching ports with device names
+2025-09-23 10:35:14 [INFO]: Fetched 5 ports (with device names)
+2025-09-23 10:35:23 [INFO]: Fetching all type_devices
+2025-09-23 10:35:23 [INFO]: Fetched 10 type_devices
+2025-09-23 10:35:23 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:36:47 [INFO]: Fetching all type_devices
+2025-09-23 10:36:47 [INFO]: Fetched 10 type_devices
+2025-09-23 10:36:47 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:37:01 [INFO]: Fetching all type_devices
+2025-09-23 10:37:01 [INFO]: Fetched 10 type_devices
+2025-09-23 10:37:01 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:37:06 [INFO]: Fetching all type_devices
+2025-09-23 10:37:06 [INFO]: Fetched 10 type_devices
+2025-09-23 10:37:06 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:37:13 [INFO]: Fetching all type_devices
+2025-09-23 10:37:13 [INFO]: Fetched 10 type_devices
+2025-09-23 10:37:13 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:37:17 [INFO]: Fetching all type_devices
+2025-09-23 10:37:17 [INFO]: Fetched 10 type_devices
+2025-09-23 10:37:17 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:37:18 [INFO]: Fetching all type_devices
+2025-09-23 10:37:18 [INFO]: Fetched 10 type_devices
+2025-09-23 10:37:18 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:37:20 [INFO]: Fetching all type_devices
+2025-09-23 10:37:20 [INFO]: Fetched 10 type_devices
+2025-09-23 10:37:20 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:38:21 [INFO]: Fetching all type_devices
+2025-09-23 10:38:21 [INFO]: Fetched 10 type_devices
+2025-09-23 10:38:21 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:38:21 [INFO]: Fetching all type_devices
+2025-09-23 10:38:21 [INFO]: Fetched 10 type_devices
+2025-09-23 10:38:21 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:38:21 [INFO]: Fetching all type_devices
+2025-09-23 10:38:21 [INFO]: Fetched 10 type_devices
+2025-09-23 10:38:21 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:38:21 [INFO]: Fetching all type_devices
+2025-09-23 10:38:22 [INFO]: Fetched 10 type_devices
+2025-09-23 10:38:22 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:38:22 [INFO]: Fetching all type_devices
+2025-09-23 10:38:22 [INFO]: Fetched 10 type_devices
+2025-09-23 10:38:22 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:38:22 [INFO]: Fetching all type_devices
+2025-09-23 10:38:22 [INFO]: Fetched 10 type_devices
+2025-09-23 10:38:22 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:38:22 [INFO]: Fetching all type_devices
+2025-09-23 10:38:22 [INFO]: Fetched 10 type_devices
+2025-09-23 10:38:22 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:38:22 [INFO]: Fetching all type_devices
+2025-09-23 10:38:22 [INFO]: Fetched 10 type_devices
+2025-09-23 10:38:22 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:38:22 [INFO]: Fetching all type_devices
+2025-09-23 10:38:22 [INFO]: Fetched 10 type_devices
+2025-09-23 10:38:22 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:38:23 [INFO]: Fetching all type_devices
+2025-09-23 10:38:23 [INFO]: Fetched 10 type_devices
+2025-09-23 10:38:23 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:38:23 [INFO]: Fetching all type_devices
+2025-09-23 10:38:23 [INFO]: Fetched 10 type_devices
+2025-09-23 10:38:23 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:38:29 [INFO]: Fetching all type_devices
+2025-09-23 10:38:29 [INFO]: Fetched 10 type_devices
+2025-09-23 10:38:29 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:38:43 [INFO]: Fetching all type_devices
+2025-09-23 10:38:43 [INFO]: Fetched 10 type_devices
+2025-09-23 10:38:43 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:38:43 [INFO]: Fetching all type_devices
+2025-09-23 10:38:43 [INFO]: Fetched 10 type_devices
+2025-09-23 10:38:43 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:46:48 [INFO]: Fetching all type_devices
+2025-09-23 10:46:48 [INFO]: Fetched 10 type_devices
+2025-09-23 10:46:48 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:47:42 [INFO]: Fetching all type_devices
+2025-09-23 10:47:42 [INFO]: Fetched 10 type_devices
+2025-09-23 10:47:42 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:48:49 [INFO]: Fetching all type_devices
+2025-09-23 10:48:49 [INFO]: Fetched 10 type_devices
+2025-09-23 10:48:49 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:49:08 [INFO]: Fetching all type_devices
+2025-09-23 10:49:08 [INFO]: Fetched 10 type_devices
+2025-09-23 10:49:08 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:49:18 [INFO]: Fetching all type_devices
+2025-09-23 10:49:18 [INFO]: Fetched 10 type_devices
+2025-09-23 10:49:18 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:49:27 [INFO]: Fetching all type_devices
+2025-09-23 10:49:27 [INFO]: Fetched 10 type_devices
+2025-09-23 10:49:27 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:49:31 [INFO]: Fetching all type_devices
+2025-09-23 10:49:31 [INFO]: Fetched 10 type_devices
+2025-09-23 10:49:31 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:49:35 [INFO]: Fetching all type_devices
+2025-09-23 10:49:35 [INFO]: Fetched 10 type_devices
+2025-09-23 10:49:35 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:49:44 [INFO]: Fetching ports with device names
+2025-09-23 10:49:44 [INFO]: Fetched 5 ports (with device names)
+2025-09-23 10:50:19 [INFO]: Fetching ports with device names
+2025-09-23 10:50:19 [INFO]: Fetched 5 ports (with device names)
+2025-09-23 10:50:19 [INFO]: Fetching ports with device names
+2025-09-23 10:50:19 [INFO]: Fetched 5 ports (with device names)
+2025-09-23 10:50:24 [INFO]: Fetching all type_devices
+2025-09-23 10:50:24 [INFO]: Fetched 10 type_devices
+2025-09-23 10:50:24 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:54:58 [INFO]: Fetching all type_devices
+2025-09-23 10:54:58 [INFO]: Fetched 10 type_devices
+2025-09-23 10:54:58 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:57:15 [INFO]: Fetching all type_devices
+2025-09-23 10:57:15 [INFO]: Fetched 10 type_devices
+2025-09-23 10:57:15 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 10:57:22 [INFO]: Fetching all type_devices
+2025-09-23 10:57:22 [INFO]: Fetched 10 type_devices
+2025-09-23 10:57:22 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 11:00:51 [INFO]: Fetching all type_devices
+2025-09-23 11:00:51 [INFO]: Fetched 10 type_devices
+2025-09-23 11:00:51 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-23 11:00:51 [INFO]: Fetching all type_devices
+2025-09-23 11:00:51 [INFO]: Fetched 10 type_devices
+2025-09-23 11:00:51 [INFO]: TypeDeviceController: returning 10 type_devices

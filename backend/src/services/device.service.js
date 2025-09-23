@@ -167,12 +167,10 @@ class DeviceService {
           community: devices.community,
           authlevel: devices.authlevel,
           authname: devices.authname,
-          authpass: devices.authpass,
           authalgo: devices.authalgo,
           cryptopass: devices.cryptopass,
           cryptoalgo: devices.cryptoalgo,
           snmpver: devices.snmpver,
-          ne_id: devices.ne_id,
         })
         .from(devices)
         .leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))

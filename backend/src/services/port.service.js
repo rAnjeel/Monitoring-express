@@ -146,9 +146,9 @@ class PortService {
       logger.info('Fetching ports with device names');
       const rows = await db
         .select({
-          id: ports.id,
           port_id: ports.port_id,
           device_id: ports.device_id,
+          IfIndex: ports.ifIndex,
           hostname: devices.hostname,
           sysName: devices.sysName,
           type: ports.ifType,
@@ -164,8 +164,6 @@ class PortService {
           PromiscuousMode: ports.ifPromiscuousMode,
           ConnectorPresent: ports.ifConnectorPresent,
           Speed: ports.ifSpeed,
-          IfIndex: ports.ifIndex,
-          ne_id: ports.ne_id,
         })
         .from(ports)
         .leftJoin(devices, eq(devices.id, ports.device_id));
