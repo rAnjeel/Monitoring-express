@@ -23,7 +23,7 @@ CREATE TABLE device_details (
 );
 
 CREATE TABLE devices (
-    device_id INT UNIQUE DEFAULT NULL,
+    device_id INT DEFAULT NULL,
     id INT AUTO_INCREMENT PRIMARY KEY,
     ip VARCHAR(30),
     hostname varchar(50) NOT NULL,
@@ -49,11 +49,41 @@ CREATE TABLE devices (
     cryptopass text,
     cryptoalgo text,
     snmpver text,
-    ne_id varchar(45) NOT NULL,
-    FOREIGN KEY (type_device_id) REFERENCES type_device(id),
-    FOREIGN KEY (location_id) REFERENCES locations(id),
-    FOREIGN KEY (details_id) REFERENCES device_details(id)
+    ne_id varchar(45)
 );
+
+-- CREATE TABLE devices (
+--     device_id INT UNIQUE DEFAULT NULL,
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     ip VARCHAR(30),
+--     hostname varchar(50) NOT NULL,
+--     sysName varchar(200),
+--     status INT DEFAULT NULL,
+--     ping_status INT,
+--     type_device_id INT,
+--     location_id INT,
+--     details_id INT DEFAULT NULL,
+--     monitoring_id INT DEFAULT NULL,
+--     codesite varchar(45) DEFAULT NULL,
+--     loss FLOAT DEFAULT NULL,
+--     avg FLOAT DEFAULT NULL,
+--     min FLOAT DEFAULT NULL,
+--     max FLOAT DEFAULT NULL,
+--     uptime datetime,
+--     snmp_disable BOOLEAN,
+--     community text,
+--     authlevel text,
+--     authname text,
+--     authpass text,
+--     authalgo text,
+--     cryptopass text,
+--     cryptoalgo text,
+--     snmpver text,
+--     ne_id varchar(45) NOT NULL,
+--     FOREIGN KEY (type_device_id) REFERENCES type_device(id),
+--     FOREIGN KEY (location_id) REFERENCES locations(id),
+--     FOREIGN KEY (details_id) REFERENCES device_details(id)
+-- );
 
 CREATE TABLE device_events (
   id INT PRIMARY KEY AUTO_INCREMENT,
@@ -70,7 +100,7 @@ CREATE TABLE device_events (
 
 CREATE TABLE ports (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    port_id INT UNIQUE DEFAULT NULL,
+    port_id INT,
     device_id INT NOT NULL,
     ifName text,
     ifDescr text,
@@ -84,13 +114,36 @@ CREATE TABLE ports (
     ifPhysAddress varchar(45),
     ifLastChange INT,
     ifHighSpeed INT,
-    ifPromiscuousMode BOOLEAN,
-    ifConnectorPresent BOOLEAN,
-    ifSpeed INT,
+    ifPromiscuousMode varchar(45),
+    ifConnectorPresent varchar(45),
+    ifSpeed BIGINT,
     ifIndex INT,
-    ne_id varchar(45),
-    FOREIGN KEY (device_id) REFERENCES devices(id)
+    ne_id varchar(45)
 );
+
+-- CREATE TABLE ports (
+--     id INT AUTO_INCREMENT PRIMARY KEY,
+--     port_id INT UNIQUE DEFAULT NULL,
+--     device_id INT NOT NULL,
+--     ifName text,
+--     ifDescr text,
+--     ifAlias text,
+--     ifInOctets BIGINT,
+--     ifOutOctets BIGINT,
+--     ifOperStatus varchar(45),
+--     ifAdminStatus varchar(45),
+--     ifMtu INT,
+--     ifType varchar(45),
+--     ifPhysAddress varchar(45),
+--     ifLastChange INT,
+--     ifHighSpeed INT,
+--     ifPromiscuousMode BOOLEAN,
+--     ifConnectorPresent BOOLEAN,
+--     ifSpeed INT,
+--     ifIndex INT,
+--     ne_id varchar(45),
+--     FOREIGN KEY (device_id) REFERENCES devices(id)
+-- );
 
 CREATE TABLE port_events (
   id INT PRIMARY KEY AUTO_INCREMENT,
