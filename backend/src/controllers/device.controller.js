@@ -22,6 +22,15 @@ class DeviceController {
     }
   }
 
+  getPage = async (req, res) => {
+    try {
+      const items = await deviceService.getDevicesPage();
+    } catch (error) {
+      logger.error(`Controller error (getPage): ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
+  }
+
   getById = async (req, res) => {
     try {
       const item = await deviceService.get(req.params.id);

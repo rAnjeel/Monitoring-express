@@ -182,6 +182,55 @@ class DeviceService {
     }
   }
 
+  getDevicesPage = async ({ page = 1, pageSize = 20 } = {}) => {
+    try {
+      const offset = (page - 1) * pageSize;
+
+      // Requête paginée
+      const rows = await db
+        .select({
+          device_id: devices.device_id,
+          id: devices.id,
+          sysName: devices.sysName,
+          hostname: devices.hostname,
+          type_device: typeDevices.name,
+          location: locations.name,
+          ping_status: devices.ping_status,
+          status: devices.status,
+          codesite: devices.codesite,
+          loss: devices.loss,
+          avg: devices.avg,
+          min: devices.min,
+          max: devices.max,
+          uptime: devices.uptime,
+          snmp_disable: devices.snmp_disable,
+          community: devices.community,
+          authlevel: devices.authlevel,
+          authname: devices.authname,
+          authalgo: devices.authalgo,
+          cryptopass: devices.cryptopass,
+          cryptoalgo: devices.cryptoalgo,
+          snmpver: devices.snmpver,
+        })
+        .from(devices)
+        .leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
+        .leftJoin(locations, eq(locations.id, devices.location_id))
+        .limit(pageSize)
+        .offset(offset);
+
+      // Compte total pour la pagination
+      const totalResult = await db
+        .select({ count: db.fn.count(devices.id).as('count') })
+        .from(devices);
+
+      const totalCount = Number(totalResult[0]?.count || 0);
+
+      return { rows, totalCount };
+    } catch (error) {
+      logger.error(`Error fetching paginated devices (drizzle): ${error.message}`);
+      throw error;
+    }
+  }
 }
 
 module.exports = new DeviceService();

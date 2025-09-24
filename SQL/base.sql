@@ -101,15 +101,15 @@ CREATE TABLE device_events (
 CREATE TABLE ports (
     id INT AUTO_INCREMENT PRIMARY KEY,
     port_id INT,
-    device_id INT NOT NULL,
+    device_id INT,
     ifName text,
     ifDescr text,
     ifAlias text,
-    ifInOctets BIGINT,
-    ifOutOctets BIGINT,
+    ifInOctets varchar(45),
+    ifOutOctets varchar(45),
     ifOperStatus varchar(45),
     ifAdminStatus varchar(45),
-    ifMtu INT,
+    ifMtu text,
     ifType varchar(45),
     ifPhysAddress varchar(45),
     ifLastChange INT,
@@ -117,7 +117,7 @@ CREATE TABLE ports (
     ifPromiscuousMode varchar(45),
     ifConnectorPresent varchar(45),
     ifSpeed BIGINT,
-    ifIndex INT,
+    ifIndex text,
     ne_id varchar(45)
 );
 
