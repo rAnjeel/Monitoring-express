@@ -24,7 +24,11 @@ class DeviceController {
 
   getPage = async (req, res) => {
     try {
-      const items = await deviceService.getDevicesPage();
+      const page = parseInt(req.query.page) || 1;
+      const pageSize = parseInt(req.query.pageSize) || 20;
+      logger.info(`page = ${page}, pageSize = ${pageSize}`);
+      const items = await deviceService.getDevicesPage({page,pageSize});
+      res.json(items);
     } catch (error) {
       logger.error(`Controller error (getPage): ${error.message}`);
       res.status(500).json({ message: error.message });

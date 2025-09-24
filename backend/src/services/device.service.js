@@ -2,7 +2,7 @@ const db = require('../config/db');
 const { devices } = require('../models/device.model');
 const { locations } = require('../models/location.model');
 const { typeDevices } = require('../models/typeDevice.model');
-const { eq } = require('drizzle-orm');
+const { eq, sql } = require('drizzle-orm');
 const logger = require('../logger/logger');
 const utilService = require('./util.service');
 
@@ -217,15 +217,10 @@ class DeviceService {
         .leftJoin(locations, eq(locations.id, devices.location_id))
         .limit(pageSize)
         .offset(offset);
-
-      // Compte total pour la pagination
-      const totalResult = await db
-        .select({ count: db.fn.count(devices.id).as('count') })
-        .from(devices);
-
-      const totalCount = Number(totalResult[0]?.count || 0);
-
-      return { rows, totalCount };
+      
+        const totalCountResult = await db.execute(sql`SELECT count(*) AS count FROM devices`);
+        const totalCountRes = totalCountResult[0];
+      return { rows, totalCountRes}
     } catch (error) {
       logger.error(`Error fetching paginated devices (drizzle): ${error.message}`);
       throw error;
