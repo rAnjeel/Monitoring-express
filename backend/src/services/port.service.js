@@ -1,7 +1,7 @@
 const db = require('../config/db');
 const { ports } = require('../models/port.model');
 const { devices } = require('../models/device.model');
-const { eq } = require('drizzle-orm');
+const { eq, sql} = require('drizzle-orm');
 const logger = require('../logger/logger');
 const utilService = require('./util.service');
 
@@ -171,6 +171,47 @@ class PortService {
       return rows;
     } catch (error) {
       logger.error(`Error fetching ports with device names (drizzle): ${error.message}`);
+      throw error;
+    }
+  }
+
+    getPortsPage = async ({ page = 1, pageSize = 20 } = {}) => {
+    try {
+      logger.info('Fetching ports with device names and pagination');
+      const offset = (page - 1) * pageSize;
+
+      // Requête paginée
+      const rows = await db
+        .select({
+          port_id: ports.port_id,
+          device_id: ports.device_id,
+          IfIndex: ports.ifIndex,
+          hostname: devices.hostname,
+          sysName: devices.sysName,
+          type: ports.ifType,
+          name: ports.ifName,
+          description: ports.ifAlias,
+          in_octets: ports.ifInOctets,
+          out_octets: ports.ifOutOctets,
+          operStatus: ports.ifOperStatus,
+          adminStatus: ports.ifAdminStatus,
+          mtu: ports.ifMtu,
+          PhysAddress: ports.ifPhysAddress,
+          HighSpeed: ports.ifHighSpeed,
+          PromiscuousMode: ports.ifPromiscuousMode,
+          ConnectorPresent: ports.ifConnectorPresent,
+          Speed: ports.ifSpeed,
+        })
+        .from(ports)
+        .leftJoin(devices, eq(devices.id, ports.device_id))
+        .limit(pageSize)
+        .offset(offset);
+        logger.info(`Fetched ${rows.length} ports (with device names and pagination)`);
+        const totalCountResult = await db.execute(sql`SELECT count(*) AS count FROM ports`);
+        const totalCountRes = totalCountResult[0];
+      return { rows, totalCountRes}
+    } catch (error) {
+      logger.error(`Error fetching paginated ports (drizzle): ${error.message}`);
       throw error;
     }
   }

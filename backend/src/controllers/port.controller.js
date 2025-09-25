@@ -22,6 +22,19 @@ class PortController {
     }
   }
 
+  getPage = async (req, res) => {
+    try {
+      const page = parseInt(req.query.page) || 1;
+      const pageSize = parseInt(req.query.pageSize) || 20;
+      logger.info(`page = ${page}, pageSize = ${pageSize}`);
+      const items = await portService.getPortsPage({page,pageSize});
+      res.json(items);
+    } catch (error) {
+      logger.error(`Controller error (getPage): ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
+  }
+
   getById = async (req, res) => {
     try {
       const item = await portService.get(req.params.id);
