@@ -14,13 +14,16 @@ class DeviceController {
 
   getList = async (req, res) => {
     try {
-      const items = await deviceService.getFullList();
+      // filter attendu comme JSON : { key: 'valeur', type_device: 'switch', location: 'Paris' }
+      const filterObj = req.query.filter ? JSON.parse(req.query.filter) : {};
+      const items = await deviceService.getFullList(filterObj);
       res.json(items);
     } catch (error) {
       logger.error(`Controller error (getAll): ${error.message}`);
       res.status(500).json({ message: error.message });
     }
   }
+
 
   getPage = async (req, res) => {
     try {

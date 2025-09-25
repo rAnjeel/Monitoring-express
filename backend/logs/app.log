@@ -2203,3 +2203,2093 @@
 2025-09-25 09:25:27 [INFO]: page = 10, pageSize = 20
 2025-09-25 09:25:27 [INFO]: Fetching ports with device names and pagination
 2025-09-25 09:25:28 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:28:40 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:28:40 [INFO]: Fetching all type_devices
+2025-09-25 09:28:40 [INFO]: Fetched 10 type_devices
+2025-09-25 09:28:40 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:31:15 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:31:16 [INFO]: Fetching all type_devices
+2025-09-25 09:31:16 [INFO]: Fetched 10 type_devices
+2025-09-25 09:31:16 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:31:16 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:31:16 [INFO]: Fetching all type_devices
+2025-09-25 09:31:16 [INFO]: Fetched 10 type_devices
+2025-09-25 09:31:16 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:31:29 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:31:29 [INFO]: Fetching all type_devices
+2025-09-25 09:31:29 [INFO]: Fetched 10 type_devices
+2025-09-25 09:31:29 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:32:40 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:32:41 [INFO]: Fetching all type_devices
+2025-09-25 09:32:41 [INFO]: Fetched 10 type_devices
+2025-09-25 09:32:41 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:33:06 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:33:06 [INFO]: Fetching all type_devices
+2025-09-25 09:33:06 [INFO]: Fetched 10 type_devices
+2025-09-25 09:33:06 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:33:08 [INFO]: Fetching ports with device names
+2025-09-25 09:33:09 [INFO]: Fetched 112531 ports (with device names)
+2025-09-25 09:34:16 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:34:16 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:34:16 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:34:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:34:51 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:34:51 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:34:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:34:55 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:34:55 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:35:00 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:35:00 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:35:00 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:35:03 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:35:03 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:35:03 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:35:05 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:35:05 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:35:05 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:36:46 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:36:46 [INFO]: Fetching all type_devices
+2025-09-25 09:36:46 [INFO]: Fetched 10 type_devices
+2025-09-25 09:36:46 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:36:47 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:36:47 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:36:47 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:36:50 [INFO]: page = 1, pageSize = 50
+2025-09-25 09:36:50 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:36:50 [INFO]: Fetched 50 ports (with device names and pagination)
+2025-09-25 09:36:51 [INFO]: page = 1, pageSize = 100
+2025-09-25 09:36:51 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:36:51 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 09:36:54 [INFO]: page = 2, pageSize = 100
+2025-09-25 09:36:54 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:36:54 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 09:36:54 [INFO]: page = 3, pageSize = 100
+2025-09-25 09:36:54 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:36:54 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 09:36:54 [INFO]: page = 4, pageSize = 100
+2025-09-25 09:36:54 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:36:54 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 09:36:55 [INFO]: page = 5, pageSize = 100
+2025-09-25 09:36:55 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:36:55 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 09:36:55 [INFO]: page = 6, pageSize = 100
+2025-09-25 09:36:55 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:36:55 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 09:36:56 [INFO]: page = 5, pageSize = 100
+2025-09-25 09:36:56 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:36:56 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 09:36:56 [INFO]: page = 4, pageSize = 100
+2025-09-25 09:36:56 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:36:56 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 09:36:56 [INFO]: page = 3, pageSize = 100
+2025-09-25 09:36:56 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:36:56 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 09:36:56 [INFO]: page = 2, pageSize = 100
+2025-09-25 09:36:56 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:36:56 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 09:36:56 [INFO]: page = 1, pageSize = 100
+2025-09-25 09:36:56 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:36:56 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 09:36:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:36:58 [INFO]: Fetching all type_devices
+2025-09-25 09:36:58 [INFO]: Fetched 10 type_devices
+2025-09-25 09:36:58 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:36:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:36:59 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:36:59 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:37:00 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:37:00 [INFO]: Fetching all type_devices
+2025-09-25 09:37:00 [INFO]: Fetched 10 type_devices
+2025-09-25 09:37:00 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:37:00 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:37:00 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:37:00 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:37:04 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:37:04 [INFO]: Fetching all type_devices
+2025-09-25 09:37:04 [INFO]: Fetched 10 type_devices
+2025-09-25 09:37:04 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:37:05 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:37:05 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:37:05 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:37:27 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:37:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:37:27 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:37:34 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:37:34 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:37:34 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:37:37 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:37:37 [INFO]: Fetching all type_devices
+2025-09-25 09:37:37 [INFO]: Fetched 10 type_devices
+2025-09-25 09:37:37 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:37:38 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:37:38 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:37:38 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:37:40 [INFO]: page = 2, pageSize = 20
+2025-09-25 09:37:40 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:37:40 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:37:41 [INFO]: page = 3, pageSize = 20
+2025-09-25 09:37:41 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:37:41 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:37:41 [INFO]: page = 4, pageSize = 20
+2025-09-25 09:37:41 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:37:41 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:37:41 [INFO]: page = 5, pageSize = 20
+2025-09-25 09:37:41 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:37:41 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:37:41 [INFO]: page = 6, pageSize = 20
+2025-09-25 09:37:41 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:37:41 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:37:43 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:37:43 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:37:43 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:37:44 [INFO]: page = 6, pageSize = 20
+2025-09-25 09:37:44 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:37:44 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:37:44 [INFO]: page = 60, pageSize = 20
+2025-09-25 09:37:44 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:37:44 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:38:07 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:38:07 [INFO]: Fetching all type_devices
+2025-09-25 09:38:07 [INFO]: Fetched 10 type_devices
+2025-09-25 09:38:07 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:39:23 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:39:23 [INFO]: Fetching all type_devices
+2025-09-25 09:39:23 [INFO]: Fetched 10 type_devices
+2025-09-25 09:39:23 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:39:25 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:39:25 [INFO]: Fetching all type_devices
+2025-09-25 09:39:25 [INFO]: Fetched 10 type_devices
+2025-09-25 09:39:25 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:39:27 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:39:27 [INFO]: Fetching all type_devices
+2025-09-25 09:39:27 [INFO]: Fetched 10 type_devices
+2025-09-25 09:39:27 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:39:29 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:39:29 [INFO]: Fetching all type_devices
+2025-09-25 09:39:29 [INFO]: Fetched 10 type_devices
+2025-09-25 09:39:29 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:39:32 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:39:32 [INFO]: Fetching all type_devices
+2025-09-25 09:39:32 [INFO]: Fetched 10 type_devices
+2025-09-25 09:39:32 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:39:34 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:39:35 [INFO]: Fetching all type_devices
+2025-09-25 09:39:35 [INFO]: Fetched 10 type_devices
+2025-09-25 09:39:35 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:39:36 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:39:36 [INFO]: Fetching all type_devices
+2025-09-25 09:39:36 [INFO]: Fetched 10 type_devices
+2025-09-25 09:39:36 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:39:38 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:39:38 [INFO]: Fetching all type_devices
+2025-09-25 09:39:38 [INFO]: Fetched 10 type_devices
+2025-09-25 09:39:38 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:39:40 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:39:40 [INFO]: Fetching all type_devices
+2025-09-25 09:39:40 [INFO]: Fetched 10 type_devices
+2025-09-25 09:39:40 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:39:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:39:59 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:39:59 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:40:00 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:40:00 [INFO]: Fetching all type_devices
+2025-09-25 09:40:00 [INFO]: Fetched 10 type_devices
+2025-09-25 09:40:00 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:43:15 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:43:15 [INFO]: Fetching all type_devices
+2025-09-25 09:43:15 [INFO]: Fetched 10 type_devices
+2025-09-25 09:43:15 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:46:14 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:46:14 [INFO]: Fetching all type_devices
+2025-09-25 09:46:14 [INFO]: Fetched 10 type_devices
+2025-09-25 09:46:14 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:49:06 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:49:06 [INFO]: Fetching all type_devices
+2025-09-25 09:49:06 [INFO]: Fetched 10 type_devices
+2025-09-25 09:49:06 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:50:38 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:50:38 [INFO]: Fetching all type_devices
+2025-09-25 09:50:38 [INFO]: Fetched 10 type_devices
+2025-09-25 09:50:38 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:50:41 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:50:41 [INFO]: Fetching ports with device names and pagination
+2025-09-25 09:50:41 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 09:53:20 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:53:20 [INFO]: Fetching all type_devices
+2025-09-25 09:53:20 [INFO]: Fetched 10 type_devices
+2025-09-25 09:53:20 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:53:22 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:53:22 [INFO]: Fetching all type_devices
+2025-09-25 09:53:22 [INFO]: Fetched 10 type_devices
+2025-09-25 09:53:22 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:53:25 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:53:25 [INFO]: Fetching all type_devices
+2025-09-25 09:53:25 [INFO]: Fetched 10 type_devices
+2025-09-25 09:53:25 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:54:09 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:54:09 [INFO]: Fetching all type_devices
+2025-09-25 09:54:09 [INFO]: Fetched 10 type_devices
+2025-09-25 09:54:09 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 09:59:49 [INFO]: page = 1, pageSize = 20
+2025-09-25 09:59:49 [INFO]: Fetching all type_devices
+2025-09-25 09:59:49 [INFO]: Fetched 10 type_devices
+2025-09-25 09:59:49 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:00:43 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:00:43 [INFO]: Fetching all type_devices
+2025-09-25 10:00:43 [INFO]: Fetched 10 type_devices
+2025-09-25 10:00:43 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:01:05 [INFO]: page = 2, pageSize = 20
+2025-09-25 10:01:05 [INFO]: page = 3, pageSize = 20
+2025-09-25 10:01:05 [INFO]: page = 4, pageSize = 20
+2025-09-25 10:01:06 [INFO]: page = 5, pageSize = 20
+2025-09-25 10:01:06 [INFO]: page = 6, pageSize = 20
+2025-09-25 10:01:06 [INFO]: page = 7, pageSize = 20
+2025-09-25 10:01:06 [INFO]: page = 8, pageSize = 20
+2025-09-25 10:01:07 [INFO]: page = 9, pageSize = 20
+2025-09-25 10:01:07 [INFO]: page = 10, pageSize = 20
+2025-09-25 10:01:07 [INFO]: page = 11, pageSize = 20
+2025-09-25 10:01:07 [INFO]: page = 12, pageSize = 20
+2025-09-25 10:01:16 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:01:16 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:01:16 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:01:20 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:01:20 [INFO]: Fetching all type_devices
+2025-09-25 10:01:20 [INFO]: Fetched 10 type_devices
+2025-09-25 10:01:20 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:01:21 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:01:21 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:01:21 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:01:22 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:01:22 [INFO]: Fetching all type_devices
+2025-09-25 10:01:22 [INFO]: Fetched 10 type_devices
+2025-09-25 10:01:22 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:01:24 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:01:24 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:01:24 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:01:26 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:01:26 [INFO]: Fetching all type_devices
+2025-09-25 10:01:26 [INFO]: Fetched 10 type_devices
+2025-09-25 10:01:26 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:01:26 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:01:26 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:01:26 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:02:03 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:02:03 [INFO]: Fetching all type_devices
+2025-09-25 10:02:03 [INFO]: Fetched 10 type_devices
+2025-09-25 10:02:03 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:02:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:02:57 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:02:57 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:03:01 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:03:01 [INFO]: Fetching all type_devices
+2025-09-25 10:03:01 [INFO]: Fetched 10 type_devices
+2025-09-25 10:03:01 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:03:01 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:03:01 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:03:01 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:03:02 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:03:02 [INFO]: Fetching all type_devices
+2025-09-25 10:03:02 [INFO]: Fetched 10 type_devices
+2025-09-25 10:03:02 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:03:04 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:03:04 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:03:04 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:03:04 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:03:04 [INFO]: Fetching all type_devices
+2025-09-25 10:03:04 [INFO]: Fetched 10 type_devices
+2025-09-25 10:03:04 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:03:09 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:03:09 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:03:09 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:03:34 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:03:34 [INFO]: Fetching all type_devices
+2025-09-25 10:03:34 [INFO]: Fetched 10 type_devices
+2025-09-25 10:03:34 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:03:41 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:03:41 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:03:41 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:03:44 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:03:44 [INFO]: Fetching all type_devices
+2025-09-25 10:03:44 [INFO]: Fetched 10 type_devices
+2025-09-25 10:03:44 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:05:11 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:05:11 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:05:11 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:06:20 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:06:20 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:06:20 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:06:22 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:06:22 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:06:22 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:06:38 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:06:38 [INFO]: Fetching all type_devices
+2025-09-25 10:06:38 [INFO]: Fetched 10 type_devices
+2025-09-25 10:06:38 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:06:39 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:06:39 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:06:39 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:06:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:06:58 [INFO]: Fetching all type_devices
+2025-09-25 10:06:58 [INFO]: Fetched 10 type_devices
+2025-09-25 10:06:58 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:06:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:06:59 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:06:59 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:07:29 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:07:29 [INFO]: Fetching all type_devices
+2025-09-25 10:07:29 [INFO]: Fetched 10 type_devices
+2025-09-25 10:07:29 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:07:30 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:07:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:07:30 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:10:13 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:10:13 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:10:13 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:10:31 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:10:31 [INFO]: Fetching all type_devices
+2025-09-25 10:10:31 [INFO]: Fetched 10 type_devices
+2025-09-25 10:10:31 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:10:35 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:10:35 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:10:35 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:10:43 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:10:43 [INFO]: Fetching all type_devices
+2025-09-25 10:10:43 [INFO]: Fetched 10 type_devices
+2025-09-25 10:10:43 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:10:46 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:10:46 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:10:46 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:10:47 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:10:47 [INFO]: Fetching all type_devices
+2025-09-25 10:10:47 [INFO]: Fetched 10 type_devices
+2025-09-25 10:10:47 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:10:47 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:10:47 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:10:47 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:10:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:10:53 [INFO]: Fetching all type_devices
+2025-09-25 10:10:53 [INFO]: Fetched 10 type_devices
+2025-09-25 10:10:53 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:10:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:10:57 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:10:57 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:13:49 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:13:49 [INFO]: Fetching all type_devices
+2025-09-25 10:13:49 [INFO]: Fetched 10 type_devices
+2025-09-25 10:13:49 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:13:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:13:52 [INFO]: Fetching all type_devices
+2025-09-25 10:13:52 [INFO]: Fetched 10 type_devices
+2025-09-25 10:13:52 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:13:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:13:53 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:13:53 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:13:55 [INFO]: page = 2, pageSize = 20
+2025-09-25 10:13:55 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:13:55 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:13:56 [INFO]: page = 3, pageSize = 20
+2025-09-25 10:13:56 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:13:56 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:13:56 [INFO]: page = 4, pageSize = 20
+2025-09-25 10:13:56 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:13:56 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:13:56 [INFO]: page = 5, pageSize = 20
+2025-09-25 10:13:56 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:13:56 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:13:56 [INFO]: page = 6, pageSize = 20
+2025-09-25 10:13:56 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:13:56 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:13:57 [INFO]: page = 7, pageSize = 20
+2025-09-25 10:13:57 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:13:57 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:13:57 [INFO]: page = 8, pageSize = 20
+2025-09-25 10:13:57 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:13:57 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:13:58 [INFO]: page = 9, pageSize = 20
+2025-09-25 10:13:58 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:13:58 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:13:58 [INFO]: page = 10, pageSize = 20
+2025-09-25 10:13:58 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:13:58 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:13:58 [INFO]: page = 11, pageSize = 20
+2025-09-25 10:13:58 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:13:58 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:13:59 [INFO]: page = 10, pageSize = 20
+2025-09-25 10:13:59 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:13:59 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:13:59 [INFO]: page = 9, pageSize = 20
+2025-09-25 10:13:59 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:13:59 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:13:59 [INFO]: page = 8, pageSize = 20
+2025-09-25 10:13:59 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:13:59 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:13:59 [INFO]: page = 7, pageSize = 20
+2025-09-25 10:13:59 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:13:59 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:13:59 [INFO]: page = 6, pageSize = 20
+2025-09-25 10:13:59 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:13:59 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:00 [INFO]: page = 5, pageSize = 20
+2025-09-25 10:14:00 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:00 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:00 [INFO]: page = 4, pageSize = 20
+2025-09-25 10:14:00 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:00 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:01 [INFO]: page = 3, pageSize = 20
+2025-09-25 10:14:01 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:01 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:03 [INFO]: page = 30, pageSize = 20
+2025-09-25 10:14:03 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:03 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:04 [INFO]: page = 302, pageSize = 20
+2025-09-25 10:14:04 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:04 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:04 [INFO]: page = 3021, pageSize = 20
+2025-09-25 10:14:04 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:04 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:08 [INFO]: page = 302, pageSize = 20
+2025-09-25 10:14:08 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:08 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:08 [INFO]: page = 3022, pageSize = 20
+2025-09-25 10:14:08 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:08 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:09 [INFO]: page = 302, pageSize = 20
+2025-09-25 10:14:09 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:09 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:09 [INFO]: page = 3023, pageSize = 20
+2025-09-25 10:14:09 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:09 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:09 [INFO]: page = 302, pageSize = 20
+2025-09-25 10:14:09 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:09 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:10 [INFO]: page = 3022, pageSize = 20
+2025-09-25 10:14:10 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:10 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:10 [INFO]: page = 302, pageSize = 20
+2025-09-25 10:14:10 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:10 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:10 [INFO]: page = 3021, pageSize = 20
+2025-09-25 10:14:10 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:10 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:10 [INFO]: page = 302, pageSize = 20
+2025-09-25 10:14:10 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:10 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:10 [INFO]: page = 3021, pageSize = 20
+2025-09-25 10:14:10 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:11 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:11 [INFO]: page = 30212, pageSize = 20
+2025-09-25 10:14:11 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:11 [INFO]: page = 3021, pageSize = 20
+2025-09-25 10:14:11 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:11 [INFO]: Fetched 0 ports (with device names and pagination)
+2025-09-25 10:14:11 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:11 [INFO]: page = 30213, pageSize = 20
+2025-09-25 10:14:11 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:11 [INFO]: Fetched 0 ports (with device names and pagination)
+2025-09-25 10:14:11 [INFO]: page = 3021, pageSize = 20
+2025-09-25 10:14:11 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:12 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:12 [INFO]: page = 30214, pageSize = 20
+2025-09-25 10:14:12 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:12 [INFO]: Fetched 0 ports (with device names and pagination)
+2025-09-25 10:14:14 [INFO]: page = 3021, pageSize = 20
+2025-09-25 10:14:14 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:14 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:17 [INFO]: page = 302, pageSize = 20
+2025-09-25 10:14:17 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:17 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:17 [INFO]: page = 3024, pageSize = 20
+2025-09-25 10:14:17 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:18 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:19 [INFO]: page = 302, pageSize = 20
+2025-09-25 10:14:19 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:19 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:19 [INFO]: page = 30, pageSize = 20
+2025-09-25 10:14:19 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:19 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:20 [INFO]: page = 3, pageSize = 20
+2025-09-25 10:14:20 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:20 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:20 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:14:20 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:20 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:21 [INFO]: page = 2, pageSize = 20
+2025-09-25 10:14:21 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:21 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:21 [INFO]: page = 23, pageSize = 20
+2025-09-25 10:14:21 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:21 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:22 [INFO]: page = 234, pageSize = 20
+2025-09-25 10:14:22 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:22 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:22 [INFO]: page = 2343, pageSize = 20
+2025-09-25 10:14:22 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:22 [INFO]: page = 23432, pageSize = 20
+2025-09-25 10:14:22 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:22 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:23 [INFO]: Fetched 0 ports (with device names and pagination)
+2025-09-25 10:14:23 [INFO]: page = 234323, pageSize = 20
+2025-09-25 10:14:23 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:23 [INFO]: Fetched 0 ports (with device names and pagination)
+2025-09-25 10:14:24 [INFO]: page = 23432, pageSize = 20
+2025-09-25 10:14:24 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:24 [INFO]: Fetched 0 ports (with device names and pagination)
+2025-09-25 10:14:24 [INFO]: page = 2343, pageSize = 20
+2025-09-25 10:14:24 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:24 [INFO]: page = 234, pageSize = 20
+2025-09-25 10:14:24 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:24 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:24 [INFO]: page = 23, pageSize = 20
+2025-09-25 10:14:24 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:24 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:24 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:24 [INFO]: page = 2, pageSize = 20
+2025-09-25 10:14:24 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:24 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:24 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:14:24 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:14:24 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:14:27 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:14:27 [INFO]: Fetching all type_devices
+2025-09-25 10:14:27 [INFO]: Fetched 10 type_devices
+2025-09-25 10:14:27 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:14:28 [INFO]: page = 3, pageSize = 20
+2025-09-25 10:14:28 [INFO]: page = 32, pageSize = 20
+2025-09-25 10:14:29 [INFO]: page = 324, pageSize = 20
+2025-09-25 10:14:30 [INFO]: page = 291, pageSize = 20
+2025-09-25 10:14:37 [INFO]: page = 290, pageSize = 20
+2025-09-25 10:14:38 [INFO]: page = 289, pageSize = 20
+2025-09-25 10:14:38 [INFO]: page = 288, pageSize = 20
+2025-09-25 10:14:38 [INFO]: page = 287, pageSize = 20
+2025-09-25 10:14:39 [INFO]: page = 286, pageSize = 20
+2025-09-25 10:14:39 [INFO]: page = 285, pageSize = 20
+2025-09-25 10:15:01 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:16:37 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:16:37 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:16:37 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:16:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:16:56 [INFO]: Fetching all type_devices
+2025-09-25 10:16:56 [INFO]: Fetched 10 type_devices
+2025-09-25 10:16:56 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:17:05 [INFO]: page = 2, pageSize = 20
+2025-09-25 10:17:05 [INFO]: page = 3, pageSize = 20
+2025-09-25 10:17:06 [INFO]: page = 4, pageSize = 20
+2025-09-25 10:17:07 [INFO]: page = 5, pageSize = 20
+2025-09-25 10:17:07 [INFO]: page = 6, pageSize = 20
+2025-09-25 10:17:08 [INFO]: page = 7, pageSize = 20
+2025-09-25 10:17:08 [INFO]: page = 8, pageSize = 20
+2025-09-25 10:17:09 [INFO]: page = 9, pageSize = 20
+2025-09-25 10:17:09 [INFO]: page = 10, pageSize = 20
+2025-09-25 10:17:09 [INFO]: page = 11, pageSize = 20
+2025-09-25 10:17:10 [INFO]: page = 12, pageSize = 20
+2025-09-25 10:17:10 [INFO]: page = 13, pageSize = 20
+2025-09-25 10:17:10 [INFO]: page = 14, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 15, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 16, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 17, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 18, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 19, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 20, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 21, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 22, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 23, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 24, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 25, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 26, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 27, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 28, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 29, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 30, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 31, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 32, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 33, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 34, pageSize = 20
+2025-09-25 10:17:11 [INFO]: page = 35, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 36, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 37, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 38, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 39, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 40, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 41, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 42, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 43, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 44, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 45, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 46, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 47, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 48, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 49, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 50, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 51, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 52, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 53, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 54, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 55, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 56, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 57, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 58, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 59, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 60, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 61, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 62, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 63, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 64, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 65, pageSize = 20
+2025-09-25 10:17:12 [INFO]: page = 66, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 67, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 68, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 69, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 70, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 71, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 72, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 73, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 74, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 75, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 76, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 77, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 78, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 79, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 80, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 81, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 82, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 83, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 84, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 85, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 86, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 87, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 88, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 89, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 90, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 91, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 92, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 93, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 94, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 95, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 96, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 97, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 98, pageSize = 20
+2025-09-25 10:17:13 [INFO]: page = 99, pageSize = 20
+2025-09-25 10:17:14 [INFO]: page = 98, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 97, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 96, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 95, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 94, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 93, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 92, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 91, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 90, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 89, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 88, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 87, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 86, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 85, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 84, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 83, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 82, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 81, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 80, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 79, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 78, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 77, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 76, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 75, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 74, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 73, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 72, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 71, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 70, pageSize = 20
+2025-09-25 10:17:15 [INFO]: page = 69, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 68, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 67, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 66, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 65, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 64, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 63, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 62, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 61, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 60, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 59, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 58, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 57, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 56, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 55, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 54, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 53, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 52, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 51, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 50, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 49, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 48, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 47, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 46, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 45, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 44, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 43, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 42, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 41, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 40, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 39, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 38, pageSize = 20
+2025-09-25 10:17:16 [INFO]: page = 37, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 36, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 35, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 34, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 33, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 32, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 31, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 30, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 29, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 28, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 27, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 26, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 25, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 24, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 23, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 22, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 21, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 20, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 19, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 18, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 17, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 16, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 15, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 14, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 13, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 12, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 11, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 10, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 9, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 8, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 7, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 6, pageSize = 20
+2025-09-25 10:17:17 [INFO]: page = 5, pageSize = 20
+2025-09-25 10:17:18 [INFO]: page = 4, pageSize = 20
+2025-09-25 10:17:18 [INFO]: page = 3, pageSize = 20
+2025-09-25 10:17:18 [INFO]: page = 2, pageSize = 20
+2025-09-25 10:17:18 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:17:20 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:17:22 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:39:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:39:54 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:39:54 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:40:48 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:40:48 [INFO]: Fetching all type_devices
+2025-09-25 10:40:48 [INFO]: Fetched 10 type_devices
+2025-09-25 10:40:48 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:40:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:40:52 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:40:52 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:40:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:40:56 [INFO]: Fetching all type_devices
+2025-09-25 10:40:56 [INFO]: Fetched 10 type_devices
+2025-09-25 10:40:56 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:41:08 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:41:08 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:08 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:41:13 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:41:13 [INFO]: Fetching all type_devices
+2025-09-25 10:41:13 [INFO]: Fetched 10 type_devices
+2025-09-25 10:41:13 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 10:41:13 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:41:13 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:13 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:41:19 [INFO]: page = 2, pageSize = 20
+2025-09-25 10:41:19 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:19 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:41:20 [INFO]: page = 3, pageSize = 20
+2025-09-25 10:41:20 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:20 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:41:20 [INFO]: page = 4, pageSize = 20
+2025-09-25 10:41:20 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:20 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:41:21 [INFO]: page = 1, pageSize = 20
+2025-09-25 10:41:21 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:21 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 10:41:23 [INFO]: page = 1, pageSize = 100
+2025-09-25 10:41:23 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:23 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:24 [INFO]: page = 1, pageSize = 100
+2025-09-25 10:41:24 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:24 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:24 [INFO]: page = 2, pageSize = 100
+2025-09-25 10:41:24 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:24 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:24 [INFO]: page = 3, pageSize = 100
+2025-09-25 10:41:24 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:24 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:25 [INFO]: page = 4, pageSize = 100
+2025-09-25 10:41:25 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:25 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:25 [INFO]: page = 5, pageSize = 100
+2025-09-25 10:41:25 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:25 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:25 [INFO]: page = 6, pageSize = 100
+2025-09-25 10:41:25 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:25 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:25 [INFO]: page = 7, pageSize = 100
+2025-09-25 10:41:25 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:25 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:26 [INFO]: page = 8, pageSize = 100
+2025-09-25 10:41:26 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:26 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:26 [INFO]: page = 9, pageSize = 100
+2025-09-25 10:41:26 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:26 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:26 [INFO]: page = 10, pageSize = 100
+2025-09-25 10:41:26 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:26 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:26 [INFO]: page = 11, pageSize = 100
+2025-09-25 10:41:26 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:26 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:27 [INFO]: page = 12, pageSize = 100
+2025-09-25 10:41:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:27 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:27 [INFO]: page = 13, pageSize = 100
+2025-09-25 10:41:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:27 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:27 [INFO]: page = 14, pageSize = 100
+2025-09-25 10:41:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:27 [INFO]: page = 15, pageSize = 100
+2025-09-25 10:41:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:27 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:27 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:27 [INFO]: page = 16, pageSize = 100
+2025-09-25 10:41:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:27 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:27 [INFO]: page = 17, pageSize = 100
+2025-09-25 10:41:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:27 [INFO]: page = 18, pageSize = 100
+2025-09-25 10:41:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:27 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:27 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:27 [INFO]: page = 19, pageSize = 100
+2025-09-25 10:41:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:27 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:27 [INFO]: page = 20, pageSize = 100
+2025-09-25 10:41:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:27 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:27 [INFO]: page = 21, pageSize = 100
+2025-09-25 10:41:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:27 [INFO]: page = 22, pageSize = 100
+2025-09-25 10:41:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:27 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:27 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:27 [INFO]: page = 23, pageSize = 100
+2025-09-25 10:41:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:27 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:27 [INFO]: page = 24, pageSize = 100
+2025-09-25 10:41:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:27 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:28 [INFO]: page = 25, pageSize = 100
+2025-09-25 10:41:28 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:28 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:28 [INFO]: page = 26, pageSize = 100
+2025-09-25 10:41:28 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:28 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:29 [INFO]: page = 27, pageSize = 100
+2025-09-25 10:41:29 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:29 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:29 [INFO]: page = 26, pageSize = 100
+2025-09-25 10:41:29 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:29 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: page = 25, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: page = 24, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: page = 23, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: page = 22, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: page = 21, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: page = 20, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: page = 19, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: page = 18, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: page = 17, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: page = 16, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: page = 15, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: page = 14, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: page = 13, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: page = 12, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: page = 11, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: page = 10, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: page = 9, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: page = 8, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: page = 7, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: page = 6, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: page = 5, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: page = 4, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: page = 3, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: page = 2, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: page = 1, pageSize = 100
+2025-09-25 10:41:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:41:30 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 10:50:50 [INFO]: Server running on port 3000
+2025-09-25 11:00:18 [INFO]: Server running on port 3000
+2025-09-25 11:03:38 [ERROR]: Controller error (getAll): Unexpected non-whitespace character after JSON at position 13 (line 1 column 14)
+2025-09-25 11:04:44 [ERROR]: Error fetching devices with filter (drizzle): like is not defined
+2025-09-25 11:04:44 [ERROR]: Controller error (getAll): like is not defined
+2025-09-25 11:05:09 [INFO]: Server running on port 3000
+2025-09-25 11:05:13 [ERROR]: Error fetching devices with filter (drizzle): and is not defined
+2025-09-25 11:05:13 [ERROR]: Controller error (getAll): and is not defined
+2025-09-25 11:13:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 11:13:53 [INFO]: Fetching all type_devices
+2025-09-25 11:13:53 [INFO]: Fetched 10 type_devices
+2025-09-25 11:13:53 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 11:14:04 [INFO]: page = 1, pageSize = 100
+2025-09-25 11:14:06 [INFO]: page = 1, pageSize = 20
+2025-09-25 11:14:10 [INFO]: page = 1, pageSize = 50
+2025-09-25 11:14:13 [INFO]: page = 1, pageSize = 100
+2025-09-25 11:14:16 [INFO]: page = 1, pageSize = 20
+2025-09-25 11:14:19 [INFO]: page = 1, pageSize = 50
+2025-09-25 11:14:21 [INFO]: page = 1, pageSize = 100
+2025-09-25 11:14:27 [INFO]: page = 1, pageSize = 20
+2025-09-25 11:14:29 [INFO]: page = 1, pageSize = 50
+2025-09-25 11:14:32 [INFO]: page = 1, pageSize = 20
+2025-09-25 11:14:35 [INFO]: page = 1, pageSize = 50
+2025-09-25 11:14:39 [INFO]: page = 1, pageSize = 20
+2025-09-25 11:14:42 [INFO]: page = 1, pageSize = 50
+2025-09-25 11:14:43 [INFO]: page = 1, pageSize = 100
+2025-09-25 11:14:48 [INFO]: page = 1, pageSize = 50
+2025-09-25 11:14:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 11:14:52 [INFO]: page = 1, pageSize = 100
+2025-09-25 11:14:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 11:32:10 [INFO]: page = 1, pageSize = 20
+2025-09-25 11:32:10 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:10 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:14 [INFO]: page = 2, pageSize = 20
+2025-09-25 11:32:14 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:14 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:15 [INFO]: page = 3, pageSize = 20
+2025-09-25 11:32:15 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:15 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:16 [INFO]: page = 2, pageSize = 20
+2025-09-25 11:32:16 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:16 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:17 [INFO]: page = 3, pageSize = 20
+2025-09-25 11:32:17 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:17 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:17 [INFO]: page = 4, pageSize = 20
+2025-09-25 11:32:17 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:17 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:17 [INFO]: page = 5, pageSize = 20
+2025-09-25 11:32:17 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:17 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:18 [INFO]: page = 6, pageSize = 20
+2025-09-25 11:32:18 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:18 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:18 [INFO]: page = 7, pageSize = 20
+2025-09-25 11:32:18 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:18 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:18 [INFO]: page = 8, pageSize = 20
+2025-09-25 11:32:18 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:18 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:18 [INFO]: page = 9, pageSize = 20
+2025-09-25 11:32:18 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:18 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:19 [INFO]: page = 10, pageSize = 20
+2025-09-25 11:32:19 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:19 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:19 [INFO]: page = 11, pageSize = 20
+2025-09-25 11:32:19 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:19 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:19 [INFO]: page = 12, pageSize = 20
+2025-09-25 11:32:19 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:19 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:21 [INFO]: page = 11, pageSize = 20
+2025-09-25 11:32:21 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:21 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:21 [INFO]: page = 10, pageSize = 20
+2025-09-25 11:32:21 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:21 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:21 [INFO]: page = 9, pageSize = 20
+2025-09-25 11:32:21 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:21 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:22 [INFO]: page = 8, pageSize = 20
+2025-09-25 11:32:22 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:22 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:22 [INFO]: page = 7, pageSize = 20
+2025-09-25 11:32:22 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:22 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:22 [INFO]: page = 6, pageSize = 20
+2025-09-25 11:32:22 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:22 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:22 [INFO]: page = 5, pageSize = 20
+2025-09-25 11:32:22 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:22 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:22 [INFO]: page = 4, pageSize = 20
+2025-09-25 11:32:22 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:22 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:32:23 [INFO]: page = 3, pageSize = 20
+2025-09-25 11:32:23 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:32:23 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:33:21 [INFO]: page = 4, pageSize = 20
+2025-09-25 11:33:21 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:33:21 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:33:22 [INFO]: page = 5, pageSize = 20
+2025-09-25 11:33:22 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:33:22 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:33:23 [INFO]: page = 6, pageSize = 20
+2025-09-25 11:33:23 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:33:23 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:33:23 [INFO]: page = 7, pageSize = 20
+2025-09-25 11:33:23 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:33:23 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:33:24 [INFO]: page = 8, pageSize = 20
+2025-09-25 11:33:24 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:33:24 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:33:25 [INFO]: page = 9, pageSize = 20
+2025-09-25 11:33:25 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:33:25 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:33:26 [INFO]: page = 10, pageSize = 20
+2025-09-25 11:33:26 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:33:26 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:33:26 [INFO]: page = 11, pageSize = 20
+2025-09-25 11:33:26 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:33:26 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:33:27 [INFO]: page = 10, pageSize = 20
+2025-09-25 11:33:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:33:27 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:33:27 [INFO]: page = 9, pageSize = 20
+2025-09-25 11:33:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:33:27 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:33:27 [INFO]: page = 8, pageSize = 20
+2025-09-25 11:33:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:33:27 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:33:27 [INFO]: page = 7, pageSize = 20
+2025-09-25 11:33:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:33:27 [INFO]: page = 6, pageSize = 20
+2025-09-25 11:33:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:33:27 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:33:27 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:33:27 [INFO]: page = 5, pageSize = 20
+2025-09-25 11:33:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:33:27 [INFO]: page = 4, pageSize = 20
+2025-09-25 11:33:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:33:27 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:33:27 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:33:27 [INFO]: page = 3, pageSize = 20
+2025-09-25 11:33:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:33:27 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:33:27 [INFO]: page = 2, pageSize = 20
+2025-09-25 11:33:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:33:27 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 11:33:27 [INFO]: page = 1, pageSize = 20
+2025-09-25 11:33:27 [INFO]: Fetching ports with device names and pagination
+2025-09-25 11:33:28 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 14:03:41 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:03:41 [INFO]: Fetching all type_devices
+2025-09-25 14:03:41 [INFO]: Fetched 10 type_devices
+2025-09-25 14:03:41 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:34:36 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:34:36 [INFO]: Fetching all type_devices
+2025-09-25 14:34:36 [INFO]: Fetched 10 type_devices
+2025-09-25 14:34:36 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:34:39 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:34:39 [INFO]: Fetching all type_devices
+2025-09-25 14:34:39 [INFO]: Fetched 10 type_devices
+2025-09-25 14:34:39 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:35:33 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:35:33 [INFO]: Fetching all type_devices
+2025-09-25 14:35:33 [INFO]: Fetched 10 type_devices
+2025-09-25 14:35:33 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:35:33 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:35:33 [INFO]: Fetching all type_devices
+2025-09-25 14:35:33 [INFO]: Fetched 10 type_devices
+2025-09-25 14:35:33 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:35:34 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:35:34 [INFO]: Fetching all type_devices
+2025-09-25 14:35:34 [INFO]: Fetched 10 type_devices
+2025-09-25 14:35:34 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:35:34 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:35:34 [INFO]: Fetching all type_devices
+2025-09-25 14:35:34 [INFO]: Fetched 10 type_devices
+2025-09-25 14:35:34 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:35:37 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:35:37 [INFO]: Fetching all type_devices
+2025-09-25 14:35:37 [INFO]: Fetched 10 type_devices
+2025-09-25 14:35:37 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:35:40 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:35:40 [INFO]: Fetching all type_devices
+2025-09-25 14:35:40 [INFO]: Fetched 10 type_devices
+2025-09-25 14:35:40 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:36:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:36:53 [INFO]: Fetching all type_devices
+2025-09-25 14:36:53 [INFO]: Fetched 10 type_devices
+2025-09-25 14:36:53 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:36:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:36:54 [INFO]: Fetching all type_devices
+2025-09-25 14:36:54 [INFO]: Fetched 10 type_devices
+2025-09-25 14:36:54 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:38:06 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:38:06 [INFO]: Fetching all type_devices
+2025-09-25 14:38:06 [INFO]: Fetched 10 type_devices
+2025-09-25 14:38:06 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:38:13 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:38:13 [INFO]: Fetching all type_devices
+2025-09-25 14:38:13 [INFO]: Fetched 10 type_devices
+2025-09-25 14:38:13 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:38:21 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:38:21 [INFO]: Fetching all type_devices
+2025-09-25 14:38:21 [INFO]: Fetched 10 type_devices
+2025-09-25 14:38:21 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:38:26 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:38:26 [INFO]: Fetching all type_devices
+2025-09-25 14:38:26 [INFO]: Fetched 10 type_devices
+2025-09-25 14:38:26 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:39:19 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:39:20 [INFO]: Fetching all type_devices
+2025-09-25 14:39:20 [INFO]: Fetched 10 type_devices
+2025-09-25 14:39:20 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:39:20 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:39:20 [INFO]: Fetching all type_devices
+2025-09-25 14:39:20 [INFO]: Fetched 10 type_devices
+2025-09-25 14:39:20 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:39:20 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:39:20 [INFO]: Fetching all type_devices
+2025-09-25 14:39:20 [INFO]: Fetched 10 type_devices
+2025-09-25 14:39:20 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:39:35 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:39:35 [INFO]: Fetching all type_devices
+2025-09-25 14:39:35 [INFO]: Fetched 10 type_devices
+2025-09-25 14:39:35 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 14:39:43 [INFO]: page = 1, pageSize = 20
+2025-09-25 14:39:43 [INFO]: Fetching all type_devices
+2025-09-25 14:39:43 [INFO]: Fetched 10 type_devices
+2025-09-25 14:39:43 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:20:31 [INFO]: Server running on port 3000
+2025-09-25 15:20:42 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:42 [INFO]: Fetching all type_devices
+2025-09-25 15:20:42 [INFO]: Fetched 10 type_devices
+2025-09-25 15:20:42 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:52 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:53 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:54 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:55 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:56 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:57 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:58 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:20:59 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:21:00 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:21:00 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:21:00 [INFO]: Fetching all type_devices
+2025-09-25 15:21:00 [INFO]: Fetched 10 type_devices
+2025-09-25 15:21:00 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:21:32 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:21:32 [INFO]: Fetching all type_devices
+2025-09-25 15:21:32 [INFO]: Fetched 10 type_devices
+2025-09-25 15:21:32 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:21:32 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:21:32 [INFO]: Fetching all type_devices
+2025-09-25 15:21:32 [INFO]: Fetched 10 type_devices
+2025-09-25 15:21:32 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:28:50 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:28:50 [INFO]: Fetching all type_devices
+2025-09-25 15:28:50 [INFO]: Fetched 10 type_devices
+2025-09-25 15:28:50 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:28:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:28:51 [INFO]: Fetching all type_devices
+2025-09-25 15:28:51 [INFO]: Fetched 10 type_devices
+2025-09-25 15:28:51 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:28:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:28:51 [INFO]: Fetching all type_devices
+2025-09-25 15:28:51 [INFO]: Fetched 10 type_devices
+2025-09-25 15:28:51 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:28:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:28:51 [INFO]: Fetching all type_devices
+2025-09-25 15:28:51 [INFO]: Fetched 10 type_devices
+2025-09-25 15:28:51 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:29:22 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:29:22 [INFO]: Fetching all type_devices
+2025-09-25 15:29:22 [INFO]: Fetched 10 type_devices
+2025-09-25 15:29:22 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:29:25 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:29:25 [INFO]: Fetching all type_devices
+2025-09-25 15:29:25 [INFO]: Fetched 10 type_devices
+2025-09-25 15:29:25 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:29:30 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:29:30 [INFO]: Fetching all type_devices
+2025-09-25 15:29:30 [INFO]: Fetched 10 type_devices
+2025-09-25 15:29:30 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:29:48 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:29:48 [INFO]: Fetching all type_devices
+2025-09-25 15:29:48 [INFO]: Fetched 10 type_devices
+2025-09-25 15:29:48 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:30:10 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:30:10 [INFO]: Fetching ports with device names and pagination
+2025-09-25 15:30:10 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 15:30:12 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:30:12 [INFO]: Fetching all type_devices
+2025-09-25 15:30:12 [INFO]: Fetched 10 type_devices
+2025-09-25 15:30:12 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:30:13 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:30:13 [INFO]: Fetching ports with device names and pagination
+2025-09-25 15:30:13 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 15:30:14 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:30:14 [INFO]: Fetching all type_devices
+2025-09-25 15:30:14 [INFO]: Fetched 10 type_devices
+2025-09-25 15:30:14 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:30:15 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:30:15 [INFO]: Fetching ports with device names and pagination
+2025-09-25 15:30:15 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 15:30:17 [INFO]: page = 1, pageSize = 100
+2025-09-25 15:30:17 [INFO]: Fetching ports with device names and pagination
+2025-09-25 15:30:17 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 15:30:18 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:30:18 [INFO]: Fetching ports with device names and pagination
+2025-09-25 15:30:18 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 15:30:22 [INFO]: page = 1, pageSize = 50
+2025-09-25 15:30:22 [INFO]: Fetching ports with device names and pagination
+2025-09-25 15:30:22 [INFO]: Fetched 50 ports (with device names and pagination)
+2025-09-25 15:30:23 [INFO]: page = 1, pageSize = 100
+2025-09-25 15:30:23 [INFO]: Fetching ports with device names and pagination
+2025-09-25 15:30:23 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 15:30:30 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:30:30 [INFO]: Fetching ports with device names and pagination
+2025-09-25 15:30:30 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 15:30:35 [INFO]: page = 1, pageSize = 100
+2025-09-25 15:30:35 [INFO]: Fetching ports with device names and pagination
+2025-09-25 15:30:35 [INFO]: Fetched 100 ports (with device names and pagination)
+2025-09-25 15:30:37 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:30:37 [INFO]: Fetching ports with device names and pagination
+2025-09-25 15:30:37 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-25 15:30:38 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:30:38 [INFO]: Fetching all type_devices
+2025-09-25 15:30:38 [INFO]: Fetched 10 type_devices
+2025-09-25 15:30:38 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:31:37 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:31:37 [INFO]: Fetching all type_devices
+2025-09-25 15:31:37 [INFO]: Fetched 10 type_devices
+2025-09-25 15:31:37 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:31:37 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:31:38 [INFO]: Fetching all type_devices
+2025-09-25 15:31:38 [INFO]: Fetched 10 type_devices
+2025-09-25 15:31:38 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:31:38 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:31:38 [INFO]: Fetching all type_devices
+2025-09-25 15:31:38 [INFO]: Fetched 10 type_devices
+2025-09-25 15:31:38 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:31:58 [INFO]: page = 1, pageSize = 50
+2025-09-25 15:31:59 [INFO]: page = 1, pageSize = 100
+2025-09-25 15:32:01 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:32:45 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:32:45 [INFO]: Fetching all type_devices
+2025-09-25 15:32:45 [INFO]: Fetched 10 type_devices
+2025-09-25 15:32:45 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:32:46 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:32:46 [INFO]: Fetching all type_devices
+2025-09-25 15:32:46 [INFO]: Fetched 10 type_devices
+2025-09-25 15:32:46 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:32:51 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:32:51 [INFO]: Fetching all type_devices
+2025-09-25 15:32:51 [INFO]: Fetched 10 type_devices
+2025-09-25 15:32:51 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:33:14 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:33:14 [INFO]: Fetching all type_devices
+2025-09-25 15:33:14 [INFO]: Fetched 10 type_devices
+2025-09-25 15:33:14 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:33:14 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:33:14 [INFO]: Fetching all type_devices
+2025-09-25 15:33:14 [INFO]: Fetched 10 type_devices
+2025-09-25 15:33:14 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-25 15:33:14 [INFO]: page = 1, pageSize = 20
+2025-09-25 15:33:14 [INFO]: Fetching all type_devices
+2025-09-25 15:33:14 [INFO]: Fetched 10 type_devices
+2025-09-25 15:33:14 [INFO]: TypeDeviceController: returning 10 type_devices

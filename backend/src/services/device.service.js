@@ -2,7 +2,7 @@ const db = require('../config/db');
 const { devices } = require('../models/device.model');
 const { locations } = require('../models/location.model');
 const { typeDevices } = require('../models/typeDevice.model');
-const { eq, sql } = require('drizzle-orm');
+const { eq, sql, like } = require('drizzle-orm');
 const logger = require('../logger/logger');
 const utilService = require('./util.service');
 
@@ -145,9 +145,9 @@ class DeviceService {
     };
   }
 
-  getFullList = async () => {
+  getFullList = async (filter = {}) => {
     try {
-      const rows = await db
+      let query = db
         .select({
           device_id: devices.device_id,
           id: devices.id,
@@ -175,12 +175,57 @@ class DeviceService {
         .from(devices)
         .leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
         .leftJoin(locations, eq(locations.id, devices.location_id));
+
+      if (Object.keys(filter).length > 0) {
+        const conditions = [];
+
+        // Parcours chaque clé pour créer un LIKE
+        for (const [key, value] of Object.entries(filter)) {
+          if (!value) continue;
+          const search = `%${value}%`;
+
+          switch (key) {
+            case 'key':
+              // recherche globale
+              conditions.push(or(
+                like(devices.hostname, search),
+                like(devices.sysName, search),
+                like(typeDevices.name, search),
+                like(locations.name, search),
+                like(devices.codesite, search)
+              ));
+              break;
+            case 'type_device':
+              conditions.push(like(typeDevices.name, search));
+              break;
+            case 'location':
+              conditions.push(like(locations.name, search));
+              break;
+            case 'hostname':
+              conditions.push(like(devices.hostname, search));
+              break;
+            case 'sysName':
+              conditions.push(like(devices.sysName, search));
+              break;
+            // ajouter d'autres champs selon besoin
+            default:
+              break;
+          }
+        }
+
+        if (conditions.length > 0) {
+          query = query.where(and(...conditions));
+        }
+      }
+
+      const rows = await query;
       return rows;
     } catch (error) {
-      logger.error(`Error fetching devices with names (drizzle): ${error.message}`);
+      logger.error(`Error fetching devices with filter (drizzle): ${error.message}`);
       throw error;
     }
   }
+
 
   getDevicesPage = async ({ page = 1, pageSize = 20 } = {}) => {
     try {
