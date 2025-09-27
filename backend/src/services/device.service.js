@@ -2,7 +2,7 @@ const db = require('../config/db');
 const { devices } = require('../models/device.model');
 const { locations } = require('../models/location.model');
 const { typeDevices } = require('../models/typeDevice.model');
-const { eq, sql, like } = require('drizzle-orm');
+const { eq, sql, like, or, and } = require('drizzle-orm');
 const logger = require('../logger/logger');
 const utilService = require('./util.service');
 

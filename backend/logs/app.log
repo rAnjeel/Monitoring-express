@@ -4293,3 +4293,15 @@
 2025-09-25 15:33:14 [INFO]: Fetching all type_devices
 2025-09-25 15:33:14 [INFO]: Fetched 10 type_devices
 2025-09-25 15:33:14 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-27 22:27:29 [INFO]: Server running on port 3000
+2025-09-27 22:28:55 [INFO]: page = 1, pageSize = 20
+2025-09-27 22:28:55 [INFO]: Fetching all type_devices
+2025-09-27 22:28:55 [INFO]: Fetched 10 type_devices
+2025-09-27 22:28:55 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-27 22:29:43 [INFO]: page = 10, pageSize = 20
+2025-09-27 22:29:43 [INFO]: page = 100, pageSize = 20
+2025-09-27 22:29:46 [INFO]: page = 10, pageSize = 20
+2025-09-27 22:29:47 [INFO]: page = 1, pageSize = 20
+2025-09-27 22:29:47 [INFO]: page = 12, pageSize = 20
+2025-09-27 22:29:48 [INFO]: page = 121, pageSize = 20
+2025-09-27 22:29:48 [INFO]: page = 12, pageSize = 20
