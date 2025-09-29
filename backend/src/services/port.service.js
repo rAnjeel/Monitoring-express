@@ -1,7 +1,7 @@
 const db = require('../config/db');
 const { ports } = require('../models/port.model');
 const { devices } = require('../models/device.model');
-const { eq, sql} = require('drizzle-orm');
+const { eq, sql, like, or, and } = require('drizzle-orm');
 const logger = require('../logger/logger');
 const utilService = require('./util.service');
 
@@ -175,13 +175,13 @@ class PortService {
     }
   }
 
-    getPortsPage = async ({ page = 1, pageSize = 20 } = {}) => {
+  getPortsPage = async ({ page = 1, pageSize = 20, filter = {} } = {}) => {
     try {
       logger.info('Fetching ports with device names and pagination');
       const offset = (page - 1) * pageSize;
 
-      // Requête paginée
-      const rows = await db
+      // Base select avec jointure
+      let rowsQuery = db
         .select({
           port_id: ports.port_id,
           device_id: ports.device_id,
@@ -191,6 +191,7 @@ class PortService {
           type: ports.ifType,
           name: ports.ifName,
           description: ports.ifAlias,
+          Speed: ports.ifSpeed,
           in_octets: ports.ifInOctets,
           out_octets: ports.ifOutOctets,
           operStatus: ports.ifOperStatus,
@@ -200,16 +201,158 @@ class PortService {
           HighSpeed: ports.ifHighSpeed,
           PromiscuousMode: ports.ifPromiscuousMode,
           ConnectorPresent: ports.ifConnectorPresent,
-          Speed: ports.ifSpeed,
         })
         .from(ports)
-        .leftJoin(devices, eq(devices.id, ports.device_id))
-        .limit(pageSize)
-        .offset(offset);
-        logger.info(`Fetched ${rows.length} ports (with device names and pagination)`);
-        const totalCountResult = await db.execute(sql`SELECT count(*) AS count FROM ports`);
-        const totalCountRes = totalCountResult[0];
-      return { rows, totalCountRes}
+        .leftJoin(devices, eq(devices.id, ports.device_id));
+
+      // Filtres
+      if (filter && Object.keys(filter).length > 0) {
+        const conditions = [];
+
+        for (const [key, value] of Object.entries(filter)) {
+          if (value === undefined || value === null || value === '') continue;
+          const values = Array.isArray(value) ? value : [value];
+
+          switch (key) {
+            case 'key': {
+              const perTerm = values.map(v => {
+                const s = `%${v}%`;
+                return or(
+                  like(ports.ifName, s),
+                  like(ports.ifDescr, s),
+                  like(ports.ifAlias, s),
+                  like(devices.hostname, s),
+                  like(devices.sysName, s)
+                );
+              });
+              conditions.push(or(...perTerm));
+              break;
+            }
+            case 'hostname': {
+              const orGroup = values.map(v => like(devices.hostname, `%${v}%`));
+              conditions.push(or(...orGroup));
+              break;
+            }
+            case 'sysName': {
+              const orGroup = values.map(v => like(devices.sysName, `%${v}%`));
+              conditions.push(or(...orGroup));
+              break;
+            }
+            case 'name': {
+              const orGroup = values.map(v => like(ports.ifName, `%${v}%`));
+              conditions.push(or(...orGroup));
+              break;
+            }
+            case 'description': {
+              const orGroup = values.map(v => like(ports.ifAlias, `%${v}%`));
+              conditions.push(or(...orGroup));
+              break;
+            }
+            case 'type': {
+              const orGroup = values.map(v => like(ports.ifType, `%${v}%`));
+              conditions.push(or(...orGroup));
+              break;
+            }
+            case 'operStatus': {
+              const orGroup = values.map(v => like(ports.ifOperStatus, `%${v}%`));
+              conditions.push(or(...orGroup));
+              break;
+            }
+            case 'adminStatus': {
+              const orGroup = values.map(v => like(ports.ifAdminStatus, `%${v}%`));
+              conditions.push(or(...orGroup));
+              break;
+            }
+            default:
+              break;
+          }
+        }
+
+        if (conditions.length > 0) {
+          rowsQuery = rowsQuery.where(and(...conditions));
+        }
+      }
+
+      const rows = await rowsQuery.limit(pageSize).offset(offset);
+      logger.info(`Fetched ${rows.length} ports (with device names and pagination)`);
+
+      // Total filtré
+      let countQuery = db
+        .select({ count: sql`count(*)`.as('count') })
+        .from(ports)
+        .leftJoin(devices, eq(devices.id, ports.device_id));
+
+      if (filter && Object.keys(filter).length > 0) {
+        const conditions = [];
+
+        for (const [key, value] of Object.entries(filter)) {
+          if (value === undefined || value === null || value === '') continue;
+          const values = Array.isArray(value) ? value : [value];
+
+          switch (key) {
+            case 'key': {
+              const perTerm = values.map(v => {
+                const s = `%${v}%`;
+                return or(
+                  like(ports.ifName, s),
+                  like(ports.ifDescr, s),
+                  like(ports.ifAlias, s),
+                  like(devices.hostname, s),
+                  like(devices.sysName, s)
+                );
+              });
+              conditions.push(or(...perTerm));
+              break;
+            }
+            case 'hostname': {
+              const orGroup = values.map(v => like(devices.hostname, `%${v}%`));
+              conditions.push(or(...orGroup));
+              break;
+            }
+            case 'sysName': {
+              const orGroup = values.map(v => like(devices.sysName, `%${v}%`));
+              conditions.push(or(...orGroup));
+              break;
+            }
+            case 'name': {
+              const orGroup = values.map(v => like(ports.ifName, `%${v}%`));
+              conditions.push(or(...orGroup));
+              break;
+            }
+            case 'description': {
+              const orGroup = values.map(v => like(ports.ifAlias, `%${v}%`));
+              conditions.push(or(...orGroup));
+              break;
+            }
+            case 'type': {
+              const orGroup = values.map(v => like(ports.ifType, `%${v}%`));
+              conditions.push(or(...orGroup));
+              break;
+            }
+            case 'operStatus': {
+              const orGroup = values.map(v => like(ports.ifOperStatus, `%${v}%`));
+              conditions.push(or(...orGroup));
+              break;
+            }
+            case 'adminStatus': {
+              const orGroup = values.map(v => like(ports.ifAdminStatus, `%${v}%`));
+              conditions.push(or(...orGroup));
+              break;
+            }
+            default:
+              break;
+          }
+        }
+
+        if (conditions.length > 0) {
+          countQuery = countQuery.where(and(...conditions));
+        }
+      }
+
+      const totalCountResult = await countQuery;
+      const totalCount = Number(totalCountResult?.[0]?.count || 0);
+
+      return { rows, totalCount };
     } catch (error) {
       logger.error(`Error fetching paginated ports (drizzle): ${error.message}`);
       throw error;
