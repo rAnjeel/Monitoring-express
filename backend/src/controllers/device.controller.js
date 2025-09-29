@@ -29,8 +29,9 @@ class DeviceController {
     try {
       const page = parseInt(req.query.page) || 1;
       const pageSize = parseInt(req.query.pageSize) || 20;
-      logger.info(`page = ${page}, pageSize = ${pageSize}`);
-      const items = await deviceService.getDevicesPage({page,pageSize});
+      const filterObj = req.query.filter ? JSON.parse(req.query.filter) : {};
+      logger.info(`page = ${page}, pageSize = ${pageSize}, filter = ${JSON.stringify(filterObj)}`);
+      const items = await deviceService.getDevicesPage({ page, pageSize, filter: filterObj });
       res.json(items);
     } catch (error) {
       logger.error(`Controller error (getPage): ${error.message}`);

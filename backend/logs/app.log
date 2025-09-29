@@ -4305,3 +4305,174 @@
 2025-09-27 22:29:47 [INFO]: page = 12, pageSize = 20
 2025-09-27 22:29:48 [INFO]: page = 121, pageSize = 20
 2025-09-27 22:29:48 [INFO]: page = 12, pageSize = 20
+2025-09-29 09:21:41 [INFO]: Server running on port 3000
+2025-09-29 09:22:28 [INFO]: page = 1, pageSize = 20
+2025-09-29 09:22:28 [INFO]: Fetching all type_devices
+2025-09-29 09:22:28 [INFO]: Fetched 10 type_devices
+2025-09-29 09:22:28 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-29 09:22:47 [INFO]: page = 2, pageSize = 20
+2025-09-29 09:22:49 [INFO]: page = 1, pageSize = 20
+2025-09-29 09:22:51 [INFO]: page = 1, pageSize = 20
+2025-09-29 09:22:51 [INFO]: page = 1, pageSize = 20
+2025-09-29 09:22:54 [INFO]: page = 1, pageSize = 20
+2025-09-29 09:22:54 [INFO]: Fetching all type_devices
+2025-09-29 09:22:54 [INFO]: Fetched 10 type_devices
+2025-09-29 09:22:54 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-29 09:23:20 [INFO]: page = 1, pageSize = 20
+2025-09-29 09:23:38 [INFO]: page = 1, pageSize = 20
+2025-09-29 09:23:49 [INFO]: page = 1, pageSize = 20
+2025-09-29 09:24:14 [INFO]: page = 1, pageSize = 20
+2025-09-29 09:24:19 [INFO]: page = 1, pageSize = 20
+2025-09-29 09:28:53 [INFO]: page = 1, pageSize = 20
+2025-09-29 09:28:53 [INFO]: Fetching ports with device names and pagination
+2025-09-29 09:28:53 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-29 09:28:54 [INFO]: page = 1, pageSize = 20
+2025-09-29 09:28:54 [INFO]: Fetching all type_devices
+2025-09-29 09:28:54 [INFO]: Fetched 10 type_devices
+2025-09-29 09:28:54 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-29 09:29:52 [INFO]: page = 1, pageSize = 50
+2025-09-29 09:29:54 [INFO]: page = 1, pageSize = 20
+2025-09-29 10:13:44 [INFO]: Server running on port 3000
+2025-09-29 10:13:48 [INFO]: page = 1, pageSize = 20
+2025-09-29 10:13:48 [INFO]: Fetching all type_devices
+2025-09-29 10:13:48 [INFO]: Fetched 10 type_devices
+2025-09-29 10:13:48 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-29 10:13:57 [INFO]: page = 2, pageSize = 20
+2025-09-29 10:13:57 [INFO]: page = 1, pageSize = 20
+2025-09-29 10:13:59 [INFO]: page = 1, pageSize = 20
+2025-09-29 10:14:02 [INFO]: page = 1, pageSize = 20
+2025-09-29 10:14:57 [INFO]: page = 1, pageSize = 20
+2025-09-29 10:24:58 [INFO]: Server running on port 3000
+2025-09-29 10:25:05 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"4G"}
+2025-09-29 10:35:36 [INFO]: Server running on port 3000
+2025-09-29 10:37:49 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"4G"}
+2025-09-29 10:38:11 [INFO]: page = 1, pageSize = 2, filter = {"type_device":"4G"}
+2025-09-29 10:54:24 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-09-29 10:54:24 [INFO]: Fetching all type_devices
+2025-09-29 10:54:24 [INFO]: Fetched 10 type_devices
+2025-09-29 10:54:24 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-29 10:55:00 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-09-29 10:55:00 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-09-29 10:55:00 [INFO]: Fetching all type_devices
+2025-09-29 10:55:00 [INFO]: Fetched 10 type_devices
+2025-09-29 10:55:00 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-29 10:55:00 [INFO]: Fetching all type_devices
+2025-09-29 10:55:00 [INFO]: Fetched 10 type_devices
+2025-09-29 10:55:00 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-29 10:55:19 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-09-29 10:55:19 [INFO]: Fetching all type_devices
+2025-09-29 10:55:19 [INFO]: Fetched 10 type_devices
+2025-09-29 10:55:19 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-29 10:56:08 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-09-29 10:56:08 [INFO]: Fetching all type_devices
+2025-09-29 10:56:08 [INFO]: Fetched 10 type_devices
+2025-09-29 10:56:08 [INFO]: TypeDeviceController: returning 10 type_devices
+2025-09-29 10:56:13 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:19 [INFO]: page = 2, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:19 [INFO]: page = 3, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:20 [INFO]: page = 4, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:20 [INFO]: page = 5, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:20 [INFO]: page = 6, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:21 [INFO]: page = 7, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:21 [INFO]: page = 8, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:21 [INFO]: page = 9, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 10, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 11, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 12, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 13, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 14, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 15, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 16, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 17, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 18, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 19, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 20, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 21, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 22, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 23, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 24, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 25, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 26, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 27, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 28, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 29, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 30, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 31, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 32, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 33, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 34, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 35, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 36, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 37, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:22 [INFO]: page = 38, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:23 [INFO]: page = 39, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:23 [INFO]: page = 40, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:23 [INFO]: page = 41, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:23 [INFO]: page = 42, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:23 [INFO]: page = 43, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:23 [INFO]: page = 44, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:23 [INFO]: page = 45, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:23 [INFO]: page = 46, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:23 [INFO]: page = 47, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:23 [INFO]: page = 48, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:23 [INFO]: page = 49, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:24 [INFO]: page = 48, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:24 [INFO]: page = 47, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:24 [INFO]: page = 46, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 45, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 44, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 43, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 42, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 41, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 40, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 39, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 38, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 37, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 36, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 35, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 34, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 33, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 32, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 31, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 30, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 29, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 28, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 27, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 26, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 25, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 24, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 23, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 22, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 21, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 20, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 19, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 18, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 17, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 16, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 15, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 14, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 13, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:25 [INFO]: page = 12, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:26 [INFO]: page = 11, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:26 [INFO]: page = 10, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:26 [INFO]: page = 9, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:26 [INFO]: page = 8, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:26 [INFO]: page = 7, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:26 [INFO]: page = 6, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:26 [INFO]: page = 5, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:26 [INFO]: page = 4, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:26 [INFO]: page = 3, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:26 [INFO]: page = 2, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:26 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"4g"}
+2025-09-29 10:56:40 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-09-29 10:56:47 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-09-29 10:58:20 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"IPDSLAM"}
+2025-09-29 10:58:20 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"IPDSLAM"}
+2025-09-29 10:58:25 [INFO]: page = 2, pageSize = 20, filter = {"type_device":"IPDSLAM"}
+2025-09-29 10:58:25 [INFO]: page = 3, pageSize = 20, filter = {"type_device":"IPDSLAM"}
+2025-09-29 10:58:26 [INFO]: page = 4, pageSize = 20, filter = {"type_device":"IPDSLAM"}
+2025-09-29 10:58:27 [INFO]: page = 5, pageSize = 20, filter = {"type_device":"IPDSLAM"}
+2025-09-29 10:58:27 [INFO]: page = 6, pageSize = 20, filter = {"type_device":"IPDSLAM"}
+2025-09-29 10:58:29 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"IPDSLAM"}
+2025-09-29 10:58:41 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"IPDSLAM"}
+2025-09-29 10:58:48 [INFO]: page = 1, pageSize = 20, filter = {}

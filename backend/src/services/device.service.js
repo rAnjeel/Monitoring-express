@@ -227,12 +227,12 @@ class DeviceService {
   }
 
 
-  getDevicesPage = async ({ page = 1, pageSize = 20 } = {}) => {
+  getDevicesPage = async ({ page = 1, pageSize = 20, filter = {} } = {}) => {
     try {
       const offset = (page - 1) * pageSize;
 
-      // Requête paginée
-      const rows = await db
+      // Base query avec jointures
+      let rowsQuery = db
         .select({
           device_id: devices.device_id,
           id: devices.id,
@@ -259,13 +259,101 @@ class DeviceService {
         })
         .from(devices)
         .leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
-        .leftJoin(locations, eq(locations.id, devices.location_id))
-        .limit(pageSize)
-        .offset(offset);
-      
-        const totalCountResult = await db.execute(sql`SELECT count(*) AS count FROM devices`);
-        const totalCountRes = totalCountResult[0];
-      return { rows, totalCountRes}
+        .leftJoin(locations, eq(locations.id, devices.location_id));
+
+      // Construit les conditions (même logique que getFullList)
+      if (filter && Object.keys(filter).length > 0) {
+        const conditions = [];
+
+        for (const [key, value] of Object.entries(filter)) {
+          if (!value) continue;
+          const search = `%${value}%`;
+
+          switch (key) {
+            case 'key':
+              conditions.push(or(
+                like(devices.hostname, search),
+                like(devices.sysName, search),
+                like(typeDevices.name, search),
+                like(locations.name, search),
+                like(devices.codesite, search)
+              ));
+              break;
+            case 'type_device':
+              conditions.push(like(typeDevices.name, search));
+              break;
+            case 'location':
+              conditions.push(like(locations.name, search));
+              break;
+            case 'hostname':
+              conditions.push(like(devices.hostname, search));
+              break;
+            case 'sysName':
+              conditions.push(like(devices.sysName, search));
+              break;
+            default:
+              break;
+          }
+        }
+
+        if (conditions.length > 0) {
+          rowsQuery = rowsQuery.where(and(...conditions));
+        }
+      }
+
+      // Pagination
+      const rows = await rowsQuery.limit(pageSize).offset(offset);
+
+      // Compte total avec le même filtre
+      let countQuery = db
+        .select({ count: sql`count(*)`.as('count') })
+        .from(devices)
+        .leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
+        .leftJoin(locations, eq(locations.id, devices.location_id));
+
+      if (filter && Object.keys(filter).length > 0) {
+        const conditions = [];
+
+        for (const [key, value] of Object.entries(filter)) {
+          if (!value) continue;
+          const search = `%${value}%`;
+
+          switch (key) {
+            case 'key':
+              conditions.push(or(
+                like(devices.hostname, search),
+                like(devices.sysName, search),
+                like(typeDevices.name, search),
+                like(locations.name, search),
+                like(devices.codesite, search)
+              ));
+              break;
+            case 'type_device':
+              conditions.push(like(typeDevices.name, search));
+              break;
+            case 'location':
+              conditions.push(like(locations.name, search));
+              break;
+            case 'hostname':
+              conditions.push(like(devices.hostname, search));
+              break;
+            case 'sysName':
+              conditions.push(like(devices.sysName, search));
+              break;
+            default:
+              break;
+          }
+        }
+
+        if (conditions.length > 0) {
+          countQuery = countQuery.where(and(...conditions));
+        }
+      }
+
+      const totalCountResult = await countQuery;
+      const totalCount = Number(totalCountResult?.[0]?.count || 0);
+
+      return { rows, totalCount };
     } catch (error) {
       logger.error(`Error fetching paginated devices (drizzle): ${error.message}`);
       throw error;
