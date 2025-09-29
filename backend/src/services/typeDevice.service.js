@@ -1,6 +1,7 @@
 const db = require('../config/db');
 const { typeDevices } = require('../models/typeDevice.model');
-const { eq } = require('drizzle-orm');
+const { devices } = require('../models/device.model');
+const { eq, sql } = require('drizzle-orm');
 const logger = require('../logger/logger');
 
 class TypeDeviceService {
@@ -65,6 +66,30 @@ class TypeDeviceService {
     } catch (error) {
       logger.error(`Error deleting type_device id=${id}: ${error.message}`);
       throw new Error('Database error while deleting type_device');
+    }
+  }
+
+  // Retourne, pour chaque type_device, le total de devices et le total DOWN (ping_status = 0)
+  getTypeDeviceCounts = async () => {
+    try {
+      logger.info('Fetching device counts per type_device (total and down)');
+
+      const rows = await db
+        .select({
+          type_device_id: typeDevices.id,
+          type_device: typeDevices.name,
+          total_devices: sql`COUNT(${devices.id})`,
+          down_devices: sql`SUM(CASE WHEN ${devices.ping_status} = 0 THEN 1 ELSE 0 END)`,
+        })
+        .from(typeDevices)
+        .leftJoin(devices, eq(devices.type_device_id, typeDevices.id))
+        .groupBy(typeDevices.id, typeDevices.name);
+
+      logger.info(`Fetched counts for ${rows.length} type_devices`);
+      return rows;
+    } catch (error) {
+      logger.error(`Error fetching counts per type_device: ${error.message}`);
+      throw new Error('Database error while fetching counts per type_device');
     }
   }
 }

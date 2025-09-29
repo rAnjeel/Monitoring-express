@@ -14,6 +14,17 @@ class TypeDeviceController {
     }
   }
 
+  getAllTotalsAndDowns = async (req, res) => {
+    try {
+      const items = await typeDeviceService.getTypeDeviceCounts();
+      logger.info(`TypeDeviceController: returning ${items.length} type_devices with counts`);
+      res.json(items);
+    } catch (error) {
+      logger.error(`TypeDeviceController getAllTotalsAndDowns error: ${error.message}`);
+      res.status(500).json({ message: 'Internal Server Error' });
+    }
+  }
+
   getById = async (req, res) => {
     try {
       const item = await typeDeviceService.get(req.params.id);
