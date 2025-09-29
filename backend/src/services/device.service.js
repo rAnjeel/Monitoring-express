@@ -261,36 +261,51 @@ class DeviceService {
         .leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
         .leftJoin(locations, eq(locations.id, devices.location_id));
 
-      // Construit les conditions (même logique que getFullList)
+      // Construit les conditions (supporte multi-sélection via tableaux)
       if (filter && Object.keys(filter).length > 0) {
         const conditions = [];
 
         for (const [key, value] of Object.entries(filter)) {
-          if (!value) continue;
-          const search = `%${value}%`;
+          if (value === undefined || value === null || value === '') continue;
+
+          const values = Array.isArray(value) ? value : [value];
 
           switch (key) {
-            case 'key':
-              conditions.push(or(
-                like(devices.hostname, search),
-                like(devices.sysName, search),
-                like(typeDevices.name, search),
-                like(locations.name, search),
-                like(devices.codesite, search)
-              ));
+            case 'key': {
+              // Pour chaque terme, on cherche dans plusieurs colonnes, puis OR entre les termes
+              const perTermOrGroups = values.map(v => {
+                const s = `%${v}%`;
+                return or(
+                  like(devices.hostname, s),
+                  like(devices.sysName, s),
+                  like(typeDevices.name, s),
+                  like(locations.name, s),
+                  like(devices.codesite, s)
+                );
+              });
+              conditions.push(or(...perTermOrGroups));
               break;
-            case 'type_device':
-              conditions.push(like(typeDevices.name, search));
+            }
+            case 'type_device': {
+              const orGroup = values.map(v => like(typeDevices.name, `%${v}%`));
+              conditions.push(or(...orGroup));
               break;
-            case 'location':
-              conditions.push(like(locations.name, search));
+            }
+            case 'location': {
+              const orGroup = values.map(v => like(locations.name, `%${v}%`));
+              conditions.push(or(...orGroup));
               break;
-            case 'hostname':
-              conditions.push(like(devices.hostname, search));
+            }
+            case 'hostname': {
+              const orGroup = values.map(v => like(devices.hostname, `%${v}%`));
+              conditions.push(or(...orGroup));
               break;
-            case 'sysName':
-              conditions.push(like(devices.sysName, search));
+            }
+            case 'sysName': {
+              const orGroup = values.map(v => like(devices.sysName, `%${v}%`));
+              conditions.push(or(...orGroup));
               break;
+            }
             default:
               break;
           }
@@ -315,31 +330,45 @@ class DeviceService {
         const conditions = [];
 
         for (const [key, value] of Object.entries(filter)) {
-          if (!value) continue;
-          const search = `%${value}%`;
+          if (value === undefined || value === null || value === '') continue;
+
+          const values = Array.isArray(value) ? value : [value];
 
           switch (key) {
-            case 'key':
-              conditions.push(or(
-                like(devices.hostname, search),
-                like(devices.sysName, search),
-                like(typeDevices.name, search),
-                like(locations.name, search),
-                like(devices.codesite, search)
-              ));
+            case 'key': {
+              const perTermOrGroups = values.map(v => {
+                const s = `%${v}%`;
+                return or(
+                  like(devices.hostname, s),
+                  like(devices.sysName, s),
+                  like(typeDevices.name, s),
+                  like(locations.name, s),
+                  like(devices.codesite, s)
+                );
+              });
+              conditions.push(or(...perTermOrGroups));
               break;
-            case 'type_device':
-              conditions.push(like(typeDevices.name, search));
+            }
+            case 'type_device': {
+              const orGroup = values.map(v => like(typeDevices.name, `%${v}%`));
+              conditions.push(or(...orGroup));
               break;
-            case 'location':
-              conditions.push(like(locations.name, search));
+            }
+            case 'location': {
+              const orGroup = values.map(v => like(locations.name, `%${v}%`));
+              conditions.push(or(...orGroup));
               break;
-            case 'hostname':
-              conditions.push(like(devices.hostname, search));
+            }
+            case 'hostname': {
+              const orGroup = values.map(v => like(devices.hostname, `%${v}%`));
+              conditions.push(or(...orGroup));
               break;
-            case 'sysName':
-              conditions.push(like(devices.sysName, search));
+            }
+            case 'sysName': {
+              const orGroup = values.map(v => like(devices.sysName, `%${v}%`));
+              conditions.push(or(...orGroup));
               break;
+            }
             default:
               break;
           }
