@@ -1,12 +1,17 @@
 #!/usr/bin/env node
-// Agent de Ping Réel
-// - Lit les IPs depuis ips.txt (une par ligne)
-// - Exécute la commande ping native (Windows: -n 1, Linux/macOS: -c 1)
-// - Analyse la sortie pour afficher le statut et le temps de réponse
+// Agent de Ping Réel avec envoi RabbitMQ
+// - Lit les IPs depuis data/ipreal.txt (une par ligne)
+// - Exécute la commande ping native et parse la sortie
+// - Envoie les statistiques à RabbitMQ
 
 const fs = require('fs')
 const path = require('path')
 const { exec } = require('child_process')
+const amqp = require('amqplib')
+
+require('dotenv').config()
+const RABBIT_URL = process.env.RABBIT_URL
+const QUEUE = 'ping_results'
 
 const isWindows = process.platform === 'win32'
 const PING_COUNT_ARG = isWindows ? '-n' : '-c'
@@ -42,37 +47,91 @@ function parsePingOutput(ip, stdout, stderr) {
 	// Détections d'échec courantes
 	const isTimeout = /Request timed out|Délai d'attente de la demande dépassé|100% packet loss|100.0% packet loss|Destination Host Unreachable|Destination host unreachable|Echec|could not find host/i.test(output)
 	if (isTimeout) {
-		return { ip, status: 'Délai dépassé (Timeout) ou Hôte inaccessible', timeMs: null }
+		return { 
+			ip, 
+			transmitted: PACKET_COUNT, 
+			received: 0, 
+			lossPct: 100.0, 
+			totalTimeMs: PACKET_COUNT * 1000, 
+			min: 0, 
+			avg: 0, 
+			max: 0, 
+			mdev: 0 
+		}
 	}
 
-	// Extraction du temps
-	// Windows: time=12ms ou time<1ms
-	let timeMatch = output.match(/time[=<]\s*(\d+(?:\.\d+)?)\s*ms/i)
-	if (!timeMatch) {
-		// Linux/macOS: time=12.3 ms
-		timeMatch = output.match(/time=\s*(\d+(?:\.\d+)?)\s*ms/i)
+	// Extraction des statistiques de paquets
+	// Windows: "Packets: Sent = 4, Received = 4, Lost = 0 (0% loss)"
+	// Linux: "4 packets transmitted, 4 received, 0% packet loss"
+	let transmitted = PACKET_COUNT
+	let received = PACKET_COUNT
+	let lossPct = 0
+
+	// Windows format
+	const winStats = output.match(/Packets:\s*Sent\s*=\s*(\d+),\s*Received\s*=\s*(\d+),\s*Lost\s*=\s*(\d+)/i)
+	if (winStats) {
+		transmitted = parseInt(winStats[1])
+		received = parseInt(winStats[2])
+		const lost = parseInt(winStats[3])
+		lossPct = transmitted > 0 ? (lost / transmitted) * 100 : 0
+	} else {
+		// Linux format
+		const linuxStats = output.match(/(\d+)\s*packets\s*transmitted,\s*(\d+)\s*received,\s*(\d+(?:\.\d+)?)%\s*packet\s*loss/i)
+		if (linuxStats) {
+			transmitted = parseInt(linuxStats[1])
+			received = parseInt(linuxStats[2])
+			lossPct = parseFloat(linuxStats[3])
+		}
 	}
 
+	// Extraction du temps total
+	let totalTimeMs = 0
+	const timeMatch = output.match(/time\s*(\d+(?:\.\d+)?)\s*ms/i)
 	if (timeMatch) {
-		const timeMs = Number(timeMatch[1])
-		return { ip, status: 'Réponse OK', timeMs: isFinite(timeMs) ? timeMs : null }
+		totalTimeMs = parseFloat(timeMatch[1])
 	}
 
-	// Cas sans time mais pas d'échec explicite
-	return { ip, status: 'Réponse OK (temps inconnu)', timeMs: null }
+	// Extraction des statistiques RTT
+	// Linux: "rtt min/avg/max/mdev = 63.126/161.058/316.919/78.737 ms"
+	// Windows: "Minimum = 12ms, Maximum = 15ms, Average = 13ms"
+	let min = 0, avg = 0, max = 0, mdev = 0
+
+	const rttMatch = output.match(/rtt\s*min\/avg\/max\/mdev\s*=\s*(\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)\s*ms/i)
+	if (rttMatch) {
+		min = parseFloat(rttMatch[1])
+		avg = parseFloat(rttMatch[2])
+		max = parseFloat(rttMatch[3])
+		mdev = parseFloat(rttMatch[4])
+	} else {
+		// Windows format
+		const winMin = output.match(/Minimum\s*=\s*(\d+(?:\.\d+)?)\s*ms/i)
+		const winMax = output.match(/Maximum\s*=\s*(\d+(?:\.\d+)?)\s*ms/i)
+		const winAvg = output.match(/Average\s*=\s*(\d+(?:\.\d+)?)\s*ms/i)
+		
+		if (winMin) min = parseFloat(winMin[1])
+		if (winMax) max = parseFloat(winMax[1])
+		if (winAvg) avg = parseFloat(winAvg[1])
+	}
+
+	return { 
+		ip, 
+		transmitted, 
+		received, 
+		lossPct: parseFloat(lossPct.toFixed(3)), 
+		totalTimeMs: parseFloat(totalTimeMs.toFixed(3)), 
+		min: parseFloat(min.toFixed(3)), 
+		avg: parseFloat(avg.toFixed(3)), 
+		max: parseFloat(max.toFixed(3)), 
+		mdev: parseFloat(mdev.toFixed(3)) 
+	}
 }
 
 function pingIp(ip) {
 	return new Promise((resolve) => {
 		const cmd = buildPingCommand(ip)
-		exec(cmd, { windowsHide: true, timeout: 5000 }, (error, stdout, stderr) => {
-			if (error) {
-				// Même en cas d'erreur, tenter d'interpréter la sortie pour un message plus clair
-                const res = parsePingOutput(ip, stdout || '', stderr || error.message || '')
-                return resolve({ ...res, raw: stdout || '' })
-			}
-            const res = parsePingOutput(ip, stdout || '', stderr || '')
-            return resolve({ ...res, raw: stdout || '' })
+		exec(cmd, { windowsHide: true, timeout: 10000 }, (error, stdout, stderr) => {
+			const res = parsePingOutput(ip, stdout || '', stderr || error?.message || '')
+			return resolve(res)
 		})
 	})
 }
@@ -80,22 +139,38 @@ function pingIp(ip) {
 async function main() {
 	const ips = readIps(ipsFile)
 	if (ips.length === 0) {
-		console.error('[Info] Aucun hôte dans ips.txt')
+		console.error('[Info] Aucun hôte dans data/ipreal.txt')
 		process.exit(1)
 	}
 
-    console.log('=== Agent de Ping Réel ===')
+	console.log('=== Agent de Ping Réel (RabbitMQ) ===')
+
+	// Connexion RabbitMQ
+	console.log('Rabbit:', RABBIT_URL)
+	const conn = await amqp.connect(RABBIT_URL)
+	const channel = await conn.createChannel()
+	await channel.assertQueue(QUEUE, { durable: false })
+
 	for (const ip of ips) {
 		// eslint-disable-next-line no-await-in-loop
-        const result = await pingIp(ip)
-        console.log(`\n--- ${ip} ---`)
-        if (result.raw && String(result.raw).trim().length > 0) {
-            console.log(result.raw.trim())
-        } else {
-            const timeStr = result.timeMs != null ? `${result.timeMs} ms` : '-'
-            console.log(`${ip.padEnd(30)} | ${result.status.padEnd(32)} | ${timeStr}`)
-        }
+		const result = await pingIp(ip)
+		
+		// Console
+		console.log(`\n--- ${ip} ---`)
+		console.log(`${result.transmitted} packets transmitted, ${result.received} received, ${result.lossPct.toFixed(3)}% packet loss, time ${result.totalTimeMs.toFixed(3)}ms`)
+		console.log(`rtt min/avg/max/mdev = ${result.min.toFixed(3)}/${result.avg.toFixed(3)}/${result.max.toFixed(3)}/${result.mdev.toFixed(3)} ms`)
+
+		// Envoi RabbitMQ
+		channel.sendToQueue(QUEUE, Buffer.from(JSON.stringify(result)))
+		console.log(`[RabbitMQ] Résultat envoyé pour ${ip}`)
 	}
+
+	// Fermeture propre
+	setTimeout(() => {
+		channel.close()
+		conn.close()
+		process.exit(0)
+	}, 500)
 }
 
 main().catch((e) => {
