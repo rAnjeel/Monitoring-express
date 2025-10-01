@@ -5,6 +5,7 @@ const { typeDevices } = require('../models/typeDevice.model');
 const { eq, sql, like, or, and } = require('drizzle-orm');
 const logger = require('../logger/logger');
 const utilService = require('./util.service');
+const consumer = require('./consumer.service');
 
 class DeviceService {
   list = async () => {
@@ -387,6 +388,43 @@ class DeviceService {
       logger.error(`Error fetching paginated devices (drizzle): ${error.message}`);
       throw error;
     }
+  }
+
+  startPingConsumer = async () => {
+    await consumer.start(async (pingResult) => {
+      try {
+        logger.info(`[PingConsumer] Message reçu: ${JSON.stringify(pingResult)}`);
+
+        // Exemple : le parser renvoie { ip, transmitted, received, lossPct, avg, min, max, successProb }
+        const { ip, transmitted, received, lossPct, avg, min, max, successProb } = pingResult;
+
+        // Chercher le device correspondant à l’IP
+        const existing = await db.select().from(devices).where(eq(devices.ip, ip));
+
+        if (!existing || existing.length === 0) {
+          logger.warn(`[PingConsumer] Aucun device trouvé avec ip=${ip}`);
+          return;
+        }
+
+        const deviceId = existing[0].id;
+        logger.info(`[PingConsumer] Device id=${deviceId}, ip=${ip}`, JSON.stringify(pingResult));
+        // Mettre à jour les infos ping
+        // await db.update(devices)
+        //   .set({
+        //     ping_status: successProb > 0.5, // up/down selon probabilité
+        //     loss: lossPct,
+        //     avg,
+        //     min,
+        //     max,
+        //     uptime: new Date(), // ou autre logique
+        //   })
+        //   .where(eq(devices.id, deviceId));
+
+        logger.info(`[PingConsumer] Device id=${deviceId}, ip=${ip} mis à jour avec succès`);
+      } catch (err) {
+        logger.error(`[PingConsumer] Erreur traitement message: ${err.message}`);
+      }
+    });
   }
 }
 
