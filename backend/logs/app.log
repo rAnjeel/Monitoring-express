@@ -7645,3 +7645,59 @@
 2025-09-29 22:57:00 [INFO]: Fetching device counts per type_device (total and down)
 2025-09-29 22:57:00 [INFO]: Fetched counts for 10 type_devices
 2025-09-29 22:57:00 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-09-30 14:20:29 [INFO]: Server running on port 3000
+2025-09-30 14:20:51 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-09-30 14:20:52 [INFO]: Fetching device counts per type_device (total and down)
+2025-09-30 14:20:52 [INFO]: Fetched counts for 10 type_devices
+2025-09-30 14:20:52 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-09-30 14:21:13 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"SWITCH"}
+2025-09-30 14:21:13 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"SWITCH"}
+2025-09-30 14:21:13 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"IPDSLAM"}
+2025-09-30 14:21:13 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"IPDSLAM"}
+2025-09-30 14:21:14 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"TCU"}
+2025-09-30 14:21:14 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"TCU"}
+2025-09-30 14:21:15 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"R6K"}
+2025-09-30 14:21:15 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"R6K"}
+2025-09-30 14:21:15 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"2G"}
+2025-09-30 14:21:15 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"2G"}
+2025-09-30 14:21:17 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"3G"}
+2025-09-30 14:21:17 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"3G"}
+2025-09-30 14:21:19 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"4G"}
+2025-09-30 14:21:19 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"4G"}
+2025-09-30 14:21:21 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"5G"}
+2025-09-30 14:21:21 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"5G"}
+2025-09-30 14:21:24 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"AIRPON"}
+2025-09-30 14:21:24 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"AIRPON"}
+2025-09-30 14:21:26 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"2G"}
+2025-09-30 14:21:26 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"2G"}
+2025-09-30 14:21:29 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"SWITCH"}
+2025-09-30 14:21:29 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"SWITCH"}
+2025-09-30 14:21:30 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"ROUTER"}
+2025-09-30 14:21:30 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"ROUTER"}
+2025-09-30 14:21:43 [INFO]: page = 1, pageSize = 100, filter = {"type_device":"ROUTER"}
+2025-09-30 14:21:45 [INFO]: page = 1, pageSize = 50, filter = {"type_device":"ROUTER"}
+2025-09-30 14:21:46 [INFO]: page = 1, pageSize = 20, filter = {"type_device":"ROUTER"}
+2025-09-30 14:21:48 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-09-30 14:21:48 [INFO]: Fetching device counts per type_device (total and down)
+2025-09-30 14:21:48 [INFO]: Fetched counts for 10 type_devices
+2025-09-30 14:21:48 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-09-30 14:22:33 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-09-30 14:22:33 [INFO]: Fetching ports with device names and pagination
+2025-09-30 14:22:33 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-09-30 14:22:37 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-09-30 14:22:37 [INFO]: Fetching device counts per type_device (total and down)
+2025-09-30 14:22:37 [INFO]: Fetched counts for 10 type_devices
+2025-09-30 14:22:37 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-01 08:42:10 [INFO]: Server running on port 3000
+2025-10-01 08:42:31 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-01 08:42:32 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-01 08:42:32 [INFO]: Fetched counts for 10 type_devices
+2025-10-01 08:42:32 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-01 08:43:30 [INFO]: page = 10, pageSize = 20, filter = {}
+2025-10-01 08:44:08 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-01 08:44:08 [INFO]: Fetching ports with device names and pagination
+2025-10-01 08:44:08 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-10-01 08:44:10 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-01 08:44:10 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-01 08:44:10 [INFO]: Fetched counts for 10 type_devices
+2025-10-01 08:44:10 [INFO]: TypeDeviceController: returning 10 type_devices with counts

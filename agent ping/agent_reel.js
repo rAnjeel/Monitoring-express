@@ -13,7 +13,7 @@ const PING_COUNT_ARG = isWindows ? '-n' : '-c'
 const PING_TIMEOUT_ARG = isWindows ? '-w' : '-W' // seconds (linux/mac) / ms (windows)
 const PACKET_COUNT = 4
 
-const ipsFile = path.resolve(__dirname, 'ips.txt')
+const ipsFile = path.resolve(__dirname, 'data/ipreal.txt')
 
 function readIps(filePath) {
 	try {
