@@ -7701,3 +7701,12 @@
 2025-10-01 08:44:10 [INFO]: Fetching device counts per type_device (total and down)
 2025-10-01 08:44:10 [INFO]: Fetched counts for 10 type_devices
 2025-10-01 08:44:10 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-02 14:16:52 [INFO]: Server running on port 3000
+2025-10-02 14:16:55 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-02 14:16:56 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-02 14:16:56 [INFO]: Fetched counts for 10 type_devices
+2025-10-02 14:16:56 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-02 14:16:58 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-02 14:16:58 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-02 14:16:58 [INFO]: Fetched counts for 10 type_devices
+2025-10-02 14:16:58 [INFO]: TypeDeviceController: returning 10 type_devices with counts

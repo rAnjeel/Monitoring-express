@@ -16,7 +16,7 @@ app.use(bodyParser.json({ limit: '20mb' }));
 app.use(bodyParser.urlencoded({ extended: true, limit: '20mb' }));
 
 app.use(cors({
-  origin: ['http://localhost:8080', 'http://localhost:8081'],
+  origin: [process.env.CORS_ORIGIN],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
