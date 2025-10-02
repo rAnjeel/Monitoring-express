@@ -1,19 +1,16 @@
-CREATE DATABASE  IF NOT EXISTS monitoring;
+CREATE DATABASE IF NOT EXISTS monitoring;
 USE monitoring;
-
 CREATE TABLE type_device (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL
 );
-
 CREATE TABLE locations (
-  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  name varchar(255) NOT NULL,
-  lat double(10,6) DEFAULT NULL,
-  lng double(10,6) DEFAULT NULL,
-  inserted_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name varchar(255) NOT NULL,
+    lat double(10, 6) DEFAULT NULL,
+    lng double(10, 6) DEFAULT NULL,
+    inserted_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE TABLE device_details (
     id INT AUTO_INCREMENT PRIMARY KEY,
     os text,
@@ -21,7 +18,6 @@ CREATE TABLE device_details (
     icon text,
     version text
 );
-
 CREATE TABLE devices (
     device_id INT DEFAULT NULL,
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -51,7 +47,6 @@ CREATE TABLE devices (
     snmpver text,
     ne_id varchar(45)
 );
-
 -- CREATE TABLE devices (
 --     device_id INT UNIQUE DEFAULT NULL,
 --     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -84,18 +79,16 @@ CREATE TABLE devices (
 --     FOREIGN KEY (location_id) REFERENCES locations(id),
 --     FOREIGN KEY (details_id) REFERENCES device_details(id)
 -- );
-
 CREATE TABLE device_events (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  device_id INT NOT NULL,
-  loss FLOAT DEFAULT NULL,
-  avg FLOAT DEFAULT 0,
-  min FLOAT DEFAULT 0,
-  max FLOAT DEFAULT 0,
-  status ENUM('up','down','warning') NOT NULL,
-  event_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  duration INT DEFAULT NULL,
-  FOREIGN KEY (device_id) REFERENCES devices(id) ON DELETE CASCADE
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    device_id INT NOT NULL,
+    loss FLOAT DEFAULT NULL,
+    avg FLOAT DEFAULT 0,
+    min FLOAT DEFAULT 0,
+    max FLOAT DEFAULT 0,
+    status ENUM('up', 'down', 'warning') NOT NULL,
+    event_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (device_id) REFERENCES devices(id) ON DELETE CASCADE
 );
 
 CREATE TABLE ports (
@@ -120,7 +113,6 @@ CREATE TABLE ports (
     ifIndex text,
     ne_id varchar(45)
 );
-
 -- CREATE TABLE ports (
 --     id INT AUTO_INCREMENT PRIMARY KEY,
 --     port_id INT UNIQUE DEFAULT NULL,
@@ -144,20 +136,17 @@ CREATE TABLE ports (
 --     ne_id varchar(45),
 --     FOREIGN KEY (device_id) REFERENCES devices(id)
 -- );
-
 CREATE TABLE port_events (
-  id INT PRIMARY KEY AUTO_INCREMENT,
-  port_id INT NOT NULL,
-  ifInOctets BIGINT DEFAULT 0,
-  ifOutOctets BIGINT DEFAULT 0,
-  errors BIGINT DEFAULT 0,
-  rate_up FLOAT DEFAULT NULL,
-  rate_down FLOAT DEFAULT NULL,
-  status ENUM('up','down','warning') NOT NULL,
-  event_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  duration INT DEFAULT NULL,
-  message VARCHAR(255) DEFAULT NULL,
-  FOREIGN KEY (port_id) REFERENCES ports(id) ON DELETE CASCADE
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    port_id INT NOT NULL,
+    ifInOctets BIGINT DEFAULT 0,
+    ifOutOctets BIGINT DEFAULT 0,
+    errors BIGINT DEFAULT 0,
+    rate_up FLOAT DEFAULT NULL,
+    rate_down FLOAT DEFAULT NULL,
+    status ENUM('up', 'down', 'warning') NOT NULL,
+    event_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    duration INT DEFAULT NULL,
+    message VARCHAR(255) DEFAULT NULL,
+    FOREIGN KEY (port_id) REFERENCES ports(id) ON DELETE CASCADE
 );
-
-

@@ -6,6 +6,7 @@ const deviceRoutes = require('./routes/device.routes');
 const typeDeviceRoutes = require('./routes/typeDevice.routes');
 const locationRoutes = require('./routes/location.routes');  
 const portRoutes = require('./routes/port.routes');
+const deviceEventRoutes = require('./routes/deviceEvent.routes');
 const logger = require('./logger/logger');
 const db = require('./config/db');
 const errorHandler = require('./middlewares/error.middleware');
@@ -24,6 +25,7 @@ app.use('/devices', deviceRoutes);
 app.use('/type-devices', typeDeviceRoutes);
 app.use('/locations', locationRoutes);
 app.use('/ports', portRoutes);
+app.use('/device-events', deviceEventRoutes);
 app.use(errorHandler);
 
 

@@ -6,6 +6,7 @@ const { eq, sql, like, or, and } = require('drizzle-orm');
 const logger = require('../logger/logger');
 const utilService = require('./util.service');
 const consumer = require('./messaging/consumer.service');
+const deviceEventService = require('./deviceEvent.service');
 
 class DeviceService {
   list = async () => {
@@ -427,6 +428,19 @@ class DeviceService {
         await db.update(devices)
           .set(updateData)
           .where(eq(devices.id, deviceId));
+          
+        // Créer un événement pour tracer le changement de statut
+        try {
+          await deviceEventService.createStatusChangeEvent(deviceId, isUp, {
+            loss: lossPct,
+            avg,
+            min,
+            max
+          });
+          logger.info(`[PingConsumer] Événement créé pour device ${deviceId}`);
+        } catch (eventError) {
+          logger.error(`[PingConsumer] Erreur création événement: ${eventError.message}`);
+        }
           
         logger.info(`[PingConsumer] Device ${deviceId} mis à jour: loss=${lossPct}%, threshold=${lossThreshold}%, status=${isUp ? 'UP' : 'DOWN'}`);
 
