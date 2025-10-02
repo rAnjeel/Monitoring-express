@@ -5,7 +5,7 @@ const { typeDevices } = require('../models/typeDevice.model');
 const { eq, sql, like, or, and } = require('drizzle-orm');
 const logger = require('../logger/logger');
 const utilService = require('./util.service');
-const consumer = require('./consumer.service');
+const consumer = require('./messaging/consumer.service');
 
 class DeviceService {
   list = async () => {
@@ -396,10 +396,10 @@ class DeviceService {
         logger.info(`[PingConsumer] Message reçu: ${JSON.stringify(pingResult)}`);
 
         // Exemple : le parser renvoie { ip, transmitted, received, lossPct, avg, min, max, successProb }
-        const { ip, transmitted, received, lossPct, avg, min, max, successProb } = pingResult;
+        const { ip, lossPct, avg, min, max } = pingResult;
 
-        // Chercher le device correspondant à l’IP
-        const existing = await db.select().from(devices).where(eq(devices.ip, ip));
+        // Chercher le device correspondant à l'IP
+        const existing = await db.select().from(devices).where(eq(devices.hostname, ip));
 
         if (!existing || existing.length === 0) {
           logger.warn(`[PingConsumer] Aucun device trouvé avec ip=${ip}`);
@@ -408,17 +408,27 @@ class DeviceService {
 
         const deviceId = existing[0].id;
         logger.info(`[PingConsumer] Device id=${deviceId}, ip=${ip}`, JSON.stringify(pingResult));
-        // Mettre à jour les infos ping
-        // await db.update(devices)
-        //   .set({
-        //     ping_status: successProb > 0.5, // up/down selon probabilité
-        //     loss: lossPct,
-        //     avg,
-        //     min,
-        //     max,
-        //     uptime: new Date(), // ou autre logique
-        //   })
-        //   .where(eq(devices.id, deviceId));
+        const lossThreshold = parseFloat(process.env.PING_LOSS_THRESHOLD);
+        logger.info(`[PingConsumer] Loss threshold=${lossThreshold}`);
+        const isUp = lossPct <= lossThreshold;
+        
+        const updateData = {
+          ping_status: isUp,
+          loss: lossPct,
+          avg,
+          min,
+          max,
+        };
+        
+        if (isUp) {
+          updateData.uptime = new Date();
+        }
+        
+        await db.update(devices)
+          .set(updateData)
+          .where(eq(devices.id, deviceId));
+          
+        logger.info(`[PingConsumer] Device ${deviceId} mis à jour: loss=${lossPct}%, threshold=${lossThreshold}%, status=${isUp ? 'UP' : 'DOWN'}`);
 
         logger.info(`[PingConsumer] Device id=${deviceId}, ip=${ip} mis à jour avec succès`);
       } catch (err) {
