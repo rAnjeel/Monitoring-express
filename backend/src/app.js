@@ -36,7 +36,7 @@ app.use((err, req, res, next) => {
 
 async function startServer() {
   try {
-    const PORT = process.env.PORT || 3000;
+    const PORT = process.env.PORT;
     app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
   } catch (error) {
     logger.error(`Database connection failed: ${error.message}`);
