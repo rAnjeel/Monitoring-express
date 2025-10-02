@@ -1,17 +1,57 @@
 const express = require('express');
-const portController = require('../controllers/port.controller');
-const validatePort = require('../middlewares/port.middleware');
-
 const router = express.Router();
+const portController = require('../controllers/port.controller');
+const portMiddleware = require('../middlewares/port.middleware');
 
-router.get('/', (req, res) => portController.getAll(req, res));
-router.get('/list', (req, res) => portController.getList(req, res));
-router.get('/limit', (req, res) => portController.getPage(req, res));
-router.get('/:id', (req, res) => portController.getById(req, res));
-router.post('/', validatePort, (req, res) => portController.create(req, res));
-router.post('/import', (req, res) => portController.importCSV(req, res));
-router.put('/:id', validatePort, (req, res) => portController.update(req, res));
-router.delete('/:id', (req, res) => portController.delete(req, res));
+// Routes pour les ports
+
+// GET /ports - Récupérer tous les ports (simple)
+router.get('/', 
+  portController.getAll
+);
+
+// GET /ports/list - Récupérer tous les ports avec filtres
+router.get('/list', 
+  portMiddleware.validateQuery,
+  portController.getList
+);
+
+// GET /ports/limit - Récupérer les ports avec pagination
+router.get('/limit', 
+  portMiddleware.validateQuery,
+  portController.getPage
+);
+
+// GET /ports/:id - Récupérer un port par ID
+router.get('/:id', 
+  portMiddleware.validateId,
+  portController.getById
+);
+
+// POST /ports - Créer un nouveau port
+router.post('/', 
+  portMiddleware.validateCreate,
+  portController.create
+);
+
+// POST /ports/import - Importer des ports depuis CSV
+router.post('/import', 
+  portMiddleware.validateImportCSV,
+  portController.importCSV
+);
+
+// PUT /ports/:id - Mettre à jour un port
+router.put('/:id', 
+  portMiddleware.validateId,
+  portMiddleware.validateUpdate,
+  portController.update
+);
+
+// DELETE /ports/:id - Supprimer un port
+router.delete('/:id', 
+  portMiddleware.validateId,
+  portController.delete
+);
 
 module.exports = router;
 

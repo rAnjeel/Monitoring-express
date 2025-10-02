@@ -7710,3 +7710,12 @@
 2025-10-02 14:16:58 [INFO]: Fetching device counts per type_device (total and down)
 2025-10-02 14:16:58 [INFO]: Fetched counts for 10 type_devices
 2025-10-02 14:16:58 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-02 14:47:52 [INFO]: Server running on port 3000
+2025-10-02 14:47:58 [ERROR]: [Device] Middleware error (query): Cannot set property query of #<IncomingMessage> which has only a getter
+2025-10-02 14:47:58 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-02 14:47:58 [INFO]: Fetched counts for 10 type_devices
+2025-10-02 14:47:58 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-02 14:48:01 [ERROR]: [Device] Middleware error (query): Cannot set property query of #<IncomingMessage> which has only a getter
+2025-10-02 14:48:01 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-02 14:48:01 [INFO]: Fetched counts for 10 type_devices
+2025-10-02 14:48:01 [INFO]: TypeDeviceController: returning 10 type_devices with counts

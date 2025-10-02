@@ -1,16 +1,56 @@
 const express = require('express');
-
 const router = express.Router();
 const deviceController = require('../controllers/device.controller');
-const validateDevice = require('../middlewares/device.middleware');
+const deviceMiddleware = require('../middlewares/device.middleware');
 
-router.get('/', (req, res) => deviceController.getAll(req, res));
-router.get('/list', (req, res) => deviceController.getList(req, res));
-router.get('/limit', (req, res) => deviceController.getPage(req, res));
-router.get('/:id', (req, res) => deviceController.getById(req, res));
-router.post('/', validateDevice, (req, res) => deviceController.create(req, res));
-router.post('/import', (req, res) => deviceController.importCSV(req, res));
-router.put('/:id', validateDevice, (req, res) => deviceController.update(req, res));
-router.delete('/:id', (req, res) => deviceController.delete(req, res));
+// Routes pour les devices
+
+// GET /devices - Récupérer tous les devices (simple)
+router.get('/', 
+  deviceController.getAll
+);
+
+// GET /devices/list - Récupérer tous les devices avec filtres
+router.get('/list', 
+  deviceMiddleware.validateQuery,
+  deviceController.getList
+);
+
+// GET /devices/limit - Récupérer les devices avec pagination
+router.get('/limit', 
+  deviceMiddleware.validateQuery,
+  deviceController.getPage
+);
+
+// GET /devices/:id - Récupérer un device par ID
+router.get('/:id', 
+  deviceMiddleware.validateId,
+  deviceController.getById
+);
+
+// POST /devices - Créer un nouveau device
+router.post('/', 
+  deviceMiddleware.validateCreate,
+  deviceController.create
+);
+
+// POST /devices/import - Importer des devices depuis CSV
+router.post('/import', 
+  deviceMiddleware.validateImportCSV,
+  deviceController.importCSV
+);
+
+// PUT /devices/:id - Mettre à jour un device
+router.put('/:id', 
+  deviceMiddleware.validateId,
+  deviceMiddleware.validateUpdate,
+  deviceController.update
+);
+
+// DELETE /devices/:id - Supprimer un device
+router.delete('/:id', 
+  deviceMiddleware.validateId,
+  deviceController.delete
+);
 
 module.exports = router;
