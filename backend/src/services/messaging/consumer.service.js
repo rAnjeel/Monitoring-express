@@ -10,7 +10,6 @@ class ConsumerService {
 		this.channel = null
 		this.queue = process.env.RABBIT_QUEUE
 		this.url = process.env.RABBIT_URL
-		logger.info(`[Consumer] Queue=${this.queue}, URL=${this.url}`)
 		this.isConsuming = false
 	}
 
