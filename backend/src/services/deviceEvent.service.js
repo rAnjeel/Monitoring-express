@@ -1,9 +1,9 @@
-const db = require('../config/db');
-const { deviceEvents } = require('../models/deviceEvent.model');
-const { devices } = require('../models/device.model');
-const { eq, sql, and, gte, lte, desc } = require('drizzle-orm');
-const logger = require('../logger/logger');
-const DeviceEventDto = require('../dto/deviceEvent.dto');
+import db from '../config/db.js';
+import { deviceEvents } from '../models/deviceEvent.model.js';
+import { devices } from '../models/device.model.js';
+import { eq, sql, and, gte, lte, desc } from 'drizzle-orm';
+import logger from '../logger/logger.js';
+import DeviceEventDto from '../dto/deviceEvent.dto.js';
 
 class DeviceEventService {
   // Créer un nouvel événement
@@ -252,4 +252,4 @@ class DeviceEventService {
   };
 }
 
-module.exports = new DeviceEventService();
+export default new DeviceEventService();

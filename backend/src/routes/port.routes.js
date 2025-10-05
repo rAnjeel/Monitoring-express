@@ -1,6 +1,6 @@
-const express = require('express');
-const portController = require('../controllers/port.controller');
-const validatePort = require('../middlewares/port.middleware');
+import express from 'express';
+import portController from '../controllers/port.controller.js';
+import validatePort from '../middlewares/port.middleware.js';
 
 const router = express.Router();
 
@@ -13,5 +13,5 @@ router.post('/import', (req, res) => portController.importCSV(req, res));
 router.put('/:id', validatePort, (req, res) => portController.update(req, res));
 router.delete('/:id', (req, res) => portController.delete(req, res));
 
-module.exports = router;
+export default router;
 

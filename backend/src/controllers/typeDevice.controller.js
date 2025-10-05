@@ -1,6 +1,6 @@
-const typeDeviceService = require('../services/typeDevice.service');
-const logger = require('../logger/logger');
-const TypeDeviceDTO = require('../dto/typeDevice.dto');
+import typeDeviceService from '../services/typeDevice.service.js';
+import logger from '../logger/logger.js';
+import TypeDeviceDTO from '../dto/typeDevice.dto.js';
 
 class TypeDeviceController {
   getAll = async (req, res) => {
@@ -76,4 +76,4 @@ class TypeDeviceController {
   }
 }
 
-module.exports = new TypeDeviceController();
+export default new TypeDeviceController();

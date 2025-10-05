@@ -1,8 +1,8 @@
-const db = require('../config/db');
-const { typeDevices } = require('../models/typeDevice.model');
-const { devices } = require('../models/device.model');
-const { eq, sql } = require('drizzle-orm');
-const logger = require('../logger/logger');
+import db from '../config/db.js';
+import { typeDevices } from '../models/typeDevice.model.js';
+import { devices } from '../models/device.model.js';
+import { eq, sql } from 'drizzle-orm';
+import logger from '../logger/logger.js';
 
 class TypeDeviceService {
   list = async () => {
@@ -94,4 +94,4 @@ class TypeDeviceService {
   }
 }
 
-module.exports = new TypeDeviceService();
+export default new TypeDeviceService();

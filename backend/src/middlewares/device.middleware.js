@@ -1,4 +1,4 @@
-const Joi = require('joi');
+import Joi from 'joi';
 
 const deviceSchema = Joi.object({
   device_id: Joi.number().required(),
@@ -38,4 +38,4 @@ function validateDevice(req, res, next) {
   next();
 }
 
-module.exports = validateDevice;
+export default validateDevice;

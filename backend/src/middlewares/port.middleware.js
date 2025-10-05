@@ -1,4 +1,4 @@
-const Joi = require('joi');
+import Joi from 'joi';
 
 const portSchema = Joi.object({
   id: Joi.number().optional(),
@@ -34,4 +34,4 @@ function validatePort(req, res, next) {
   next();
 }
 
-module.exports = validatePort;
+export default validatePort;

@@ -1,6 +1,6 @@
-const locationService = require('../services/location.service');
-const logger = require('../logger/logger');
-const LocationDTO = require('../dto/location.dto');
+import locationService from '../services/location.service.js';
+import logger from '../logger/logger.js';
+import LocationDTO from '../dto/location.dto.js';
 
 class LocationController {
   getAll = async (req, res) => {
@@ -65,4 +65,4 @@ class LocationController {
   }
 }
 
-module.exports = new LocationController();
+export default new LocationController();

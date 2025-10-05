@@ -1,4 +1,4 @@
-const Joi = require('joi');
+import Joi from 'joi';
 
 const locationSchema = Joi.object({
   name: Joi.string().max(255).required(),
@@ -17,4 +17,4 @@ function validateLocation(req, res, next) {
   next();
 }
 
-module.exports = validateLocation;
+export default validateLocation;

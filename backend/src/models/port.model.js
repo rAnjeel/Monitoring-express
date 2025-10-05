@@ -1,4 +1,4 @@
-const { mysqlTable, int, text, bigint, varchar, boolean } = require('drizzle-orm/mysql-core');
+import { mysqlTable, int, text, bigint, varchar, boolean } from 'drizzle-orm/mysql-core';
 
 const ports = mysqlTable('ports', {
   id: int('id').primaryKey().autoincrement(),
@@ -23,4 +23,4 @@ const ports = mysqlTable('ports', {
   ne_id: varchar('ne_id', { length: 45 }),
 });
 
-module.exports = { ports };
+export { ports };

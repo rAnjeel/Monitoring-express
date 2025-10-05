@@ -1,4 +1,4 @@
-const Joi = require('joi');
+import Joi from 'joi';
 
 class DeviceEventDto {
   static createSchema = Joi.object({
@@ -94,4 +94,4 @@ class DeviceEventDto {
   }
 }
 
-module.exports = DeviceEventDto;
+export default DeviceEventDto;

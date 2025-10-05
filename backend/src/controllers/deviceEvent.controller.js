@@ -1,5 +1,5 @@
-const logger = require('../logger/logger');
-const deviceEventService = require('../services/deviceEvent.service');
+import logger from '../logger/logger.js';
+import deviceEventService from '../services/deviceEvent.service.js';
 
 class DeviceEventController {
   // Récupérer tous les événements avec pagination et filtres
@@ -184,4 +184,4 @@ class DeviceEventController {
   };
 }
 
-module.exports = new DeviceEventController();
+export default new DeviceEventController();

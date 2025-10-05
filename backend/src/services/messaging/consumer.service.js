@@ -1,7 +1,7 @@
 // consumer.service.js
-const amqp = require('amqplib')
-const parser = require('./messageParser.service')
-const logger = require('../../logger/logger')
+import amqp from 'amqplib'
+import parser from './messageParser.service.js'
+import logger from '../../logger/logger.js'
 
 
 class ConsumerService {
@@ -65,6 +65,6 @@ class ConsumerService {
 	}
 }
 
-module.exports = new ConsumerService()
+export default new ConsumerService()
 
 

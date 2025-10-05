@@ -44,4 +44,4 @@ class PortDTO {
   }
 }
 
-module.exports = PortDTO;
+export default PortDTO;

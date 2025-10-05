@@ -54,4 +54,4 @@ class DeviceDTO {
   }
 }
 
-module.exports = DeviceDTO;
+export default DeviceDTO;
