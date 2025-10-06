@@ -57,37 +57,38 @@ class DeviceEventService {
         conditions.push(eq(deviceEvents.status, status));
       }
 
-    if (start_date && end_date) {
-      conditions.push(
-        between(deviceEvents.event_time, new Date(start_date), new Date(end_date))
-      );
-    } else if (start_date) {
-      conditions.push(gte(deviceEvents.event_time, new Date(start_date)));
-    } else if (end_date) {
-      conditions.push(lte(deviceEvents.event_time, new Date(end_date)));
-    }
+      if (start_date && end_date) {
+        conditions.push(
+          between(deviceEvents.event_time, new Date(start_date), new Date(end_date))
+        );
+      } else if (start_date) {
+        conditions.push(gte(deviceEvents.event_time, new Date(start_date)));
+      } else if (end_date) {
+        conditions.push(lte(deviceEvents.event_time, new Date(end_date)));
+      }
+      
 
-
-      // Requête pour les données
       const rows = await db
         .select()
         .from(deviceEvents)
         .where(and(...conditions))
         .orderBy(desc(deviceEvents.event_time))
-        .limit(pageSize)
-        .offset(offset);
+        .limit(Number(pageSize) + 1)
+        .offset(Number(offset));
       
-      const totalCount = rows.length;
-
       logger.info(`[DeviceEvent] Found ${rows.length} events for device_id=${deviceId}`);
-      
+
+      const hasNextPage = rows.length > pageSize;
+      // retire la ligne extra
+      if (hasNextPage) rows.pop();
+
       return {
         rows,
-        totalCount,
         page,
         pageSize,
-        totalPages: Math.ceil(totalCount / pageSize)
+        hasNextPage,
       };
+
     } catch (error) {
       logger.error(`[DeviceEvent] Error fetching events for device_id=${deviceId}: ${error.message}`);
       throw new Error('Database error while fetching device events');
@@ -139,8 +140,8 @@ class DeviceEventService {
 
       const rows = await query
         .orderBy(desc(deviceEvents.event_time))
-        .limit(pageSize)
-        .offset(offset);
+        .limit(Number(pageSize))
+        .offset(Number(offset));
 
       // Count total
       const countQuery = conditions.length > 0
