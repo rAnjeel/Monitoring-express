@@ -10209,3 +10209,441 @@
 2025-10-05 15:27:53 [INFO]: Fetched counts for 10 type_devices
 2025-10-05 15:27:53 [INFO]: TypeDeviceController: returning 10 type_devices with counts
 2025-10-05 15:28:40 [INFO]: Server running on port 3000
+2025-10-05 17:12:22 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:12:22 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 17:12:22 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 17:12:22 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 17:12:25 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:12:25 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 17:12:25 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 17:12:25 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 17:13:05 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:13:05 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 17:13:05 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 17:13:05 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 17:13:10 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:13:10 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 17:13:10 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 17:13:10 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 17:13:46 [ERROR]: [DeviceEvent] Middleware error (query): Cannot set property query of #<IncomingMessage> which has only a getter
+2025-10-05 17:13:46 [ERROR]: [DeviceEvent] Middleware error (query): Cannot set property query of #<IncomingMessage> which has only a getter
+2025-10-05 17:14:31 [ERROR]: [DeviceEvent] Middleware error (query): Cannot set property query of #<IncomingMessage> which has only a getter
+2025-10-05 17:15:00 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:15:00 [INFO]: Fetching ports with device names and pagination
+2025-10-05 17:15:00 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-10-05 17:15:01 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:15:01 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 17:15:01 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 17:15:01 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 17:16:48 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:16:48 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 17:16:48 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 17:16:48 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 17:16:50 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:16:50 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 17:16:50 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 17:16:50 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 17:18:51 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:18:51 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 17:18:51 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 17:18:51 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 17:29:06 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:29:06 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 17:29:06 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 17:29:06 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 17:29:12 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:29:12 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 17:29:12 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 17:29:12 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 17:42:05 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:42:05 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 17:42:05 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 17:42:05 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 17:42:08 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:42:08 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 17:42:08 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 17:42:08 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 17:43:01 [ERROR]: [DeviceEvent] Middleware error (query): Cannot set property query of #<IncomingMessage> which has only a getter
+2025-10-05 17:43:21 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:43:21 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 17:43:21 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 17:43:21 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 17:44:58 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:44:58 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:44:58 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 17:44:58 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 17:44:58 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 17:44:58 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 17:44:58 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 17:44:58 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 17:45:07 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:45:07 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 17:45:07 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 17:45:07 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 17:45:14 [ERROR]: [DeviceEvent] Middleware error (query): Cannot set property query of #<IncomingMessage> which has only a getter
+2025-10-05 17:53:21 [INFO]: Server running on port 3000
+2025-10-05 17:53:31 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:53:31 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 17:53:31 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 17:53:31 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 17:53:43 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 17:53:43 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 17:56:17 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 17:56:17 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 17:58:05 [INFO]: [DeviceEvent] Fetching events for device_id=2
+2025-10-05 17:58:05 [INFO]: [DeviceEvent] Found 26 events for device_id=2
+2025-10-05 17:58:14 [INFO]: [DeviceEvent] Fetching events for device_id=10
+2025-10-05 17:58:14 [INFO]: [DeviceEvent] Found 26 events for device_id=10
+2025-10-05 17:58:23 [INFO]: page = 10, pageSize = 20, filter = {}
+2025-10-05 17:58:26 [INFO]: [DeviceEvent] Fetching events for device_id=200
+2025-10-05 17:58:26 [INFO]: [DeviceEvent] Found 0 events for device_id=200
+2025-10-05 17:58:30 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:58:30 [INFO]: page = 11, pageSize = 20, filter = {}
+2025-10-05 17:58:31 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:58:31 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:58:32 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 17:58:37 [INFO]: [DeviceEvent] Fetching events for device_id=19
+2025-10-05 17:58:37 [INFO]: [DeviceEvent] Found 0 events for device_id=19
+2025-10-05 17:58:41 [INFO]: [DeviceEvent] Fetching events for device_id=14
+2025-10-05 17:58:41 [INFO]: [DeviceEvent] Found 26 events for device_id=14
+2025-10-05 18:31:09 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 18:31:09 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 18:31:09 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 18:31:09 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 18:31:09 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 18:31:09 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 18:31:09 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 18:31:09 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 18:45:55 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 18:45:55 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 18:45:55 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 18:45:55 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 18:45:55 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 18:45:55 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 18:45:55 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 18:45:55 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 18:50:33 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 18:50:33 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 18:50:33 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 18:50:33 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 18:50:53 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 18:50:53 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 18:50:53 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 18:50:53 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 18:50:59 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 18:50:59 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 18:50:59 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 18:50:59 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 18:51:45 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 18:51:45 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 18:51:45 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 18:51:45 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 18:51:48 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 18:51:48 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 18:51:56 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 18:51:56 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 18:52:00 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 18:52:00 [INFO]: [DeviceEvent] Found 18 events for device_id=1
+2025-10-05 18:52:01 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 18:52:01 [INFO]: [DeviceEvent] Found 0 events for device_id=1
+2025-10-05 18:53:30 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 18:53:30 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 18:53:30 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 18:53:30 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 18:53:51 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 18:53:51 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 18:53:51 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 18:53:51 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 18:54:01 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 18:54:01 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 18:54:01 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 18:54:01 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 18:54:05 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 18:54:05 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 18:54:05 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 18:54:05 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 18:54:13 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 18:54:13 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 18:54:13 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 18:54:13 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 18:54:16 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 18:54:16 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 18:57:32 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 18:57:33 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 18:58:02 [INFO]: [DeviceEvent] Fetching events for device_id=9
+2025-10-05 18:58:02 [INFO]: [DeviceEvent] Found 26 events for device_id=9
+2025-10-05 18:59:13 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 18:59:13 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 18:59:13 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 18:59:13 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 18:59:14 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 18:59:14 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 18:59:14 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 18:59:14 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 19:00:55 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 19:00:55 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 19:00:55 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 19:00:55 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 19:00:57 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 19:00:57 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 19:00:58 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 19:00:58 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 19:01:04 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 19:01:04 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 19:01:04 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 19:01:04 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 19:01:10 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 19:01:10 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 19:01:10 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 19:01:10 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 19:01:18 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 19:01:18 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 19:01:18 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 19:01:18 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 19:01:22 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 19:01:22 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 19:11:00 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 19:11:00 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 19:11:00 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 19:11:00 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 19:11:07 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 19:11:07 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 19:11:07 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 19:11:07 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 19:11:28 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 19:11:28 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 19:12:20 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 19:12:20 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 19:12:20 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 19:12:20 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 19:13:01 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 19:13:01 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 19:13:01 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 19:13:01 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 19:13:09 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 19:13:09 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 19:13:09 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 19:13:09 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 19:13:55 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 19:13:55 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 19:14:32 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 19:14:32 [INFO]: Fetching ports with device names and pagination
+2025-10-05 19:14:32 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-10-05 19:16:41 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 19:16:41 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 19:16:41 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 19:16:41 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 19:16:46 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 19:16:46 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 20:05:07 [INFO]: [DeviceEvent] Fetching events for device_id=3
+2025-10-05 20:05:07 [INFO]: [DeviceEvent] Found 26 events for device_id=3
+2025-10-05 21:03:50 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:03:50 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 21:07:30 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 21:07:30 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 21:07:30 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 21:07:30 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 21:07:46 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 21:07:46 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 21:07:46 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 21:07:46 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 21:07:50 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 21:07:50 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 21:07:50 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 21:07:50 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 21:08:28 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 21:08:28 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 21:08:28 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 21:08:28 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 21:08:32 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:08:32 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 21:08:38 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:08:38 [ERROR]: [DeviceEvent] Error fetching events for device_id=1: Failed query: select `id`, `device_id`, `loss`, `avg`, `min`, `max`, `status`, `event_time` from `device_events` where `device_events`.`device_id` = ? order by `device_events`.`event_time` desc offset ?
+params: 1,20
+2025-10-05 21:08:38 [ERROR]: [DeviceEventController] Error in getByDeviceId: Database error while fetching device events
+2025-10-05 21:08:40 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:08:40 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 21:08:53 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:08:53 [INFO]: [DeviceEvent] Found 18 events for device_id=1
+2025-10-05 21:09:04 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:09:04 [INFO]: [DeviceEvent] Found 0 events for device_id=1
+2025-10-05 21:09:11 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:09:11 [INFO]: [DeviceEvent] Found 0 events for device_id=1
+2025-10-05 21:09:15 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:09:15 [INFO]: [DeviceEvent] Found 0 events for device_id=1
+2025-10-05 21:09:19 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:09:19 [INFO]: [DeviceEvent] Found 18 events for device_id=1
+2025-10-05 21:09:24 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:09:24 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 21:09:30 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:09:30 [INFO]: [DeviceEvent] Found 0 events for device_id=1
+2025-10-05 21:09:37 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:09:37 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 21:10:32 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:10:32 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 21:10:34 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:10:34 [ERROR]: [DeviceEvent] Error fetching events for device_id=1: Failed query: select `id`, `device_id`, `loss`, `avg`, `min`, `max`, `status`, `event_time` from `device_events` where `device_events`.`device_id` = ? order by `device_events`.`event_time` desc offset ?
+params: 1,20
+2025-10-05 21:10:34 [ERROR]: [DeviceEventController] Error in getByDeviceId: Database error while fetching device events
+2025-10-05 21:10:37 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:10:37 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 21:10:38 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:10:38 [ERROR]: [DeviceEvent] Error fetching events for device_id=1: Failed query: select `id`, `device_id`, `loss`, `avg`, `min`, `max`, `status`, `event_time` from `device_events` where `device_events`.`device_id` = ? order by `device_events`.`event_time` desc offset ?
+params: 1,20
+2025-10-05 21:10:38 [ERROR]: [DeviceEventController] Error in getByDeviceId: Database error while fetching device events
+2025-10-05 21:10:40 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:10:40 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 21:11:49 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:11:49 [INFO]: [DeviceEvent] Found 0 events for device_id=1
+2025-10-05 21:11:55 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 21:11:55 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 22:52:51 [INFO]: Server running on port 3000
+2025-10-05 22:52:55 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 22:52:55 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 22:52:55 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 22:52:55 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 22:53:00 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:53:00 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 22:53:04 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:53:04 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 22:53:07 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:53:07 [ERROR]: [DeviceEvent] Error fetching events for device_id=1: between is not defined
+2025-10-05 22:53:07 [ERROR]: [DeviceEventController] Error in getByDeviceId: Database error while fetching device events
+2025-10-05 22:53:11 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:53:11 [ERROR]: [DeviceEvent] Error fetching events for device_id=1: between is not defined
+2025-10-05 22:53:11 [ERROR]: [DeviceEventController] Error in getByDeviceId: Database error while fetching device events
+2025-10-05 22:53:15 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:53:15 [ERROR]: [DeviceEvent] Error fetching events for device_id=1: between is not defined
+2025-10-05 22:53:15 [ERROR]: [DeviceEventController] Error in getByDeviceId: Database error while fetching device events
+2025-10-05 22:53:19 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:53:19 [ERROR]: [DeviceEvent] Error fetching events for device_id=1: between is not defined
+2025-10-05 22:53:19 [ERROR]: [DeviceEventController] Error in getByDeviceId: Database error while fetching device events
+2025-10-05 22:53:22 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:53:22 [ERROR]: [DeviceEvent] Error fetching events for device_id=1: between is not defined
+2025-10-05 22:53:22 [ERROR]: [DeviceEventController] Error in getByDeviceId: Database error while fetching device events
+2025-10-05 22:53:24 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:53:24 [ERROR]: [DeviceEvent] Error fetching events for device_id=1: between is not defined
+2025-10-05 22:53:24 [ERROR]: [DeviceEventController] Error in getByDeviceId: Database error while fetching device events
+2025-10-05 22:53:26 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:53:26 [ERROR]: [DeviceEvent] Error fetching events for device_id=1: between is not defined
+2025-10-05 22:53:26 [ERROR]: [DeviceEventController] Error in getByDeviceId: Database error while fetching device events
+2025-10-05 22:54:24 [INFO]: Server running on port 3000
+2025-10-05 22:54:28 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 22:54:28 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 22:54:28 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 22:54:28 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 22:54:31 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:54:31 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 22:54:34 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:54:34 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 22:54:38 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:54:38 [INFO]: [DeviceEvent] Found 8 events for device_id=1
+2025-10-05 22:54:43 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:54:43 [INFO]: [DeviceEvent] Found 0 events for device_id=1
+2025-10-05 22:54:46 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:54:46 [INFO]: [DeviceEvent] Found 8 events for device_id=1
+2025-10-05 22:54:54 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:54:54 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 22:55:06 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:55:06 [INFO]: [DeviceEvent] Found 18 events for device_id=1
+2025-10-05 22:57:25 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:57:25 [INFO]: [DeviceEvent] Found 18 events for device_id=1
+2025-10-05 22:57:30 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:57:30 [ERROR]: [DeviceEvent] Error fetching events for device_id=1: Failed query: select `id`, `device_id`, `loss`, `avg`, `min`, `max`, `status`, `event_time` from `device_events` where (`device_events`.`device_id` = ? and `device_events`.`event_time` between ? and ?) order by `device_events`.`event_time` desc offset ?
+params: 1,2025-10-03 00:00:00.000,2025-10-04 00:00:00.000,10
+2025-10-05 22:57:30 [ERROR]: [DeviceEventController] Error in getByDeviceId: Database error while fetching device events
+2025-10-05 22:57:31 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:57:31 [INFO]: [DeviceEvent] Found 18 events for device_id=1
+2025-10-05 22:57:33 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:57:33 [INFO]: [DeviceEvent] Found 18 events for device_id=1
+2025-10-05 22:57:36 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:57:36 [INFO]: [DeviceEvent] Found 18 events for device_id=1
+2025-10-05 22:58:23 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:58:23 [INFO]: [DeviceEvent] Found 18 events for device_id=1
+2025-10-05 22:58:26 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:58:26 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 22:58:32 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:58:32 [INFO]: [DeviceEvent] Found 0 events for device_id=1
+2025-10-05 22:58:35 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 22:58:35 [INFO]: [DeviceEvent] Found 8 events for device_id=1
+2025-10-05 23:17:37 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 23:17:37 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 23:17:37 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 23:17:37 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 23:17:39 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 23:17:39 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 23:17:39 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 23:17:39 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 23:22:27 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-05 23:22:27 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-05 23:22:27 [INFO]: Fetched counts for 10 type_devices
+2025-10-05 23:22:27 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-05 23:22:33 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 23:22:33 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 23:22:39 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 23:22:39 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 23:22:54 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 23:22:54 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 23:22:56 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-05 23:22:56 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-05 23:34:35 [INFO]: [DeviceEvent] Fetching events for device_id=12345
+2025-10-05 23:34:35 [INFO]: [DeviceEvent] Found 0 events for device_id=12345
+2025-10-05 23:34:54 [INFO]: [DeviceEvent] Fetching events for device_id=12345
+2025-10-05 23:34:54 [INFO]: [DeviceEvent] Found 0 events for device_id=12345
+2025-10-05 23:35:41 [INFO]: [DeviceEvent] Fetching events for device_id=12345
+2025-10-05 23:35:41 [INFO]: [DeviceEvent] Found 0 events for device_id=12345
+2025-10-05 23:35:42 [INFO]: [DeviceEvent] Fetching events for device_id=12345
+2025-10-05 23:35:42 [INFO]: [DeviceEvent] Found 0 events for device_id=12345
+2025-10-05 23:39:49 [INFO]: [DeviceEvent] Fetching events for device_id=12345
+2025-10-05 23:39:49 [INFO]: [DeviceEvent] Found 0 events for device_id=12345
+2025-10-05 23:39:53 [INFO]: [DeviceEvent] Fetching events for device_id=12345
+2025-10-05 23:39:53 [INFO]: [DeviceEvent] Found 0 events for device_id=12345
+2025-10-06 07:44:15 [INFO]: Server running on port 3000
+2025-10-06 07:44:31 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-06 07:44:31 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-06 07:44:31 [INFO]: Fetched counts for 10 type_devices
+2025-10-06 07:44:31 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-06 07:45:29 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-06 07:45:29 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-06 07:48:40 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-06 07:48:40 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-06 07:48:42 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-06 07:48:42 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-06 07:48:44 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-06 07:48:44 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-06 07:53:51 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-06 07:53:51 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-06 07:56:35 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-06 07:56:35 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-06 07:56:35 [INFO]: Fetched counts for 10 type_devices
+2025-10-06 07:56:35 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-06 07:56:37 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-06 07:56:37 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-06 07:58:25 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-06 07:58:25 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-06 07:59:12 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-06 07:59:12 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-06 07:59:12 [INFO]: Fetched counts for 10 type_devices
+2025-10-06 07:59:12 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-06 07:59:15 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-06 07:59:15 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-06 07:59:15 [INFO]: Fetched counts for 10 type_devices
+2025-10-06 07:59:15 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-06 07:59:18 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-06 07:59:18 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-06 07:59:28 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-06 07:59:28 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-06 07:59:28 [INFO]: Fetched counts for 10 type_devices
+2025-10-06 07:59:28 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-06 07:59:30 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-06 07:59:30 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-06 07:59:30 [INFO]: Fetched counts for 10 type_devices
+2025-10-06 07:59:30 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-06 08:00:09 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-06 08:00:09 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-06 08:00:09 [INFO]: Fetched counts for 10 type_devices
+2025-10-06 08:00:10 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-06 08:00:13 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-06 08:00:13 [INFO]: [DeviceEvent] Found 26 events for device_id=1
+2025-10-06 08:00:47 [INFO]: [DeviceEvent] Fetching events for device_id=1
+2025-10-06 08:00:47 [INFO]: [DeviceEvent] Found 8 events for device_id=1

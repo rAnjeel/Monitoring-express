@@ -44,9 +44,7 @@ router.delete('/:id',
 // Routes spécifiques aux devices
 
 // GET /device-events/device/:deviceId - Récupérer tous les événements d'un device
-router.get('/device/:deviceId', 
-  DeviceEventMiddleware.validateDeviceId,
-  DeviceEventMiddleware.validateQuery,
+router.get('/device/:deviceId',
   deviceEventController.getByDeviceId
 );
 

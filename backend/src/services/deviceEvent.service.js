@@ -1,7 +1,7 @@
 import db from '../config/db.js';
 import { deviceEvents } from '../models/deviceEvent.model.js';
 import { devices } from '../models/device.model.js';
-import { eq, sql, and, gte, lte, desc } from 'drizzle-orm';
+import { eq, sql, and, gte, lte, desc, between } from 'drizzle-orm';
 import logger from '../logger/logger.js';
 import DeviceEventDto from '../dto/deviceEvent.dto.js';
 
@@ -57,13 +57,16 @@ class DeviceEventService {
         conditions.push(eq(deviceEvents.status, status));
       }
 
-      // Filtrer par date si fournie
-      if (start_date) {
-        conditions.push(gte(deviceEvents.event_time, new Date(start_date)));
-      }
-      if (end_date) {
-        conditions.push(lte(deviceEvents.event_time, new Date(end_date)));
-      }
+    if (start_date && end_date) {
+      conditions.push(
+        between(deviceEvents.event_time, new Date(start_date), new Date(end_date))
+      );
+    } else if (start_date) {
+      conditions.push(gte(deviceEvents.event_time, new Date(start_date)));
+    } else if (end_date) {
+      conditions.push(lte(deviceEvents.event_time, new Date(end_date)));
+    }
+
 
       // Requête pour les données
       const rows = await db
