@@ -76,19 +76,13 @@ class DeviceEventService {
         .orderBy(desc(deviceEvents.event_time))
         .limit(pageSize)
         .offset(offset);
-
-      // Requête pour le count total
-      const countResult = await db
-        .select({ count: sql`count(*)`.as('count') })
-        .from(deviceEvents)
-        .where(and(...conditions));
-
-      const totalCount = Number(countResult[0]?.count || 0);
+      
+      const totalCount = rows.length;
 
       logger.info(`[DeviceEvent] Found ${rows.length} events for device_id=${deviceId}`);
       
       return {
-        rows: rows.map(event => DeviceEventDto.format(event)),
+        rows,
         totalCount,
         page,
         pageSize,
