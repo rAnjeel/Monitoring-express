@@ -47,8 +47,8 @@ async function startServer() {
     app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
 
      // démarrer le consumer RabbitMQ
-    // await deviceService.startPingConsumer();
-    // logger.info('PingConsumer démarré');
+    await deviceService.startPingConsumer();
+    logger.info('PingConsumer démarré');
   } catch (error) {
     logger.error(`Database connection failed: ${error.message}`);
     process.exit(1);

@@ -1,134 +1,144 @@
 #!/usr/bin/env node
-// Agent de Ping Simulé avec envoi RabbitMQ
+// Agent de Ping Simulé avec PM2 + RabbitMQ + node-cron
 
 import fs from 'fs'
 import path from 'path'
 import amqp from 'amqplib'
 import cron from 'node-cron'
 import dotenv from 'dotenv'
+import os from 'os'
 import { fileURLToPath } from 'url'
+dotenv.config()
+
+const ENABLE_CRON = String(process.env.AGENT_CRON || '').toLowerCase() === 'true'
+const CRON_PATTERN = process.env.CRON_PATTERN || '* * * * *'
+
+console.log(`[Agent ${process.env.NODE_APP_INSTANCE ?? '0'}] CRON activé : ${ENABLE_CRON}`)
+console.log(`[Agent ${process.env.NODE_APP_INSTANCE ?? '0'}] Pattern : ${CRON_PATTERN}`)
+
+if (ENABLE_CRON) {
+  if (!cron.validate(CRON_PATTERN)) {
+    console.error(`[Agent ${process.env.NODE_APP_INSTANCE ?? '0'}] ❌ Pattern CRON invalide : ${CRON_PATTERN}`)
+    process.exit(1)
+  }
+
+  cron.schedule(CRON_PATTERN, async () => {
+    console.log(`[Agent ${process.env.NODE_APP_INSTANCE ?? '0'}] → Exécution cron ${new Date().toISOString()}`)
+    try {
+      await runOnce()
+    } catch (err) {
+      console.error(`[Agent ${process.env.NODE_APP_INSTANCE ?? '0'}] Erreur runOnce:`, err.message)
+    }
+  })
+} else {
+  console.log(`[Agent ${process.env.NODE_APP_INSTANCE ?? '0'}] Mode CRON désactivé, exécution unique`)
+  await runOnce()
+}
+
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const ipsFile = path.resolve(__dirname, 'data/ips.txt')
 dotenv.config({ path: path.join(__dirname, './.env') })
+
 const RABBIT_URL = process.env.RABBIT_URL
 const QUEUE = 'ping_results'
+const IPS_FILE = path.resolve(__dirname, 'data/ips.txt')
+const CRON_SCHEDULE = process.env.CRON_PATTERN || '*/2 * * * *' // par défaut toutes les 2 minutes
 
-// Lecture des IPs
+// ---- UTILITAIRES ----
 function readIps(filePath) {
-	try {
-		const content = fs.readFileSync(filePath, 'utf8')
-		return content
-			.split(/\r?\n/)
-			.map(s => s.trim())
-			.filter(s => s.length > 0 && !s.startsWith('#'))
-	} catch (e) {
-		console.error(`[Erreur] Impossible de lire ${filePath}:`, e.message)
-		process.exit(1)
-	}
+  try {
+    const content = fs.readFileSync(filePath, 'utf8')
+    return content
+      .split(/\r?\n/)
+      .map(s => s.trim())
+      .filter(s => s.length > 0 && !s.startsWith('#'))
+  } catch (e) {
+    console.error(`[Erreur] Impossible de lire ${filePath}:`, e.message)
+    process.exit(1)
+  }
 }
 
-// utilitaire aléatoire 3 décimales
 function randFloat3(min, max) {
-	return parseFloat((min + Math.random() * (max - min)).toFixed(3))
+  return parseFloat((min + Math.random() * (max - min)).toFixed(3))
 }
 
 function simulatePing(ip, successProb) {
-	const ok = Math.random() < successProb
-	if (ok) {
-		return { ip, status: 'Réponse OK', timeMs: randFloat3(20, 200) }
-	}
-	const failStatuses = ['Délai dépassé (Timeout)', 'Hôte inaccessible']
-	return { ip, status: failStatuses[Math.floor(Math.random() * failStatuses.length)], timeMs: null }
+  const ok = Math.random() < successProb
+  if (ok) return { ip, status: 'Réponse OK', timeMs: randFloat3(20, 200) }
+  const fail = ['Délai dépassé (Timeout)', 'Hôte inaccessible']
+  return { ip, status: fail[Math.floor(Math.random() * fail.length)], timeMs: null }
 }
 
-let isRunning = false
+// ---- RÉPARTITION IPs SELON INSTANCE PM2 ----
+function getAgentIps(allIps) {
+  const totalAgents = os.cpus().length
+  const agentIndex = Number(process.env.NODE_APP_INSTANCE || 0)
+  const chunkSize = Math.ceil(allIps.length / totalAgents)
+  const start = agentIndex * chunkSize
+  const end = start + chunkSize
+  return allIps.slice(start, end)
+}
 
+// ---- TÂCHE PRINCIPALE ----
 async function runOnce() {
-	const ips = readIps(ipsFile)
-	if (ips.length === 0) {
-		console.error('[Info] Aucun hôte dans ips.txt')
-		process.exit(1)
-	}
+  const allIps = readIps(IPS_FILE)
+  const ips = getAgentIps(allIps)
+  if (ips.length === 0) {
+    console.log(`[Agent ${process.env.NODE_APP_INSTANCE}] Aucune IP assignée.`)
+    return
+  }
 
-	console.log('=== Agent de Ping Simulé (RabbitMQ) ===')
+  console.log(`=== [Agent ${process.env.NODE_APP_INSTANCE}] Ping ${ips.length} hôtes ===`)
 
-	// Connexion RabbitMQ
-	console.log('Rabbit:',RABBIT_URL)
-	const conn = await amqp.connect(RABBIT_URL)
-	const channel = await conn.createChannel()
-	await channel.assertQueue(QUEUE, { durable: false })
+  const conn = await amqp.connect(RABBIT_URL)
+  const channel = await conn.createChannel()
+  await channel.assertQueue(QUEUE, { durable: false })
 
-	for (const ip of ips) {
-		const PACKET_COUNT = 4 + Math.floor(Math.random() * 7) // 4..10
-		const successProb = randFloat3(0.300, 0.950)
+  for (const ip of ips) {
+    const PACKET_COUNT = 4 + Math.floor(Math.random() * 7)
+    const successProb = randFloat3(0.3, 0.95)
+    const hostTimes = []
+    let received = 0
 
-		const hostTimes = []
-		let received = 0
-		for (let i = 0; i < PACKET_COUNT; i++) {
-			const r = simulatePing(ip, successProb)
-			if (r.status === 'Réponse OK' && typeof r.timeMs === 'number') {
-				received++
-				hostTimes.push(r.timeMs)
-			}
-		}
+    for (let i = 0; i < PACKET_COUNT; i++) {
+      const r = simulatePing(ip, successProb)
+      if (r.status === 'Réponse OK' && typeof r.timeMs === 'number') {
+        received++
+        hostTimes.push(r.timeMs)
+      }
+    }
 
-		const transmitted = PACKET_COUNT
-		const lossPct = parseFloat((((transmitted - received) / transmitted) * 100).toFixed(3))
-		const sumHostTimes = hostTimes.reduce((a, b) => a + b, 0)
-		const totalTimeMs = parseFloat((sumHostTimes + ((transmitted - received) * 1000)).toFixed(3))
-		const min = hostTimes.length ? Math.min(...hostTimes) : 0
-		const max = hostTimes.length ? Math.max(...hostTimes) : 0
-		const avg = hostTimes.length ? parseFloat((sumHostTimes / hostTimes.length).toFixed(3)) : 0
-		let mdev = 0
-		if (hostTimes.length > 1) {
-			const variance = hostTimes.reduce((acc, t) => acc + Math.pow(t - avg, 2), 0) / hostTimes.length
-			mdev = parseFloat(Math.sqrt(variance).toFixed(3))
-		}
+    const transmitted = PACKET_COUNT
+    const lossPct = parseFloat((((transmitted - received) / transmitted) * 100).toFixed(3))
+    const sumHostTimes = hostTimes.reduce((a, b) => a + b, 0)
+    const totalTimeMs = parseFloat((sumHostTimes + ((transmitted - received) * 1000)).toFixed(3))
+    const min = hostTimes.length ? Math.min(...hostTimes) : 0
+    const max = hostTimes.length ? Math.max(...hostTimes) : 0
+    const avg = hostTimes.length ? parseFloat((sumHostTimes / hostTimes.length).toFixed(3)) : 0
+    let mdev = 0
+    if (hostTimes.length > 1) {
+      const variance = hostTimes.reduce((acc, t) => acc + Math.pow(t - avg, 2), 0) / hostTimes.length
+      mdev = parseFloat(Math.sqrt(variance).toFixed(3))
+    }
 
-		const result = { ip, transmitted, received, lossPct, totalTimeMs, min, avg, max, mdev, successProb }
+    const result = { ip, transmitted, received, lossPct, totalTimeMs, min, avg, max, mdev, successProb }
+    channel.sendToQueue(QUEUE, Buffer.from(JSON.stringify(result)))
+    console.log(`[Agent ${process.env.NODE_APP_INSTANCE}] ${ip} → envoyé (${avg.toFixed(1)} ms, perte ${lossPct}%)`)
+  }
 
-		// Console
-		console.log(`\n--- ${ip} ---`)
-		console.log(`${transmitted} packets transmitted, ${received} received, ${lossPct.toFixed(3)}% packet loss, time ${totalTimeMs.toFixed(3)}ms`)
-		console.log(`rtt min/avg/max/mdev = ${min.toFixed(3)}/${avg.toFixed(3)}/${max.toFixed(3)}/${mdev.toFixed(3)} ms`)
-		console.log(`(debug) successProb=${successProb.toFixed(3)}`)
-
-		// Envoi RabbitMQ
-		channel.sendToQueue(QUEUE, Buffer.from(JSON.stringify(result)))
-		console.log(`[RabbitMQ] Résultat envoyé pour ${ip}`)
-	}
-
-	// Fermeture propre
-	setTimeout(() => {
-		try { channel.close() } catch (_) {}
-		try { conn.close() } catch (_) {}
-		isRunning = false
-	}, 500)
+  await channel.close()
+  await conn.close()
 }
 
-const AGENT_CRON = String(process.env.AGENT_CRON || 'true').toLowerCase() === 'true'
-
-if (AGENT_CRON) {
-	console.log('[Agent] Démarrage en mode cron (chaque minute)')
-	cron.schedule('* * * * *', async () => {
-		if (isRunning) {
-			console.log('[Agent] Exécution précédente encore en cours, on saute ce tour')
-			return
-		}
-		isRunning = true
-		try {
-			await runOnce()
-		} catch (e) {
-			console.error('[Erreur] Exécution:', e)
-			isRunning = false
-		}
-	}, { recoverMissedExecutions: false })
-} else {
-	runOnce().catch(e => {
-		console.error('[Erreur] Exécution:', e)
-		process.exit(1)
-	})
-}
+// ---- CRON UNIQUE ----
+console.log(`[Agent ${process.env.NODE_APP_INSTANCE}] CRON activé : ${CRON_SCHEDULE}`)
+cron.schedule(CRON_SCHEDULE, async () => {
+  console.log(`[Agent ${process.env.NODE_APP_INSTANCE}] → Exécution CRON`)
+  try {
+    await runOnce()
+  } catch (e) {
+    console.error(`[Agent ${process.env.NODE_APP_INSTANCE}] Erreur`, e.message)
+  }
+})
