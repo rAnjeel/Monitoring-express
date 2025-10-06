@@ -1,9 +1,9 @@
-const db = require('../config/db');
-const { ports } = require('../models/port.model');
-const { devices } = require('../models/device.model');
-const { eq, sql, like, or, and } = require('drizzle-orm');
-const logger = require('../logger/logger');
-const utilService = require('./util.service');
+import db from '../config/db.js';
+import { ports } from '../models/port.model.js';
+import { devices } from '../models/device.model.js';
+import { eq, sql, like, or, and } from 'drizzle-orm';
+import logger from '../logger/logger.js';
+import utilService from './util.service.js';
 
 class PortService {
   list = async () => {
@@ -360,5 +360,5 @@ class PortService {
   }
 }
 
-module.exports = new PortService();
+export default new PortService();
 

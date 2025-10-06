@@ -1,5 +1,5 @@
-const { mysqlTable, int, varchar, double, datetime } = require('drizzle-orm/mysql-core');
-const { sql } = require('drizzle-orm');
+import { mysqlTable, int, varchar, double, datetime } from 'drizzle-orm/mysql-core';
+import { sql } from 'drizzle-orm';
 
 const locations = mysqlTable('locations', {
   id: int('id').primaryKey().autoincrement(),
@@ -9,4 +9,4 @@ const locations = mysqlTable('locations', {
   inserted_date: datetime('inserted_date').default(sql`CURRENT_TIMESTAMP`).notNull(),
 });
 
-module.exports = { locations };
+export { locations };

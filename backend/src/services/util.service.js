@@ -45,4 +45,5 @@ class UtilService {
   }
 }
 
-module.exports = new UtilService();
+const utilService = new UtilService();
+export default utilService;

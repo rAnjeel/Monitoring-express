@@ -6,4 +6,4 @@ class LocationDTO {
   }
 }
 
-module.exports = LocationDTO;
+export default LocationDTO;

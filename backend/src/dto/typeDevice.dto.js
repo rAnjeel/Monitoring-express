@@ -4,4 +4,4 @@ class TypeDeviceDTO {
   }
 }
 
-module.exports = TypeDeviceDTO;
+export default TypeDeviceDTO;

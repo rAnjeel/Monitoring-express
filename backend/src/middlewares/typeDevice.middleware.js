@@ -1,4 +1,4 @@
-const Joi = require('joi');
+import Joi from 'joi';
 
 const typeDeviceSchema = Joi.object({
   name: Joi.string().max(100).required(),
@@ -15,4 +15,4 @@ function validateTypeDevice(req, res, next) {
   next();
 }
 
-module.exports = validateTypeDevice;
+export default validateTypeDevice;

@@ -57,6 +57,6 @@ class MessageParserService {
 	}
 }
 
-module.exports = new MessageParserService()
+export default new MessageParserService()
 
 

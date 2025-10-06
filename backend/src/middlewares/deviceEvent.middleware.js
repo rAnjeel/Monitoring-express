@@ -1,5 +1,5 @@
-const DeviceEventDto = require('../dto/deviceEvent.dto');
-const logger = require('../logger/logger');
+import DeviceEventDto from '../dto/deviceEvent.dto.js';
+import logger from '../logger/logger.js';
 
 class DeviceEventMiddleware {
   // Validation pour la création d'un événement
@@ -118,4 +118,4 @@ class DeviceEventMiddleware {
   };
 }
 
-module.exports = DeviceEventMiddleware;
+export default DeviceEventMiddleware;

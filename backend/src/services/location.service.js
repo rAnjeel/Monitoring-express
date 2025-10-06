@@ -1,7 +1,7 @@
-const db = require('../config/db');
-const { locations } = require('../models/location.model');
-const { eq } = require('drizzle-orm');
-const logger = require('../logger/logger');
+import db from '../config/db.js';
+import { locations } from '../models/location.model.js';
+import { eq } from 'drizzle-orm';
+import logger from '../logger/logger.js';
 
 class LocationService {
   list = async () => {
@@ -69,4 +69,4 @@ class LocationService {
   }
 }
 
-module.exports = new LocationService();
+export default new LocationService();

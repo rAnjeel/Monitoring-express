@@ -1,13 +1,13 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const deviceEventController = require('../controllers/deviceEvent.controller');
-const deviceEventMiddleware = require('../middlewares/deviceEvent.middleware');
+import deviceEventController from '../controllers/deviceEvent.controller.js';
+import DeviceEventMiddleware from '../middlewares/deviceEvent.middleware.js';
 
 // Routes pour les événements de devices
 
 // GET /device-events - Récupérer tous les événements avec pagination et filtres
 router.get('/', 
-  deviceEventMiddleware.validateQuery,
+  DeviceEventMiddleware.validateQuery,
   deviceEventController.getAll
 );
 
@@ -18,41 +18,39 @@ router.get('/recent',
 
 // GET /device-events/:id - Récupérer un événement par ID
 router.get('/:id', 
-  deviceEventMiddleware.validateId,
+  DeviceEventMiddleware.validateId,
   deviceEventController.getById
 );
 
 // POST /device-events - Créer un nouvel événement
 router.post('/', 
-  deviceEventMiddleware.validateCreate,
+  DeviceEventMiddleware.validateCreate,
   deviceEventController.create
 );
 
 // PUT /device-events/:id - Mettre à jour un événement
 router.put('/:id', 
-  deviceEventMiddleware.validateId,
-  deviceEventMiddleware.validateUpdate,
+  DeviceEventMiddleware.validateId,
+  DeviceEventMiddleware.validateUpdate,
   deviceEventController.update
 );
 
 // DELETE /device-events/:id - Supprimer un événement
 router.delete('/:id', 
-  deviceEventMiddleware.validateId,
+  DeviceEventMiddleware.validateId,
   deviceEventController.delete
 );
 
 // Routes spécifiques aux devices
 
 // GET /device-events/device/:deviceId - Récupérer tous les événements d'un device
-router.get('/device/:deviceId', 
-  deviceEventMiddleware.validateDeviceId,
-  deviceEventMiddleware.validateQuery,
+router.get('/device/:deviceId',
   deviceEventController.getByDeviceId
 );
 
 // GET /device-events/device/:deviceId/stats - Récupérer les statistiques d'un device
 router.get('/device/:deviceId/stats', 
-  deviceEventMiddleware.validateDeviceId,
+  DeviceEventMiddleware.validateDeviceId,
   deviceEventController.getStats
 );
 
@@ -61,4 +59,4 @@ router.post('/status-change',
   deviceEventController.createStatusChange
 );
 
-module.exports = router;
+export default router;

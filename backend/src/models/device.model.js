@@ -1,4 +1,4 @@
-const { mysqlTable, int, varchar, float, boolean, datetime, text } = require('drizzle-orm/mysql-core');
+import { mysqlTable, int, varchar, float, boolean, datetime, text } from 'drizzle-orm/mysql-core';
 
 const devices = mysqlTable('devices', {
   device_id: int('device_id'),
@@ -28,4 +28,4 @@ const devices = mysqlTable('devices', {
   ne_id: varchar('ne_id', { length: 45 }).notNull(),
 });
 
-module.exports = { devices };
+export { devices };

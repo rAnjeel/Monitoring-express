@@ -1,12 +1,12 @@
-const db = require('../config/db');
-const { devices } = require('../models/device.model');
-const { locations } = require('../models/location.model');
-const { typeDevices } = require('../models/typeDevice.model');
-const { eq, sql, like, or, and } = require('drizzle-orm');
-const logger = require('../logger/logger');
-const utilService = require('./util.service');
-const consumer = require('./messaging/consumer.service');
-const deviceEventService = require('./deviceEvent.service');
+import db from '../config/db.js';
+import { devices } from '../models/device.model.js';
+import { locations } from '../models/location.model.js';
+import { typeDevices } from '../models/typeDevice.model.js';
+import { eq, sql, like, or, and } from 'drizzle-orm';
+import logger from '../logger/logger.js';
+import utilService from './util.service.js';
+import consumer from './messaging/consumer.service.js';
+import deviceEventService from './deviceEvent.service.js';
 
 class DeviceService {
   list = async () => {
@@ -452,4 +452,4 @@ class DeviceService {
   }
 }
 
-module.exports = new DeviceService();
+export default new DeviceService();

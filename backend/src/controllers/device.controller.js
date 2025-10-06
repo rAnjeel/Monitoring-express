@@ -1,5 +1,5 @@
-const logger = require('../logger/logger');
-const deviceService = require('../services/device.service');
+import logger from '../logger/logger.js';
+import deviceService from '../services/device.service.js';
 
 class DeviceController {
   getAll = async (req, res) => {
@@ -105,4 +105,4 @@ class DeviceController {
   }
 }
 
-module.exports = new DeviceController();
+export default new DeviceController();

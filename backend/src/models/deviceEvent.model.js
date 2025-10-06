@@ -1,4 +1,4 @@
-const { mysqlTable, int, float, mysqlEnum, timestamp } = require('drizzle-orm/mysql-core');
+import { mysqlTable, int, float, mysqlEnum, timestamp } from 'drizzle-orm/mysql-core';
 
 const deviceEvents = mysqlTable('device_events', {
   id: int('id').primaryKey().autoincrement(),
@@ -11,4 +11,4 @@ const deviceEvents = mysqlTable('device_events', {
   event_time: timestamp('event_time').defaultNow(),
 });
 
-module.exports = { deviceEvents };
+export { deviceEvents };

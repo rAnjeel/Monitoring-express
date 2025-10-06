@@ -1,5 +1,5 @@
-const logger = require('../logger/logger');
-const portService = require('../services/port.service');
+import logger from '../logger/logger.js';
+import portService from '../services/port.service.js';
 
 class PortController {
   getAll = async (req, res) => {
@@ -90,5 +90,5 @@ class PortController {
   }
 }
 
-module.exports = new PortController();
+export default new PortController();
 

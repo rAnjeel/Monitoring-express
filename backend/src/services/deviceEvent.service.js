@@ -1,9 +1,9 @@
-const db = require('../config/db');
-const { deviceEvents } = require('../models/deviceEvent.model');
-const { devices } = require('../models/device.model');
-const { eq, sql, and, gte, lte, desc } = require('drizzle-orm');
-const logger = require('../logger/logger');
-const DeviceEventDto = require('../dto/deviceEvent.dto');
+import db from '../config/db.js';
+import { deviceEvents } from '../models/deviceEvent.model.js';
+import { devices } from '../models/device.model.js';
+import { eq, sql, and, gte, lte, desc, between } from 'drizzle-orm';
+import logger from '../logger/logger.js';
+import DeviceEventDto from '../dto/deviceEvent.dto.js';
 
 class DeviceEventService {
   // Créer un nouvel événement
@@ -57,40 +57,38 @@ class DeviceEventService {
         conditions.push(eq(deviceEvents.status, status));
       }
 
-      // Filtrer par date si fournie
-      if (start_date) {
+      if (start_date && end_date) {
+        conditions.push(
+          between(deviceEvents.event_time, new Date(start_date), new Date(end_date))
+        );
+      } else if (start_date) {
         conditions.push(gte(deviceEvents.event_time, new Date(start_date)));
-      }
-      if (end_date) {
+      } else if (end_date) {
         conditions.push(lte(deviceEvents.event_time, new Date(end_date)));
       }
+      
 
-      // Requête pour les données
       const rows = await db
         .select()
         .from(deviceEvents)
         .where(and(...conditions))
         .orderBy(desc(deviceEvents.event_time))
-        .limit(pageSize)
-        .offset(offset);
-
-      // Requête pour le count total
-      const countResult = await db
-        .select({ count: sql`count(*)`.as('count') })
-        .from(deviceEvents)
-        .where(and(...conditions));
-
-      const totalCount = Number(countResult[0]?.count || 0);
-
-      logger.info(`[DeviceEvent] Found ${rows.length} events for device_id=${deviceId}`);
+        .limit(Number(pageSize) + 1)
+        .offset(Number(offset));
       
+      logger.info(`[DeviceEvent] Found ${rows.length} events for device_id=${deviceId}`);
+
+      const hasNextPage = rows.length > pageSize;
+      // retire la ligne extra
+      if (hasNextPage) rows.pop();
+
       return {
-        rows: rows.map(event => DeviceEventDto.format(event)),
-        totalCount,
+        rows,
         page,
         pageSize,
-        totalPages: Math.ceil(totalCount / pageSize)
+        hasNextPage,
       };
+
     } catch (error) {
       logger.error(`[DeviceEvent] Error fetching events for device_id=${deviceId}: ${error.message}`);
       throw new Error('Database error while fetching device events');
@@ -142,8 +140,8 @@ class DeviceEventService {
 
       const rows = await query
         .orderBy(desc(deviceEvents.event_time))
-        .limit(pageSize)
-        .offset(offset);
+        .limit(Number(pageSize))
+        .offset(Number(offset));
 
       // Count total
       const countQuery = conditions.length > 0
@@ -252,4 +250,4 @@ class DeviceEventService {
   };
 }
 
-module.exports = new DeviceEventService();
+export default new DeviceEventService();

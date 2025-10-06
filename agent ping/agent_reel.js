@@ -4,12 +4,14 @@
 // - Exécute la commande ping native et parse la sortie
 // - Envoie les statistiques à RabbitMQ
 
-const fs = require('fs')
-const path = require('path')
-const { exec } = require('child_process')
-const amqp = require('amqplib')
+import fs from 'fs'
+import path from 'path'
+import { exec } from 'child_process'
+import amqp from 'amqplib'
+import dotenv from 'dotenv'
+import { fileURLToPath } from 'url'
 
-require('dotenv').config()
+dotenv.config()
 const RABBIT_URL = process.env.RABBIT_URL
 const QUEUE = 'ping_results'
 
@@ -18,6 +20,8 @@ const PING_COUNT_ARG = isWindows ? '-n' : '-c'
 const PING_TIMEOUT_ARG = isWindows ? '-w' : '-W' // seconds (linux/mac) / ms (windows)
 const PACKET_COUNT = 4
 
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 const ipsFile = path.resolve(__dirname, 'data/ipreal.txt')
 
 function readIps(filePath) {

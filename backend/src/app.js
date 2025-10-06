@@ -1,15 +1,22 @@
-require('dotenv').config({ path: require('path').join(__dirname, '../.env') });
-const express = require('express');
-const bodyParser = require('body-parser');
-const cors = require('cors');
-const deviceRoutes = require('./routes/device.routes');
-const typeDeviceRoutes = require('./routes/typeDevice.routes');
-const locationRoutes = require('./routes/location.routes');  
-const portRoutes = require('./routes/port.routes');
-const deviceEventRoutes = require('./routes/deviceEvent.routes');
-const logger = require('./logger/logger');
-const db = require('./config/db');
-const errorHandler = require('./middlewares/error.middleware');
+import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
+import deviceRoutes from './routes/device.routes.js';
+import typeDeviceRoutes from './routes/typeDevice.routes.js';
+import locationRoutes from './routes/location.routes.js';  
+import portRoutes from './routes/port.routes.js';
+import deviceEventRoutes from './routes/deviceEvent.routes.js';
+import logger from './logger/logger.js';
+import db from './config/db.js';
+import errorHandler from './middlewares/error.middleware.js';
+import deviceService from './services/device.service.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+dotenv.config({ path: path.join(__dirname, '../.env') });
 
 const app = express();
 app.use(bodyParser.json({ limit: '20mb' }));
@@ -38,6 +45,10 @@ async function startServer() {
   try {
     const PORT = process.env.PORT;
     app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
+
+     // démarrer le consumer RabbitMQ
+    // await deviceService.startPingConsumer();
+    // logger.info('PingConsumer démarré');
   } catch (error) {
     logger.error(`Database connection failed: ${error.message}`);
     process.exit(1);

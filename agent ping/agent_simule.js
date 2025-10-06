@@ -1,12 +1,18 @@
 #!/usr/bin/env node
 // Agent de Ping Simulé avec envoi RabbitMQ
 
-const fs = require('fs')
-const path = require('path')
-const amqp = require('amqplib')
+import fs from 'fs'
+import path from 'path'
+import amqp from 'amqplib'
+import cron from 'node-cron'
+import dotenv from 'dotenv'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const ipsFile = path.resolve(__dirname, 'data/ips.txt')
-require('dotenv').config()
+dotenv.config({ path: path.join(__dirname, './.env') })
 const RABBIT_URL = process.env.RABBIT_URL
 const QUEUE = 'ping_results'
 
@@ -38,7 +44,9 @@ function simulatePing(ip, successProb) {
 	return { ip, status: failStatuses[Math.floor(Math.random() * failStatuses.length)], timeMs: null }
 }
 
-async function main() {
+let isRunning = false
+
+async function runOnce() {
 	const ips = readIps(ipsFile)
 	if (ips.length === 0) {
 		console.error('[Info] Aucun hôte dans ips.txt')
@@ -95,13 +103,32 @@ async function main() {
 
 	// Fermeture propre
 	setTimeout(() => {
-		channel.close()
-		conn.close()
-		process.exit(0)
+		try { channel.close() } catch (_) {}
+		try { conn.close() } catch (_) {}
+		isRunning = false
 	}, 500)
 }
 
-main().catch(e => {
-	console.error('[Erreur] Exécution:', e)
-	process.exit(1)
-})
+const AGENT_CRON = String(process.env.AGENT_CRON || 'true').toLowerCase() === 'true'
+
+if (AGENT_CRON) {
+	console.log('[Agent] Démarrage en mode cron (chaque minute)')
+	cron.schedule('* * * * *', async () => {
+		if (isRunning) {
+			console.log('[Agent] Exécution précédente encore en cours, on saute ce tour')
+			return
+		}
+		isRunning = true
+		try {
+			await runOnce()
+		} catch (e) {
+			console.error('[Erreur] Exécution:', e)
+			isRunning = false
+		}
+	}, { recoverMissedExecutions: false })
+} else {
+	runOnce().catch(e => {
+		console.error('[Erreur] Exécution:', e)
+		process.exit(1)
+	})
+}
