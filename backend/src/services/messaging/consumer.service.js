@@ -4,47 +4,47 @@ import PQueue from 'p-queue'
 import parser from './messageParser.service.js'
 import logger from '../../logger/logger.js'
 
-
 class ConsumerService {
 	constructor() {
 		this.connection = null
 		this.channel = null
-		this.queue = process.env.RABBIT_QUEUE
+		this.queueName = process.env.RABBIT_QUEUE
 		this.url = process.env.RABBIT_URL
 		this.isConsuming = false
+
 		this.concurrentLimit = Number(process.env.CONSUMER_CONCURRENCY || 5)
-		this.queue = new PQueue({ concurrency: this.concurrentLimit })
+		this.taskQueue = new PQueue({ concurrency: this.concurrentLimit })
 	}
 
 	start = async (onMessage) => {
 		if (this.isConsuming) {
-			logger.warn('[Consumer] Consumer déjà en cours d\'exécution')
+			logger.warn('[Consumer] Déjà en cours d\'exécution')
 			return
 		}
-		
-		if (!this.url) {
-			logger.error('[Consumer] RABBIT_URL manquant dans l\'environnement')
-			throw new Error('RABBIT_URL manquant dans l\'environnement')
-		}
-		
+
+		if (!this.url) throw new Error('RABBIT_URL manquant')
+		if (!this.queueName || typeof this.queueName !== 'string')
+			throw new Error('RABBIT_QUEUE manquant ou invalide')
+
 		try {
 			logger.info(`[Consumer] Connexion à RabbitMQ: ${this.url}`)
 			this.connection = await amqp.connect(this.url)
 			this.channel = await this.connection.createChannel()
-			await this.channel.assertQueue(this.queue, { durable: false })
-			const prefetchCount = Number(process.env.RABBIT_PREFETCH)
+
+			await this.channel.assertQueue(this.queueName, { durable: false })
+			const prefetchCount = Number(process.env.RABBIT_PREFETCH || 20)
 			await this.channel.prefetch(prefetchCount)
+
 			this.isConsuming = true
-			logger.info(`[Consumer] Consommateur démarré sur la queue: ${this.queue}`)
+			logger.info(`[Consumer] Consommateur démarré sur: ${this.queueName} (prefetch=${prefetchCount}, concurrency=${this.concurrentLimit})`)
 		} catch (error) {
-			logger.error(`[Consumer] Erreur de connexion RabbitMQ: ${error.message}`)
+			logger.error(`[Consumer] Erreur connexion RabbitMQ: ${error.message}`)
 			throw error
 		}
 
-
-		await this.channel.consume(this.queue, (msg) => {
+		await this.channel.consume(this.queueName, (msg) => {
 			if (!msg) return
-			this.queue.add(async () => {
+			this.taskQueue.add(async () => {
 				try {
 					const parsed = parser.parsePingMessage(msg.content.toString())
 					if (parsed && typeof onMessage === 'function') {

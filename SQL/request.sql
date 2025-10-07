@@ -69,5 +69,31 @@ INNER JOIN (
 WHERE
     p1.id > doublons.min_id;
 
+-- Pour voir la taille des tables en MB dans MySQL
+SELECT
+    table_name AS `Table`,
+    ROUND(((DATA_LENGTH + INDEX_LENGTH) / 1024 / 1024), 2) AS `Taille (MB)`
+FROM
+    information_schema.TABLES
+WHERE
+    TABLE_SCHEMA = 'monitoring'
+    AND TABLE_NAME = 'device_events';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 --Reset commit git
 git reset --soft HEAD~2
+
