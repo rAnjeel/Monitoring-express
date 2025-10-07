@@ -1,5 +1,6 @@
 import logger from '../logger/logger.js';
 import deviceEventService from '../services/deviceEvent.service.js';
+import SocketService from '../services/socket/socket.service.js';
 
 class DeviceEventController {
   // Récupérer tous les événements avec pagination et filtres
@@ -65,7 +66,8 @@ class DeviceEventController {
   create = async (req, res) => {
     try {
       const eventId = await deviceEventService.create(req.body);
-      
+      // Notify clients that a device event was created
+      SocketService.emitToAll('deviceEvents:created', { id: eventId, device_id: req.body?.device_id });
       res.status(201).json({ 
         id: eventId,
         message: 'Événement créé avec succès'

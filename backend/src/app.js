@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import express from 'express';
+import http from 'http';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 import deviceRoutes from './routes/device.routes.js';
@@ -13,6 +14,7 @@ import logger from './logger/logger.js';
 import db from './config/db.js';
 import errorHandler from './middlewares/error.middleware.js';
 import deviceService from './services/device.service.js';
+import SocketService from './services/socket/socket.service.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -44,11 +46,23 @@ app.use((err, req, res, next) => {
 async function startServer() {
   try {
     const PORT = process.env.PORT;
-    app.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
+    const server = http.createServer(app);
+
+    // Initialize persistent Socket.IO server bound to HTTP server
+    SocketService.init(server, {
+      cors: {
+        origin: ['http://localhost:8080', 'http://localhost:8081'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        allowedHeaders: ['Content-Type', 'Authorization']
+      }
+    });
+
+    server.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
 
      // démarrer le consumer RabbitMQ
     await deviceService.startPingConsumer();
     logger.info('PingConsumer démarré');
+    logger.info('Socket.IO initialisé');
   } catch (error) {
     logger.error(`Database connection failed: ${error.message}`);
     process.exit(1);
