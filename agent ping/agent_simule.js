@@ -16,7 +16,7 @@ dotenv.config({ path: path.join(__dirname, './.env') })
 // === CONFIG ===
 const RABBIT_URL = process.env.RABBIT_URL
 const QUEUE = 'ping_results'
-const IPS_FILE = path.resolve(__dirname, 'data/ips.txt')
+const IPS_FILE = path.resolve(__dirname, 'data/ips copy.txt')
 const CRON_PATTERN = process.env.CRON_PATTERN || '*/1 * * * *'
 const ENABLE_CRON = String(process.env.AGENT_CRON || '').toLowerCase() === 'true'
 const AGENT_ID = process.env.NODE_APP_INSTANCE ?? '0'
@@ -39,7 +39,7 @@ async function readIps() {
     const content = await fs.readFile(IPS_FILE, 'utf8')
     return content
       .split(/\r?\n/)
-      .map(s => s.trim())
+      .map(s => s.trim().replace(/^['"]|['"]$/g, ''))
       .filter(s => s.length > 0 && !s.startsWith('#'))
   } catch (e) {
     console.error(`[Agent ${AGENT_ID}] ⚠️ Erreur lecture IPs :`, e.message)
