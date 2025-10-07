@@ -70,7 +70,7 @@ async function runOnce() {
   const channel = await conn.createChannel()
   await channel.assertQueue(QUEUE, { durable: false })
 
-  // ⚙️ Traiter les IPs par petits lots pour éviter les blocages
+  // Traiter les IPs par petits lots pour éviter les blocages
   const BATCH_SIZE = 5
   for (let i = 0; i < ips.length; i += BATCH_SIZE) {
     const batch = ips.slice(i, i + BATCH_SIZE)
@@ -100,7 +100,7 @@ async function runOnce() {
       })
     )
 
-    // ⏸️ pause courte pour laisser respirer l’event loop
+    // pause
     await new Promise(res => setTimeout(res, 100))
   }
 

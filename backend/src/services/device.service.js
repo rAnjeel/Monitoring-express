@@ -395,11 +395,7 @@ class DeviceService {
     await consumer.start(async (pingResult) => {
       try {
         logger.info(`[PingConsumer] Message reçu: ${JSON.stringify(pingResult)}`);
-
-        // Exemple : le parser renvoie { ip, transmitted, received, lossPct, avg, min, max, successProb }
         const { ip, lossPct, avg, min, max } = pingResult;
-
-        // Chercher le device correspondant à l'IP
         const existing = await db.select().from(devices).where(eq(devices.hostname, ip));
 
         if (!existing || existing.length === 0) {
@@ -429,7 +425,7 @@ class DeviceService {
           .set(updateData)
           .where(eq(devices.id, deviceId));
           
-        // Créer un événement pour tracer le changement de statut
+        // Creation historique de device
         try {
           await deviceEventService.createStatusChangeEvent(deviceId, isUp, {
             loss: lossPct,
