@@ -1,5 +1,6 @@
 // consumer.service.js
 import amqp from 'amqplib'
+import PQueue from 'p-queue'
 import parser from './messageParser.service.js'
 import logger from '../../logger/logger.js'
 
@@ -11,6 +12,8 @@ class ConsumerService {
 		this.queue = process.env.RABBIT_QUEUE
 		this.url = process.env.RABBIT_URL
 		this.isConsuming = false
+		this.concurrentLimit = Number(process.env.CONSUMER_CONCURRENCY || 5)
+		this.queue = new PQueue({ concurrency: this.concurrentLimit })
 	}
 
 	start = async (onMessage) => {
@@ -29,6 +32,8 @@ class ConsumerService {
 			this.connection = await amqp.connect(this.url)
 			this.channel = await this.connection.createChannel()
 			await this.channel.assertQueue(this.queue, { durable: false })
+			const prefetchCount = Number(process.env.RABBIT_PREFETCH)
+			await this.channel.prefetch(prefetchCount)
 			this.isConsuming = true
 			logger.info(`[Consumer] Consommateur démarré sur la queue: ${this.queue}`)
 		} catch (error) {
@@ -36,18 +41,21 @@ class ConsumerService {
 			throw error
 		}
 
-		await this.channel.consume(this.queue, async (msg) => {
+
+		await this.channel.consume(this.queue, (msg) => {
 			if (!msg) return
-			try {
-				const parsed = parser.parsePingMessage(msg.content.toString())
-				if (parsed && typeof onMessage === 'function') {
-					await onMessage(parsed)
+			this.queue.add(async () => {
+				try {
+					const parsed = parser.parsePingMessage(msg.content.toString())
+					if (parsed && typeof onMessage === 'function') {
+						await onMessage(parsed)
+					}
+				} catch (e) {
+					logger.error(`[Consumer] Erreur traitement message: ${e.message}`)
+				} finally {
+					try { this.channel.ack(msg) } catch {}
 				}
-			} catch (e) {
-				logger.error(`[Consumer] Erreur traitement message: ${e.message}`)
-			} finally {
-				this.channel.ack(msg)
-			}
+			})
 		})
 	}
 

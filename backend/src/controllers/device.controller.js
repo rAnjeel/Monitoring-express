@@ -66,8 +66,8 @@ class DeviceController {
   update = async (req, res) => {
     try {
       await deviceService.update(req.params.id, req.body);
-      // Notify clients to reload devices
-      SocketService.emitToAll('devices:updated', { id: req.params.id });
+      // Enqueue for bulk socket emit
+      SocketService.enqueueDeviceUpdate(req.params.id)
       res.json({ message: 'Updated successfully' });
     } catch (error) {
       logger.error(`Controller error (update): ${error.message}`);

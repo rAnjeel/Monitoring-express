@@ -10,6 +10,53 @@ import deviceEventService from './deviceEvent.service.js';
 import SocketService from './socket/socket.service.js';
 
 class DeviceService {
+  constructor() {
+    this.updateBuffer = new Map()
+    this.flushTimer = null
+    this.batchIntervalMs = Number(process.env.BATCH_SQL_INTERVAL_MS || 3000)
+    this.batchMaxPerTick = Number(process.env.BATCH_SQL_MAX || 200)
+  }
+
+  queueUpdate = (id, partialData) => {
+    const deviceId = Number(id)
+    if (!this.updateBuffer.has(deviceId)) {
+      this.updateBuffer.set(deviceId, { ...partialData })
+    } else {
+      const existing = this.updateBuffer.get(deviceId) || {}
+      this.updateBuffer.set(deviceId, { ...existing, ...partialData })
+    }
+    if (!this.flushTimer) {
+      this.flushTimer = setTimeout(() => this.flushUpdates(), this.batchIntervalMs)
+    }
+  }
+
+  flushUpdates = async () => {
+    try {
+      const entries = Array.from(this.updateBuffer.entries())
+      if (entries.length === 0) {
+        clearTimeout(this.flushTimer)
+        this.flushTimer = null
+        return
+      }
+      const slice = entries.slice(0, this.batchMaxPerTick)
+      for (const [id, data] of slice) {
+        try {
+          await db.update(devices).set(data).where(eq(devices.id, id))
+        } catch (e) {
+          logger.error(`[BatchSQL] Erreur update device id=${id}: ${e.message}`)
+        } finally {
+          this.updateBuffer.delete(id)
+        }
+      }
+    } finally {
+      if (this.updateBuffer.size > 0) {
+        this.flushTimer = setTimeout(() => this.flushUpdates(), this.batchIntervalMs)
+      } else {
+        clearTimeout(this.flushTimer)
+        this.flushTimer = null
+      }
+    }
+  }
   list = async () => {
     try {
       logger.info('Fetching all devices');
@@ -55,6 +102,8 @@ class DeviceService {
       logger.info(`Updating device id=${id}`);
       const result = await db.update(devices).set(data).where(eq(devices.id, id));
       logger.info(`Update result for device id=${id}: ${JSON.stringify(result)}`);
+      // enqueue bulk device update
+      try { SocketService.enqueueDeviceUpdate(id) } catch {}
       return result;
     } catch (error) {
       logger.error(`Error updating device id=${id}: ${error.message}`);
@@ -396,7 +445,11 @@ class DeviceService {
     await consumer.start(async (pingResult) => {
       try {
         logger.info(`[PingConsumer] Message reçu: ${JSON.stringify(pingResult)}`);
+
+        // Exemple : le parser renvoie { ip, transmitted, received, lossPct, avg, min, max, successProb }
         const { ip, lossPct, avg, min, max } = pingResult;
+
+        // Chercher le device correspondant à l'IP
         const existing = await db.select().from(devices).where(eq(devices.hostname, ip));
 
         if (!existing || existing.length === 0) {
@@ -422,18 +475,15 @@ class DeviceService {
           updateData.uptime = new Date();
         }
         
-        await db.update(devices)
-          .set(updateData)
-          .where(eq(devices.id, deviceId));
+        // Enqueue DB update (batched)
+        this.queueUpdate(deviceId, updateData)
 
-        // Notifier les clients qu'un device a été mis à jour
-        try {
-          SocketService.emitToAll('devices:updated', { id: deviceId });
-        } catch (e) {
-          logger.warn(`[PingConsumer] Notification devices:updated échouée: ${e.message}`)
+        // Enqueue bulk device update
+        try { SocketService.enqueueDeviceUpdate(deviceId) } catch (e) {
+          logger.warn(`[PingConsumer] enqueue devices:bulk_update échouée: ${e.message}`)
         }
           
-        // Creation historique de device
+        // Créer un événement pour tracer le changement de statut
         try {
           await deviceEventService.createStatusChangeEvent(deviceId, isUp, {
             loss: lossPct,

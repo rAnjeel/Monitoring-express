@@ -6,6 +6,9 @@ class SocketService {
         this.io = null
         this.namespace = null
         this.isInitialized = false
+        this.bulkBuffer = new Set()
+        this.bulkTimer = null
+        this.bulkIntervalMs = Number(process.env.SOCKET_BULK_INTERVAL_MS || 2000)
     }
 
     // Initialize Socket.IO on an existing HTTP/S server instance
@@ -58,6 +61,33 @@ class SocketService {
     leaveRoom = async (socket, roomName) => {
         if (!socket || !roomName) return
         await socket.leave(roomName)
+    }
+
+    // Queue device ids for bulk update emits
+    enqueueDeviceUpdate = (deviceId) => {
+        this.bulkBuffer.add(Number(deviceId))
+        if (!this.bulkTimer) {
+            this.bulkTimer = setTimeout(() => this.flushBulk(), this.bulkIntervalMs)
+        }
+    }
+
+    flushBulk = () => {
+        if (!this.io) {
+            this.bulkBuffer.clear()
+            this.bulkTimer && clearTimeout(this.bulkTimer)
+            this.bulkTimer = null
+            return
+        }
+        if (this.bulkBuffer.size === 0) {
+            this.bulkTimer && clearTimeout(this.bulkTimer)
+            this.bulkTimer = null
+            return
+        }
+        const ids = Array.from(this.bulkBuffer)
+        this.bulkBuffer.clear()
+        this.bulkTimer && clearTimeout(this.bulkTimer)
+        this.bulkTimer = null
+        this.io.emit('devices:bulk_update', ids)
     }
 }
 
