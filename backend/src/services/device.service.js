@@ -15,6 +15,8 @@ class DeviceService {
     this.flushTimer = null
     this.batchIntervalMs = Number(process.env.BATCH_SQL_INTERVAL_MS || 3000)
     this.batchMaxPerTick = Number(process.env.BATCH_SQL_MAX || 200)
+    this.ipToDeviceIdCache = new Map()
+    this.ipCacheMaxSize = Number(process.env.IP_CACHE_MAX || 10000)
   }
 
   queueUpdate = (id, partialData) => {
@@ -445,19 +447,23 @@ class DeviceService {
     await consumer.start(async (pingResult) => {
       try {
         logger.info(`[PingConsumer] Message reçu: ${JSON.stringify(pingResult)}`);
-
-        // Exemple : le parser renvoie { ip, transmitted, received, lossPct, avg, min, max, successProb }
         const { ip, lossPct, avg, min, max } = pingResult;
 
-        // Chercher le device correspondant à l'IP
-        const existing = await db.select().from(devices).where(eq(devices.hostname, ip));
-
-        if (!existing || existing.length === 0) {
-          logger.warn(`[PingConsumer] Aucun device trouvé avec ip=${ip}`);
-          return;
+        // Chercher le device correspondant à l'IP avec cache
+        let deviceId = this.ipToDeviceIdCache.get(ip)
+        if (!deviceId) {
+          const existing = await db.select().from(devices).where(eq(devices.hostname, ip));
+          if (!existing || existing.length === 0) {
+            logger.warn(`[PingConsumer] Aucun device trouvé avec ip=${ip}`);
+            return;
+          }
+          deviceId = existing[0].id
+          if (this.ipToDeviceIdCache.size >= this.ipCacheMaxSize) {
+            const firstKey = this.ipToDeviceIdCache.keys().next().value
+            this.ipToDeviceIdCache.delete(firstKey)
+          }
+          this.ipToDeviceIdCache.set(ip, deviceId)
         }
-
-        const deviceId = existing[0].id;
         logger.info(`[PingConsumer] Device id=${deviceId}, ip=${ip}`, JSON.stringify(pingResult));
         const lossThreshold = parseFloat(process.env.PING_LOSS_THRESHOLD);
         logger.info(`[PingConsumer] Loss threshold=${lossThreshold}`);
@@ -483,28 +489,22 @@ class DeviceService {
           logger.warn(`[PingConsumer] enqueue devices:bulk_update échouée: ${e.message}`)
         }
           
-        // Créer un événement pour tracer le changement de statut
-        try {
-          await deviceEventService.createStatusChangeEvent(deviceId, isUp, {
-            loss: lossPct,
-            avg,
-            min,
-            max
-          });
-          logger.info(`[PingConsumer] Événement créé pour device ${deviceId}`);
-
-          // Notifier les clients qu'un nouvel événement a été créé
+        // Créer un événement pour tracer le changement de statut (async fire-and-forget)
+        Promise.resolve().then(async () => {
           try {
-            SocketService.emitToAll('deviceEvents:created', { device_id: deviceId });
-          } catch (e) {
-            logger.warn(`[PingConsumer] Notification deviceEvents:created échouée: ${e.message}`)
+            await deviceEventService.createStatusChangeEvent(deviceId, isUp, {
+              loss: lossPct,
+              avg,
+              min,
+              max
+            })
+            try { SocketService.emitToAll('deviceEvents:created', { device_id: deviceId }) } catch {}
+          } catch (eventError) {
+            logger.error(`[PingConsumer] Erreur création événement: ${eventError.message}`)
           }
-        } catch (eventError) {
-          logger.error(`[PingConsumer] Erreur création événement: ${eventError.message}`);
-        }
+        })
           
         logger.info(`[PingConsumer] Device ${deviceId} mis à jour: loss=${lossPct}%, threshold=${lossThreshold}%, status=${isUp ? 'UP' : 'DOWN'}`);
-
         logger.info(`[PingConsumer] Device id=${deviceId}, ip=${ip} mis à jour avec succès`);
       } catch (err) {
         logger.error(`[PingConsumer] Erreur traitement message: ${err.message}`);

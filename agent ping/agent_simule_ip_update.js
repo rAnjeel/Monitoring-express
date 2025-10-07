@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// 🚀 Agent de Ping Simulé optimisé (lecture IPs une seule fois)
+// 🚀 Agent de Ping Simulé avec PM2 + RabbitMQ + node-cron optimisé (non-bloquant)
 
 import fs from 'fs/promises'
 import path from 'path'
@@ -55,35 +55,30 @@ function getAgentIps(allIps) {
   return allIps.slice(agentIndex * chunkSize, (agentIndex + 1) * chunkSize)
 }
 
-// === INITIALISATION : lecture unique ===
-const ALL_IPS = await readIps()
-const AGENT_IPS = getAgentIps(ALL_IPS)
-
-if (AGENT_IPS.length === 0) {
-  console.log(`[Agent ${AGENT_ID}] ❌ Aucune IP assignée.`)
-  process.exit(0)
-}
-
-console.log(`[Agent ${AGENT_ID}] ➜ ${AGENT_IPS.length} hôtes assignés.`)
-const successMin = parseFloat(process.env.PING_SUCCESS_MIN || '0.3')
-const successMax = parseFloat(process.env.PING_SUCCESS_MAX || '0.95')
-
-// === TÂCHE PRINCIPALE ===
+// === TÂCHE PRINCIPALE (asynchrone & non-bloquante) ===
 async function runOnce() {
-  console.log(`[Agent ${AGENT_ID}] 🔍 Test en cours sur ${AGENT_IPS.length} IPs...`)
+  const allIps = await readIps()
+  const ips = getAgentIps(allIps)
+  if (ips.length === 0) {
+    console.log(`[Agent ${AGENT_ID}] Aucune IP assignée.`)
+    return
+  }
+
+  console.log(`[Agent ${AGENT_ID}] → ${ips.length} hôtes à tester...`)
 
   const conn = await amqp.connect(RABBIT_URL)
   const channel = await conn.createChannel()
   await channel.assertQueue(QUEUE, { durable: false })
 
+  // Traiter les IPs par petits lots pour éviter les blocages
   const BATCH_SIZE = 5
-  for (let i = 0; i < AGENT_IPS.length; i += BATCH_SIZE) {
-    const batch = AGENT_IPS.slice(i, i + BATCH_SIZE)
+  for (let i = 0; i < ips.length; i += BATCH_SIZE) {
+    const batch = ips.slice(i, i + BATCH_SIZE)
 
     await Promise.all(
       batch.map(async ip => {
         const PACKET_COUNT = 4 + Math.floor(Math.random() * 7)
-        const successProb = randFloat3(successMin, successMax)
+        const successProb = randFloat3(0.3, 0.95)
 
         const results = Array.from({ length: PACKET_COUNT }, () => simulatePing(ip, successProb))
         const hostTimes = results.filter(r => r.timeMs != null).map(r => r.timeMs)
@@ -105,7 +100,7 @@ async function runOnce() {
       })
     )
 
-    // Petite pause pour ne pas saturer le CPU
+    // pause
     await new Promise(res => setTimeout(res, 100))
   }
 
