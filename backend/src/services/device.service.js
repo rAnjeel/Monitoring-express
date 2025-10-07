@@ -7,6 +7,7 @@ import logger from '../logger/logger.js';
 import utilService from './util.service.js';
 import consumer from './messaging/consumer.service.js';
 import deviceEventService from './deviceEvent.service.js';
+import SocketService from './socket/socket.service.js';
 
 class DeviceService {
   list = async () => {
@@ -428,6 +429,13 @@ class DeviceService {
         await db.update(devices)
           .set(updateData)
           .where(eq(devices.id, deviceId));
+
+        // Notifier les clients qu'un device a été mis à jour
+        try {
+          SocketService.emitToAll('devices:updated', { id: deviceId });
+        } catch (e) {
+          logger.warn(`[PingConsumer] Notification devices:updated échouée: ${e.message}`)
+        }
           
         // Créer un événement pour tracer le changement de statut
         try {
@@ -438,6 +446,13 @@ class DeviceService {
             max
           });
           logger.info(`[PingConsumer] Événement créé pour device ${deviceId}`);
+
+          // Notifier les clients qu'un nouvel événement a été créé
+          try {
+            SocketService.emitToAll('deviceEvents:created', { device_id: deviceId });
+          } catch (e) {
+            logger.warn(`[PingConsumer] Notification deviceEvents:created échouée: ${e.message}`)
+          }
         } catch (eventError) {
           logger.error(`[PingConsumer] Erreur création événement: ${eventError.message}`);
         }

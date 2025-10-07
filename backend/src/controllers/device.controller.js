@@ -1,5 +1,6 @@
 import logger from '../logger/logger.js';
 import deviceService from '../services/device.service.js';
+import SocketService from '../services/socket/socket.service.js';
 
 class DeviceController {
   getAll = async (req, res) => {
@@ -65,6 +66,8 @@ class DeviceController {
   update = async (req, res) => {
     try {
       await deviceService.update(req.params.id, req.body);
+      // Notify clients to reload devices
+      SocketService.emitToAll('devices:updated', { id: req.params.id });
       res.json({ message: 'Updated successfully' });
     } catch (error) {
       logger.error(`Controller error (update): ${error.message}`);
