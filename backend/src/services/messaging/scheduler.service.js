@@ -32,7 +32,6 @@ class SchedulerService {
 		await this.#assertQueues()
 		logger.info(`[Scheduler] Démarré: interval=${this.intervalMs}ms`)
 		this.timer = setInterval(this.#tick, this.intervalMs)
-		// run immediately once
 		this.#tick()
 	}
 
@@ -85,7 +84,6 @@ class SchedulerService {
 			logger.info(`[Scheduler] Publish OK: core=${buckets.core.length}, access=${buckets.access.length}, mobile=${buckets.mobile.length}`)
 		} catch (e) {
 			logger.error(`[Scheduler] Tick error: ${e.message}`)
-			// try reconnect on next tick
 			this.connection = null
 			this.channel = null
 			try { await this.#connect(); await this.#assertQueues() } catch {}

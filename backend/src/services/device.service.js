@@ -44,12 +44,14 @@ class DeviceService {
       for (const [id, data] of slice) {
         try {
           await db.update(devices).set(data).where(eq(devices.id, id))
+          try { SocketService.enqueueDeviceUpdate(id) } catch {}
         } catch (e) {
           logger.error(`[BatchSQL] Erreur update device id=${id}: ${e.message}`)
         } finally {
           this.updateBuffer.delete(id)
         }
       }
+
     } finally {
       if (this.updateBuffer.size > 0) {
         this.flushTimer = setTimeout(() => this.flushUpdates(), this.batchIntervalMs)
@@ -59,6 +61,7 @@ class DeviceService {
       }
     }
   }
+
   list = async () => {
     try {
       logger.info('Fetching all devices');
@@ -481,13 +484,7 @@ class DeviceService {
           updateData.uptime = new Date();
         }
         
-        // Enqueue DB update (batched)
         this.queueUpdate(deviceId, updateData)
-
-        // Enqueue bulk device update
-        try { SocketService.enqueueDeviceUpdate(deviceId) } catch (e) {
-          logger.warn(`[PingConsumer] enqueue devices:bulk_update échouée: ${e.message}`)
-        }
           
         // Créer un événement pour tracer le changement de statut (async fire-and-forget)
         Promise.resolve().then(async () => {

@@ -1,130 +1,112 @@
 #!/usr/bin/env node
-// 🚀 Agent de Ping Simulé optimisé (lecture IPs une seule fois)
-
-import fs from 'fs/promises'
-import path from 'path'
+// 🚀 Agent de Ping Simulé (classe) — consomme une queue et publie des résultats
 import amqp from 'amqplib'
-import cron from 'node-cron'
 import dotenv from 'dotenv'
-import os from 'os'
+import path from 'path'
 import { fileURLToPath } from 'url'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 dotenv.config({ path: path.join(__dirname, './.env') })
 
-// === CONFIG ===
-const RABBIT_URL = process.env.RABBIT_URL
-const QUEUE = 'ping_results'
-const IPS_FILE = path.resolve(__dirname, 'data/ips copy.txt')
-const CRON_PATTERN = process.env.CRON_PATTERN || '*/1 * * * *'
-const ENABLE_CRON = String(process.env.AGENT_CRON || '').toLowerCase() === 'true'
 const AGENT_ID = process.env.NODE_APP_INSTANCE ?? '0'
+const RABBIT_URL = process.env.RABBIT_URL
+const RESULTS_QUEUE = process.env.RESULTS_QUEUE || 'ping_results'
 
-console.log(`[Agent ${AGENT_ID}] ➜ Cron activé : ${ENABLE_CRON} (${CRON_PATTERN})`)
-console.log(`[Agent ${AGENT_ID}] ➜ RabbitMQ : ${RABBIT_URL}`)
-
-// === UTILS ===
 const randFloat3 = (min, max) => parseFloat((min + Math.random() * (max - min)).toFixed(3))
 
-const simulatePing = (ip, successProb) => {
-  const ok = Math.random() < successProb
-  if (ok) return { ip, status: 'Réponse OK', timeMs: randFloat3(20, 200) }
-  const fail = ['Délai dépassé (Timeout)', 'Hôte inaccessible']
-  return { ip, status: fail[Math.floor(Math.random() * fail.length)], timeMs: null }
-}
+class PingAgent {
+  constructor(sourceQueue) {
+    this.sourceQueue = sourceQueue
+    this.resultsQueue = RESULTS_QUEUE
+    this.successMin = parseFloat(process.env.PING_SUCCESS_MIN || '0.3')
+    this.successMax = parseFloat(process.env.PING_SUCCESS_MAX || '0.95')
+    this.connection = null
+    this.channel = null
+    this.isRunning = false
+  }
 
-async function readIps() {
-  try {
-    const content = await fs.readFile(IPS_FILE, 'utf8')
-    return content
-      .split(/\r?\n/)
-      .map(s => s.trim().replace(/^['"]|['"]$/g, ''))
-      .filter(s => s.length > 0 && !s.startsWith('#'))
-  } catch (e) {
-    console.error(`[Agent ${AGENT_ID}] ⚠️ Erreur lecture IPs :`, e.message)
-    return []
+  connect = async () => {
+    if (!RABBIT_URL) throw new Error('RABBIT_URL manquant')
+    if (!this.sourceQueue) throw new Error('Queue source manquante')
+    this.connection = await amqp.connect(RABBIT_URL)
+    this.channel = await this.connection.createChannel()
+    await this.channel.assertQueue(this.sourceQueue, { durable: false })
+    await this.channel.assertQueue(this.resultsQueue, { durable: false })
+  }
+
+  // Génération d'un résultat de ping pour une IP
+  generatePingResult = async (ip) => {
+    const PACKET_COUNT = 4 + Math.floor(Math.random() * 7)
+    const successProb = randFloat3(this.successMin, this.successMax)
+
+    const samples = Array.from({ length: PACKET_COUNT }, () => {
+      const ok = Math.random() < successProb
+      if (ok) return { ok: true, timeMs: randFloat3(20, 200) }
+      return { ok: false, timeMs: null }
+    })
+
+    const hostTimes = samples.filter(s => s.timeMs != null).map(s => s.timeMs)
+    const received = hostTimes.length
+    const transmitted = PACKET_COUNT
+    const lossPct = parseFloat((((transmitted - received) / transmitted) * 100).toFixed(3))
+
+    const sum = hostTimes.reduce((a, b) => a + b, 0)
+    const avg = hostTimes.length ? parseFloat((sum / hostTimes.length).toFixed(3)) : 0
+    const min = hostTimes.length ? Math.min(...hostTimes) : 0
+    const max = hostTimes.length ? Math.max(...hostTimes) : 0
+    const variance = hostTimes.length > 1
+      ? hostTimes.reduce((a, t) => a + Math.pow(t - avg, 2), 0) / hostTimes.length
+      : 0
+    const mdev = parseFloat(Math.sqrt(variance).toFixed(3))
+    const totalTimeMs = parseFloat((sum + ((transmitted - received) * 1000)).toFixed(3))
+
+    return { ip, transmitted, received, lossPct, totalTimeMs, min, avg, max, mdev, successProb }
+  }
+
+  start = async () => {
+    if (this.isRunning) return
+    await this.connect()
+    this.isRunning = true
+    console.log(`[Agent ${AGENT_ID}] Consuming from '${this.sourceQueue}', publishing to '${this.resultsQueue}'`)
+
+    await this.channel.consume(this.sourceQueue, async (msg) => {
+      if (!msg) return
+      try {
+        const payload = JSON.parse(msg.content.toString())
+
+        if (payload && payload.batch === true && Array.isArray(payload.items)) {
+          for (const item of payload.items) {
+            const ip = item?.ip || item?.hostname
+            if (!ip) continue
+            const result = await this.generatePingResult(ip)
+            this.channel.sendToQueue(this.resultsQueue, Buffer.from(JSON.stringify(result)))
+            console.log(`[Agent ${AGENT_ID}] ${ip} → ${result.avg.toFixed(1)}ms (${result.lossPct}% loss)`) 
+          }
+        } else {
+          const ip = payload?.ip || payload?.hostname
+          if (ip) {
+            const result = await this.generatePingResult(ip)
+            this.channel.sendToQueue(this.resultsQueue, Buffer.from(JSON.stringify(result)))
+            console.log(`[Agent ${AGENT_ID}] ${ip} → ${result.avg.toFixed(1)}ms (${result.lossPct}% loss)`) 
+          }
+        }
+      } catch (e) {
+        console.error(`[Agent ${AGENT_ID}] Erreur traitement message: ${e.message}`)
+      } finally {
+        try { this.channel.ack(msg) } catch {}
+      }
+    })
+  }
+
+  stop = async () => {
+    this.isRunning = false
+    try { if (this.channel) await this.channel.close() } catch {}
+    try { if (this.connection) await this.connection.close() } catch {}
+    this.channel = null
+    this.connection = null
   }
 }
 
-// === RÉPARTITION DES IPs ===
-function getAgentIps(allIps) {
-  const totalAgents = parseInt(process.env.PM2_INSTANCES || os.cpus().length, 10)
-  const agentIndex = Number(AGENT_ID)
-  const chunkSize = Math.ceil(allIps.length / totalAgents)
-  return allIps.slice(agentIndex * chunkSize, (agentIndex + 1) * chunkSize)
-}
+export default PingAgent
 
-// === INITIALISATION : lecture unique ===
-const ALL_IPS = await readIps()
-const AGENT_IPS = getAgentIps(ALL_IPS)
-
-if (AGENT_IPS.length === 0) {
-  console.log(`[Agent ${AGENT_ID}] ❌ Aucune IP assignée.`)
-  process.exit(0)
-}
-
-console.log(`[Agent ${AGENT_ID}] ➜ ${AGENT_IPS.length} hôtes assignés.`)
-const successMin = parseFloat(process.env.PING_SUCCESS_MIN || '0.3')
-const successMax = parseFloat(process.env.PING_SUCCESS_MAX || '0.95')
-
-// === TÂCHE PRINCIPALE ===
-async function runOnce() {
-  console.log(`[Agent ${AGENT_ID}] 🔍 Test en cours sur ${AGENT_IPS.length} IPs...`)
-
-  const conn = await amqp.connect(RABBIT_URL)
-  const channel = await conn.createChannel()
-  await channel.assertQueue(QUEUE, { durable: false })
-
-  const BATCH_SIZE = 5
-  for (let i = 0; i < AGENT_IPS.length; i += BATCH_SIZE) {
-    const batch = AGENT_IPS.slice(i, i + BATCH_SIZE)
-
-    await Promise.all(
-      batch.map(async ip => {
-        const PACKET_COUNT = 4 + Math.floor(Math.random() * 7)
-        const successProb = randFloat3(successMin, successMax)
-
-        const results = Array.from({ length: PACKET_COUNT }, () => simulatePing(ip, successProb))
-        const hostTimes = results.filter(r => r.timeMs != null).map(r => r.timeMs)
-        const received = hostTimes.length
-        const transmitted = PACKET_COUNT
-        const lossPct = parseFloat((((transmitted - received) / transmitted) * 100).toFixed(3))
-
-        const sum = hostTimes.reduce((a, b) => a + b, 0)
-        const avg = hostTimes.length ? parseFloat((sum / hostTimes.length).toFixed(3)) : 0
-        const min = hostTimes.length ? Math.min(...hostTimes) : 0
-        const max = hostTimes.length ? Math.max(...hostTimes) : 0
-        const variance = hostTimes.length > 1 ? hostTimes.reduce((a, t) => a + Math.pow(t - avg, 2), 0) / hostTimes.length : 0
-        const mdev = parseFloat(Math.sqrt(variance).toFixed(3))
-        const totalTimeMs = parseFloat((sum + ((transmitted - received) * 1000)).toFixed(3))
-
-        const result = { ip, transmitted, received, lossPct, totalTimeMs, min, avg, max, mdev, successProb }
-        channel.sendToQueue(QUEUE, Buffer.from(JSON.stringify(result)))
-        console.log(`[Agent ${AGENT_ID}] ${ip} → ${avg.toFixed(1)}ms (${lossPct}% loss)`)
-      })
-    )
-
-    // Petite pause pour ne pas saturer le CPU
-    await new Promise(res => setTimeout(res, 100))
-  }
-
-  await channel.close()
-  await conn.close()
-  console.log(`[Agent ${AGENT_ID}] ✅ Terminé à ${new Date().toISOString()}`)
-}
-
-// === PLANIFICATION ===
-if (ENABLE_CRON) {
-  if (!cron.validate(CRON_PATTERN)) {
-    console.error(`[Agent ${AGENT_ID}] ❌ Pattern CRON invalide : ${CRON_PATTERN}`)
-    process.exit(1)
-  }
-
-  cron.schedule(CRON_PATTERN, () => {
-    console.log(`[Agent ${AGENT_ID}] 🔁 Tick CRON @ ${new Date().toLocaleTimeString()}`)
-    runOnce().catch(err => console.error(`[Agent ${AGENT_ID}] Erreur runOnce:`, err.message))
-  })
-} else {
-  runOnce().catch(err => console.error(`[Agent ${AGENT_ID}] Erreur:`, err.message))
-}
