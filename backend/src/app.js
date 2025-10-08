@@ -15,6 +15,7 @@ import db from './config/db.js';
 import errorHandler from './middlewares/error.middleware.js';
 import deviceService from './services/device.service.js';
 import SocketService from './services/socket/socket.service.js';
+import scheduler from './services/messaging/scheduler.service.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -59,10 +60,21 @@ async function startServer() {
 
     server.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
 
-     // démarrer le consumer RabbitMQ
-    await deviceService.startPingConsumer();
-    logger.info('PingConsumer démarré');
-    logger.info('Socket.IO initialisé');
+    // démarrer le consumer RabbitMQ
+    try {
+      await deviceService.startPingConsumer();
+      logger.info('PingConsumer started successfully with socket.io');
+    } catch (e) {
+      logger.error(`Error starting PingConsumer: ${e.message}`)
+    }
+
+    // démarrer le scheduler RabbitMQ
+    try {
+      await scheduler.start(process.env.SCHEDULER_INTERVAL_MS)
+      logger.info('Scheduler started successfully')
+    } catch (e) {
+      logger.error(`Error starting scheduler: ${e.message}`)
+    }
   } catch (error) {
     logger.error(`Database connection failed: ${error.message}`);
     process.exit(1);
