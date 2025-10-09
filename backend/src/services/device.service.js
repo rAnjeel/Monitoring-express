@@ -17,6 +17,8 @@ class DeviceService {
     this.batchMaxPerTick = Number(process.env.BATCH_SQL_MAX || 200)
     this.ipToDeviceIdCache = new Map()
     this.ipCacheMaxSize = Number(process.env.IP_CACHE_MAX || 10000)
+    this.devicesPageCache = new Map()
+    this.devicesPageCacheTtlMs = Number(process.env.DEVICES_PAGE_CACHE_TTL_MS || 2000)
   }
 
   queueUpdate = (id, partialData) => {
@@ -55,6 +57,7 @@ class DeviceService {
       }
 
     } finally {
+      if (this.devicesPageCache.size > 0) this.devicesPageCache.clear()
       if (this.updateBuffer.size > 0) {
         this.flushTimer = setTimeout(() => this.flushUpdates(), this.batchIntervalMs)
       } else {
@@ -288,6 +291,12 @@ class DeviceService {
 
   getDevicesPage = async ({ page = 1, pageSize = 20, filter = {} } = {}) => {
     try {
+      const cacheKey = JSON.stringify({ page, pageSize, filter })
+      const cached = this.devicesPageCache.get(cacheKey)
+      const now = Date.now()
+      if (cached && (now - cached.ts) < this.devicesPageCacheTtlMs) {
+        return cached.value
+      }
       const offset = (page - 1) * pageSize;
 
       // Base query avec jointures
@@ -440,8 +449,9 @@ class DeviceService {
 
       const totalCountResult = await countQuery;
       const totalCount = Number(totalCountResult?.[0]?.count || 0);
-
-      return { rows, totalCount };
+      const result = { rows, totalCount }
+      this.devicesPageCache.set(cacheKey, { ts: now, value: result })
+      return result;
     } catch (error) {
       logger.error(`Error fetching paginated devices (drizzle): ${error.message}`);
       throw error;
