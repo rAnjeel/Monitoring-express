@@ -5,16 +5,16 @@ import parser from './messageParser.service.js'
 import logger from '../../logger/logger.js'
 
 class ConsumerService {
-	constructor() {
-		this.connection = null
-		this.channel = null
-		this.queueName = process.env.RABBIT_QUEUE
-		this.url = process.env.RABBIT_URL
-		this.isConsuming = false
+    constructor(queueName) {
+        this.connection = null
+        this.channel = null
+        this.queueName = queueName
+        this.url = process.env.RABBIT_URL
+        this.isConsuming = false
 
-		this.concurrentLimit = Number(process.env.CONSUMER_CONCURRENCY || 5)
-		this.taskQueue = new PQueue({ concurrency: this.concurrentLimit })
-	}
+        this.concurrentLimit = Number(process.env.CONSUMER_CONCURRENCY || 5)
+        this.taskQueue = new PQueue({ concurrency: this.concurrentLimit })
+    }
 
 	start = async (onMessage) => {
 		if (this.isConsuming) {
@@ -22,9 +22,9 @@ class ConsumerService {
 			return
 		}
 
-		if (!this.url) throw new Error('RABBIT_URL manquant')
-		if (!this.queueName || typeof this.queueName !== 'string')
-			throw new Error('RABBIT_QUEUE manquant ou invalide')
+        if (!this.url) throw new Error('RABBIT_URL manquant')
+        if (!this.queueName || typeof this.queueName !== 'string')
+            throw new Error('RABBIT_QUEUE manquant ou invalide')
 
 		try {
 			logger.info(`[Consumer] Connexion à RabbitMQ: ${this.url}`)
@@ -73,6 +73,6 @@ class ConsumerService {
 	}
 }
 
-export default new ConsumerService()
+export default ConsumerService
 
 

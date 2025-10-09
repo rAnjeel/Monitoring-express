@@ -5,7 +5,7 @@ import { typeDevices } from '../models/typeDevice.model.js';
 import { eq, sql, like, or, and } from 'drizzle-orm';
 import logger from '../logger/logger.js';
 import utilService from './util.service.js';
-import consumer from './messaging/consumer.service.js';
+import ConsumerService from './messaging/consumer.service.js';
 import deviceEventService from './deviceEvent.service.js';
 import SocketService from './socket/socket.service.js';
 
@@ -449,6 +449,8 @@ class DeviceService {
   }
 
   startPingConsumer = async () => {
+    const queueName = process.env.RABBIT_QUEUE_PING
+    const consumer = new ConsumerService(queueName)
     await consumer.start(async (pingResult) => {
       try {
         logger.info(`[PingConsumer] Message reçu: ${JSON.stringify(pingResult)}`);
