@@ -16,6 +16,7 @@ import errorHandler from './middlewares/error.middleware.js';
 import deviceService from './services/device.service.js';
 import SocketService from './services/socket/socket.service.js';
 import schedulerDevices from './services/messaging/schedulerDevices.service.js';
+import schedulerPorts from './services/messaging/schedulerPorts.service.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -71,6 +72,7 @@ async function startServer() {
     // démarrer le scheduler RabbitMQ
     try {
       await schedulerDevices.start(process.env.SCHEDULER_INTERVAL_MS)
+      await schedulerPorts.start(process.env.SCHEDULER_INTERVAL_MS)
       logger.info('Scheduler started successfully')
     } catch (e) {
       logger.error(`Error starting scheduler: ${e.message}`)
