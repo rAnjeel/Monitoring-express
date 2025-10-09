@@ -484,6 +484,17 @@ class DeviceService {
           updateData.uptime = new Date();
         }
         
+        // Émission immédiate pour mettre à jour le front sans attendre le batch SQL
+        try {
+          SocketService.emitToAll('device:instant_update', {
+            id: deviceId,
+            ip,
+            ...updateData,
+          })
+        } catch (e) {
+          logger.warn(`[PingConsumer] device:instant_update échec: ${e.message}`)
+        }
+
         this.queueUpdate(deviceId, updateData)
           
         // Créer un événement pour tracer le changement de statut (async fire-and-forget)
