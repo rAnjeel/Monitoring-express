@@ -44,7 +44,9 @@ class DeviceService {
       for (const [id, data] of slice) {
         try {
           await db.update(devices).set(data).where(eq(devices.id, id))
-          try { SocketService.enqueueDeviceUpdate(id) } catch {}
+          try {
+            SocketService.enqueueDeviceUpdate(id)
+          } catch {}
         } catch (e) {
           logger.error(`[BatchSQL] Erreur update device id=${id}: ${e.message}`)
         } finally {
@@ -107,7 +109,7 @@ class DeviceService {
       logger.info(`Updating device id=${id}`);
       const result = await db.update(devices).set(data).where(eq(devices.id, id));
       logger.info(`Update result for device id=${id}: ${JSON.stringify(result)}`);
-      // enqueue bulk device update
+      // enqueue device update (immediate if SOCKET_BULK_INTERVAL_MS<=0)
       try { SocketService.enqueueDeviceUpdate(id) } catch {}
       return result;
     } catch (error) {
@@ -484,17 +486,6 @@ class DeviceService {
           updateData.uptime = new Date();
         }
         
-        // Émission immédiate pour mettre à jour le front sans attendre le batch SQL
-        try {
-          SocketService.emitToAll('device:instant_update', {
-            id: deviceId,
-            ip,
-            ...updateData,
-          })
-        } catch (e) {
-          logger.warn(`[PingConsumer] device:instant_update échec: ${e.message}`)
-        }
-
         this.queueUpdate(deviceId, updateData)
           
         // Créer un événement pour tracer le changement de statut (async fire-and-forget)

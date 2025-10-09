@@ -8,7 +8,7 @@ class SocketService {
         this.isInitialized = false
         this.bulkBuffer = new Set()
         this.bulkTimer = null
-        this.bulkIntervalMs = Number(process.env.SOCKET_BULK_INTERVAL_MS || 2000)
+        this.bulkIntervalMs = Number(process.env.SOCKET_BULK_INTERVAL_MS || 500)
     }
 
     // Initialize Socket.IO on an existing HTTP/S server instance
@@ -65,7 +65,13 @@ class SocketService {
 
     // Queue device ids for bulk update emits
     enqueueDeviceUpdate = (deviceId) => {
-        this.bulkBuffer.add(Number(deviceId))
+        if (!this.io) return
+        const idNum = Number(deviceId)
+        if (this.bulkIntervalMs <= 0) {
+            this.io.emit('devices:bulk_update', [idNum])
+            return
+        }
+        this.bulkBuffer.add(idNum)
         if (!this.bulkTimer) {
             this.bulkTimer = setTimeout(() => this.flushBulk(), this.bulkIntervalMs)
         }
