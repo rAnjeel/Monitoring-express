@@ -17153,3 +17153,319 @@ params: 13,60,124.585,52.593,196.578,down,2025-10-07 04:56:00.161
 2025-10-07 08:37:00 [INFO]: [PingConsumer] Événement créé pour device 6
 2025-10-07 08:37:00 [INFO]: [PingConsumer] Device 6 mis à jour: loss=0%, threshold=10%, status=UP
 2025-10-07 08:37:00 [INFO]: [PingConsumer] Device id=6, ip=154.126.76.2 mis à jour avec succès
+2025-10-09 15:05:59 [INFO]: [Socket] Initialisation terminée
+2025-10-09 15:05:59 [INFO]: [Consumer] Connexion à RabbitMQ: amqp://admin:admin@localhost:5672
+2025-10-09 15:05:59 [INFO]: Server running on port 3000
+2025-10-09 15:05:59 [INFO]: [Consumer] Consommateur démarré sur: ping_results (prefetch=20, concurrency=5)
+2025-10-09 15:05:59 [INFO]: PingConsumer started successfully with socket.io
+2025-10-09 15:05:59 [INFO]: [SchedulerPorts] Connexion à RabbitMQ: amqp://admin:admin@localhost:5672
+2025-10-09 15:05:59 [INFO]: [SchedulerPorts] Démarré (cron: 1 min) → queue=traffic_ports_tasks
+2025-10-09 15:05:59 [INFO]: [SchedulerPorts] Connexion à RabbitMQ: amqp://admin:admin@localhost:5672
+2025-10-09 15:05:59 [INFO]: [SchedulerPorts] Démarré (cron: 1 min) → queue=traffic_ports_tasks
+2025-10-09 15:05:59 [INFO]: Scheduler started successfully
+2025-10-09 15:06:00 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 15:06:00 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 15:06:00 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 15:06:00 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 15:06:00 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 15:06:00 [INFO]: [SchedulerPorts] Tick terminé en 366 ms
+2025-10-09 15:06:00 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 15:06:00 [INFO]: [SchedulerPorts] Tick terminé en 384 ms
+2025-10-09 15:28:10 [INFO]: [Socket] Initialisation terminée
+2025-10-09 15:28:10 [INFO]: [Consumer] Connexion à RabbitMQ: amqp://admin:admin@localhost:5672
+2025-10-09 15:28:10 [INFO]: Server running on port 3000
+2025-10-09 15:28:11 [INFO]: [Consumer] Consommateur démarré sur: ping_results (prefetch=20, concurrency=5)
+2025-10-09 15:28:11 [INFO]: PingConsumer started successfully with socket.io
+2025-10-09 15:28:11 [INFO]: [SchedulerDevices] Connexion à RabbitMQ: amqp://admin:admin@localhost:5672
+2025-10-09 15:28:11 [INFO]: [SchedulerDevices] Démarré (interval: 60000ms) → queues=ping_core_tasks,ping_access_tasks,ping_mobile_tasks
+2025-10-09 15:28:11 [INFO]: [SchedulerPorts] Connexion à RabbitMQ: amqp://admin:admin@localhost:5672
+2025-10-09 15:28:11 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 15:28:11 [INFO]: [SchedulerPorts] Démarré (interval: 60000ms) → queue=traffic_ports_tasks
+2025-10-09 15:28:11 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 15:28:11 [INFO]: Scheduler started successfully
+2025-10-09 15:28:11 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 15:28:11 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 15:28:11 [INFO]: [SchedulerPorts] Tick terminé en 142 ms
+2025-10-09 15:29:13 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 15:29:13 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 15:29:13 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 15:29:13 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 15:29:13 [INFO]: [SchedulerPorts] Tick terminé en 135 ms
+2025-10-09 15:29:52 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-09 15:29:52 [INFO]: Fetching device counts per type_device (total and down)
+2025-10-09 15:29:52 [INFO]: Fetched counts for 10 type_devices
+2025-10-09 15:29:52 [INFO]: TypeDeviceController: returning 10 type_devices with counts
+2025-10-09 15:29:53 [INFO]: [Socket] Client connecté: kvnnARmzMjnTlORfAAAB
+2025-10-09 15:29:54 [INFO]: [Socket] Client déconnecté: kvnnARmzMjnTlORfAAAB (raison: client namespace disconnect)
+2025-10-09 15:29:54 [INFO]: page = 1, pageSize = 20, filter = {}
+2025-10-09 15:29:54 [INFO]: Fetching ports with device names and pagination
+2025-10-09 15:29:54 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-10-09 15:30:16 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 15:30:16 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 15:30:16 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 15:30:16 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 15:30:16 [INFO]: [SchedulerPorts] Tick terminé en 143 ms
+2025-10-09 15:30:45 [INFO]: page = 2, pageSize = 20, filter = {}
+2025-10-09 15:30:45 [INFO]: Fetching ports with device names and pagination
+2025-10-09 15:30:45 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-10-09 15:30:49 [INFO]: page = 3, pageSize = 20, filter = {}
+2025-10-09 15:30:49 [INFO]: Fetching ports with device names and pagination
+2025-10-09 15:30:49 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-10-09 15:30:49 [INFO]: page = 4, pageSize = 20, filter = {}
+2025-10-09 15:30:49 [INFO]: Fetching ports with device names and pagination
+2025-10-09 15:30:49 [INFO]: Fetched 20 ports (with device names and pagination)
+2025-10-09 15:31:17 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 15:31:17 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 15:31:17 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 15:31:17 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 15:31:17 [INFO]: [SchedulerPorts] Tick terminé en 131 ms
+2025-10-09 15:32:20 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 15:32:20 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 15:32:20 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 15:32:20 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 15:32:20 [INFO]: [SchedulerPorts] Tick terminé en 131 ms
+2025-10-09 15:33:20 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 15:33:20 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 15:33:20 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 15:33:20 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 15:33:20 [INFO]: [SchedulerPorts] Tick terminé en 135 ms
+2025-10-09 15:34:21 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 15:34:22 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 15:34:22 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 15:34:22 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 15:34:22 [INFO]: [SchedulerPorts] Tick terminé en 153 ms
+2025-10-09 15:35:23 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 15:35:23 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 15:35:23 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 15:35:23 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 15:35:23 [INFO]: [SchedulerPorts] Tick terminé en 162 ms
+2025-10-09 15:36:25 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 15:36:25 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 15:36:25 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 15:36:25 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 15:36:25 [INFO]: [SchedulerPorts] Tick terminé en 149 ms
+2025-10-09 15:37:27 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 15:37:28 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 15:37:28 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 15:37:28 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 15:37:28 [INFO]: [SchedulerPorts] Tick terminé en 123 ms
+2025-10-09 15:38:30 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 15:38:30 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 15:38:30 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 15:38:30 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 15:38:30 [INFO]: [SchedulerPorts] Tick terminé en 118 ms
+2025-10-09 15:39:32 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 15:39:32 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 15:39:33 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 15:39:33 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 15:39:33 [INFO]: [SchedulerPorts] Tick terminé en 140 ms
+2025-10-09 15:40:35 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 15:40:35 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 15:40:35 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 15:40:35 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 15:40:35 [INFO]: [SchedulerPorts] Tick terminé en 138 ms
+2025-10-09 15:41:36 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 15:41:36 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 15:41:36 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 15:41:36 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 15:41:36 [INFO]: [SchedulerPorts] Tick terminé en 140 ms
+2025-10-09 15:42:38 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 15:42:38 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 15:42:39 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 15:42:39 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 15:42:39 [INFO]: [SchedulerPorts] Tick terminé en 156 ms
+2025-10-09 15:43:41 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 15:43:41 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 15:43:41 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 15:43:41 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 15:43:41 [INFO]: [SchedulerPorts] Tick terminé en 129 ms
+2025-10-09 16:19:16 [INFO]: [Socket] Initialisation terminée
+2025-10-09 16:19:16 [INFO]: [Consumer] Connexion à RabbitMQ: amqp://admin:admin@localhost:5672
+2025-10-09 16:19:16 [INFO]: Server running on port 3000
+2025-10-09 16:19:16 [INFO]: [Consumer] Consommateur démarré sur: ping_results (prefetch=20, concurrency=5)
+2025-10-09 16:19:16 [INFO]: PingConsumer started successfully with socket.io
+2025-10-09 16:19:16 [INFO]: [SchedulerDevices] Connexion à RabbitMQ: amqp://admin:admin@localhost:5672
+2025-10-09 16:19:16 [INFO]: [SchedulerDevices] Démarré (interval: 60000ms) → queues=ping_core_tasks,ping_access_tasks,ping_mobile_tasks
+2025-10-09 16:19:16 [INFO]: [SchedulerPorts] Connexion à RabbitMQ: amqp://admin:admin@localhost:5672
+2025-10-09 16:19:16 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 16:19:16 [INFO]: [SchedulerPorts] Démarré (interval: 60000ms) → queue=traffic_ports_tasks
+2025-10-09 16:19:16 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 16:19:16 [INFO]: Scheduler started successfully
+2025-10-09 16:19:17 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 16:19:17 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 16:19:17 [INFO]: [SchedulerPorts] Tick terminé en 444 ms
+2025-10-09 16:20:19 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 16:20:20 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 16:20:20 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 16:20:20 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 16:20:20 [INFO]: [SchedulerPorts] Tick terminé en 376 ms
+2025-10-09 16:21:23 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-09 16:21:23 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-09 16:21:23 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-09 16:21:23 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-09 16:21:23 [INFO]: [SchedulerPorts] Tick terminé en 440 ms
+2025-10-10 07:59:26 [INFO]: [Socket] Initialisation terminée
+2025-10-10 07:59:26 [INFO]: [Consumer] Connexion à RabbitMQ: amqp://admin:admin@localhost:5672
+2025-10-10 07:59:26 [INFO]: Server running on port 3000
+2025-10-10 07:59:26 [INFO]: [Consumer] Consommateur démarré sur: ping_results (prefetch=20, concurrency=5)
+2025-10-10 07:59:26 [INFO]: PingConsumer started successfully with socket.io
+2025-10-10 07:59:26 [INFO]: [SchedulerDevices] Connexion à RabbitMQ: amqp://admin:admin@localhost:5672
+2025-10-10 07:59:26 [INFO]: [SchedulerDevices] Démarré (interval: 60000ms) → queues=ping_core_tasks,ping_access_tasks,ping_mobile_tasks
+2025-10-10 07:59:26 [INFO]: [SchedulerPorts] Connexion à RabbitMQ: amqp://admin:admin@localhost:5672
+2025-10-10 07:59:26 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 07:59:26 [INFO]: [SchedulerPorts] Démarré (interval: 60000ms) → queue=traffic_ports_tasks
+2025-10-10 07:59:26 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 07:59:26 [INFO]: Scheduler started successfully
+2025-10-10 07:59:26 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 07:59:26 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 07:59:26 [INFO]: [SchedulerPorts] Tick terminé en 165 ms
+2025-10-10 08:00:28 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:00:28 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:00:28 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:00:28 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:00:28 [INFO]: [SchedulerPorts] Tick terminé en 125 ms
+2025-10-10 08:01:29 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:01:29 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:01:30 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:01:30 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:01:30 [INFO]: [SchedulerPorts] Tick terminé en 143 ms
+2025-10-10 08:02:31 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:02:31 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:02:32 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:02:32 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:02:32 [INFO]: [SchedulerPorts] Tick terminé en 129 ms
+2025-10-10 08:03:32 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:03:32 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:03:32 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:03:33 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:03:33 [INFO]: [SchedulerPorts] Tick terminé en 152 ms
+2025-10-10 08:04:34 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:04:34 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:04:35 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:04:35 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:04:35 [INFO]: [SchedulerPorts] Tick terminé en 124 ms
+2025-10-10 08:05:37 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:05:37 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:05:37 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:05:37 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:05:37 [INFO]: [SchedulerPorts] Tick terminé en 144 ms
+2025-10-10 08:06:39 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:06:39 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:06:39 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:06:39 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:06:39 [INFO]: [SchedulerPorts] Tick terminé en 128 ms
+2025-10-10 08:07:41 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:07:41 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:07:41 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:07:41 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:07:41 [INFO]: [SchedulerPorts] Tick terminé en 108 ms
+2025-10-10 08:08:43 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:08:43 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:08:44 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:08:44 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:08:44 [INFO]: [SchedulerPorts] Tick terminé en 103 ms
+2025-10-10 08:09:46 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:09:46 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:09:46 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:09:46 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:09:46 [INFO]: [SchedulerPorts] Tick terminé en 108 ms
+2025-10-10 08:20:12 [INFO]: [Socket] Initialisation terminée
+2025-10-10 08:20:12 [INFO]: [Consumer] Connexion à RabbitMQ: amqp://admin:admin@localhost:5672
+2025-10-10 08:20:12 [INFO]: Server running on port 3000
+2025-10-10 08:20:12 [INFO]: [Consumer] Consommateur démarré sur: ping_results (prefetch=20, concurrency=5)
+2025-10-10 08:20:12 [INFO]: PingConsumer started successfully with socket.io
+2025-10-10 08:20:12 [INFO]: [SchedulerDevices] Connexion à RabbitMQ: amqp://admin:admin@localhost:5672
+2025-10-10 08:20:13 [INFO]: [SchedulerDevices] Démarré (interval: 60000ms) → queues=ping_core_tasks,ping_access_tasks,ping_mobile_tasks
+2025-10-10 08:20:13 [INFO]: [SchedulerPorts] Connexion à RabbitMQ: amqp://admin:admin@localhost:5672
+2025-10-10 08:20:13 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:20:13 [INFO]: [SchedulerPorts] Démarré (interval: 60000ms) → queue=traffic_ports_tasks
+2025-10-10 08:20:13 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:20:13 [INFO]: Scheduler started successfully
+2025-10-10 08:20:13 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:20:13 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:20:13 [INFO]: [SchedulerPorts] Tick terminé en 178 ms
+2025-10-10 08:28:08 [INFO]: [Socket] Initialisation terminée
+2025-10-10 08:28:08 [INFO]: [Consumer] Connexion à RabbitMQ: amqp://admin:admin@localhost:5672
+2025-10-10 08:28:08 [INFO]: Server running on port 3000
+2025-10-10 08:28:08 [INFO]: [Consumer] Consommateur démarré sur: ping_results (prefetch=20, concurrency=5)
+2025-10-10 08:28:08 [INFO]: PingConsumer started successfully with socket.io
+2025-10-10 08:28:08 [INFO]: [SchedulerDevices] Connexion à RabbitMQ: amqp://admin:admin@localhost:5672
+2025-10-10 08:28:08 [INFO]: [SchedulerDevices] Démarré (interval: 60000ms) → queues=ping_core_tasks,ping_access_tasks,ping_mobile_tasks
+2025-10-10 08:28:08 [INFO]: [SchedulerPorts] Connexion à RabbitMQ: amqp://admin:admin@localhost:5672
+2025-10-10 08:28:08 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:28:08 [INFO]: [SchedulerPorts] Démarré (interval: 60000ms) → queue=traffic_ports_tasks
+2025-10-10 08:28:08 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:28:08 [INFO]: Scheduler started successfully
+2025-10-10 08:28:08 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:28:08 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:28:08 [INFO]: [SchedulerPorts] Tick terminé en 147 ms
+2025-10-10 08:29:10 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:29:10 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:29:10 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:29:11 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:29:11 [INFO]: [SchedulerPorts] Tick terminé en 133 ms
+2025-10-10 08:30:12 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:30:12 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:30:12 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:30:12 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:30:12 [INFO]: [SchedulerPorts] Tick terminé en 120 ms
+2025-10-10 08:31:14 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:31:14 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:31:14 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:31:14 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:31:14 [INFO]: [SchedulerPorts] Tick terminé en 121 ms
+2025-10-10 08:32:16 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:32:16 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:32:17 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:32:17 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:32:17 [INFO]: [SchedulerPorts] Tick terminé en 180 ms
+2025-10-10 08:33:19 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:33:19 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:33:19 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:33:19 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:33:19 [INFO]: [SchedulerPorts] Tick terminé en 118 ms
+2025-10-10 08:34:21 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:34:21 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:34:21 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:34:21 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:34:21 [INFO]: [SchedulerPorts] Tick terminé en 113 ms
+2025-10-10 08:35:24 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:35:24 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:35:24 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:35:24 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:35:24 [INFO]: [SchedulerPorts] Tick terminé en 131 ms
+2025-10-10 08:36:26 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:36:26 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:36:26 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:36:26 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:36:26 [INFO]: [SchedulerPorts] Tick terminé en 128 ms
+2025-10-10 08:37:27 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:37:27 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:37:27 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:37:27 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:37:27 [INFO]: [SchedulerPorts] Tick terminé en 139 ms
+2025-10-10 08:38:30 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:38:30 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:38:30 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:38:30 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:38:30 [INFO]: [SchedulerPorts] Tick terminé en 114 ms
+2025-10-10 08:39:32 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:39:32 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:39:32 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:39:32 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:39:32 [INFO]: [SchedulerPorts] Tick terminé en 178 ms
+2025-10-10 08:40:35 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:40:35 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:40:35 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:40:35 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:40:35 [INFO]: [SchedulerPorts] Tick terminé en 120 ms
+2025-10-10 08:41:37 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:41:37 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:41:37 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:41:37 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:41:37 [INFO]: [SchedulerPorts] Tick terminé en 108 ms
+2025-10-10 08:42:39 [INFO]: [SchedulerDevices] Publish OK: core=2064, access=450, mobile=3285
+2025-10-10 08:42:39 [INFO]: Fetching admin UP ports grouped by device_id
+2025-10-10 08:42:39 [INFO]: Grouped 1115 device groups for admin UP ports
+2025-10-10 08:42:39 [INFO]: [SchedulerPorts] Publish OK: devices=1115
+2025-10-10 08:42:39 [INFO]: [SchedulerPorts] Tick terminé en 122 ms

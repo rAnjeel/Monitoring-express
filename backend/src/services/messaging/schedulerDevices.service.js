@@ -1,4 +1,3 @@
-import cron from 'node-cron'
 import amqp from 'amqplib'
 import logger from '../../logger/logger.js'
 import deviceService from '../device.service.js'
@@ -7,12 +6,15 @@ const CORE_TYPES = new Set(['ROUTER', 'SWITCH', 'R6K'])
 const ACCESS_TYPES = new Set(['IPDSLAM', 'AIRPON', 'TCU'])
 const MOBILE_TYPES = new Set(['2G', '3G', '4G', '5G'])
 
-class SchedulerService {
+class SchedulerDevicesService {
   constructor() {
     this.url = process.env.RABBIT_URL
     this.connection = null
     this.channel = null
-    this.batchSize = Number(process.env.SCHEDULER_BATCH_SIZE || 100)
+    this.batchSize = Number(process.env.SCHEDULER_BATCH_SIZE || 200)
+    this.intervalMs = Number(process.env.SCHEDULER_INTERVAL_MS || 60000)
+    this.inProgress = false
+    this.timer = null
     this.queues = {
       core: 'ping_core_tasks',
       access: 'ping_access_tasks',
@@ -24,17 +26,30 @@ class SchedulerService {
     if (!this.url) throw new Error('RABBIT_URL manquant')
     await this.#connect()
     await this.#assertQueues()
-    logger.info(`[Scheduler] Démarré (cron: 1 min)`)
+    logger.info(`[SchedulerDevices] Démarré (interval: ${this.intervalMs}ms) → queues=${Object.values(this.queues).join(',')}`)
 
-    // 🕒 Exécution toutes les minutes
-    cron.schedule('* * * * *', () => {
-      this.#tick().catch(e => logger.error(`[Scheduler] Tick error: ${e.message}`))
-    })
+    const wrapped = async () => {
+      if (this.inProgress) {
+        logger.warn('[SchedulerDevices] Tick skipped (previous still running)')
+        return
+      }
+      this.inProgress = true
+      try {
+        await this.#tick()
+      } catch (e) {
+        logger.error(`[SchedulerDevices] Tick error: ${e.message}`)
+      } finally {
+        this.inProgress = false
+      }
+    }
+    // Run once immediately, then schedule
+    wrapped()
+    this.timer = setInterval(wrapped, this.intervalMs)
   }
 
   #connect = async () => {
     if (this.connection && this.channel) return
-    logger.info(`[Scheduler] Connexion à RabbitMQ: ${this.url}`)
+    logger.info(`[SchedulerDevices] Connexion à RabbitMQ: ${this.url}`)
     this.connection = await amqp.connect(this.url)
     this.channel = await this.connection.createChannel()
   }
@@ -50,12 +65,11 @@ class SchedulerService {
     if (!Array.isArray(devices) || devices.length === 0) return
 
     const buckets = { core: [], access: [], mobile: [] }
-
     for (const d of devices) {
       const typeRaw = (d?.type_device || '').toString().trim().toUpperCase()
-      const ip = d.hostname
+      const ip = d?.hostname
+      if (!ip) continue
       const msg = { ip }
-
       if (CORE_TYPES.has(typeRaw)) buckets.core.push(msg)
       else if (ACCESS_TYPES.has(typeRaw)) buckets.access.push(msg)
       else if (MOBILE_TYPES.has(typeRaw)) buckets.mobile.push(msg)
@@ -65,7 +79,7 @@ class SchedulerService {
     await this.#publishBucket(this.queues.access, buckets.access)
     await this.#publishBucket(this.queues.mobile, buckets.mobile)
 
-    logger.info(`[Scheduler] Publish OK: core=${buckets.core.length}, access=${buckets.access.length}, mobile=${buckets.mobile.length}`)
+    logger.info(`[SchedulerDevices] Publish OK: core=${buckets.core.length}, access=${buckets.access.length}, mobile=${buckets.mobile.length}`)
   }
 
   #publishBucket = async (queueName, items) => {
@@ -80,4 +94,4 @@ class SchedulerService {
   }
 }
 
-export default new SchedulerService()
+export default new SchedulerDevicesService()

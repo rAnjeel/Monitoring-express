@@ -358,6 +358,33 @@ class PortService {
       throw error;
     }
   }
+
+  // Retourne, groupé par device_id, les listes de port_id dont l'adminStatus est 'up'
+  getAdminUpPortIdsGroupedByDevice = async () => {
+    try {
+      logger.info('Fetching admin UP ports grouped by device_id')
+      const rows = await db
+        .select({ device_id: ports.device_id, port_id: ports.port_id, adminStatus: ports.ifAdminStatus })
+        .from(ports)
+        .where(eq(ports.ifAdminStatus, 'up'))
+
+      const deviceIdToPorts = new Map()
+      for (const r of rows) {
+        const did = r.device_id
+        const pid = r.port_id
+        if (did == null || pid == null) continue
+        if (!deviceIdToPorts.has(did)) deviceIdToPorts.set(did, [])
+        deviceIdToPorts.get(did).push(pid)
+      }
+
+      const result = Array.from(deviceIdToPorts.entries()).map(([device_id, port_ids]) => ({ device_id, port_ids }))
+      logger.info(`Grouped ${result.length} device groups for admin UP ports`)
+      return result
+    } catch (error) {
+      logger.error(`Error fetching admin UP ports grouped by device: ${error.message}`)
+      throw error
+    }
+  }
 }
 
 export default new PortService();

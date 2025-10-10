@@ -1,0 +1,14 @@
+{
+  "type": "module",
+  "scripts": {
+    "start:agent-ping": "pm2 start launcher/core-launcher.js --name ping-core && pm2 start launcher/access-launcher.js --name ping-access && pm2 start launcher/mobile-Launcher.js --name ping-mobile",
+    "stop:agent-ping": "pm2 delete ping-core || true && pm2 delete ping-access || true && pm2 delete ping-mobile || true",
+    "start:agent-traffic": "pm2 start launcher/traffic-launcher.js --name traffic-agent",
+    "stop:agent-traffic": "pm2 delete traffic-agent || true"
+  },
+  "dependencies": {
+    "amqplib": "^0.10.9",
+    "dotenv": "^17.2.3",
+    "node-cron": "^4.2.1"
+  }
+}
