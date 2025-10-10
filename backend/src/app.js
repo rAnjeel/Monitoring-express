@@ -17,6 +17,7 @@ import deviceService from './services/device.service.js';
 import SocketService from './services/socket/socket.service.js';
 import schedulerDevices from './services/messaging/schedulerDevices.service.js';
 import schedulerPorts from './services/messaging/schedulerPorts.service.js';
+import { refreshCacheFromDb } from './services/cache/deviceCache.service.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -50,33 +51,41 @@ async function startServer() {
     const PORT = process.env.PORT;
     const server = http.createServer(app);
 
-    // Initialize persistent Socket.IO server bound to HTTP server
-    SocketService.init(server, {
-      cors: {
-        origin: ['http://localhost:8080', 'http://localhost:8081'],
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        allowedHeaders: ['Content-Type', 'Authorization']
-      }
-    });
+    // Load device cache from disk at startup
+    try {
+      await refreshCacheFromDb();
+      logger.info('Device cache loaded');
+    } catch (e) {
+      logger.error(`Error loading device cache: ${e.message}`);
+    }
+
+    // // Initialize persistent Socket.IO server bound to HTTP server
+    // SocketService.init(server, {
+    //   cors: {
+    //     origin: ['http://localhost:8080', 'http://localhost:8081'],
+    //     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    //     allowedHeaders: ['Content-Type', 'Authorization']
+    //   }
+    // });
 
     server.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
 
-    // démarrer le consumer RabbitMQ
-    try {
-      await deviceService.startPingConsumer();
-      logger.info('PingConsumer started successfully with socket.io');
-    } catch (e) {
-      logger.error(`Error starting PingConsumer: ${e.message}`)
-    }
+    // // démarrer le consumer RabbitMQ
+    // try {
+    //   await deviceService.startPingConsumer();
+    //   logger.info('PingConsumer started successfully with socket.io');
+    // } catch (e) {
+    //   logger.error(`Error starting PingConsumer: ${e.message}`)
+    // }
 
-    // démarrer le scheduler RabbitMQ
-    try {
-      await schedulerDevices.start(process.env.SCHEDULER_INTERVAL_MS)
-      await schedulerPorts.start(process.env.SCHEDULER_INTERVAL_MS)
-      logger.info('Scheduler started successfully')
-    } catch (e) {
-      logger.error(`Error starting scheduler: ${e.message}`)
-    }
+    // // démarrer le scheduler RabbitMQ
+    // try {
+    //   await schedulerDevices.start(process.env.SCHEDULER_INTERVAL_MS)
+    //   await schedulerPorts.start(process.env.SCHEDULER_INTERVAL_MS)
+    //   logger.info('Scheduler started successfully')
+    // } catch (e) {
+    //   logger.error(`Error starting scheduler: ${e.message}`)
+    // }
   } catch (error) {
     logger.error(`Database connection failed: ${error.message}`);
     process.exit(1);
