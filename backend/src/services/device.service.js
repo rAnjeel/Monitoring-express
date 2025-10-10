@@ -454,24 +454,7 @@ class DeviceService {
     await consumer.start(async (pingResult) => {
       try {
         logger.info(`[PingConsumer] Message reçu: ${JSON.stringify(pingResult)}`);
-        const { ip, lossPct, avg, min, max } = pingResult;
-
-        // Chercher le device correspondant à l'IP avec cache
-        let deviceId = this.ipToDeviceIdCache.get(ip)
-        if (!deviceId) {
-          const existing = await db.select().from(devices).where(eq(devices.hostname, ip));
-          if (!existing || existing.length === 0) {
-            logger.warn(`[PingConsumer] Aucun device trouvé avec ip=${ip}`);
-            return;
-          }
-          deviceId = existing[0].id
-          if (this.ipToDeviceIdCache.size >= this.ipCacheMaxSize) {
-            const firstKey = this.ipToDeviceIdCache.keys().next().value
-            this.ipToDeviceIdCache.delete(firstKey)
-          }
-          this.ipToDeviceIdCache.set(ip, deviceId)
-        }
-        logger.info(`[PingConsumer] Device id=${deviceId}, ip=${ip}`, JSON.stringify(pingResult));
+        const { ip, lossPct, avg, min, max, deviceId } = pingResult;
         const lossThreshold = parseFloat(process.env.PING_LOSS_THRESHOLD);
         logger.info(`[PingConsumer] Loss threshold=${lossThreshold}`);
         const isUp = lossPct <= lossThreshold;
@@ -493,6 +476,7 @@ class DeviceService {
         // Créer un événement pour tracer le changement de statut (async fire-and-forget)
         Promise.resolve().then(async () => {
           try {
+            logger.info(`[PingConsumer] Création événement pour device_id=${deviceId}, status=${isUp}`);
             await deviceEventService.createStatusChangeEvent(deviceId, isUp, {
               loss: lossPct,
               avg,
@@ -501,11 +485,10 @@ class DeviceService {
             })
             try { SocketService.emitToAll('deviceEvents:created', { device_id: deviceId }) } catch {}
           } catch (eventError) {
-            logger.error(`[PingConsumer] Erreur création événement: ${eventError.message}`)
+            logger.error(`[PingConsumer] Erreur création événement: ${eventError.message} device_id=${deviceId}`)
           }
         })
           
-        logger.info(`[PingConsumer] Device ${deviceId} mis à jour: loss=${lossPct}%, threshold=${lossThreshold}%, status=${isUp ? 'UP' : 'DOWN'}`);
         logger.info(`[PingConsumer] Device id=${deviceId}, ip=${ip} mis à jour avec succès`);
       } catch (err) {
         logger.error(`[PingConsumer] Erreur traitement message: ${err.message}`);

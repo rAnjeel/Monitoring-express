@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-// 🚀 Agent de Ping Simulé (classe) — consomme une queue et publie des résultats
 import amqp from 'amqplib'
 import dotenv from 'dotenv'
 import path from 'path'
@@ -36,7 +35,7 @@ class PingAgent {
   }
 
   // Génération d'un résultat de ping pour une IP
-  generatePingResult = async (ip) => {
+  generatePingResult = async (ip, deviceId) => {
     const PACKET_COUNT = 4 + Math.floor(Math.random() * 7)
     const successProb = randFloat3(this.successMin, this.successMax)
 
@@ -61,7 +60,7 @@ class PingAgent {
     const mdev = parseFloat(Math.sqrt(variance).toFixed(3))
     const totalTimeMs = parseFloat((sum + ((transmitted - received) * 1000)).toFixed(3))
 
-    return { ip, transmitted, received, lossPct, totalTimeMs, min, avg, max, mdev, successProb }
+    return { ip, transmitted, received, lossPct, totalTimeMs, min, avg, max, mdev, successProb, deviceId }
   }
 
   start = async () => {
@@ -78,17 +77,19 @@ class PingAgent {
         if (payload && payload.batch === true && Array.isArray(payload.items)) {
           for (const item of payload.items) {
             const ip = item?.ip || item?.hostname
+            const deviceId = item?.deviceId
             if (!ip) continue
-            const result = await this.generatePingResult(ip)
+            const result = await this.generatePingResult(ip, deviceId)
             this.channel.sendToQueue(this.resultsQueue, Buffer.from(JSON.stringify(result)))
-            console.log(`[Agent ${AGENT_ID}] ${ip} → ${result.avg.toFixed(1)}ms (${result.lossPct}% loss)`) 
+            console.log(`[Agent ${AGENT_ID}] ${ip} → ${result.avg.toFixed(1)}ms (${result.lossPct}% loss) deviceId=${deviceId}`) 
           }
         } else {
           const ip = payload?.ip || payload?.hostname
+          const deviceId = payload?.deviceId
           if (ip) {
-            const result = await this.generatePingResult(ip)
+            const result = await this.generatePingResult(ip, deviceId)
             this.channel.sendToQueue(this.resultsQueue, Buffer.from(JSON.stringify(result)))
-            console.log(`[Agent ${AGENT_ID}] ${ip} → ${result.avg.toFixed(1)}ms (${result.lossPct}% loss)`) 
+            console.log(`[Agent ${AGENT_ID}] ${ip} → ${result.avg.toFixed(1)}ms (${result.lossPct}% loss) deviceId=${deviceId}`) 
           }
         }
       } catch (e) {

@@ -21,6 +21,7 @@ class MessageParserService {
 		const avg = this.#toFloatOrNull(msg.avg)
 		const max = this.#toFloatOrNull(msg.max)
 		const mdev = this.#toFloatOrNull(msg.mdev)
+		const deviceId = this.#toIntOrNull(msg.deviceId)
 
 		return {
 			ip,
@@ -31,7 +32,8 @@ class MessageParserService {
 			min: min ?? 0,
 			avg: avg ?? 0,
 			max: max ?? 0,
-			mdev: mdev ?? 0
+			mdev: mdev ?? 0,
+			deviceId: deviceId
 		}
 	}
 

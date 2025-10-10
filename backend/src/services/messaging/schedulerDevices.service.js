@@ -68,8 +68,9 @@ class SchedulerDevicesService {
     for (const d of devices) {
       const typeRaw = (d?.type_device || '').toString().trim().toUpperCase()
       const ip = d?.hostname
+      const deviceId = d?.id
       if (!ip) continue
-      const msg = { ip }
+      const msg = { ip, deviceId }
       if (CORE_TYPES.has(typeRaw)) buckets.core.push(msg)
       else if (ACCESS_TYPES.has(typeRaw)) buckets.access.push(msg)
       else if (MOBILE_TYPES.has(typeRaw)) buckets.mobile.push(msg)
