@@ -2,3 +2,4 @@ backend/logs/app.log
 backend/logs/app.log
 /backend/logs
 /agent ping/node_modules
+/agents/node_modules

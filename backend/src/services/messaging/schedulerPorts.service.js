@@ -1,4 +1,3 @@
-import cron from 'node-cron'
 import amqp from 'amqplib'
 import logger from '../../logger/logger.js'
 import portService from '../port.service.js'
@@ -14,16 +13,17 @@ class SchedulerPortsService {
     this.batchSize = Number(process.env.SCHEDULER_PORT_BATCH || 200)
   }
 
-  // 🚀 Démarre le cron une fois par minute
   start = async () => {
     if (!this.url) throw new Error('RABBIT_URL manquant')
 
     await this.#connect()
     await this.#assertQueue()
 
-    logger.info(`[SchedulerPorts] Démarré (cron: 1 min) → queue=${this.queueName}`)
-
-    cron.schedule('* * * * *', () => this.#safeTick())
+    this.intervalMs = Number(process.env.SCHEDULER_PORTS_INTERVAL_MS || 60000)
+    logger.info(`[SchedulerPorts] Démarré (interval: ${this.intervalMs}ms) → queue=${this.queueName}`)
+    // run once then interval
+    this.#safeTick()
+    this.timer = setInterval(this.#safeTick, this.intervalMs)
   }
 
   // 🧠 Sécurisation : évite deux ticks en même temps
@@ -85,7 +85,6 @@ class SchedulerPortsService {
     const size = this.batchSize > 0 ? this.batchSize : 200
     let sent = 0
 
-    // Découpe en petits groupes pour éviter le blocage
     for (let i = 0; i < groups.length; i += size) {
       const slice = groups.slice(i, i + size)
 
