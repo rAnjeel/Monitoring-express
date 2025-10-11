@@ -8,6 +8,7 @@ import utilService from './util.service.js';
 import ConsumerService from './messaging/consumer.service.js';
 import deviceEventService from './deviceEvent.service.js';
 import SocketService from './socket/socket.service.js';
+import { updateDevice as updateDeviceCache, saveCache as saveDeviceCache } from './cache/deviceCache.service.js';
 
 class DeviceService {
   constructor() {
@@ -470,7 +471,20 @@ class DeviceService {
         if (isUp) {
           updateData.uptime = new Date();
         }
-        
+
+        // 1) Mettre à jour le cache JSON local en priorité
+        try {
+          await updateDeviceCache(deviceId, updateData)
+        } catch (cacheErr) {
+          logger.error(`[PingConsumer] Erreur mise à jour cache JSON: ${cacheErr.message}`)
+        }
+
+        // 2) Notifier immédiatement le frontend de récupérer l'update
+        try {
+          SocketService.emitToAll('devices:bulk_update', [Number(deviceId)])
+        } catch {}
+
+        // 3) Enfiler la mise à jour base de données (batch)
         this.queueUpdate(deviceId, updateData)
           
         // Créer un événement pour tracer le changement de statut (async fire-and-forget)

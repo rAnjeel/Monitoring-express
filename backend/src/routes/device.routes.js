@@ -10,7 +10,8 @@ router.get('/list', (req, res) => deviceController.getList(req, res));
 router.get('/limit', (req, res) => deviceController.getPage(req, res));
 router.get('/cache', (req, res) => {
   try {
-    res.json({ devices: getCachedDevices() });
+    const devices = getCachedDevices();
+    res.json({ devices });
   } catch (e) {
     res.status(500).json({ message: 'Cache error' });
   }

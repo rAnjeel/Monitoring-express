@@ -60,32 +60,32 @@ async function startServer() {
     }
 
     // // Initialize persistent Socket.IO server bound to HTTP server
-    // SocketService.init(server, {
-    //   cors: {
-    //     origin: ['http://localhost:8080', 'http://localhost:8081'],
-    //     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    //     allowedHeaders: ['Content-Type', 'Authorization']
-    //   }
-    // });
+    SocketService.init(server, {
+      cors: {
+        origin: ['http://localhost:8080', 'http://localhost:8081'],
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        allowedHeaders: ['Content-Type', 'Authorization']
+      }
+    });
 
     server.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
 
-    // // démarrer le consumer RabbitMQ
-    // try {
-    //   await deviceService.startPingConsumer();
-    //   logger.info('PingConsumer started successfully with socket.io');
-    // } catch (e) {
-    //   logger.error(`Error starting PingConsumer: ${e.message}`)
-    // }
+    // démarrer le consumer RabbitMQ
+    try {
+      await deviceService.startPingConsumer();
+      logger.info('PingConsumer started successfully with socket.io');
+    } catch (e) {
+      logger.error(`Error starting PingConsumer: ${e.message}`)
+    }
 
-    // // démarrer le scheduler RabbitMQ
-    // try {
-    //   await schedulerDevices.start(process.env.SCHEDULER_INTERVAL_MS)
-    //   await schedulerPorts.start(process.env.SCHEDULER_INTERVAL_MS)
-    //   logger.info('Scheduler started successfully')
-    // } catch (e) {
-    //   logger.error(`Error starting scheduler: ${e.message}`)
-    // }
+    // démarrer le scheduler RabbitMQ
+    try {
+      await schedulerDevices.start(process.env.SCHEDULER_INTERVAL_MS)
+      await schedulerPorts.start(process.env.SCHEDULER_INTERVAL_MS)
+      logger.info('Scheduler started successfully')
+    } catch (e) {
+      logger.error(`Error starting scheduler: ${e.message}`)
+    }
   } catch (error) {
     logger.error(`Database connection failed: ${error.message}`);
     process.exit(1);
