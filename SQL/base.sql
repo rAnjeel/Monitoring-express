@@ -150,6 +150,6 @@ CREATE TABLE port_events (
     ifInOctets BIGINT DEFAULT 0,
     ifOutOctets BIGINT DEFAULT 0,
     status ENUM('up', 'down', 'warning') NOT NULL,
-    event_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    event_time DATETIME,
     FOREIGN KEY (port_id) REFERENCES ports(id) ON DELETE CASCADE
 );
