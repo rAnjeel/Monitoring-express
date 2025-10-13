@@ -42,13 +42,8 @@ npm install
 
 ```bash
 # Agent Core (1 instance)
-pm2 start launcher/core-launcher.js --name "ping-core" --instances 2
+pm2 start launcher/ping-launcher.js --instances 3
 
-# Agent Access (2 instances)
-pm2 start launcher/access-launcher.js --name "ping-access" --instances 1
-
-# Agent Mobile (3 instances)
-pm2 start launcher/mobile-Launcher.js --name "ping-mobile" --instances 3
 ```
 
 #### Option B : Configuration PM2 (ecosystem.config.js)
@@ -64,7 +59,6 @@ pm2 start ecosystem.config.js
 pm2 status
 
 # Voir les logs
-pm2 logs ping-core
 pm2 logs ping-access
 pm2 logs ping-mobile
 

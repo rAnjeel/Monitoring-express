@@ -1,4 +1,4 @@
-import db from '../config/db.js';
+import { db } from '../config/db.js';
 import { locations } from '../models/location.model.js';
 import { eq } from 'drizzle-orm';
 import logger from '../logger/logger.js';

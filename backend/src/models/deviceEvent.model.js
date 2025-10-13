@@ -1,4 +1,4 @@
-import { mysqlTable, int, float, mysqlEnum, timestamp } from 'drizzle-orm/mysql-core';
+import { mysqlTable, int, float, mysqlEnum, datetime } from 'drizzle-orm/mysql-core';
 
 const deviceEvents = mysqlTable('device_events', {
   id: int('id').primaryKey().autoincrement(),
@@ -8,7 +8,7 @@ const deviceEvents = mysqlTable('device_events', {
   min: float('min').default(0),
   max: float('max').default(0),
   status: mysqlEnum('status', ['up', 'down', 'warning']).notNull(),
-  event_time: timestamp('event_time').defaultNow(),
+  event_time: datetime('event_time'),
 });
 
 export { deviceEvents };

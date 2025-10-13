@@ -12,7 +12,7 @@ class ConsumerService {
         this.url = process.env.RABBIT_URL
         this.isConsuming = false
 
-        this.concurrentLimit = Number(process.env.CONSUMER_CONCURRENCY || 5)
+        this.concurrentLimit = Number(process.env.CONSUMER_CONCURRENCY || 15)
         this.taskQueue = new PQueue({ concurrency: this.concurrentLimit })
     }
 
@@ -32,7 +32,7 @@ class ConsumerService {
 			this.channel = await this.connection.createChannel()
 
 			await this.channel.assertQueue(this.queueName, { durable: false })
-			const prefetchCount = Number(process.env.RABBIT_PREFETCH || 20)
+			const prefetchCount = Number(process.env.RABBIT_PREFETCH || 50)
 			await this.channel.prefetch(prefetchCount)
 
 			this.isConsuming = true

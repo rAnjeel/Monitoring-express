@@ -1,10 +1,8 @@
 import amqp from 'amqplib'
 import logger from '../../logger/logger.js'
 import deviceService from '../device.service.js'
+import SocketService from '../socket/socket.service.js'
 
-const CORE_TYPES = new Set(['ROUTER', 'SWITCH', 'R6K'])
-const ACCESS_TYPES = new Set(['IPDSLAM', 'AIRPON', 'TCU'])
-const MOBILE_TYPES = new Set(['2G', '3G', '4G', '5G'])
 
 class SchedulerDevicesService {
   constructor() {
@@ -15,18 +13,14 @@ class SchedulerDevicesService {
     this.intervalMs = Number(process.env.SCHEDULER_INTERVAL_MS || 60000)
     this.inProgress = false
     this.timer = null
-    this.queues = {
-      core: 'ping_core_tasks',
-      access: 'ping_access_tasks',
-      mobile: 'ping_mobile_tasks',
-    }
+    this.queueName = process.env.RABBIT_QUEUE_DEVICES || 'ping_devices_tasks'
   }
 
   start = async () => {
     if (!this.url) throw new Error('RABBIT_URL manquant')
     await this.#connect()
     await this.#assertQueues()
-    logger.info(`[SchedulerDevices] Démarré (interval: ${this.intervalMs}ms) → queues=${Object.values(this.queues).join(',')}`)
+    logger.info(`[SchedulerDevices] Démarré (interval: ${this.intervalMs}ms) → queue=${this.queueName}`)
 
     const wrapped = async () => {
       if (this.inProgress) {
@@ -42,7 +36,6 @@ class SchedulerDevicesService {
         this.inProgress = false
       }
     }
-    // Run once immediately, then schedule
     wrapped()
     this.timer = setInterval(wrapped, this.intervalMs)
   }
@@ -55,43 +48,31 @@ class SchedulerDevicesService {
   }
 
   #assertQueues = async () => {
-    for (const q of Object.values(this.queues)) {
-      await this.channel.assertQueue(q, { durable: false })
-    }
+    await this.channel.assertQueue(this.queueName, { durable: false })
   }
 
-  #tick = async () => {
-    const devices = await deviceService.getFullList({})
+  #tick = async () => {    
+    const devices = await deviceService.getHostnamesAndIds()
     if (!Array.isArray(devices) || devices.length === 0) return
+    
+    await this.#publishBucket(this.queueName, devices)
 
-    const buckets = { core: [], access: [], mobile: [] }
-    for (const d of devices) {
-      const typeRaw = (d?.type_device || '').toString().trim().toUpperCase()
-      const ip = d?.hostname
-      const deviceId = d?.id
-      if (!ip) continue
-      const msg = { ip, deviceId }
-      if (CORE_TYPES.has(typeRaw)) buckets.core.push(msg)
-      else if (ACCESS_TYPES.has(typeRaw)) buckets.access.push(msg)
-      else if (MOBILE_TYPES.has(typeRaw)) buckets.mobile.push(msg)
-    }
-
-    await this.#publishBucket(this.queues.core, buckets.core)
-    await this.#publishBucket(this.queues.access, buckets.access)
-    await this.#publishBucket(this.queues.mobile, buckets.mobile)
-
-    logger.info(`[SchedulerDevices] Publish OK: core=${buckets.core.length}, access=${buckets.access.length}, mobile=${buckets.mobile.length}`)
+    logger.info(`[SchedulerDevices] Publish OK: total=${devices.length} devices`)
   }
 
   #publishBucket = async (queueName, items) => {
     if (!items || items.length === 0) return
-    const size = this.batchSize > 0 ? this.batchSize : 100
-    for (let i = 0; i < items.length; i += size) {
-      const slice = items.slice(i, i + size)
-      const payload = { batch: true, count: slice.length, items: slice }
-      const buffer = Buffer.from(JSON.stringify(payload))
-      this.channel.sendToQueue(queueName, buffer, { persistent: false })
+    const batchSize = 200
+    const payloads = []
+
+    for (let i = 0; i < items.length; i += batchSize) {
+      const slice = items.slice(i, i + batchSize)
+      payloads.push(Buffer.from(JSON.stringify({ batch: true, count: slice.length, items: slice })))
     }
+
+    await Promise.all(
+      payloads.map(buffer => this.channel.sendToQueue(queueName, buffer, { persistent: false }))
+    )
   }
 }
 

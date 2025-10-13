@@ -8,4 +8,4 @@ const makeAgent = (queue) => {
   })
   return agent
 }
-makeAgent('ping_mobile_tasks')
+makeAgent('ping_devices_tasks')
