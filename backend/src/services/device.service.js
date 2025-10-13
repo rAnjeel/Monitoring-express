@@ -254,11 +254,13 @@ class DeviceService {
   getDevicesPage = async ({ page = 1, pageSize = 10, filter = {} } = {}) => {
     try {
       const offset = (page - 1) * pageSize
+      
+      // Construire WHERE/JOINS et placeholders via buildDeviceFilter
+      const { conditions, needsTypeJoin, needsLocJoin, params } = this.buildDeviceFilter(filter)
+      const whereExpr = conditions.length > 0 ? and(...conditions) : undefined
 
-      const { conditions, needsTypeJoin, needsLocJoin } = this.buildDeviceFilter(filter)
-
-      // Base query
-      let baseQuery = db.select({
+      // Data query (prepared)
+      let dataQB = db.select({
         device_id: devices.device_id,
         id: devices.id,
         sysName: devices.sysName,
@@ -283,24 +285,28 @@ class DeviceService {
         snmpver: devices.snmpver,
       }).from(devices)
 
-      if (needsTypeJoin) baseQuery = baseQuery.leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
-      baseQuery = baseQuery.leftJoin(locations, eq(locations.id, devices.location_id))
+      if (needsTypeJoin) dataQB = dataQB.leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
+      dataQB = dataQB.leftJoin(locations, eq(locations.id, devices.location_id))
+      if (whereExpr) dataQB = dataQB.where(whereExpr)
 
-      if (conditions.length > 0) {
-        baseQuery = baseQuery.where(and(...conditions))
-      }
+      const pLimit = sql.placeholder('limit')
+      const pOffset = sql.placeholder('offset')
+      const dataStmt = dataQB.limit(pLimit).offset(pOffset).prepare('devices_page')
 
-      const rowsPromise = baseQuery.limit(pageSize).offset(offset)
+      // Count query (prepared)
+      let countQB = db.select({ count: sql`count(*)`.as('count') }).from(devices)
+      if (needsTypeJoin) countQB = countQB.leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
+      countQB = countQB.leftJoin(locations, eq(locations.id, devices.location_id))
+      if (whereExpr) countQB = countQB.where(whereExpr)
+      const countStmt = countQB.prepare('devices_page_count')
 
-      // Count query with same joins/conditions
-      let countQuery = db.select({ count: sql`count(*)`.as('count') }).from(devices)
-      if (needsTypeJoin) countQuery = countQuery.leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
-      countQuery = countQuery.leftJoin(locations, eq(locations.id, devices.location_id))
-      if (conditions.length > 0) countQuery = countQuery.where(and(...conditions))
+      const execParams = { ...params, limit: Number(pageSize), offset: Number(offset) }
+      const [rows, countRows] = await Promise.all([
+        dataStmt.execute(execParams),
+        countStmt.execute(params)
+      ])
 
-      const [rows, countResult] = await Promise.all([rowsPromise, countQuery])
-      const totalCount = Number(countResult?.[0]?.count || 0)
-
+      const totalCount = Number(countRows?.[0]?.count || 0)
       return { rows, totalCount }
     } catch (error) {
       logger.error(`[Devices] Pagination error: ${error.message}`)
@@ -312,46 +318,44 @@ class DeviceService {
     const conditions = []
     let needsTypeJoin = false
     let needsLocJoin = false
+    const params = {}
 
-    for (const [key, value] of Object.entries(filter)) {
+    const addLike = (name, value) => {
+      params[name] = `%${value}%`
+      return sql.placeholder(name)
+    }
+
+    for (const [key, value] of Object.entries(filter || {})) {
       if (!value) continue
 
       switch (key) {
         case 'key': {
-          const s = `%${value}%`
           needsTypeJoin = true
           needsLocJoin = true
-          conditions.push(
-            or(
-              like(devices.hostname, s),
-              like(devices.sysName, s),
-              like(typeDevices.name, s),
-              like(locations.name, s),
-              like(devices.codesite, s)
-            )
-          )
+          const p = addLike('key', value)
+          conditions.push(sql`CONCAT_WS(' ', ${devices.hostname}, ${devices.sysName}, ${typeDevices.name}, ${locations.name}, ${devices.codesite}) LIKE ${p}`)
           break
         }
         case 'type_device': {
-          const s = `%${value}%`
           needsTypeJoin = true
-          conditions.push(like(typeDevices.name, s))
+          const p = addLike('type_device', value)
+          conditions.push(like(typeDevices.name, p))
           break
         }
         case 'location': {
-          const s = `%${value}%`
           needsLocJoin = true
-          conditions.push(like(locations.name, s))
+          const p = addLike('location', value)
+          conditions.push(like(locations.name, p))
           break
         }
         case 'hostname': {
-          const s = `%${value}%`
-          conditions.push(like(devices.hostname, s))
+          const p = addLike('hostname', value)
+          conditions.push(like(devices.hostname, p))
           break
         }
         case 'sysName': {
-          const s = `%${value}%`
-          conditions.push(like(devices.sysName, s))
+          const p = addLike('sysName', value)
+          conditions.push(like(devices.sysName, p))
           break
         }
         default:
@@ -359,7 +363,7 @@ class DeviceService {
       }
     }
 
-    return { conditions, needsTypeJoin, needsLocJoin }
+    return { conditions, needsTypeJoin, needsLocJoin, params }
   }
 
 

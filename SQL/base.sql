@@ -48,6 +48,9 @@ CREATE TABLE devices (
     ne_id varchar(45)
 );
 CREATE INDEX idx_devices_hostname ON devices (hostname);
+CREATE INDEX idx_type_device_id ON devices(type_device_id);
+CREATE INDEX idx_location_id ON devices(location_id);
+CREATE INDEX idx_status_ping ON devices(ping_status);
 
 -- CREATE TABLE devices (
 --     device_id INT UNIQUE DEFAULT NULL,
@@ -92,6 +95,9 @@ CREATE TABLE device_events (
     event_time DATETIME,
     FOREIGN KEY (device_id) REFERENCES devices(id) ON DELETE CASCADE
 );
+-- device_events
+CREATE INDEX idx_device_events_device_id ON device_events(device_id);
+CREATE INDEX idx_device_events_event_time ON device_events(event_time);
 
 CREATE TABLE ports (
     id INT AUTO_INCREMENT PRIMARY KEY,

@@ -48,47 +48,49 @@ class DeviceEventService {
   getByDeviceId = async (deviceId, { page = 1, pageSize = 20, status, start_date, end_date } = {}) => {
     try {
       logger.info(`[DeviceEvent] Fetching events for device_id=${deviceId}`);
-      
       const offset = (page - 1) * pageSize;
-      const conditions = [eq(deviceEvents.device_id, deviceId)];
 
-      // Filtrer par statut si fourni
+      const whereConds = [eq(deviceEvents.device_id, sql.placeholder('device_id'))]
+      const params = { device_id: Number(deviceId) }
+
       if (status) {
-        conditions.push(eq(deviceEvents.status, status));
+        whereConds.push(eq(deviceEvents.status, sql.placeholder('status')))
+        params.status = status
       }
 
       if (start_date && end_date) {
-        conditions.push(
-          between(deviceEvents.event_time, new Date(start_date), new Date(end_date))
-        );
+        whereConds.push(between(deviceEvents.event_time, sql.placeholder('start_date'), sql.placeholder('end_date')))
+        params.start_date = new Date(start_date)
+        params.end_date = new Date(end_date)
       } else if (start_date) {
-        conditions.push(gte(deviceEvents.event_time, new Date(start_date)));
+        whereConds.push(gte(deviceEvents.event_time, sql.placeholder('start_date')))
+        params.start_date = new Date(start_date)
       } else if (end_date) {
-        conditions.push(lte(deviceEvents.event_time, new Date(end_date)));
+        whereConds.push(lte(deviceEvents.event_time, sql.placeholder('end_date')))
+        params.end_date = new Date(end_date)
       }
-      
 
-      const rows = await db
+      const pLimit = sql.placeholder('limit')
+      const pOffset = sql.placeholder('offset')
+
+      const dataStmt = db
         .select()
         .from(deviceEvents)
-        .where(and(...conditions))
+        .where(and(...whereConds))
         .orderBy(desc(deviceEvents.event_time))
-        .limit(Number(pageSize) + 1)
-        .offset(Number(offset));
-      
+        .limit(pLimit)
+        .offset(pOffset)
+        .prepare('device_events_by_device')
+
+      const execParams = { ...params, limit: Number(pageSize) + 1, offset: Number(offset) }
+      const rows = await dataStmt.execute(execParams)
+
       logger.info(`[DeviceEvent] Found ${rows.length} events for device_id=${deviceId}`);
 
       const hasNextPage = rows.length > pageSize;
-      // retire la ligne extra
       if (hasNextPage) rows.pop();
 
-      return {
-        rows,
-        page,
-        pageSize,
-        hasNextPage,
-      };
-
+      return { rows, page, pageSize, hasNextPage };
     } catch (error) {
       logger.error(`[DeviceEvent] Error fetching events for device_id=${deviceId}: ${error.message}`);
       throw new Error('Database error while fetching device events');
