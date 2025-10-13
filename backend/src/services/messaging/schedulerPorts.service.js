@@ -21,7 +21,6 @@ class SchedulerPortsService {
 
     this.intervalMs = Number(process.env.SCHEDULER_PORTS_INTERVAL_MS || 60000)
     logger.info(`[SchedulerPorts] Démarré (interval: ${this.intervalMs}ms) → queue=${this.queueName}`)
-    // run once then interval
     this.#safeTick()
     this.timer = setInterval(this.#safeTick, this.intervalMs)
   }
