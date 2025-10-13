@@ -47,6 +47,8 @@ CREATE TABLE devices (
     snmpver text,
     ne_id varchar(45)
 );
+CREATE INDEX idx_devices_hostname ON devices (hostname);
+
 -- CREATE TABLE devices (
 --     device_id INT UNIQUE DEFAULT NULL,
 --     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -87,7 +89,7 @@ CREATE TABLE device_events (
     min FLOAT DEFAULT 0,
     max FLOAT DEFAULT 0,
     status ENUM('up', 'down', 'warning') NOT NULL,
-    event_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    event_time DATETIME,
     FOREIGN KEY (device_id) REFERENCES devices(id) ON DELETE CASCADE
 );
 

@@ -1,4 +1,4 @@
-import db from '../config/db.js';
+import { db } from '../config/db.js';
 import { typeDevices } from '../models/typeDevice.model.js';
 import { devices } from '../models/device.model.js';
 import { eq, sql } from 'drizzle-orm';

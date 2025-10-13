@@ -15,7 +15,6 @@ class DeviceController {
 
   getList = async (req, res) => {
     try {
-      // filter attendu comme JSON : { key: 'valeur', type_device: 'switch', location: 'Paris' }
       const filterObj = req.query.filter ? JSON.parse(req.query.filter) : {};
       const items = await deviceService.getFullList(filterObj);
       res.json(items);
@@ -66,7 +65,6 @@ class DeviceController {
   update = async (req, res) => {
     try {
       await deviceService.update(req.params.id, req.body);
-      // Enqueue for bulk socket emit
       SocketService.enqueueDeviceUpdate(req.params.id)
       res.json({ message: 'Updated successfully' });
     } catch (error) {

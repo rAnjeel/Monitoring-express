@@ -1,4 +1,4 @@
-import db from '../config/db.js';
+import {db, mysqlPool} from '../config/db.js';
 import { devices } from '../models/device.model.js';
 import { locations } from '../models/location.model.js';
 import { typeDevices } from '../models/typeDevice.model.js';
@@ -6,63 +6,14 @@ import { eq, sql, like, or, and } from 'drizzle-orm';
 import logger from '../logger/logger.js';
 import utilService from './util.service.js';
 import ConsumerService from './messaging/consumer.service.js';
-import deviceEventService from './deviceEvent.service.js';
 import SocketService from './socket/socket.service.js';
 
 class DeviceService {
   constructor() {
-    this.updateBuffer = new Map()
-    this.flushTimer = null
-    this.batchIntervalMs = Number(process.env.BATCH_SQL_INTERVAL_MS || 3000)
-    this.batchMaxPerTick = Number(process.env.BATCH_SQL_MAX || 200)
     this.ipToDeviceIdCache = new Map()
     this.ipCacheMaxSize = Number(process.env.IP_CACHE_MAX || 10000)
   }
 
-  queueUpdate = (id, partialData) => {
-    const deviceId = Number(id)
-    if (!this.updateBuffer.has(deviceId)) {
-      this.updateBuffer.set(deviceId, { ...partialData })
-    } else {
-      const existing = this.updateBuffer.get(deviceId) || {}
-      this.updateBuffer.set(deviceId, { ...existing, ...partialData })
-    }
-    if (!this.flushTimer) {
-      this.flushTimer = setTimeout(() => this.flushUpdates(), this.batchIntervalMs)
-    }
-  }
-
-  flushUpdates = async () => {
-    try {
-      const entries = Array.from(this.updateBuffer.entries())
-      if (entries.length === 0) {
-        clearTimeout(this.flushTimer)
-        this.flushTimer = null
-        return
-      }
-      const slice = entries.slice(0, this.batchMaxPerTick)
-      for (const [id, data] of slice) {
-        try {
-          await db.update(devices).set(data).where(eq(devices.id, id))
-          try {
-            SocketService.enqueueDeviceUpdate(id)
-          } catch {}
-        } catch (e) {
-          logger.error(`[BatchSQL] Erreur update device id=${id}: ${e.message}`)
-        } finally {
-          this.updateBuffer.delete(id)
-        }
-      }
-
-    } finally {
-      if (this.updateBuffer.size > 0) {
-        this.flushTimer = setTimeout(() => this.flushUpdates(), this.batchIntervalMs)
-      } else {
-        clearTimeout(this.flushTimer)
-        this.flushTimer = null
-      }
-    }
-  }
 
   list = async () => {
     try {
@@ -109,8 +60,6 @@ class DeviceService {
       logger.info(`Updating device id=${id}`);
       const result = await db.update(devices).set(data).where(eq(devices.id, id));
       logger.info(`Update result for device id=${id}: ${JSON.stringify(result)}`);
-      // enqueue device update (immediate if SOCKET_BULK_INTERVAL_MS<=0)
-      try { SocketService.enqueueDeviceUpdate(id) } catch {}
       return result;
     } catch (error) {
       logger.error(`Error updating device id=${id}: ${error.message}`);
@@ -285,215 +234,198 @@ class DeviceService {
     }
   }
 
-
-  getDevicesPage = async ({ page = 1, pageSize = 20, filter = {} } = {}) => {
+  getHostnamesAndIds = async () => {
     try {
-      const offset = (page - 1) * pageSize;
-
-      // Base query avec jointures
-      let rowsQuery = db
+      logger.info('[DeviceService] Fetching hostnames and ids');
+      const result = await db
         .select({
-          device_id: devices.device_id,
-          id: devices.id,
-          sysName: devices.sysName,
-          hostname: devices.hostname,
-          type_device: typeDevices.name,
-          location: locations.name,
-          ping_status: devices.ping_status,
-          status: devices.status,
-          codesite: devices.codesite,
-          loss: devices.loss,
-          avg: devices.avg,
-          min: devices.min,
-          max: devices.max,
-          uptime: devices.uptime,
-          snmp_disable: devices.snmp_disable,
-          community: devices.community,
-          authlevel: devices.authlevel,
-          authname: devices.authname,
-          authalgo: devices.authalgo,
-          cryptopass: devices.cryptopass,
-          cryptoalgo: devices.cryptoalgo,
-          snmpver: devices.snmpver,
+          deviceId: devices.id,
+          ip: devices.hostname
         })
-        .from(devices)
-        .leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
-        .leftJoin(locations, eq(locations.id, devices.location_id));
-
-      // Construit les conditions (supporte multi-sélection via tableaux)
-      if (filter && Object.keys(filter).length > 0) {
-        const conditions = [];
-
-        for (const [key, value] of Object.entries(filter)) {
-          if (value === undefined || value === null || value === '') continue;
-
-          const values = Array.isArray(value) ? value : [value];
-
-          switch (key) {
-            case 'key': {
-              // Pour chaque terme, on cherche dans plusieurs colonnes, puis OR entre les termes
-              const perTermOrGroups = values.map(v => {
-                const s = `%${v}%`;
-                return or(
-                  like(devices.hostname, s),
-                  like(devices.sysName, s),
-                  like(typeDevices.name, s),
-                  like(locations.name, s),
-                  like(devices.codesite, s)
-                );
-              });
-              conditions.push(or(...perTermOrGroups));
-              break;
-            }
-            case 'type_device': {
-              const orGroup = values.map(v => like(typeDevices.name, `%${v}%`));
-              conditions.push(or(...orGroup));
-              break;
-            }
-            case 'location': {
-              const orGroup = values.map(v => like(locations.name, `%${v}%`));
-              conditions.push(or(...orGroup));
-              break;
-            }
-            case 'hostname': {
-              const orGroup = values.map(v => like(devices.hostname, `%${v}%`));
-              conditions.push(or(...orGroup));
-              break;
-            }
-            case 'sysName': {
-              const orGroup = values.map(v => like(devices.sysName, `%${v}%`));
-              conditions.push(or(...orGroup));
-              break;
-            }
-            default:
-              break;
-          }
-        }
-
-        if (conditions.length > 0) {
-          rowsQuery = rowsQuery.where(and(...conditions));
-        }
-      }
-
-      // Pagination
-      const rows = await rowsQuery.limit(pageSize).offset(offset);
-
-      // Compte total avec le même filtre
-      let countQuery = db
-        .select({ count: sql`count(*)`.as('count') })
-        .from(devices)
-        .leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
-        .leftJoin(locations, eq(locations.id, devices.location_id));
-
-      if (filter && Object.keys(filter).length > 0) {
-        const conditions = [];
-
-        for (const [key, value] of Object.entries(filter)) {
-          if (value === undefined || value === null || value === '') continue;
-
-          const values = Array.isArray(value) ? value : [value];
-
-          switch (key) {
-            case 'key': {
-              const perTermOrGroups = values.map(v => {
-                const s = `%${v}%`;
-                return or(
-                  like(devices.hostname, s),
-                  like(devices.sysName, s),
-                  like(typeDevices.name, s),
-                  like(locations.name, s),
-                  like(devices.codesite, s)
-                );
-              });
-              conditions.push(or(...perTermOrGroups));
-              break;
-            }
-            case 'type_device': {
-              const orGroup = values.map(v => like(typeDevices.name, `%${v}%`));
-              conditions.push(or(...orGroup));
-              break;
-            }
-            case 'location': {
-              const orGroup = values.map(v => like(locations.name, `%${v}%`));
-              conditions.push(or(...orGroup));
-              break;
-            }
-            case 'hostname': {
-              const orGroup = values.map(v => like(devices.hostname, `%${v}%`));
-              conditions.push(or(...orGroup));
-              break;
-            }
-            case 'sysName': {
-              const orGroup = values.map(v => like(devices.sysName, `%${v}%`));
-              conditions.push(or(...orGroup));
-              break;
-            }
-            default:
-              break;
-          }
-        }
-
-        if (conditions.length > 0) {
-          countQuery = countQuery.where(and(...conditions));
-        }
-      }
-
-      const totalCountResult = await countQuery;
-      const totalCount = Number(totalCountResult?.[0]?.count || 0);
-
-      return { rows, totalCount };
+        .from(devices);
+      logger.info(`[DeviceService] Fetched ${result.length} hostnames and ids`);
+      return result;
     } catch (error) {
-      logger.error(`Error fetching paginated devices (drizzle): ${error.message}`);
-      throw error;
+      logger.error(`[DeviceService] Error fetching hostnames and ids: ${error.message}`);
+      throw new Error('Database error while fetching hostnames and ids');
     }
   }
 
+  getDevicesPage = async ({ page = 1, pageSize = 10, filter = {} } = {}) => {
+    try {
+      const offset = (page - 1) * pageSize
+
+      const { conditions, needsTypeJoin, needsLocJoin } = this.buildDeviceFilter(filter)
+
+      // Base query
+      let baseQuery = db.select({
+        device_id: devices.device_id,
+        id: devices.id,
+        sysName: devices.sysName,
+        hostname: devices.hostname,
+        type_device: typeDevices.name,
+        location: locations.name,
+        ping_status: devices.ping_status,
+        status: devices.status,
+        codesite: devices.codesite,
+        loss: devices.loss,
+        avg: devices.avg,
+        min: devices.min,
+        max: devices.max,
+        uptime: devices.uptime,
+        snmp_disable: devices.snmp_disable,
+        community: devices.community,
+        authlevel: devices.authlevel,
+        authname: devices.authname,
+        authalgo: devices.authalgo,
+        cryptopass: devices.cryptopass,
+        cryptoalgo: devices.cryptoalgo,
+        snmpver: devices.snmpver,
+      }).from(devices)
+
+      if (needsTypeJoin) baseQuery = baseQuery.leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
+      baseQuery = baseQuery.leftJoin(locations, eq(locations.id, devices.location_id))
+
+      if (conditions.length > 0) {
+        baseQuery = baseQuery.where(and(...conditions))
+      }
+
+      const rowsPromise = baseQuery.limit(pageSize).offset(offset)
+
+      // Count query with same joins/conditions
+      let countQuery = db.select({ count: sql`count(*)`.as('count') }).from(devices)
+      if (needsTypeJoin) countQuery = countQuery.leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
+      countQuery = countQuery.leftJoin(locations, eq(locations.id, devices.location_id))
+      if (conditions.length > 0) countQuery = countQuery.where(and(...conditions))
+
+      const [rows, countResult] = await Promise.all([rowsPromise, countQuery])
+      const totalCount = Number(countResult?.[0]?.count || 0)
+
+      return { rows, totalCount }
+    } catch (error) {
+      logger.error(`[Devices] Pagination error: ${error.message}`)
+      throw error
+    }
+  }
+
+  buildDeviceFilter = (filter = {}) => {
+    const conditions = []
+    let needsTypeJoin = false
+    let needsLocJoin = false
+
+    for (const [key, value] of Object.entries(filter)) {
+      if (!value) continue
+
+      switch (key) {
+        case 'key': {
+          const s = `%${value}%`
+          needsTypeJoin = true
+          needsLocJoin = true
+          conditions.push(
+            or(
+              like(devices.hostname, s),
+              like(devices.sysName, s),
+              like(typeDevices.name, s),
+              like(locations.name, s),
+              like(devices.codesite, s)
+            )
+          )
+          break
+        }
+        case 'type_device': {
+          const s = `%${value}%`
+          needsTypeJoin = true
+          conditions.push(like(typeDevices.name, s))
+          break
+        }
+        case 'location': {
+          const s = `%${value}%`
+          needsLocJoin = true
+          conditions.push(like(locations.name, s))
+          break
+        }
+        case 'hostname': {
+          const s = `%${value}%`
+          conditions.push(like(devices.hostname, s))
+          break
+        }
+        case 'sysName': {
+          const s = `%${value}%`
+          conditions.push(like(devices.sysName, s))
+          break
+        }
+        default:
+          break
+      }
+    }
+
+    return { conditions, needsTypeJoin, needsLocJoin }
+  }
+
+
   startPingConsumer = async () => {
-    const queueName = process.env.RABBIT_QUEUE_PING
+    const queueName = process.env.RABBIT_QUEUE_PING || 'ping_results'
     const consumer = new ConsumerService(queueName)
+
     await consumer.start(async (pingResult) => {
       try {
-        logger.info(`[PingConsumer] Message reçu: ${JSON.stringify(pingResult)}`);
-        const { ip, lossPct, avg, min, max, deviceId } = pingResult;
-        const lossThreshold = parseFloat(process.env.PING_LOSS_THRESHOLD);
-        logger.info(`[PingConsumer] Loss threshold=${lossThreshold}`);
-        const isUp = lossPct <= lossThreshold;
-        
-        const updateData = {
-          ping_status: isUp,
-          loss: lossPct,
-          avg,
-          min,
-          max,
-        };
-        
-        if (isUp) {
-          updateData.uptime = new Date();
+        const { lossPct, avg, min, max, deviceId, ip } = pingResult
+        const nowDate = new Date()
+
+        if (process.env.NODE_ENV === 'development') {
+          logger.info(`[PingConsumer] Message reçu: deviceId=${deviceId}, ip=${ip}, loss=${lossPct}%`)
         }
-        
-        this.queueUpdate(deviceId, updateData)
-          
-        // Créer un événement pour tracer le changement de statut (async fire-and-forget)
-        Promise.resolve().then(async () => {
-          try {
-            logger.info(`[PingConsumer] Création événement pour device_id=${deviceId}, status=${isUp}`);
-            await deviceEventService.createStatusChangeEvent(deviceId, isUp, {
-              loss: lossPct,
+
+        const lossThreshold = parseFloat(process.env.PING_LOSS_THRESHOLD || 10)
+        const isUp = lossPct <= lossThreshold
+        const status = isUp ? 'up' : 'down'
+
+        const updateSql = isUp
+          ? 'UPDATE devices SET ping_status = ?, loss = ?, avg = ?, min = ?, max = ?, uptime = ? WHERE id = ?'
+          : 'UPDATE devices SET ping_status = ?, loss = ?, avg = ?, min = ?, max = ? WHERE id = ?'
+        const updateParams = isUp
+          ? [
+              isUp ? 1 : 0,
+              lossPct,
               avg,
               min,
-              max
-            })
-            try { SocketService.emitToAll('deviceEvents:created', { device_id: deviceId }) } catch {}
-          } catch (eventError) {
-            logger.error(`[PingConsumer] Erreur création événement: ${eventError.message} device_id=${deviceId}`)
-          }
-        })
-          
-        logger.info(`[PingConsumer] Device id=${deviceId}, ip=${ip} mis à jour avec succès`);
-      } catch (err) {
-        logger.error(`[PingConsumer] Erreur traitement message: ${err.message}`);
+              max,
+              nowDate.toISOString().slice(0, 19).replace('T', ' '),
+              deviceId,
+            ]
+          : [
+              isUp ? 1 : 0,
+              lossPct,
+              avg,
+              min,
+              max,
+              deviceId,
+            ]
+
+      await Promise.all([
+        mysqlPool.execute(updateSql, updateParams),
+          mysqlPool.execute(
+            'INSERT INTO device_events (device_id, loss, avg, min, max, status, event_time) VALUES (?, ?, ?, ?, ?, ?, ?)',
+            [deviceId, lossPct, avg, min, max, status, nowDate.toISOString().slice(0, 19).replace('T', ' ')]
+          )
+        ])
+
+        // Notifier le front une fois les écritures terminées
+        try {
+          SocketService.emitToAll('devices:bulk_update', [])
+        } catch {}
+        try {
+          SocketService.emitToAll('deviceEvents:created', { device_id: deviceId })
+        } catch {}
+
+        if (process.env.NODE_ENV === 'development') {
+          logger.info(`[PingConsumer] Device ${deviceId} mis à jour avec succès - Status: ${status}`)
+        }
+      } catch (error) {
+        logger.error(`[PingConsumer] Erreur traitement message: ${error.message}`)
+        try { logger.error(`[PingConsumer] Message: ${JSON.stringify(pingResult)}`) } catch {}
       }
-    });
+    })
   }
 }
 

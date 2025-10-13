@@ -1,4 +1,4 @@
-import db from '../config/db.js';
+import { db } from '../config/db.js';
 import { deviceEvents } from '../models/deviceEvent.model.js';
 import { devices } from '../models/device.model.js';
 import { eq, sql, and, gte, lte, desc, between } from 'drizzle-orm';
@@ -12,7 +12,7 @@ class DeviceEventService {
       logger.info(`[DeviceEvent] Creating event for device_id=${data.device_id}, status=${data.status}`);
       
       const result = await db.insert(deviceEvents).values(data);
-      logger.info(`[DeviceEvent] Event created with ID=${result.device_id}`);
+      logger.info(`[DeviceEvent] Event created with ID=${data.device_id}`);
       
       return result.device_id;
     } catch (error) {
@@ -202,7 +202,7 @@ class DeviceEventService {
   };
 
   // Créer un événement automatiquement lors d'un changement de statut
-  createStatusChangeEvent = async (deviceId, currentStatus, pingData) => {
+  createStatusChangeEvent = async (deviceId, currentStatus,now, pingData) => {
     try {
       const eventData = {
         device_id: deviceId,
@@ -211,7 +211,7 @@ class DeviceEventService {
         min: pingData.min || 0,
         max: pingData.max || 0,
         status: currentStatus ? 'up' : 'down',
-        event_time: new Date()
+        event_time: now
       };
 
       return await this.create(eventData);

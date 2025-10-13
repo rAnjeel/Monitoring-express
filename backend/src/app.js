@@ -11,7 +11,6 @@ import locationRoutes from './routes/location.routes.js';
 import portRoutes from './routes/port.routes.js';
 import deviceEventRoutes from './routes/deviceEvent.routes.js';
 import logger from './logger/logger.js';
-import db from './config/db.js';
 import errorHandler from './middlewares/error.middleware.js';
 import deviceService from './services/device.service.js';
 import SocketService from './services/socket/socket.service.js';
@@ -60,15 +59,6 @@ async function startServer() {
     });
 
     server.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
-
-    // démarrer le consumer RabbitMQ
-    try {
-      await deviceService.startPingConsumer();
-      logger.info('PingConsumer started successfully with socket.io');
-    } catch (e) {
-      logger.error(`Error starting PingConsumer: ${e.message}`)
-    }
-
     // démarrer le scheduler RabbitMQ
     try {
       await schedulerDevices.start(process.env.SCHEDULER_INTERVAL_MS)
@@ -76,6 +66,14 @@ async function startServer() {
       logger.info('Scheduler started successfully')
     } catch (e) {
       logger.error(`Error starting scheduler: ${e.message}`)
+    }
+    
+    // démarrer le consumer RabbitMQ
+    try {
+      await deviceService.startPingConsumer();
+      logger.info('PingConsumer started successfully with socket.io');
+    } catch (e) {
+      logger.error(`Error starting PingConsumer: ${e.message}`)
     }
   } catch (error) {
     logger.error(`Database connection failed: ${error.message}`);
