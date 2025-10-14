@@ -10,6 +10,7 @@ import typeDeviceRoutes from './routes/typeDevice.routes.js';
 import locationRoutes from './routes/location.routes.js';  
 import portRoutes from './routes/port.routes.js';
 import deviceEventRoutes from './routes/deviceEvent.routes.js';
+import portEventRoutes from './routes/portEvent.routes.js';
 import logger from './logger/logger.js';
 import errorHandler from './middlewares/error.middleware.js';
 import deviceService from './services/device.service.js';
@@ -32,11 +33,13 @@ app.use(cors({
   allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
+// ROUTES
 app.use('/devices', deviceRoutes);
 app.use('/type-devices', typeDeviceRoutes);
 app.use('/locations', locationRoutes);
 app.use('/ports', portRoutes);
 app.use('/device-events', deviceEventRoutes);
+app.use('/port-events', portEventRoutes);
 app.use(errorHandler);
 
 
