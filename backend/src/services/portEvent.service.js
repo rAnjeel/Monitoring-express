@@ -1,5 +1,4 @@
-import { portEvents } from '../models/portEvent.model.js';
-import db from '../config/db.js';
+import { db } from '../config/db.js';
 import { eq, sql, and, desc, gte, lte, between } from 'drizzle-orm';
 import logger from '../logger/logger.js';
 
