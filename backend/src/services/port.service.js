@@ -1,9 +1,11 @@
-import { db } from '../config/db.js';
+import { db, mysqlPool } from '../config/db.js';
 import { ports } from '../models/port.model.js';
 import { devices } from '../models/device.model.js';
 import { eq, sql, like, or, and } from 'drizzle-orm';
 import logger from '../logger/logger.js';
 import utilService from './util.service.js';
+import ConsumerService from './messaging/consumer.service.js';
+import SocketService from './socket/socket.service.js';
 
 class PortService {
   list = async () => {
@@ -359,14 +361,13 @@ class PortService {
     }
   }
 
-  // Retourne, groupé par device_id, les listes de port_id dont l'adminStatus est 'up'
   getAdminUpPortIdsGroupedByDevice = async () => {
     try {
       logger.info('Fetching admin UP ports grouped by device_id')
       const rows = await db
-        .select({ device_id: ports.device_id, port_id: ports.port_id, adminStatus: ports.ifAdminStatus })
+        .select({ device_id: ports.device_id, port_id: ports.port_id, ifInOctets: ports.ifInOctets, ifOutOctets: ports.ifOutOctets })
         .from(ports)
-        .where(eq(ports.ifAdminStatus, 'up'))
+        
 
       const deviceIdToPorts = new Map()
       for (const r of rows) {
@@ -374,16 +375,83 @@ class PortService {
         const pid = r.port_id
         if (did == null || pid == null) continue
         if (!deviceIdToPorts.has(did)) deviceIdToPorts.set(did, [])
-        deviceIdToPorts.get(did).push(pid)
+        deviceIdToPorts.get(did).push({ port_id: pid, ifInOctets: r.ifInOctets, ifOutOctets: r.ifOutOctets })
       }
 
-      const result = Array.from(deviceIdToPorts.entries()).map(([device_id, port_ids]) => ({ device_id, port_ids }))
+      const result = Array.from(deviceIdToPorts.entries()).map(([device_id, ports_stats]) => ({ device_id, ports: ports_stats }))
       logger.info(`Grouped ${result.length} device groups for admin UP ports`)
       return result
     } catch (error) {
       logger.error(`Error fetching admin UP ports grouped by device: ${error.message}`)
       throw error
     }
+  }
+
+  startTrafficConsumer = async () => {
+    const queueName = process.env.RABBIT_QUEUE_TRAFFIC || 'traffic_results'
+    const consumer = new ConsumerService(queueName)
+    await consumer.start(async (trafficResult) => {
+      try {
+        const deviceId = trafficResult?.device_id
+        const portsArr = Array.isArray(trafficResult?.ports) ? trafficResult.ports : []
+        const ts = trafficResult?.ts
+        if (deviceId == null || portsArr.length === 0) {
+          logger.warn(`[TrafficConsumer] Message invalide: device_id=${deviceId}, ports_count=${portsArr.length}`)
+          return
+        }
+
+        const tsStr = new Date(ts).toISOString().slice(0, 19).replace('T', ' ')
+        const updatedPortsForSocket = []
+
+        await Promise.all(portsArr.map(async (p) => {
+          const portId = p?.port_id
+          const inOctets = Number(p?.inOctets) || 0
+          const outOctets = Number(p?.outOctets) || 0
+          const statusStr = p?.status ? 'up' : 'down'
+
+          try {
+            await mysqlPool.execute(
+              'UPDATE ports SET ifInOctets = ?, ifOutOctets = ?, ifOperStatus = ? WHERE port_id = ? AND device_id = ?',
+              [inOctets, outOctets, statusStr, portId, deviceId]
+            )
+            logger.info(`[TrafficConsumer] Port ${portId} updated: inOctets=${inOctets}, outOctets=${outOctets}, status=${statusStr}`)
+          } catch (updateError) {
+            logger.error(`[TrafficConsumer] Erreur UPDATE port ${portId}: ${updateError.message}`)
+          }
+
+          try {
+            await mysqlPool.execute(
+              'INSERT INTO port_events (port_id, ifInOctets, ifOutOctets, status, event_time) VALUES (?, ?, ?, ?, ?)',
+              [portId, inOctets, outOctets, statusStr, tsStr]
+            )
+            logger.info(`[TrafficConsumer] Port event ${portId} inserted: inOctets=${inOctets}, outOctets=${outOctets}, status=${statusStr}`)
+          } catch (insertError) {
+            logger.error(`[TrafficConsumer] Erreur INSERT port event ${portId}: ${insertError.message}`)
+          }
+
+          updatedPortsForSocket.push({ port_id: portId, device_id: deviceId, ifInOctets: inOctets, ifOutOctets: outOctets, ifOperStatus: statusStr })
+        }))
+
+        try { 
+          SocketService.emitToAll('ports:bulk_update', updatedPortsForSocket)
+          logger.info(`[TrafficConsumer] Socket ports:bulk_update emitted for ${updatedPortsForSocket.length} ports`)
+        } catch (socketError) {
+          logger.error(`[TrafficConsumer] Erreur socket ports:bulk_update: ${socketError.message}`)
+        }
+        
+        try { 
+          SocketService.emitToAll('portEvents:created', { device_id: deviceId })
+          logger.info(`[TrafficConsumer] Socket portEvents:created emitted for device_id=${deviceId}`)
+        } catch (socketError) {
+          logger.error(`[TrafficConsumer] Erreur socket portEvents:created: ${socketError.message}`)
+        }
+        
+        logger.info(`[TrafficConsumer] Device ${deviceId} processed: ${portsArr.length} ports, sockets emitted`)
+      } catch (e) {
+        logger.error(`[TrafficConsumer] Error processing message: ${e.message}`)
+        logger.error(`[TrafficConsumer] Message: ${JSON.stringify(trafficResult)}`)
+      }
+    })
   }
 }
 

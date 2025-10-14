@@ -43,7 +43,7 @@ npm install
 ```bash
 # Agent Core (1 instance)
 pm2 start launcher/ping-launcher.js --instances 3
-
+pm2 start launcher/traffic-launcher.js --instances 1
 ```
 
 #### Option B : Configuration PM2 (ecosystem.config.js)

@@ -85,20 +85,29 @@ class TrafficAgent {
           // Traitement par batch de devices
           for (const group of payload.items) {
             const deviceId = group?.device_id
-            const portIds = Array.isArray(group?.port_ids) ? group.port_ids : []
-            if (deviceId == null || portIds.length === 0) continue
+            const portsInGroup = Array.isArray(group?.ports) ? group.ports : []
+            if (deviceId == null || portsInGroup.length === 0) continue
             
             // Générer le trafic pour tous les ports et les regrouper par device
             const ports = []
-            for (const portId of portIds) {
-              const portTraffic = await this.generatePortTraffic(portId)
-              ports.push(portTraffic)
+            for (const p of portsInGroup) {
+              const baseIn = Number(p.ifInOctets) || 0
+              const baseOut = Number(p.ifOutOctets) || 0
+              const portTraffic = await this.generatePortTraffic(p.port_id)
+              ports.push({
+                port_id: p.port_id,
+                inOctets: baseIn + (Number(portTraffic.deltaInOctets) || 0),
+                outOctets: baseOut + (Number(portTraffic.deltaOutOctets) || 0),
+                deltaInOctets: portTraffic.deltaInOctets,
+                deltaOutOctets: portTraffic.deltaOutOctets,
+                status: portTraffic.status
+              })
             }
             
             const groupedResult = {
               device_id: deviceId,
               ports: ports,
-              ts: new Date().toISOString()
+              ts: new Date()
             }
             
             this.channel.sendToQueue(this.resultsQueue, Buffer.from(JSON.stringify(groupedResult)))
@@ -107,19 +116,26 @@ class TrafficAgent {
         } else {
           // Prendre un device unique
           const deviceId = payload?.device_id
-          const portIds = Array.isArray(payload?.port_ids) ? payload.port_ids : []
-          if (deviceId != null && portIds.length > 0) {
+          const portsInGroup = Array.isArray(payload?.ports) ? payload.ports : []
+          if (deviceId != null && portsInGroup.length > 0) {
             // Get ports et genere traffic
             const ports = []
-            for (const portId of portIds) {
-              const portTraffic = await this.generatePortTraffic(portId)
-              ports.push(portTraffic)
+            for (const p of portsInGroup) {
+              const baseIn = Number(p.ifInOctets) || 0
+              const baseOut = Number(p.ifOutOctets) || 0
+              const portTraffic = await this.generatePortTraffic(p.port_id)
+              ports.push({
+                port_id: p.port_id,
+                inOctets: baseIn + (Number(portTraffic.deltaInOctets) || 0),
+                outOctets: baseOut + (Number(portTraffic.deltaOutOctets) || 0),
+                status: portTraffic.status
+              })
             }
             
             const groupedResult = {
               device_id: deviceId,
               ports: ports,
-              ts: new Date().toISOString()
+              ts: new Date()
             }
             
             this.channel.sendToQueue(this.resultsQueue, Buffer.from(JSON.stringify(groupedResult)))

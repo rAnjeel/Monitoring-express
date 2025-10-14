@@ -13,6 +13,7 @@ import deviceEventRoutes from './routes/deviceEvent.routes.js';
 import logger from './logger/logger.js';
 import errorHandler from './middlewares/error.middleware.js';
 import deviceService from './services/device.service.js';
+import portService from './services/port.service.js';
 import SocketService from './services/socket/socket.service.js';
 import schedulerDevices from './services/messaging/schedulerDevices.service.js';
 import schedulerPorts from './services/messaging/schedulerPorts.service.js';
@@ -49,7 +50,7 @@ async function startServer() {
     const PORT = process.env.PORT;
     const server = http.createServer(app);
 
-    // Initialize persistent Socket.IO server bound to HTTP server
+    // SOCKET.IO
     SocketService.init(server, {
       cors: {
         origin: ['http://localhost:8080', 'http://localhost:8081'],
@@ -59,21 +60,26 @@ async function startServer() {
     });
 
     server.listen(PORT, () => logger.info(`Server running on port ${PORT}`));
-    // démarrer le scheduler RabbitMQ
+    // SCHEDULERS
     try {
-      await schedulerDevices.start(process.env.SCHEDULER_INTERVAL_MS)
-      await schedulerPorts.start(process.env.SCHEDULER_INTERVAL_MS)
-      logger.info('Scheduler started successfully')
+      await Promise.all([
+        schedulerDevices.start(),
+        schedulerPorts.start()
+      ])
+      logger.info('Schedulers started successfully')
     } catch (e) {
-      logger.error(`Error starting scheduler: ${e.message}`)
+      logger.error(`Error starting schedulers: ${e.message}`)
     }
     
-    // démarrer le consumer RabbitMQ
+    // CONSUMERS
     try {
-      await deviceService.startPingConsumer();
-      logger.info('PingConsumer started successfully with socket.io');
+      await Promise.all([
+        // deviceService.startPingConsumer(),
+        portService.startTrafficConsumer(),
+      ])
+      logger.info('Consumers started successfully')
     } catch (e) {
-      logger.error(`Error starting PingConsumer: ${e.message}`)
+      logger.error(`Error starting consumers: ${e.message}`)
     }
   } catch (error) {
     logger.error(`Database connection failed: ${error.message}`);
