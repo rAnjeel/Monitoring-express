@@ -79,8 +79,28 @@ WHERE
     TABLE_SCHEMA = 'monitoring'
     AND TABLE_NAME = 'device_events';
 
+-- Reorganiser les partitions
+REORGANIZE PARTITION p_futur INTO (
+    PARTITION p_202411 VALUES LESS THAN (TO_DAYS('2024-12-01')),
+    PARTITION p_futur VALUES LESS THAN MAXVALUE
+);
 
-
+-- Partitionner la table device_events
+ALTER TABLE device_events
+    PARTITION BY RANGE (TO_DAYS(event_time)) (
+        -- 1. Partition pour l'historique très ancien (avant 2023)
+        PARTITION p_historique VALUES LESS THAN (TO_DAYS('2023-01-01')),
+        
+        -- 2. Partition pour l'année 2023
+        PARTITION p_2023 VALUES LESS THAN (TO_DAYS('2024-01-01')),
+        
+        -- 3. Partition pour 2024 (si votre table est active en 2024)
+        PARTITION p_2024 VALUES LESS THAN (TO_DAYS('2025-01-01')),
+        
+        -- 4. Partition cruciale : pour toutes les données futures (et actuelles non encore définies)
+        PARTITION p_futur VALUES LESS THAN MAXVALUE
+    );
+-- NB: Pour que les partitions soient créées, il faut que la table existe déjà et event_time soit cle primaire.
 
 
 

@@ -406,15 +406,15 @@ class DeviceService {
               deviceId,
             ]
 
-      await Promise.all([
-        mysqlPool.execute(updateSql, updateParams),
+        await Promise.all([
+          mysqlPool.execute(updateSql, updateParams),
           mysqlPool.execute(
             'INSERT INTO device_events (device_id, loss, avg, min, max, status, event_time) VALUES (?, ?, ?, ?, ?, ?, ?)',
             [deviceId, lossPct, avg, min, max, status, nowDate.toISOString().slice(0, 19).replace('T', ' ')]
           )
         ])
 
-        // Notifier le front une fois les écritures terminées
+        // Notification socket.io
         try {
           SocketService.emitToAll('devices:bulk_update', [])
         } catch {}

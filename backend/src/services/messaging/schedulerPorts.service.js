@@ -22,7 +22,7 @@ class SchedulerPortsService {
     this.intervalMs = Number(process.env.SCHEDULER_PORTS_INTERVAL_MS || 60000)
     logger.info(`[SchedulerPorts] Démarré (interval: ${this.intervalMs}ms) → queue=${this.queueName}`)
     this.#safeTick()
-    this.timer = setInterval(this.#safeTick, this.intervalMs)
+    // this.timer = setInterval(this.#safeTick, this.intervalMs)
   }
 
   // 🧠 Sécurisation : évite deux ticks en même temps
@@ -89,8 +89,8 @@ class SchedulerPortsService {
 
       await Promise.all(
         slice.map(async (g) => {
-          if (!g || g.device_id == null || !Array.isArray(g.port_ids) || g.port_ids.length === 0) return
-          const payload = { device_id: g.device_id, port_ids: g.port_ids }
+          if (!g || g.device_id == null || !Array.isArray(g.ports) || g.ports.length === 0) return
+          const payload = { device_id: g.device_id, ports: g.ports }
           const buffer = Buffer.from(JSON.stringify(payload))
           this.channel.sendToQueue(this.queueName, buffer, { persistent: false })
           sent++

@@ -46,7 +46,13 @@ class ConsumerService {
 			if (!msg) return
 			this.taskQueue.add(async () => {
 				try {
-					const parsed = parser.parsePingMessage(msg.content.toString())
+					let parsed = null
+					if (this.queueName === 'ping_results') {
+						parsed = parser.parsePingMessage(msg.content.toString())
+					} else if (this.queueName === 'traffic_results') {
+						parsed = parser.parseTrafficMessage(msg.content.toString())
+					}
+
 					if (parsed && typeof onMessage === 'function') {
 						await onMessage(parsed)
 					}
