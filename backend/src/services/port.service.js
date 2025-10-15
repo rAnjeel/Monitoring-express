@@ -375,7 +375,7 @@ class PortService {
 
   getPortsGroupedByDevice = async () => {
     try {
-      logger.info('Fetching admin UP ports grouped by device_id')
+      logger.info('Fetching isMonitored ports grouped by device_id')
       const rows = await db
         .select({ device_id: ports.device_id, port_id: ports.port_id, ifInOctets: ports.ifInOctets, ifOutOctets: ports.ifOutOctets, ifAdminStatus: ports.ifAdminStatus, ifOperStatus: ports.ifOperStatus })
         .from(ports)
@@ -394,7 +394,7 @@ class PortService {
       logger.info(`Grouped ${result.length} device groups for admin UP ports`)
       return result
     } catch (error) {
-      logger.error(`Error fetching admin UP ports grouped by device: ${error.message}`)
+      logger.error(`Error fetching isMonitored ports grouped by device: ${error.message}`)
       throw error
     }
   }
