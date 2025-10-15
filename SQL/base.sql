@@ -1,11 +1,9 @@
 CREATE DATABASE IF NOT EXISTS monitoring;
 USE monitoring;
-
 CREATE TABLE type_device (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(100) NOT NULL
 );
-
 CREATE TABLE locations (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     name varchar(255) NOT NULL,
@@ -13,7 +11,6 @@ CREATE TABLE locations (
     lng double(10, 6) DEFAULT NULL,
     inserted_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
-
 CREATE TABLE device_details (
     id INT AUTO_INCREMENT PRIMARY KEY,
     os text,
@@ -21,7 +18,6 @@ CREATE TABLE device_details (
     icon text,
     version text
 );
-
 CREATE TABLE devices (
     device_id INT DEFAULT NULL,
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -67,6 +63,7 @@ CREATE TABLE device_events (
     event_time DATETIME,
     FOREIGN KEY (device_id) REFERENCES devices(id) ON DELETE CASCADE
 );
+
 CREATE INDEX idx_device_events_device_id ON device_events(device_id);
 CREATE INDEX idx_device_events_event_time ON device_events(event_time);
 
@@ -74,6 +71,8 @@ CREATE TABLE ports (
     id INT AUTO_INCREMENT PRIMARY KEY,
     port_id INT,
     device_id INT,
+    status varchar(45),
+    isMonitored BOOLEAN,
     ifName text,
     ifDescr text,
     ifAlias text,
@@ -92,6 +91,7 @@ CREATE TABLE ports (
     ifIndex text,
     ne_id varchar(45)
 );
+
 CREATE INDEX idx_ports_device_id ON ports(device_id);
 CREATE INDEX idx_ports_oper_status ON ports(ifOperStatus);
 CREATE INDEX idx_ports_in_out ON ports(ifInOctets, ifOutOctets);

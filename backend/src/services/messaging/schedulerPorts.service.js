@@ -3,7 +3,7 @@ import logger from '../../logger/logger.js'
 import portService from '../port.service.js'
 
 class SchedulerPortsService {
-  constructor() {
+  constructor(deviceIds) {
     this.url = process.env.RABBIT_URL
     this.connection = null
     this.channel = null
@@ -78,8 +78,16 @@ class SchedulerPortsService {
 
   // 🕒 Tick principal : récupère les ports et publie
   #tick = async () => {
-    const groups = await portService.getAdminUpPortIdsGroupedByDevice()
+    const groups = await portService.getPortsGroupedByDevice()
     if (!Array.isArray(groups) || groups.length === 0) return
+    
+    for (let i = groups.length - 1; i >= 0; i--) {
+      const g = groups[i]
+      if (!g || g.device_id == null || !Array.isArray(g.ports) || g.ports.length === 0) {
+        groups.splice(i, 1)
+      }
+    }
+    if (groups.length === 0) return
 
     const size = this.batchSize > 0 ? this.batchSize : 200
     let sent = 0

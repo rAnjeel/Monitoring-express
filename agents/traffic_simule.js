@@ -44,13 +44,15 @@ class TrafficAgent {
     return Math.max(0, value * jitter)
   }
 
-  generatePortTraffic = async (port_id) => {
-    const isUp = Math.random() < UP_PROB
+  generatePortTraffic = async (port) => {
+    let status = 'down'
+    if (port.ifAdminStatus === 'up' && port.ifOperStatus === 'up') {
+      status = 'up'
+    } 
     let deltaIn = 0
     let deltaOut = 0
 
-    if (isUp) {
-      // delta aléatoire par port avec jitter
+    if (status === 'up') {
       deltaIn = this.applyJitter(
         Math.floor(Math.random() * (MAX_IN - MIN_IN + 1) + MIN_IN),
         JITTER_PCT
@@ -62,10 +64,10 @@ class TrafficAgent {
     }
 
     return {
-      port_id,
+      port_id: port.port_id,
       deltaInOctets: Math.round(deltaIn),
       deltaOutOctets: Math.round(deltaOut),
-      status: isUp,
+      status: status,
       ts: new Date().toISOString()
     }
   }
@@ -93,7 +95,7 @@ class TrafficAgent {
             for (const p of portsInGroup) {
               const baseIn = Number(p.ifInOctets) || 0
               const baseOut = Number(p.ifOutOctets) || 0
-              const portTraffic = await this.generatePortTraffic(p.port_id)
+              const portTraffic = await this.generatePortTraffic(p)
               ports.push({
                 port_id: p.port_id,
                 inOctets: baseIn + (Number(portTraffic.deltaInOctets) || 0),
@@ -118,12 +120,11 @@ class TrafficAgent {
           const deviceId = payload?.device_id
           const portsInGroup = Array.isArray(payload?.ports) ? payload.ports : []
           if (deviceId != null && portsInGroup.length > 0) {
-            // Get ports et genere traffic
             const ports = []
             for (const p of portsInGroup) {
               const baseIn = Number(p.ifInOctets) || 0
               const baseOut = Number(p.ifOutOctets) || 0
-              const portTraffic = await this.generatePortTraffic(p.port_id)
+              const portTraffic = await this.generatePortTraffic(p)
               ports.push({
                 port_id: p.port_id,
                 inOctets: baseIn + (Number(portTraffic.deltaInOctets) || 0),

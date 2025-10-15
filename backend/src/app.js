@@ -14,10 +14,8 @@ import portEventRoutes from './routes/portEvent.routes.js';
 import logger from './logger/logger.js';
 import errorHandler from './middlewares/error.middleware.js';
 import deviceService from './services/device.service.js';
-import portService from './services/port.service.js';
 import SocketService from './services/socket/socket.service.js';
 import schedulerDevices from './services/messaging/schedulerDevices.service.js';
-import schedulerPorts from './services/messaging/schedulerPorts.service.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -77,8 +75,8 @@ async function startServer() {
     // CONSUMERS
     try {
       await Promise.all([
-        // deviceService.startPingConsumer(),
-        portService.startTrafficConsumer(),
+        deviceService.startPingConsumer(),
+        // portService.startTrafficConsumer(),
       ])
       logger.info('Consumers started successfully')
     } catch (e) {

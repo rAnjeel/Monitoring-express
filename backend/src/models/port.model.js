@@ -4,6 +4,8 @@ const ports = mysqlTable('ports', {
   id: int('id').primaryKey().autoincrement(),
   port_id: int('port_id'),
   device_id: int('device_id'),
+  status: varchar('status', { length: 45 }),
+  isMonitored: boolean('isMonitored'),
   ifName: text('ifName'),
   ifDescr: text('ifDescr'),
   ifAlias: text('ifAlias'),

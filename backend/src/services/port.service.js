@@ -65,6 +65,7 @@ class PortService {
     }
   }
 
+
   importPortsCSV = async (data) => {
     if (!Array.isArray(data)) {
       logger.warn('importPortsCSV received non-array payload');
@@ -187,6 +188,7 @@ class PortService {
         .select({
           port_id: ports.port_id,
           device_id: ports.device_id,
+          status: ports.status,
           IfIndex: ports.ifIndex,
           hostname: devices.hostname,
           sysName: devices.sysName,
@@ -216,6 +218,11 @@ class PortService {
           const values = Array.isArray(value) ? value : [value];
 
           switch (key) {
+            case 'status': {
+              const orGroup = values.map(v => like(ports.status, `%${v}%`));
+              conditions.push(or(...orGroup));
+              break;
+            }
             case 'key': {
               const perTerm = values.map(v => {
                 const s = `%${v}%`;
@@ -292,6 +299,11 @@ class PortService {
           const values = Array.isArray(value) ? value : [value];
 
           switch (key) {
+            case 'status': {
+              const orGroup = values.map(v => like(ports.status, `%${v}%`));
+              conditions.push(or(...orGroup));
+              break;
+            }
             case 'key': {
               const perTerm = values.map(v => {
                 const s = `%${v}%`;
@@ -361,13 +373,13 @@ class PortService {
     }
   }
 
-  getAdminUpPortIdsGroupedByDevice = async () => {
+  getPortsGroupedByDevice = async () => {
     try {
       logger.info('Fetching admin UP ports grouped by device_id')
       const rows = await db
-        .select({ device_id: ports.device_id, port_id: ports.port_id, ifInOctets: ports.ifInOctets, ifOutOctets: ports.ifOutOctets })
+        .select({ device_id: ports.device_id, port_id: ports.port_id, ifInOctets: ports.ifInOctets, ifOutOctets: ports.ifOutOctets, ifAdminStatus: ports.ifAdminStatus, ifOperStatus: ports.ifOperStatus })
         .from(ports)
-        
+        .where(eq(ports.isMonitored, true))
 
       const deviceIdToPorts = new Map()
       for (const r of rows) {
@@ -375,7 +387,7 @@ class PortService {
         const pid = r.port_id
         if (did == null || pid == null) continue
         if (!deviceIdToPorts.has(did)) deviceIdToPorts.set(did, [])
-        deviceIdToPorts.get(did).push({ port_id: pid, ifInOctets: r.ifInOctets, ifOutOctets: r.ifOutOctets })
+        deviceIdToPorts.get(did).push({ port_id: pid, ifInOctets: r.ifInOctets, ifOutOctets: r.ifOutOctets, ifAdminStatus: r.ifAdminStatus, ifOperStatus: r.ifOperStatus })
       }
 
       const result = Array.from(deviceIdToPorts.entries()).map(([device_id, ports_stats]) => ({ device_id, ports: ports_stats }))
@@ -407,11 +419,11 @@ class PortService {
           const portId = p?.port_id
           const inOctets = Number(p?.inOctets) || 0
           const outOctets = Number(p?.outOctets) || 0
-          const statusStr = p?.status ? 'up' : 'down'
+          const statusStr = p?.status
 
           try {
             await mysqlPool.execute(
-              'UPDATE ports SET ifInOctets = ?, ifOutOctets = ?, ifOperStatus = ? WHERE port_id = ? AND device_id = ?',
+              'UPDATE ports SET ifInOctets = ?, ifOutOctets = ?, status = ? WHERE port_id = ? AND device_id = ?',
               [inOctets, outOctets, statusStr, portId, deviceId]
             )
             logger.info(`[TrafficConsumer] Port ${portId} updated: inOctets=${inOctets}, outOctets=${outOctets}, status=${statusStr}`)
@@ -429,7 +441,7 @@ class PortService {
             logger.error(`[TrafficConsumer] Erreur INSERT port event ${portId}: ${insertError.message}`)
           }
 
-          updatedPortsForSocket.push({ port_id: portId, device_id: deviceId, ifInOctets: inOctets, ifOutOctets: outOctets, ifOperStatus: statusStr })
+          updatedPortsForSocket.push({ port_id: portId, device_id: deviceId, ifInOctets: inOctets, ifOutOctets: outOctets, status: statusStr })
         }))
 
         try { 

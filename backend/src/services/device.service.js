@@ -1,5 +1,6 @@
 import {db, mysqlPool} from '../config/db.js';
 import { devices } from '../models/device.model.js';
+import { ports } from '../models/port.model.js';
 import { locations } from '../models/location.model.js';
 import { typeDevices } from '../models/typeDevice.model.js';
 import { eq, sql, like, or, and } from 'drizzle-orm';
@@ -364,6 +365,31 @@ class DeviceService {
     }
 
     return { conditions, needsTypeJoin, needsLocJoin, params }
+  }
+
+  getPortsDevice = async (deviceId) => {
+    try {
+      if (deviceId == null) {
+        throw new Error('deviceId is required')
+      }
+      logger.info(`Fetching ports for device_id=${deviceId}`)
+      const rows = await db
+        .select({
+          port_id: ports.port_id,
+          device_id: ports.device_id,
+          adminStatus: ports.ifAdminStatus,
+          operStatus: ports.ifOperStatus,
+          ifInOctets: ports.ifInOctets,
+          ifOutOctets: ports.ifOutOctets,
+        })
+        .from(ports)
+        .where(eq(ports.device_id, deviceId))
+      logger.info(`Fetched ${rows.length} ports for device_id=${deviceId}`)
+      return rows
+    } catch (error) {
+      logger.error(`Error fetching ports for device_id=${deviceId}: ${error.message}`)
+      throw error
+    }
   }
 
 
