@@ -13,6 +13,21 @@ class DeviceController {
     }
   }
 
+  getPortsByDevice = async (req, res) => {
+    try {
+      const deviceId = parseInt(req.params.id)
+      if (!Number.isFinite(deviceId)) {
+        return res.status(400).json({ message: 'Invalid device id' })
+      }
+      deviceService.deviceId = deviceId
+      const ports = await deviceService.getPortsDevice()
+      res.json(ports)
+    } catch (error) {
+      logger.error(`Controller error (getPortsByDevice): ${error.message}`)
+      res.status(500).json({ message: error.message })
+    }
+  }
+
   getList = async (req, res) => {
     try {
       const filterObj = req.query.filter ? JSON.parse(req.query.filter) : {};

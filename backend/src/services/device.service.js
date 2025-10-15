@@ -367,12 +367,9 @@ class DeviceService {
     return { conditions, needsTypeJoin, needsLocJoin, params }
   }
 
-  getPortsDevice = async (deviceId) => {
+  getPortsDevice = async () => {
     try {
-      if (deviceId == null) {
-        throw new Error('deviceId is required')
-      }
-      logger.info(`Fetching ports for device_id=${deviceId}`)
+      logger.info(`Fetching ports for device_id=${this.deviceId}`)
       const rows = await db
         .select({
           port_id: ports.port_id,
@@ -383,11 +380,11 @@ class DeviceService {
           ifOutOctets: ports.ifOutOctets,
         })
         .from(ports)
-        .where(eq(ports.device_id, deviceId))
-      logger.info(`Fetched ${rows.length} ports for device_id=${deviceId}`)
+        .where(eq(ports.device_id, this.deviceId))
+      logger.info(`Fetched ${rows.length} ports for device_id=${this.deviceId}`)
       return rows
     } catch (error) {
-      logger.error(`Error fetching ports for device_id=${deviceId}: ${error.message}`)
+      logger.error(`Error fetching ports for device_id=${this.deviceId}: ${error.message}`)
       throw error
     }
   }
