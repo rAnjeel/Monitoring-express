@@ -69,6 +69,16 @@ class PortController {
     }
   }
 
+  switchMonitored = async (req, res) => {
+    try {
+      await portService.switchMonitored(req.params.id, req.body.isMonitored);
+      res.json({ message: 'Monitored status switched successfully' });
+    } catch (error) {
+      logger.error(`Controller error (switchMonitored port): ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
+  }
+
   delete = async (req, res) => {
     try {
       await portService.delete(req.params.id);

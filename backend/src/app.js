@@ -14,6 +14,7 @@ import portEventRoutes from './routes/portEvent.routes.js';
 import logger from './logger/logger.js';
 import errorHandler from './middlewares/error.middleware.js';
 import deviceService from './services/device.service.js';
+import portService from './services/port.service.js';
 import SocketService from './services/socket/socket.service.js';
 import schedulerDevices from './services/messaging/schedulerDevices.service.js';
 import schedulerPorts from './services/messaging/schedulerPorts.service.js';
@@ -77,7 +78,7 @@ async function startServer() {
     try {
       await Promise.all([
         deviceService.startPingConsumer(),
-        // portService.startTrafficConsumer(),
+        portService.startTrafficConsumer(),
       ])
       logger.info('Consumers started successfully')
     } catch (e) {

@@ -54,6 +54,17 @@ class PortService {
     }
   }
 
+  switchMonitored = async (port_id, isMonitored) => {
+    try {
+      logger.info(`Switching monitored status for port id=${port_id} to ${isMonitored}`);
+      const result = await db.update(ports).set({ isMonitored: isMonitored }).where(eq(ports.port_id, port_id));
+      return result;
+    } catch (error) {
+      logger.error(`Error switching monitored status for port id=${port_id}: ${error.message}`);
+      throw new Error('Database error while switching monitored status');
+    }
+  }
+
   delete = async (id) => {
     try {
       logger.info(`Deleting port id=${id}`);
