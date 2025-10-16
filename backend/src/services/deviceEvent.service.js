@@ -1,7 +1,7 @@
 import { db } from '../config/db.js';
 import { deviceEvents } from '../models/deviceEvent.model.js';
 import { devices } from '../models/device.model.js';
-import { eq, sql, and, gte, lte, desc, between } from 'drizzle-orm';
+import { eq, sql, and, gte, lte, desc, between, asc } from 'drizzle-orm';
 import logger from '../logger/logger.js';
 import DeviceEventDto from '../dto/deviceEvent.dto.js';
 

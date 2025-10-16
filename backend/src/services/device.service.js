@@ -390,6 +390,40 @@ class DeviceService {
     }
   }
 
+  // Reporting: récupérer tous les événements d'un device entre deux dates
+  reportByDeviceAndDateRange = async (start_date, end_date) => {
+    try {
+      logger.info(`[Device] Reporting events for device_id=${this.deviceId} between ${start_date} and ${end_date}`);
+
+      if (!this.deviceId || !start_date || !end_date) {
+        throw new Error('device_id, start_date and end_date are required');
+      }
+
+      const params = {
+        device_id: Number(this.deviceId),
+        start_date: new Date(start_date),
+        end_date: new Date(end_date)
+      };
+
+      const stmt = db
+        .select()
+        .from(deviceEvents)
+        .where(and(
+          eq(deviceEvents.device_id, sql.placeholder('device_id')),
+          between(deviceEvents.event_time, sql.placeholder('start_date'), sql.placeholder('end_date'))
+        ))
+        .orderBy(asc(deviceEvents.event_time))
+        .prepare('device_events_report_device_between_dates');
+
+      const rows = await stmt.execute(params);
+      logger.info(`[Device] Reporting found ${rows.length} events for device_id=${this.deviceId}`);
+      return rows;
+    } catch (error) {
+      logger.error(`[Device] Error reporting events for device_id=${this.deviceId}: ${error.message}`);
+      throw new Error('Database error while reporting device events');
+    }
+  };
+
 
   startPingConsumer = async () => {
     const queueName = process.env.RABBIT_QUEUE_PING || 'ping_results'

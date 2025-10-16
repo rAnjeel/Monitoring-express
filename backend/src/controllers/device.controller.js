@@ -119,6 +119,17 @@ class DeviceController {
       res.status(500).json({ message: 'Error importing devices', error: error.message });
     }
   }
+
+  reportByDeviceAndDateRange = async (req, res) => {
+    try {
+      const { start_date, end_date } = req.query;
+      const result = await deviceService.reportByDeviceAndDateRange(start_date, end_date);
+      res.json(result);
+    } catch (error) {
+      logger.error(`Controller error (reportByDeviceAndDateRange): ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
+  }
 }
 
 export default new DeviceController();
