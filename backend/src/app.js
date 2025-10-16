@@ -76,7 +76,7 @@ async function startServer() {
     // CONSUMERS
     try {
       await Promise.all([
-        // deviceService.startPingConsumer(),
+        deviceService.startPingConsumer(),
         // portService.startTrafficConsumer(),
       ])
       logger.info('Consumers started successfully')
