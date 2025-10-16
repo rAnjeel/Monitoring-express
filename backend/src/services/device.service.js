@@ -374,10 +374,11 @@ class DeviceService {
         .select({
           port_id: ports.port_id,
           device_id: ports.device_id,
-          adminStatus: ports.ifAdminStatus,
-          operStatus: ports.ifOperStatus,
-          ifInOctets: ports.ifInOctets,
-          ifOutOctets: ports.ifOutOctets,
+          status: ports.status,
+          name: ports.ifName,
+          speed: ports.ifSpeed,
+          type: ports.ifType,
+          isMonitored: ports.isMonitored,
         })
         .from(ports)
         .where(eq(ports.device_id, this.deviceId))
