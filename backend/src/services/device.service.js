@@ -373,6 +373,7 @@ class DeviceService {
         .select({
           port_id: ports.port_id,
           device_id: ports.device_id,
+          ifIndex: ports.ifIndex,
           status: ports.status,
           name: ports.ifName,
           speed: ports.ifSpeed,
