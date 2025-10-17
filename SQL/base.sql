@@ -89,7 +89,8 @@ CREATE TABLE ports (
     ifConnectorPresent varchar(45),
     ifSpeed BIGINT,
     ifIndex text,
-    ne_id varchar(45)
+    ne_id varchar(45),
+    FOREIGN KEY (device_id) REFERENCES devices(id)
 );
 
 CREATE INDEX idx_ports_device_id ON ports(device_id);
