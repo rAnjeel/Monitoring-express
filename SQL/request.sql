@@ -105,7 +105,15 @@ ALTER TABLE device_events
 
 
 
-
+SELECT
+    *
+FROM
+    device_events
+WHERE
+    event_time >= '2025-10-16 00:00:00'
+    AND event_time <= '2025-10-17 07:54:27'
+ORDER BY
+    event_time DESC;
 
 
 
