@@ -199,8 +199,9 @@ class PortService {
         .select({
           port_id: ports.port_id,
           device_id: ports.device_id,
-          status: ports.status,
           ifIndex: ports.ifIndex,
+          status: ports.status,
+          isMonitored: ports.isMonitored,
           hostname: devices.hostname,
           sysName: devices.sysName,
           type: ports.ifType,
@@ -281,6 +282,10 @@ class PortService {
             case 'adminStatus': {
               const orGroup = values.map(v => like(ports.ifAdminStatus, `%${v}%`));
               conditions.push(or(...orGroup));
+              break;
+            }
+            case 'isMonitored': {
+              conditions.push(eq(ports.isMonitored, value));
               break;
             }
             default:
