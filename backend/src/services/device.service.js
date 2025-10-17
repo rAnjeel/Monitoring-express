@@ -255,12 +255,12 @@ class DeviceService {
   getDevicesPage = async ({ page = 1, pageSize = 10, filter = {} } = {}) => {
     try {
       const offset = (page - 1) * pageSize
-      
-      // Construire WHERE/JOINS et placeholders via buildDeviceFilter
-      const { conditions, needsTypeJoin, needsLocJoin, params } = this.buildDeviceFilter(filter)
+
+      // WHERE et placeholders
+      const { conditions, params } = this.buildDeviceFilter(filter)
       const whereExpr = conditions.length > 0 ? and(...conditions) : undefined
 
-      // Data query (prepared)
+      // === Data query ===
       let dataQB = db.select({
         device_id: devices.device_id,
         id: devices.id,
@@ -284,20 +284,24 @@ class DeviceService {
         cryptopass: devices.cryptopass,
         cryptoalgo: devices.cryptoalgo,
         snmpver: devices.snmpver,
-      }).from(devices)
+      })
+      .from(devices)
+      .leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
+      .leftJoin(locations, eq(locations.id, devices.location_id))
 
-      if (needsTypeJoin) dataQB = dataQB.leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
-      dataQB = dataQB.leftJoin(locations, eq(locations.id, devices.location_id))
       if (whereExpr) dataQB = dataQB.where(whereExpr)
 
       const pLimit = sql.placeholder('limit')
       const pOffset = sql.placeholder('offset')
       const dataStmt = dataQB.limit(pLimit).offset(pOffset).prepare('devices_page')
 
-      // Count query (prepared)
-      let countQB = db.select({ count: sql`count(*)`.as('count') }).from(devices)
-      if (needsTypeJoin) countQB = countQB.leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
-      countQB = countQB.leftJoin(locations, eq(locations.id, devices.location_id))
+      // === Count query ===
+      let countQB = db
+        .select({ count: sql`count(*)`.as('count') })
+        .from(devices)
+        .leftJoin(typeDevices, eq(typeDevices.id, devices.type_device_id))
+        .leftJoin(locations, eq(locations.id, devices.location_id))
+
       if (whereExpr) countQB = countQB.where(whereExpr)
       const countStmt = countQB.prepare('devices_page_count')
 
@@ -317,8 +321,6 @@ class DeviceService {
 
   buildDeviceFilter = (filter = {}) => {
     const conditions = []
-    let needsTypeJoin = false
-    let needsLocJoin = false
     const params = {}
 
     const addLike = (name, value) => {
@@ -331,20 +333,16 @@ class DeviceService {
 
       switch (key) {
         case 'key': {
-          needsTypeJoin = true
-          needsLocJoin = true
           const p = addLike('key', value)
           conditions.push(sql`CONCAT_WS(' ', ${devices.hostname}, ${devices.sysName}, ${typeDevices.name}, ${locations.name}, ${devices.codesite}) LIKE ${p}`)
           break
         }
         case 'type_device': {
-          needsTypeJoin = true
           const p = addLike('type_device', value)
           conditions.push(like(typeDevices.name, p))
           break
         }
         case 'location': {
-          needsLocJoin = true
           const p = addLike('location', value)
           conditions.push(like(locations.name, p))
           break
@@ -364,8 +362,9 @@ class DeviceService {
       }
     }
 
-    return { conditions, needsTypeJoin, needsLocJoin, params }
+    return { conditions, params }
   }
+
 
   getPortsDevice = async () => {
     try {

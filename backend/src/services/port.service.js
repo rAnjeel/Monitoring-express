@@ -200,7 +200,7 @@ class PortService {
           port_id: ports.port_id,
           device_id: ports.device_id,
           status: ports.status,
-          IfIndex: ports.ifIndex,
+          ifIndex: ports.ifIndex,
           hostname: devices.hostname,
           sysName: devices.sysName,
           type: ports.ifType,
