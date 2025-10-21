@@ -41,11 +41,23 @@ class ReportingController {
   // GET /reporting/latency-by-day-site
   getAverageLatencyByDayAndSite = async (req, res) => {
     try {
-      const { start_date, end_date, type_device } = req.query;
-      const rows = await reportingService.getAverageLatencyByDayAndSite({ start_date, end_date, type_device });
+      const { start_date, end_date, type_device, device_id } = req.query;
+      const rows = await reportingService.getAverageLatencyByDayAndSite({ start_date, end_date, type_device, device_id });
       res.json({ rows });
     } catch (error) {
       logger.error(`[ReportingController] Error in getAverageLatencyByDayAndSite: ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  // GET /reporting/device-stability-status
+  getDeviceStabilityStatus = async (req, res) => {
+    try {
+      const { start_date, end_date, type_device } = req.query;
+      const rows = await reportingService.getDeviceStabilityStatus({ start_date, end_date, type_device });
+      res.json({ rows });
+    } catch (error) {
+      logger.error(`[ReportingController] Error in getDeviceStabilityStatus: ${error.message}`);
       res.status(500).json({ message: error.message });
     }
   };

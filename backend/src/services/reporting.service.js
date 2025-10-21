@@ -82,7 +82,7 @@ class ReportingService {
   };
 
   // Latence moyenne par jour et par codesite
-  getAverageLatencyByDayAndSite = async ({ start_date, end_date, type_device } = {}) => {
+  getAverageLatencyByDayAndSite = async ({ start_date, end_date, type_device, device_id } = {}) => {
     try {
       logger.info('[ReportingService] Fetching average latency by day and site');
       
@@ -95,8 +95,13 @@ class ReportingService {
       }
 
       if (type_device) {
-        whereClauses.push('d.type_device = ?')
+        whereClauses.push('d.type_device_id = ?')
         params.push(type_device)
+      }
+
+      if (device_id) {
+        whereClauses.push('d.id = ?')
+        params.push(device_id)
       }
 
       const whereClause = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : ''
@@ -123,6 +128,52 @@ class ReportingService {
     } catch (error) {
       logger.error(`[ReportingService] Error fetching average latency by day and site: ${error.message}`);
       throw new Error('Database error while fetching average latency by day and site');
+    }
+  };
+
+  getDeviceStabilityStatus = async ({ start_date, end_date, type_device } = {}) => {
+    try {
+      logger.info('[ReportingService] Calculating current stability state for all devices');
+
+      // Période par défaut : 30 derniers jours
+      const start = start_date ? new Date(start_date) : new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+      const end = end_date ? new Date(end_date) : new Date();
+
+      const whereClauses = ['e.event_time BETWEEN ? AND ?'];
+      const params = [start, end];
+
+      if (type_device) {
+        whereClauses.push('d.type_device_id = ?');
+        params.push(type_device);
+      }
+
+      const sqlQuery = `
+        SELECT 
+          d.hostname,
+          d.sysName,
+          d.type_device_id,
+          COUNT(*) AS total_events,
+          SUM(CASE WHEN e.status = 'down' THEN 1 ELSE 0 END) AS nb_down,
+          ROUND(SUM(CASE WHEN e.status = 'down' THEN 1 ELSE 0 END) / COUNT(*) * 100, 2) AS taux_panne,
+          CASE
+            WHEN ROUND(SUM(e.status = 'down')/COUNT(*)*100,2) > 5 THEN 'Instable'
+            WHEN ROUND(SUM(e.status = 'down')/COUNT(*)*100,2) BETWEEN 2 AND 5 THEN 'À surveiller'
+            ELSE 'Stable'
+          END AS etat_stabilite
+        FROM device_events e
+        JOIN devices d ON d.id = e.device_id
+        WHERE ${whereClauses.join(' AND ')}
+        GROUP BY d.hostname, d.type_device_id
+        ORDER BY taux_panne DESC
+      `;
+
+      const [rows] = await mysqlPool.execute(sqlQuery, params);
+
+      logger.info(`[ReportingService] Calculated stability state for ${rows.length} devices`);
+      return rows;
+    } catch (error) {
+      logger.error(`[ReportingService] Error calculating device stability: ${error.message}`);
+      throw new Error('Database error while calculating device stability');
     }
   };
 }
