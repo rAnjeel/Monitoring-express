@@ -89,12 +89,15 @@ class ReportingService {
       const sqlQuery = `
         SELECT 
           DATE(e.event_time) AS jour,
-          d.codesite,
-          ROUND(AVG(e.avg), 2) AS latence_moyenne
+          d.hostname,
+          ROUND(AVG(e.avg), 2) AS latency_average,
+          ROUND(AVG(e.min), 2) AS latency_min,
+          ROUND(AVG(e.max), 2) AS latency_max,
+          ROUND(AVG(e.loss), 2) AS latency_loss
         FROM device_events e
         JOIN devices d ON d.id = e.device_id
         ${type_device ? `WHERE d.type_device_id = ?` : ''}
-        GROUP BY jour, d.codesite
+        GROUP BY jour, d.hostname
         ORDER BY jour DESC
       `;
 
