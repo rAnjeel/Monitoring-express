@@ -1,0 +1,114 @@
+import { mysqlPool } from '../config/db.js';
+import logger from '../logger/logger.js';
+
+class ReportingService {
+
+  // Reporting MySQL: tous les événements pour toutes les devices entre 2 dates (ORDER BY DESC), sans pagination
+  reportAllDevicesByDateRange = async ({ start_date, end_date, status, device_id, type_device } = {}) => {
+    try {
+      if (!start_date || !end_date) {
+        throw new Error('start_date and end_date are required')
+      }
+
+      const whereClauses = ['de.event_time BETWEEN ? AND ?']
+      const params = [new Date(start_date), new Date(end_date)]
+
+      if (status) {
+        whereClauses.push('de.status = ?')
+        params.push(status)
+      }
+
+      if (device_id) {
+        whereClauses.push('de.device_id = ?')
+        params.push(Number(device_id))
+      }
+
+      if (type_device) {
+        whereClauses.push('d.type_device_id = ?')
+        params.push(type_device)
+      }
+
+      const sqlQuery = `
+        SELECT
+          de.id,
+          de.device_id,
+          d.hostname AS device_hostname,
+          de.loss,
+          de.avg,
+          de.min,
+          de.max,
+          de.status,
+          de.event_time
+        FROM device_events de
+        LEFT JOIN devices d ON d.id = de.device_id
+        WHERE ${whereClauses.join(' AND ')}
+        ORDER BY de.event_time DESC
+      `
+
+      const [rows] = await mysqlPool.execute(sqlQuery, params)
+      return rows
+    } catch (error) {
+      logger.error(`[Device] Error (MySQL) reporting all devices between dates: ${error.message}`)
+      throw new Error('Database error while reporting all devices events (mysql)')
+    }
+  };
+    
+  // Top 10 des équipements les plus instables (30 derniers jours)
+  getTop10UnstableDevices = async ({ type_device } = {}) => {
+    try {
+      logger.info('[ReportingService] Fetching top 10 unstable devices');
+      
+      const sqlQuery = `
+        SELECT 
+          d.hostname,
+          COUNT(*) AS total_events,
+          SUM(CASE WHEN e.status = 'down' THEN 1 ELSE 0 END) AS nb_down,
+          ROUND(SUM(CASE WHEN e.status = 'down' THEN 1 ELSE 0 END) / COUNT(*) * 100, 2) AS taux_panne
+        FROM device_events e
+        JOIN devices d ON d.id = e.device_id
+        WHERE e.event_time >= CURDATE() - INTERVAL 30 DAY
+        ${type_device ? `AND d.type_device_id = ?` : ''}
+        GROUP BY d.hostname
+        ${type_device ? `ORDER BY taux_panne DESC LIMIT 10` : ''}
+      `;
+
+      const [rows] = await mysqlPool.execute(sqlQuery, type_device ? [type_device] : undefined);
+      logger.info(`[ReportingService] Found ${rows.length} unstable devices`);
+      return rows;
+    } catch (error) {
+      logger.error(`[ReportingService] Error fetching top 10 unstable devices: ${error.message}`);
+      throw new Error('Database error while fetching top 10 unstable devices');
+    }
+  };
+
+  // Latence moyenne par jour et par codesite
+  getAverageLatencyByDayAndSite = async ({ type_device } = {}) => {
+    try {
+      logger.info('[ReportingService] Fetching average latency by day and site');
+      
+      const sqlQuery = `
+        SELECT 
+          DATE(e.event_time) AS jour,
+          d.hostname,
+          ROUND(AVG(e.avg), 2) AS latency_average,
+          ROUND(AVG(e.min), 2) AS latency_min,
+          ROUND(AVG(e.max), 2) AS latency_max,
+          ROUND(AVG(e.loss), 2) AS latency_loss
+        FROM device_events e
+        JOIN devices d ON d.id = e.device_id
+        ${type_device ? `WHERE d.type_device_id = ?` : ''}
+        GROUP BY jour, d.hostname
+        ORDER BY jour DESC
+      `;
+
+      const [rows] = await mysqlPool.execute(sqlQuery, type_device ? [type_device] : undefined);
+      logger.info(`[ReportingService] Found ${rows.length} latency records`);
+      return rows;
+    } catch (error) {
+      logger.error(`[ReportingService] Error fetching average latency by day and site: ${error.message}`);
+      throw new Error('Database error while fetching average latency by day and site');
+    }
+  };
+}
+
+export default new ReportingService();

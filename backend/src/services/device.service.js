@@ -424,6 +424,50 @@ class DeviceService {
     }
   };
 
+  // Reporting MySQL: tous les événements pour toutes les devices entre 2 dates (ORDER BY DESC), sans pagination
+  reportAllDevicesByDateRange = async ({ start_date, end_date, status, device_id } = {}) => {
+    try {
+      if (!start_date || !end_date) {
+        throw new Error('start_date and end_date are required')
+      }
+
+      const whereClauses = ['de.event_time BETWEEN ? AND ?']
+      const params = [new Date(start_date), new Date(end_date)]
+
+      if (status) {
+        whereClauses.push('de.status = ?')
+        params.push(status)
+      }
+
+      if (device_id) {
+        whereClauses.push('de.device_id = ?')
+        params.push(Number(device_id))
+      }
+
+      const sqlQuery = `
+        SELECT
+          de.id,
+          de.device_id,
+          d.hostname AS device_hostname,
+          de.loss,
+          de.avg,
+          de.min,
+          de.max,
+          de.status,
+          de.event_time
+        FROM device_events de
+        LEFT JOIN devices d ON d.id = de.device_id
+        WHERE ${whereClauses.join(' AND ')}
+        ORDER BY de.event_time DESC
+      `
+
+      const [rows] = await mysqlPool.execute(sqlQuery, params)
+      return rows
+    } catch (error) {
+      logger.error(`[Device] Error (MySQL) reporting all devices between dates: ${error.message}`)
+      throw new Error('Database error while reporting all devices events (mysql)')
+    }
+  }
 
   startPingConsumer = async () => {
     const queueName = process.env.RABBIT_QUEUE_PING || 'ping_results'
