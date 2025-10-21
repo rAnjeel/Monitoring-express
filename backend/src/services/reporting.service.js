@@ -4,7 +4,7 @@ import logger from '../logger/logger.js';
 class ReportingService {
 
   // Reporting MySQL: tous les événements pour toutes les devices entre 2 dates (ORDER BY DESC), sans pagination
-  reportAllDevicesByDateRange = async ({ start_date, end_date, status, device_id } = {}) => {
+  reportAllDevicesByDateRange = async ({ start_date, end_date, status, device_id, type_device } = {}) => {
     try {
       if (!start_date || !end_date) {
         throw new Error('start_date and end_date are required')
@@ -21,6 +21,11 @@ class ReportingService {
       if (device_id) {
         whereClauses.push('de.device_id = ?')
         params.push(Number(device_id))
+      }
+
+      if (type_device) {
+        whereClauses.push('d.type_device_id = ?')
+        params.push(type_device)
       }
 
       const sqlQuery = `
@@ -49,7 +54,7 @@ class ReportingService {
   };
     
   // Top 10 des équipements les plus instables (30 derniers jours)
-  getTop10UnstableDevices = async () => {
+  getTop10UnstableDevices = async ({ type_device } = {}) => {
     try {
       logger.info('[ReportingService] Fetching top 10 unstable devices');
       
@@ -62,12 +67,12 @@ class ReportingService {
         FROM device_events e
         JOIN devices d ON d.id = e.device_id
         WHERE e.event_time >= CURDATE() - INTERVAL 30 DAY
+        ${type_device ? `AND d.type_device_id = ?` : ''}
         GROUP BY d.hostname
-        ORDER BY taux_panne DESC
-        LIMIT 10
+        ${type_device ? `ORDER BY taux_panne DESC LIMIT 10` : ''}
       `;
 
-      const [rows] = await mysqlPool.execute(sqlQuery);
+      const [rows] = await mysqlPool.execute(sqlQuery, type_device ? [type_device] : undefined);
       logger.info(`[ReportingService] Found ${rows.length} unstable devices`);
       return rows;
     } catch (error) {
@@ -77,7 +82,7 @@ class ReportingService {
   };
 
   // Latence moyenne par jour et par codesite
-  getAverageLatencyByDayAndSite = async () => {
+  getAverageLatencyByDayAndSite = async ({ type_device } = {}) => {
     try {
       logger.info('[ReportingService] Fetching average latency by day and site');
       
@@ -88,11 +93,12 @@ class ReportingService {
           ROUND(AVG(e.avg), 2) AS latence_moyenne
         FROM device_events e
         JOIN devices d ON d.id = e.device_id
+        ${type_device ? `WHERE d.type_device_id = ?` : ''}
         GROUP BY jour, d.codesite
         ORDER BY jour DESC
       `;
 
-      const [rows] = await mysqlPool.execute(sqlQuery);
+      const [rows] = await mysqlPool.execute(sqlQuery, type_device ? [type_device] : undefined);
       logger.info(`[ReportingService] Found ${rows.length} latency records`);
       return rows;
     } catch (error) {
