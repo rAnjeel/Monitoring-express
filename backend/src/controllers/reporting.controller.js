@@ -41,8 +41,8 @@ class ReportingController {
   // GET /reporting/latency-by-day-site
   getAverageLatencyByDayAndSite = async (req, res) => {
     try {
-      const { type_device } = req.query;
-      const rows = await reportingService.getAverageLatencyByDayAndSite({ type_device });
+      const { start_date, end_date, type_device } = req.query;
+      const rows = await reportingService.getAverageLatencyByDayAndSite({ start_date, end_date, type_device });
       res.json({ rows });
     } catch (error) {
       logger.error(`[ReportingController] Error in getAverageLatencyByDayAndSite: ${error.message}`);

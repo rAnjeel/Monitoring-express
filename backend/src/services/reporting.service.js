@@ -82,26 +82,42 @@ class ReportingService {
   };
 
   // Latence moyenne par jour et par codesite
-  getAverageLatencyByDayAndSite = async ({ type_device } = {}) => {
+  getAverageLatencyByDayAndSite = async ({ start_date, end_date, type_device } = {}) => {
     try {
       logger.info('[ReportingService] Fetching average latency by day and site');
+      
+      const whereClauses = []
+      const params = []
+
+      if (start_date && end_date) {
+        whereClauses.push('e.event_time BETWEEN ? AND ?')
+        params.push(new Date(start_date), new Date(end_date))
+      }
+
+      if (type_device) {
+        whereClauses.push('d.type_device = ?')
+        params.push(type_device)
+      }
+
+      const whereClause = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : ''
       
       const sqlQuery = `
         SELECT 
           DATE(e.event_time) AS jour,
           d.hostname,
-          ROUND(AVG(e.avg), 2) AS latency_average,
-          ROUND(AVG(e.min), 2) AS latency_min,
-          ROUND(AVG(e.max), 2) AS latency_max,
-          ROUND(AVG(e.loss), 2) AS latency_loss
+          ROUND(AVG(e.avg), 2) AS avg_latency_ms,
+          ROUND(MIN(e.min), 2) AS min_latency_ms,
+          ROUND(MAX(e.max), 2) AS max_latency_ms,
+          ROUND(AVG(e.max - e.min), 2) AS jitter_ms,
+          ROUND(SUM(CASE WHEN e.status = 'up' THEN 1 ELSE 0 END) / COUNT(*) * 100, 2) AS availability_percent
         FROM device_events e
         JOIN devices d ON d.id = e.device_id
-        ${type_device ? `WHERE d.type_device_id = ?` : ''}
+        ${whereClause}
         GROUP BY jour, d.hostname
         ORDER BY jour DESC
       `;
 
-      const [rows] = await mysqlPool.execute(sqlQuery, type_device ? [type_device] : undefined);
+      const [rows] = await mysqlPool.execute(sqlQuery, params.length > 0 ? params : undefined);
       logger.info(`[ReportingService] Found ${rows.length} latency records`);
       return rows;
     } catch (error) {
