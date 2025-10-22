@@ -61,6 +61,30 @@ class ReportingController {
       res.status(500).json({ message: error.message });
     }
   };
+
+  // GET /reporting/mttr/:device_id
+  getMTTR = async (req, res) => {
+    try {
+      const { device_id } = req.params;
+      const rows = await reportingService.getMTTR({ device_id });
+      res.json({ rows });
+    } catch (error) {
+      logger.error(`[ReportingController] Error in getMTTR: ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  // GET /reporting/mtbf/:device_id
+  getMTBF = async (req, res) => {
+    try {
+      const { device_id } = req.params;
+      const rows = await reportingService.getMTBF({ device_id });
+      res.json({ rows });
+    } catch (error) {
+      logger.error(`[ReportingController] Error in getMTBF: ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
+  };
 }
 
 export default new ReportingController();

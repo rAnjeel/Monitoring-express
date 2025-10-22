@@ -176,6 +176,74 @@ class ReportingService {
       throw new Error('Database error while calculating device stability');
     }
   };
+
+  // MTTR - Mean Time To Recovery (Temps moyen de récupération)
+  getMTTR = async ({ device_id } = {}) => {
+    try {
+      logger.info('[ReportingService] Calculating MTTR for device');
+      
+      if (!device_id) {
+        throw new Error('device_id is required for MTTR calculation');
+      }
+
+      const sqlQuery = `
+        SELECT 
+          device_id,
+          ROUND(AVG(TIMESTAMPDIFF(MINUTE, event_time, next_up_time)) / 60, 2) AS MTTR_hours
+        FROM (
+          SELECT 
+            e.device_id,
+            e.event_time,
+            LEAD(e.event_time) OVER (PARTITION BY e.device_id ORDER BY e.event_time) AS next_up_time
+          FROM device_events e
+          WHERE e.status = 'down' AND e.device_id = ?
+        ) t
+        WHERE next_up_time IS NOT NULL
+        GROUP BY device_id
+      `;
+
+      const [rows] = await mysqlPool.execute(sqlQuery, [device_id]);
+      logger.info(`[ReportingService] MTTR calculated for device ${device_id}`);
+      return rows;
+    } catch (error) {
+      logger.error(`[ReportingService] Error calculating MTTR: ${error.message}`);
+      throw new Error('Database error while calculating MTTR');
+    }
+  };
+
+  // MTBF - Mean Time Between Failures (Temps moyen entre pannes)
+  getMTBF = async ({ device_id } = {}) => {
+    try {
+      logger.info('[ReportingService] Calculating MTBF for device');
+      
+      if (!device_id) {
+        throw new Error('device_id is required for MTBF calculation');
+      }
+
+      const sqlQuery = `
+        SELECT 
+          device_id,
+          ROUND(AVG(TIMESTAMPDIFF(MINUTE, last_down_time, next_down_time)) / 60, 2) AS MTBF_hours
+        FROM (
+          SELECT 
+            e.device_id,
+            e.event_time AS last_down_time,
+            LEAD(e.event_time) OVER (PARTITION BY e.device_id ORDER BY e.event_time) AS next_down_time
+          FROM device_events e
+          WHERE e.status = 'down' AND e.device_id = ?
+        ) t
+        WHERE next_down_time IS NOT NULL
+        GROUP BY device_id
+      `;
+
+      const [rows] = await mysqlPool.execute(sqlQuery, [device_id]);
+      logger.info(`[ReportingService] MTBF calculated for device ${device_id}`);
+      return rows;
+    } catch (error) {
+      logger.error(`[ReportingService] Error calculating MTBF: ${error.message}`);
+      throw new Error('Database error while calculating MTBF');
+    }
+  };
 }
 
 export default new ReportingService();
