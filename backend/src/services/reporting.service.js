@@ -82,34 +82,82 @@ class ReportingService {
   };
 
   // Latence moyenne par jour et par codesite
+  // getAverageLatencyByDayAndSite = async ({ start_date, end_date, type_device, device_id } = {}) => {
+  //   try {
+  //     logger.info('[ReportingService] Fetching average latency by day and site');
+      
+  //     const whereClauses = []
+  //     const params = []
+
+  //     if (start_date && end_date) {
+  //       whereClauses.push('e.event_time BETWEEN ? AND ?')
+  //       params.push(new Date(start_date), new Date(end_date))
+  //     }
+
+  //     if (type_device) {
+  //       whereClauses.push('d.type_device_id = ?')
+  //       params.push(type_device)
+  //     }
+
+  //     if (device_id) {
+  //       whereClauses.push('d.id = ?')
+  //       params.push(device_id)
+  //     }
+
+  //     const whereClause = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : ''
+      
+  //     const sqlQuery = `
+  //       SELECT
+  //         DATE(e.event_time) AS jour,
+  //         d.hostname,
+  //         ROUND(AVG(e.avg), 2) AS avg_latency_ms,
+  //         ROUND(MIN(e.min), 2) AS min_latency_ms,
+  //         ROUND(MAX(e.max), 2) AS max_latency_ms,
+  //         ROUND(AVG(e.max - e.min), 2) AS jitter_ms,
+  //         ROUND(SUM(CASE WHEN e.status = 'up' THEN 1 ELSE 0 END) / COUNT(*) * 100, 2) AS availability_percent
+  //       FROM device_events e
+  //       JOIN devices d ON d.id = e.device_id
+  //       ${whereClause}
+  //       GROUP BY jour, d.hostname
+  //       ORDER BY jour DESC
+  //     `;
+
+  //     const [rows] = await mysqlPool.execute(sqlQuery, params.length > 0 ? params : undefined);
+  //     logger.info(`[ReportingService] Found ${rows.length} latency records`);
+  //     return rows;
+  //   } catch (error) {
+  //     logger.error(`[ReportingService] Error fetching average latency by day and site: ${error.message}`);
+  //     throw new Error('Database error while fetching average latency by day and site');
+  //   }
+  // };
+  
   getAverageLatencyByDayAndSite = async ({ start_date, end_date, type_device, device_id } = {}) => {
     try {
-      logger.info('[ReportingService] Fetching average latency by day and site');
-      
-      const whereClauses = []
-      const params = []
+      logger.info('[ReportingService] Fetching average latency by day (global)');
+
+      const whereClauses = [];
+      const params = [];
 
       if (start_date && end_date) {
-        whereClauses.push('e.event_time BETWEEN ? AND ?')
-        params.push(new Date(start_date), new Date(end_date))
+        whereClauses.push('e.event_time BETWEEN ? AND ?');
+        params.push(new Date(start_date), new Date(end_date));
       }
 
       if (type_device) {
-        whereClauses.push('d.type_device_id = ?')
-        params.push(type_device)
+        whereClauses.push('d.type_device_id = ?');
+        params.push(type_device);
       }
 
       if (device_id) {
-        whereClauses.push('d.id = ?')
-        params.push(device_id)
+        whereClauses.push('d.id = ?');
+        params.push(device_id);
       }
 
-      const whereClause = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : ''
-      
+      const whereClause = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+
       const sqlQuery = `
         SELECT 
           DATE(e.event_time) AS jour,
-          d.hostname,
           ROUND(AVG(e.avg), 2) AS avg_latency_ms,
           ROUND(MIN(e.min), 2) AS min_latency_ms,
           ROUND(MAX(e.max), 2) AS max_latency_ms,
@@ -118,18 +166,24 @@ class ReportingService {
         FROM device_events e
         JOIN devices d ON d.id = e.device_id
         ${whereClause}
+<<<<<<< Updated upstream
         GROUP BY jour, d.id
         ORDER BY jour DESC
+=======
+        GROUP BY jour
+        ORDER BY jour ASC
+>>>>>>> Stashed changes
       `;
 
       const [rows] = await mysqlPool.execute(sqlQuery, params.length > 0 ? params : undefined);
       logger.info(`[ReportingService] Found ${rows.length} latency records`);
       return rows;
     } catch (error) {
-      logger.error(`[ReportingService] Error fetching average latency by day and site: ${error.message}`);
-      throw new Error('Database error while fetching average latency by day and site');
+      logger.error(`[ReportingService] Error fetching average latency by day: ${error.message}`);
+      throw new Error('Database error while fetching average latency by day');
     }
   };
+
 
   getDeviceStabilityStatus = async ({ start_date, end_date, type_device } = {}) => {
     try {
