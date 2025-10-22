@@ -131,33 +131,48 @@ class ReportingService {
   //   }
   // };
   
-  getAverageLatencyByDayAndSite = async ({ start_date, end_date, type_device, device_id } = {}) => {
+  getAverageLatencyByDayAndSite = async ({ start_date, end_date, type_device, group_by, device_id } = {}) => {
     try {
-      logger.info('[ReportingService] Fetching average latency by day (global)');
+      logger.info('[ReportingService] Fetching average latency by day');
 
       const whereClauses = [];
       const params = [];
+      let groupBy = 'jour';
+      let hostnameSelect = ''; // ajouté dynamiquement si group_by = 'site'
 
+      // Format date SQL : "YYYY-MM-DD HH:MM:SS"
+      const formatDateSQL = (d) => new Date(d).toISOString().slice(0, 19).replace('T', ' ');
+
+      // Filtres de période
       if (start_date && end_date) {
         whereClauses.push('e.event_time BETWEEN ? AND ?');
-        params.push(new Date(start_date), new Date(end_date));
+        params.push(formatDateSQL(start_date), formatDateSQL(end_date));
       }
 
+      // Filtre par type d’appareil
       if (type_device) {
         whereClauses.push('d.type_device_id = ?');
         params.push(type_device);
       }
 
+      // Filtre par ID d’appareil
       if (device_id) {
         whereClauses.push('d.id = ?');
         params.push(device_id);
+      }
+
+      // Mode "par site" (jour + hostname)
+      if (group_by === 'site') {
+        groupBy = 'jour, d.hostname';
+        hostnameSelect = ', d.hostname AS hostname';
       }
 
       const whereClause = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
 
       const sqlQuery = `
         SELECT 
-          DATE(e.event_time) AS jour,
+          DATE(e.event_time) AS jour
+          ${hostnameSelect},
           ROUND(AVG(e.avg), 2) AS avg_latency_ms,
           ROUND(MIN(e.min), 2) AS min_latency_ms,
           ROUND(MAX(e.max), 2) AS max_latency_ms,
@@ -166,18 +181,20 @@ class ReportingService {
         FROM device_events e
         JOIN devices d ON d.id = e.device_id
         ${whereClause}
-        GROUP BY jour
+        GROUP BY ${groupBy}
         ORDER BY jour ASC
       `;
 
       const [rows] = await mysqlPool.execute(sqlQuery, params.length > 0 ? params : undefined);
-      logger.info(`[ReportingService] Found ${rows.length} latency records`);
+
+      logger.info(`[ReportingService] Found ${rows.length} latency records (group_by = ${group_by})`);
       return rows;
     } catch (error) {
       logger.error(`[ReportingService] Error fetching average latency by day: ${error.message}`);
       throw new Error('Database error while fetching average latency by day');
     }
   };
+
 
 
 
