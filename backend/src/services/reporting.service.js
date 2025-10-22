@@ -118,7 +118,7 @@ class ReportingService {
         FROM device_events e
         JOIN devices d ON d.id = e.device_id
         ${whereClause}
-        GROUP BY jour, d.hostname
+        GROUP BY jour, d.id
         ORDER BY jour DESC
       `;
 
@@ -163,7 +163,7 @@ class ReportingService {
         FROM device_events e
         JOIN devices d ON d.id = e.device_id
         WHERE ${whereClauses.join(' AND ')}
-        GROUP BY d.hostname, d.type_device_id
+        GROUP BY d.id, d.type_device_id
         ORDER BY taux_panne DESC
       `;
 
