@@ -166,13 +166,8 @@ class ReportingService {
         FROM device_events e
         JOIN devices d ON d.id = e.device_id
         ${whereClause}
-<<<<<<< Updated upstream
-        GROUP BY jour, d.id
-        ORDER BY jour DESC
-=======
         GROUP BY jour
         ORDER BY jour ASC
->>>>>>> Stashed changes
       `;
 
       const [rows] = await mysqlPool.execute(sqlQuery, params.length > 0 ? params : undefined);
@@ -183,6 +178,7 @@ class ReportingService {
       throw new Error('Database error while fetching average latency by day');
     }
   };
+
 
 
   getDeviceStabilityStatus = async ({ start_date, end_date, type_device } = {}) => {
