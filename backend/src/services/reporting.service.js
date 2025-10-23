@@ -81,56 +81,6 @@ class ReportingService {
     }
   };
 
-  // Latence moyenne par jour et par codesite
-  // getAverageLatencyByDayAndSite = async ({ start_date, end_date, type_device, device_id } = {}) => {
-  //   try {
-  //     logger.info('[ReportingService] Fetching average latency by day and site');
-      
-  //     const whereClauses = []
-  //     const params = []
-
-  //     if (start_date && end_date) {
-  //       whereClauses.push('e.event_time BETWEEN ? AND ?')
-  //       params.push(new Date(start_date), new Date(end_date))
-  //     }
-
-  //     if (type_device) {
-  //       whereClauses.push('d.type_device_id = ?')
-  //       params.push(type_device)
-  //     }
-
-  //     if (device_id) {
-  //       whereClauses.push('d.id = ?')
-  //       params.push(device_id)
-  //     }
-
-  //     const whereClause = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : ''
-      
-  //     const sqlQuery = `
-  //       SELECT
-  //         DATE(e.event_time) AS jour,
-  //         d.hostname,
-  //         ROUND(AVG(e.avg), 2) AS avg_latency_ms,
-  //         ROUND(MIN(e.min), 2) AS min_latency_ms,
-  //         ROUND(MAX(e.max), 2) AS max_latency_ms,
-  //         ROUND(AVG(e.max - e.min), 2) AS jitter_ms,
-  //         ROUND(SUM(CASE WHEN e.status = 'up' THEN 1 ELSE 0 END) / COUNT(*) * 100, 2) AS availability_percent
-  //       FROM device_events e
-  //       JOIN devices d ON d.id = e.device_id
-  //       ${whereClause}
-  //       GROUP BY jour, d.hostname
-  //       ORDER BY jour DESC
-  //     `;
-
-  //     const [rows] = await mysqlPool.execute(sqlQuery, params.length > 0 ? params : undefined);
-  //     logger.info(`[ReportingService] Found ${rows.length} latency records`);
-  //     return rows;
-  //   } catch (error) {
-  //     logger.error(`[ReportingService] Error fetching average latency by day and site: ${error.message}`);
-  //     throw new Error('Database error while fetching average latency by day and site');
-  //   }
-  // };
-  
   getAverageLatencyByDayAndSite = async ({ start_date, end_date, type_device, group_by, device_id } = {}) => {
     try {
       logger.info('[ReportingService] Fetching average latency by day');
@@ -138,7 +88,7 @@ class ReportingService {
       const whereClauses = [];
       const params = [];
       let groupBy = 'jour';
-      let hostnameSelect = ''; // ajouté dynamiquement si group_by = 'site'
+      let hostnameSelect = '';
 
       // Format date SQL : "YYYY-MM-DD HH:MM:SS"
       const formatDateSQL = (d) => new Date(d).toISOString().slice(0, 19).replace('T', ' ');
@@ -195,9 +145,6 @@ class ReportingService {
     }
   };
 
-
-
-
   getDeviceStabilityStatus = async ({ start_date, end_date, type_device } = {}) => {
     try {
       logger.info('[ReportingService] Calculating current stability state for all devices');
@@ -223,8 +170,8 @@ class ReportingService {
           SUM(CASE WHEN e.status = 'down' THEN 1 ELSE 0 END) AS nb_down,
           ROUND(SUM(CASE WHEN e.status = 'down' THEN 1 ELSE 0 END) / COUNT(*) * 100, 2) AS taux_panne,
           CASE
-            WHEN ROUND(SUM(e.status = 'down')/COUNT(*)*100,2) > 5 THEN 'Instable'
-            WHEN ROUND(SUM(e.status = 'down')/COUNT(*)*100,2) BETWEEN 2 AND 5 THEN 'À surveiller'
+            WHEN ROUND(SUM(e.status = 'down')/COUNT(*)*100,2) > 5 THEN 'Unstable'
+            WHEN ROUND(SUM(e.status = 'down')/COUNT(*)*100,2) BETWEEN 2 AND 5 THEN 'To monitor'
             ELSE 'Stable'
           END AS etat_stabilite
         FROM device_events e
