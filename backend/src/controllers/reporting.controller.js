@@ -62,14 +62,14 @@ class ReportingController {
     }
   };
 
-  // GET /reporting/mttr/:device_id
-  getMTTR = async (req, res) => {
+  // GET /reporting/availability/:device_id
+  getAvailability = async (req, res) => {
     try {
       const { device_id } = req.params;
-      const rows = await reportingService.getMTTR({ device_id });
+      const rows = await reportingService.getAvailability({ device_id });
       res.json({ rows });
     } catch (error) {
-      logger.error(`[ReportingController] Error in getMTTR: ${error.message}`);
+      logger.error(`[ReportingController] Error in getAvailability: ${error.message}`);
       res.status(500).json({ message: error.message });
     }
   };

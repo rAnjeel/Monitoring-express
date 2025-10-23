@@ -191,39 +191,45 @@ class ReportingService {
     }
   };
 
-  // MTTR - Mean Time To Recovery (Temps moyen de récupération)
-  getMTTR = async ({ device_id } = {}) => {
+  // Disponibilité (SLA) - Pourcentage du temps UP vs total
+  getAvailability = async ({ device_id } = {}) => {
     try {
-      logger.info('[ReportingService] Calculating MTTR for device');
-      
+      logger.info('[ReportingService] Calculating Availability (SLA) for device');
+
       if (!device_id) {
-        throw new Error('device_id is required for MTTR calculation');
+        throw new Error('device_id is required for Availability calculation');
       }
 
       const sqlQuery = `
         SELECT 
           device_id,
-          ROUND(AVG(TIMESTAMPDIFF(MINUTE, event_time, next_up_time)) / 60, 2) AS MTTR_hours
+          ROUND(
+            (SUM(CASE WHEN status = 'up' THEN TIMESTAMPDIFF(MINUTE, event_time, next_event_time) ELSE 0 END) /
+            SUM(TIMESTAMPDIFF(MINUTE, event_time, next_event_time))) * 100,
+            2
+          ) AS availability_percent
         FROM (
           SELECT 
             e.device_id,
+            e.status,
             e.event_time,
-            LEAD(e.event_time) OVER (PARTITION BY e.device_id ORDER BY e.event_time) AS next_up_time
+            LEAD(e.event_time) OVER (PARTITION BY e.device_id ORDER BY e.event_time) AS next_event_time
           FROM device_events e
-          WHERE e.status = 'down' AND e.device_id = ?
+          WHERE e.device_id = ?
         ) t
-        WHERE next_up_time IS NOT NULL
+        WHERE next_event_time IS NOT NULL
         GROUP BY device_id
       `;
 
       const [rows] = await mysqlPool.execute(sqlQuery, [device_id]);
-      logger.info(`[ReportingService] MTTR calculated for device ${device_id}`);
+      logger.info(`[ReportingService] Availability (SLA) calculated for device ${device_id}`);
       return rows;
     } catch (error) {
-      logger.error(`[ReportingService] Error calculating MTTR: ${error.message}`);
-      throw new Error('Database error while calculating MTTR');
+      logger.error(`[ReportingService] Error calculating Availability: ${error.message}`);
+      throw new Error('Database error while calculating Availability');
     }
   };
+
 
   // MTBF - Mean Time Between Failures (Temps moyen entre pannes)
   getMTBF = async ({ device_id } = {}) => {
