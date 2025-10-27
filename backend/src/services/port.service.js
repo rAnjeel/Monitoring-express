@@ -197,6 +197,7 @@ class PortService {
       // Base select avec jointure
       let rowsQuery = db
         .select({
+          id: ports.id,
           port_id: ports.port_id,
           device_id: ports.device_id,
           ifIndex: ports.ifIndex,

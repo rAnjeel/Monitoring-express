@@ -10,7 +10,7 @@ router.get('/limit', (req, res) => portController.getPage(req, res));
 router.get('/:id', (req, res) => portController.getById(req, res));
 router.post('/', validatePort, (req, res) => portController.create(req, res));
 router.post('/import', (req, res) => portController.importCSV(req, res));
-router.put('/:id', validatePort, (req, res) => portController.update(req, res));
+router.put('/:id', (req, res) => portController.update(req, res));
 router.put('/:id/switch-monitored', (req, res) => portController.switchMonitored(req, res));
 router.delete('/:id', (req, res) => portController.delete(req, res));
 
