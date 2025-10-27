@@ -124,8 +124,8 @@ class ReportingService {
           DATE(e.event_time) AS jour
           ${hostnameSelect},
           ROUND(AVG(e.avg), 2) AS avg_latency_ms,
-          ROUND(MIN(e.min), 2) AS min_latency_ms,
-          ROUND(MAX(e.max), 2) AS max_latency_ms,
+          ROUND(AVG(e.min), 2) AS min_latency_ms,
+          ROUND(AVG(e.max), 2) AS max_latency_ms,
           ROUND(AVG(e.max - e.min), 2) AS jitter_ms,
           ROUND(SUM(CASE WHEN e.status = 'up' THEN 1 ELSE 0 END) / COUNT(*) * 100, 2) AS availability_percent
         FROM device_events e

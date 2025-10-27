@@ -125,3 +125,42 @@ ORDER BY
 --Reset commit git
 git reset --soft HEAD~2
 
+
+SELECT 
+  DATE(e.event_time) AS jour,
+  ROUND(AVG(e.avg), 2) AS avg_latency_ms,
+  ROUND(MIN(e.min), 2) AS min_latency_ms,
+  ROUND(MAX(e.max), 2) AS max_latency_ms,
+  ROUND(SUM(CASE WHEN e.status = 'up' THEN 1 ELSE 0 END) / COUNT(*) * 100, 2) AS availability_percent
+FROM device_events e
+JOIN devices d ON d.id = e.device_id
+WHERE e.event_time BETWEEN '2025-10-01 00:00:00' AND '2025-10-27 23:59:59'
+GROUP BY jour
+ORDER BY jour ASC;
+
+
+SELECT 
+  DATE(e.event_time) AS jour,
+  ROUND(AVG(e.avg), 2) AS avg_latency_ms,
+  ROUND(MIN(e.min), 2) AS min_latency_ms,
+  ROUND(MAX(e.max), 2) AS max_latency_ms,
+  ROUND(SUM(CASE WHEN e.status = 'up' THEN 1 ELSE 0 END) / COUNT(*) * 100, 2) AS availability_percent
+FROM device_events e
+JOIN devices d ON d.id = e.device_id
+WHERE d.type_device_id = 3
+GROUP BY jour
+ORDER BY jour ASC;
+
+SELECT 
+  DATE(e.event_time) AS jour,
+  d.hostname AS hostname,
+  ROUND(AVG(e.avg), 2) AS avg_latency_ms,
+  ROUND(MIN(e.min), 2) AS min_latency_ms,
+  ROUND(MAX(e.max), 2) AS max_latency_ms,
+  ROUND(SUM(CASE WHEN e.status = 'up' THEN 1 ELSE 0 END) / COUNT(*) * 100, 2) AS availability_percent
+FROM device_events e
+JOIN devices d ON d.id = e.device_id
+WHERE e.event_time BETWEEN '2025-10-01 00:00:00' AND '2025-10-27 23:59:59'
+GROUP BY jour, d.hostname
+ORDER BY jour ASC;
+
