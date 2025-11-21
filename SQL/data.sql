@@ -8,7 +8,9 @@ INSERT INTO `locations` VALUES (3,'TNR',36.650627,-94.443550,'2018-08-31 15:45:0
 INSERT INTO monitoring_settings (`setting_key`, `setting_value`, `type`, `description`) VALUES
   ('PING_LOSS_THRESHOLD', '80', 'number', 'Packet loss threshold (%) for ping alerts'),
   ('SCHEDULER_INTERVAL_MS', '60000', 'number', 'Scheduler interval for device checks (ms)'),
-  ('SCHEDULER_PORTS_INTERVAL_MS', '60000', 'number', 'Scheduler interval for port checks (ms)');
+  ('SCHEDULER_PORTS_INTERVAL_MS', '60000', 'number', 'Scheduler interval for port checks (ms)'),
+  ('FLAPPING_MIN_THRESHOLD', '10', 'number', 'Minimum number of flapping events'),
+  ('FLAPPING_MAX_THRESHOLD', '30', 'number', 'Maximum number of flapping events');
 
 -- Extract to csv devices
 SELECT device_id,id,ip,hostname,sysName,status,Ping_status,type_device_id,location_id,codesite,loss,avg,min,max,uptime,snmp_disable,community,authlevel,authname,authpass,authalgo,cryptopass,cryptoalgo,snmpver,ne_id

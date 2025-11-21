@@ -1,9 +1,10 @@
 import { mysqlPool } from '../config/db.js';
 import logger from '../logger/logger.js';
 import NodeCache from 'node-cache';
+import monitoringSettingService from './monitoringSetting.service.js';
 
 // Cache pour les requêtes de reporting (TTL: 5 minutes)
-const reportingCache = new NodeCache({ 
+const reportingCache = new NodeCache({
   stdTTL: 300, // 5 minutes
   checkperiod: 60, // Vérification toutes les 60 secondes
   useClones: false // Performance: évite le clonage profond
@@ -60,12 +61,12 @@ class ReportingService {
       throw new Error('Database error while reporting all devices events (mysql)')
     }
   };
-    
+
   // Top 10 des équipements les plus instables (30 derniers jours)
   getTop10UnstableDevices = async ({ type_device } = {}) => {
     try {
       logger.info('[ReportingService] Fetching top 10 unstable devices');
-      
+
       const sqlQuery = `
         SELECT 
           d.hostname,
@@ -93,7 +94,7 @@ class ReportingService {
     try {
       // Génération de la clé de cache unique
       const cacheKey = `latency_${start_date || 'null'}_${end_date || 'null'}_${type_device || 'null'}_${group_by || 'null'}_${device_id || 'null'}_${limit}`;
-      
+
       // Vérification du cache
       if (use_cache) {
         const cached = reportingCache.get(cacheKey);
@@ -134,7 +135,7 @@ class ReportingService {
 
       // Mode "par site" (jour + hostname)
       if (group_by === 'site') {
-        groupBy = 'jour, d.hostname';
+        groupBy = 'd.hostname';
         hostnameSelect = ', d.hostname AS hostname';
         hostnameJoinSelect = ', d.hostname';
       }
@@ -145,48 +146,21 @@ class ReportingService {
       const MAX_LIMIT = 730; // 2 ans max
       const safeLimit = Math.min(limit || 365, MAX_LIMIT);
 
-      // Optimisation: Utiliser la table pré-agrégée si disponible et pas de filtre device_id spécifique
-      // et que la période est complète (jours entiers)
-      const usePreAggregated = !device_id && start_date && end_date;
-
-      let sqlQuery;
-
-      if (usePreAggregated && group_by !== 'site') {
-        // Requête optimisée avec la table pré-agrégée
-        sqlQuery = `
-          SELECT 
-            s.date AS jour,
-            ROUND(AVG(s.avg_latency), 2) AS avg_latency_ms,
-            ROUND(AVG(s.min_latency), 2) AS min_latency_ms,
-            ROUND(AVG(s.max_latency), 2) AS max_latency_ms,
-            ROUND(AVG(s.jitter), 2) AS jitter_ms,
-            ROUND(AVG(s.availability_percent), 2) AS availability_percent
-          FROM daily_device_stats s
-          INNER JOIN devices d ON d.id = s.device_id
-          ${whereClause.replace(/e\./g, 's.').replace('s.event_time', 's.date')}
-          GROUP BY s.date
-          ORDER BY s.date ASC
-          LIMIT ?
-        `;
-      } else {
-        // Requête standard optimisée avec INNER JOIN
-        sqlQuery = `
-          SELECT 
-            DATE(e.event_time) AS jour
-            ${hostnameSelect},
-            ROUND(AVG(e.avg), 2) AS avg_latency_ms,
-            ROUND(AVG(e.min), 2) AS min_latency_ms,
-            ROUND(AVG(e.max), 2) AS max_latency_ms,
-            ROUND(AVG(e.max - e.min), 2) AS jitter_ms,
-            ROUND(SUM(e.status = 'up') / COUNT(*) * 100, 2) AS availability_percent
-          FROM device_events e
-          INNER JOIN devices d ON d.id = e.device_id
-          ${whereClause}
-          GROUP BY ${groupBy}
-          ORDER BY jour ASC
-          LIMIT ?
-        `;
-      }
+      // Requête standard optimisée avec INNER JOIN uniquement sur device_events
+      const sqlQuery = `
+        SELECT 
+          ${group_by === 'site' ? 'd.hostname AS hostname,' : ''}
+          ROUND(AVG(e.avg), 2) AS avg_latency_ms,
+          ROUND(AVG(e.min), 2) AS min_latency_ms,
+          ROUND(AVG(e.max), 2) AS max_latency_ms,
+          ROUND(AVG(e.max - e.min), 2) AS jitter_ms,
+          ROUND(SUM(e.status = 'up') / COUNT(*) * 100, 2) AS availability_percent
+        FROM device_events e
+        INNER JOIN devices d ON d.id = e.device_id
+        ${whereClause}
+        ${group_by === 'site' ? 'GROUP BY d.hostname' : ''}
+        LIMIT ?
+      `;
 
       // Ajout de la limite aux paramètres
       const finalParams = params.length > 0 ? [...params, safeLimit] : [safeLimit];
@@ -222,23 +196,44 @@ class ReportingService {
         params.push(type_device);
       }
 
+      // Chargement des seuils de flapping depuis monitoring_settings
+      let lowThreshold = 10;
+      let highThreshold = 30;
+      try {
+        const lowRow = (await monitoringSettingService.getByKeyName('FLAPPING_MIN_THRESHOLD'))?.[0];
+        const highRow = (await monitoringSettingService.getByKeyName('FLAPPING_MAX_THRESHOLD'))?.[0];
+        if (lowRow && lowRow.value != null) {
+          const n = Number(lowRow.value);
+          if (Number.isFinite(n)) lowThreshold = n;
+        }
+        if (highRow && highRow.value != null) {
+          const n = Number(highRow.value);
+          if (Number.isFinite(n)) highThreshold = n;
+        }
+      } catch (e) {
+        logger.error(`[ReportingService] Error loading flapping thresholds: ${e.message}`);
+      }
+
+      // Requête SQL avec calcul du statut directement côté MySQL
       const sqlQuery = `
         SELECT 
           d.hostname,
           d.sysName,
           d.type_device_id,
+          td.name AS type_device_name,
           COUNT(*) AS total_events,
           SUM(CASE WHEN e.status = 'down' THEN 1 ELSE 0 END) AS nb_down,
           ROUND(SUM(CASE WHEN e.status = 'down' THEN 1 ELSE 0 END) / COUNT(*) * 100, 2) AS taux_panne,
           CASE
-            WHEN ROUND(SUM(e.status = 'down')/COUNT(*)*100,2) > 5 THEN 'Unstable'
-            WHEN ROUND(SUM(e.status = 'down')/COUNT(*)*100,2) BETWEEN 2 AND 5 THEN 'To monitor'
+            WHEN ROUND(SUM(e.status = 'down')/COUNT(*)*100,2) >= ${highThreshold} THEN 'Flapping'
+            WHEN ROUND(SUM(e.status = 'down')/COUNT(*)*100,2) >= ${lowThreshold} THEN 'Hysteresis zone'
             ELSE 'Stable'
           END AS etat_stabilite
         FROM device_events e
         JOIN devices d ON d.id = e.device_id
+        LEFT JOIN type_device td ON td.id = d.type_device_id
         WHERE ${whereClauses.join(' AND ')}
-        GROUP BY d.id, d.type_device_id
+        GROUP BY d.id, d.type_device_id, td.name
         ORDER BY taux_panne DESC
       `;
 
@@ -296,7 +291,7 @@ class ReportingService {
   getMTBF = async ({ device_id } = {}) => {
     try {
       logger.info('[ReportingService] Calculating MTBF for device');
-      
+
       if (!device_id) {
         throw new Error('device_id is required for MTBF calculation');
       }
