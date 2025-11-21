@@ -38,6 +38,39 @@ class ReportingController {
     }
   };
 
+  // GET /reporting/inventory-summary
+  getInventorySummary = async (req, res) => {
+    try {
+      const rows = await reportingService.getInventorySummary();
+      res.json({ rows });
+    } catch (error) {
+      logger.error(`[ReportingController] Error in getInventorySummary: ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  // GET /reporting/devices-by-type
+  getDevicesByType = async (req, res) => {
+    try {
+      const rows = await reportingService.getDevicesByType();
+      res.json({ rows });
+    } catch (error) {
+      logger.error(`[ReportingController] Error in getDevicesByType: ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  // GET /reporting/devices-by-location
+  getDevicesByLocation = async (req, res) => {
+    try {
+      const rows = await reportingService.getDevicesByLocation();
+      res.json({ rows });
+    } catch (error) {
+      logger.error(`[ReportingController] Error in getDevicesByLocation: ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
   // GET /reporting/latency-by-day
   getAverageLatencyByDay = async (req, res) => {
     try {

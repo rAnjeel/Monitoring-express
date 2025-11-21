@@ -122,6 +122,74 @@ class ReportingService {
     }
   };
 
+  // KPIs d'inventaire global (pour le dashboard)
+  getInventorySummary = async () => {
+    try {
+      logger.info('[ReportingService] Fetching global inventory summary');
+
+      const sqlQuery = `
+        SELECT
+          (SELECT COUNT(*) FROM devices) AS total_devices,
+          (SELECT COUNT(*) FROM ports WHERE isMonitored = 1) AS total_monitored_ports,
+          (SELECT COUNT(*) FROM type_device) AS total_device_types
+      `;
+
+      const [rows] = await mysqlPool.execute(sqlQuery);
+      return rows;
+    } catch (error) {
+      logger.error(`[ReportingService] Error fetching inventory summary: ${error.message}`);
+      throw new Error('Database error while fetching inventory summary');
+    }
+  };
+
+  // Répartition des équipements par type
+  getDevicesByType = async () => {
+    try {
+      logger.info('[ReportingService] Fetching devices by type');
+
+      const sqlQuery = `
+        SELECT
+          d.type_device_id AS type_id,
+          COALESCE(td.name, 'Unknown') AS type_name,
+          COUNT(*) AS total_devices
+        FROM devices d
+        LEFT JOIN type_device td ON td.id = d.type_device_id
+        GROUP BY d.type_device_id, td.name
+        ORDER BY total_devices DESC
+      `;
+
+      const [rows] = await mysqlPool.execute(sqlQuery);
+      return rows;
+    } catch (error) {
+      logger.error(`[ReportingService] Error fetching devices by type: ${error.message}`);
+      throw new Error('Database error while fetching devices by type');
+    }
+  };
+
+  // Répartition des équipements par lieu
+  getDevicesByLocation = async () => {
+    try {
+      logger.info('[ReportingService] Fetching devices by location');
+
+      const sqlQuery = `
+        SELECT
+          d.location_id AS location_id,
+          COALESCE(l.name, 'Unknown') AS location_name,
+          COUNT(*) AS total_devices
+        FROM devices d
+        LEFT JOIN locations l ON l.id = d.location_id
+        GROUP BY d.location_id, l.name
+        ORDER BY total_devices DESC
+      `;
+
+      const [rows] = await mysqlPool.execute(sqlQuery);
+      return rows;
+    } catch (error) {
+      logger.error(`[ReportingService] Error fetching devices by location: ${error.message}`);
+      throw new Error('Database error while fetching devices by location');
+    }
+  };
+
   // Moyenne de latence par jour (série temporelle)
   getAverageLatencyByDay = async ({ start_date, end_date, type_device, device_id, limit = 365, use_cache = true } = {}) => {
     try {

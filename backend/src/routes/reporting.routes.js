@@ -4,6 +4,9 @@ import reportingController from '../controllers/reporting.controller.js';
 
 router.get('/events-between', reportingController.getEventsBetween);
 router.get('/unstable-top10', reportingController.getTop10UnstableDevices);
+router.get('/inventory-summary', reportingController.getInventorySummary);
+router.get('/devices-by-type', reportingController.getDevicesByType);
+router.get('/devices-by-location', reportingController.getDevicesByLocation);
 router.get('/latency-by-day-site', reportingController.getAverageLatencyByDayAndSite);
 router.get('/latency-by-day', reportingController.getAverageLatencyByDay);
 router.get('/device-stability-status', reportingController.getDeviceStabilityStatus);
