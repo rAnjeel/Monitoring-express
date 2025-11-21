@@ -38,6 +38,18 @@ class ReportingController {
     }
   };
 
+  // GET /reporting/latency-by-day
+  getAverageLatencyByDay = async (req, res) => {
+    try {
+      const { start_date, end_date, type_device, device_id } = req.query;
+      const rows = await reportingService.getAverageLatencyByDay({ start_date, end_date, type_device, device_id });
+      res.json({ rows });
+    } catch (error) {
+      logger.error(`[ReportingController] Error in getAverageLatencyByDay: ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
   // GET /reporting/latency-by-day-site
   getAverageLatencyByDayAndSite = async (req, res) => {
     try {
@@ -58,6 +70,18 @@ class ReportingController {
       res.json({ rows });
     } catch (error) {
       logger.error(`[ReportingController] Error in getDeviceStabilityStatus: ${error.message}`);
+      res.status(500).json({ message: error.message });
+    }
+  };
+
+  // GET /reporting/today-summary
+  getTodayEventsSummary = async (req, res) => {
+    try {
+      const { type_device } = req.query;
+      const rows = await reportingService.getTodayEventsSummary({ type_device });
+      res.json({ rows });
+    } catch (error) {
+      logger.error(`[ReportingController] Error in getTodayEventsSummary: ${error.message}`);
       res.status(500).json({ message: error.message });
     }
   };

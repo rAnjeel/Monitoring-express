@@ -90,6 +90,114 @@ class ReportingService {
     }
   };
 
+  // Résumé des événements de la journée courante (dashboard accueil)
+  getTodayEventsSummary = async ({ type_device } = {}) => {
+    try {
+      logger.info('[ReportingService] Fetching today events summary');
+
+      const whereClauses = ['DATE(e.event_time) = CURDATE()'];
+      const params = [];
+
+      if (type_device) {
+        whereClauses.push('d.type_device_id = ?');
+        params.push(type_device);
+      }
+
+      const sqlQuery = `
+        SELECT 
+          CURDATE() AS jour,
+          COUNT(*) AS total_events,
+          SUM(CASE WHEN e.status = 'down' THEN 1 ELSE 0 END) AS nb_down
+        FROM device_events e
+        JOIN devices d ON d.id = e.device_id
+        WHERE ${whereClauses.join(' AND ')}
+      `;
+
+      const [rows] = await mysqlPool.execute(sqlQuery, params.length ? params : undefined);
+      logger.info(`[ReportingService] Today events summary calculated (rows=${rows.length})`);
+      return rows;
+    } catch (error) {
+      logger.error(`[ReportingService] Error fetching today events summary: ${error.message}`);
+      throw new Error('Database error while fetching today events summary');
+    }
+  };
+
+  // Moyenne de latence par jour (série temporelle)
+  getAverageLatencyByDay = async ({ start_date, end_date, type_device, device_id, limit = 365, use_cache = true } = {}) => {
+    try {
+      const cacheKey = `latency_daily_${start_date || 'null'}_${end_date || 'null'}_${type_device || 'null'}_${device_id || 'null'}_${limit}`;
+
+      if (use_cache) {
+        const cached = reportingCache.get(cacheKey);
+        if (cached) {
+          logger.info(`[ReportingService] Cache HIT for key: ${cacheKey}`);
+          return cached;
+        }
+      }
+
+      logger.info('[ReportingService] Fetching average latency by day (cache MISS)');
+
+      const whereClauses = [];
+      const params = [];
+
+      // Format date SQL : "YYYY-MM-DD HH:MM:SS"
+      const formatDateSQL = (d) => new Date(d).toISOString().slice(0, 19).replace('T', ' ');
+
+      // Filtres de période
+      if (start_date && end_date) {
+        whereClauses.push('e.event_time BETWEEN ? AND ?');
+        params.push(formatDateSQL(start_date), formatDateSQL(end_date));
+      }
+
+      // Filtre par type d'appareil
+      if (type_device) {
+        whereClauses.push('d.type_device_id = ?');
+        params.push(type_device);
+      }
+
+      // Filtre par ID d'appareil
+      if (device_id) {
+        whereClauses.push('d.id = ?');
+        params.push(device_id);
+      }
+
+      const whereClause = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
+
+      const MAX_LIMIT = 730; // 2 ans max
+      const safeLimit = Math.min(limit || 365, MAX_LIMIT);
+
+      const sqlQuery = `
+        SELECT 
+          DATE(e.event_time) AS jour,
+          ROUND(AVG(e.avg), 2) AS avg_latency_ms,
+          ROUND(AVG(e.min), 2) AS min_latency_ms,
+          ROUND(AVG(e.max), 2) AS max_latency_ms,
+          ROUND(AVG(e.max - e.min), 2) AS jitter_ms,
+          ROUND(SUM(e.status = 'up') / COUNT(*) * 100, 2) AS availability_percent
+        FROM device_events e
+        INNER JOIN devices d ON d.id = e.device_id
+        ${whereClause}
+        GROUP BY jour
+        ORDER BY jour ASC
+        LIMIT ?
+      `;
+
+      const finalParams = params.length > 0 ? [...params, safeLimit] : [safeLimit];
+
+      const [rows] = await mysqlPool.execute(sqlQuery, finalParams);
+
+      if (use_cache) {
+        reportingCache.set(cacheKey, rows);
+      }
+
+      logger.info(`[ReportingService] Found ${rows.length} daily latency records (cached = ${use_cache})`);
+      return rows;
+    } catch (error) {
+      logger.error(`[ReportingService] Error fetching average latency by day (grouped by date): ${error.message}`);
+      throw new Error('Database error while fetching average latency by day (grouped by date)');
+    }
+  };
+
   getAverageLatencyByDayAndSite = async ({ start_date, end_date, type_device, group_by, device_id, limit = 365, use_cache = true } = {}) => {
     try {
       // Génération de la clé de cache unique

@@ -7,12 +7,13 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import deviceRoutes from './routes/device.routes.js';
 import typeDeviceRoutes from './routes/typeDevice.routes.js';
-import locationRoutes from './routes/location.routes.js';  
+import locationRoutes from './routes/location.routes.js';
 import portRoutes from './routes/port.routes.js';
 import deviceEventRoutes from './routes/deviceEvent.routes.js';
 import portEventRoutes from './routes/portEvent.routes.js';
 import reportingRoutes from './routes/reporting.routes.js';
 import monitoringSettingRoutes from './routes/monitoringSetting.routes.js';
+import supervisionRoutes from './routes/supervision.routes.js';
 import logger from './logger/logger.js';
 import errorHandler from './middlewares/error.middleware.js';
 import deviceService from './services/device.service.js';
@@ -44,6 +45,7 @@ app.use('/device-events', deviceEventRoutes);
 app.use('/port-events', portEventRoutes);
 app.use('/reporting', reportingRoutes);
 app.use('/monitoring-settings', monitoringSettingRoutes);
+app.use('/supervision', supervisionRoutes);
 app.use(errorHandler);
 
 app.use((err, req, res, next) => {
@@ -76,7 +78,7 @@ async function startServer() {
     } catch (e) {
       logger.error(`Error starting schedulers: ${e.message}`)
     }
-    
+
     // CONSUMERS
     try {
       await Promise.all([
