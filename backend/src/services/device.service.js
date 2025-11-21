@@ -8,6 +8,7 @@ import logger from '../logger/logger.js';
 import utilService from './util.service.js';
 import ConsumerService from './messaging/consumer.service.js';
 import SocketService from './socket/socket.service.js';
+import monitoringSettingService from './monitoringSetting.service.js';
 
 class DeviceService {
   constructor() {
@@ -357,6 +358,13 @@ class DeviceService {
           conditions.push(like(devices.sysName, p))
           break
         }
+        case 'ping_status': {
+          // Filtrer par statut exact (0 = DOWN, 1 = UP)
+          const statusValue = value.toLowerCase() === 'up' ? 1 : 0
+          params['ping_status'] = statusValue
+          conditions.push(eq(devices.ping_status, sql.placeholder('ping_status')))
+          break
+        }
         default:
           break
       }
@@ -473,6 +481,14 @@ class DeviceService {
     const queueName = process.env.RABBIT_QUEUE_PING || 'ping_results'
     const consumer = new ConsumerService(queueName)
 
+    // Load loss threshold from settings once (fallback to env or 10)
+    let lossThreshold = 10
+    try {
+      const row = (await monitoringSettingService.getByKeyName('PING_LOSS_THRESHOLD'))?.[0]
+      const v = Number(row?.value ?? process.env.PING_LOSS_THRESHOLD)
+      if (Number.isFinite(v)) lossThreshold = v
+    } catch {}
+
     await consumer.start(async (pingResult) => {
       try {
         const { lossPct, avg, min, max, deviceId, ip } = pingResult
@@ -482,7 +498,6 @@ class DeviceService {
           logger.info(`[PingConsumer] Message reçu: deviceId=${deviceId}, ip=${ip}, loss=${lossPct}%`)
         }
 
-        const lossThreshold = parseFloat(process.env.PING_LOSS_THRESHOLD || 10)
         const isUp = lossPct <= lossThreshold
         const status = isUp ? 'up' : 'down'
 

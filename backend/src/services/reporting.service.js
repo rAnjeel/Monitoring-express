@@ -1,5 +1,13 @@
 import { mysqlPool } from '../config/db.js';
 import logger from '../logger/logger.js';
+import NodeCache from 'node-cache';
+
+// Cache pour les requêtes de reporting (TTL: 5 minutes)
+const reportingCache = new NodeCache({ 
+  stdTTL: 300, // 5 minutes
+  checkperiod: 60, // Vérification toutes les 60 secondes
+  useClones: false // Performance: évite le clonage profond
+});
 
 class ReportingService {
 
@@ -81,14 +89,27 @@ class ReportingService {
     }
   };
 
-  getAverageLatencyByDayAndSite = async ({ start_date, end_date, type_device, group_by, device_id } = {}) => {
+  getAverageLatencyByDayAndSite = async ({ start_date, end_date, type_device, group_by, device_id, limit = 365, use_cache = true } = {}) => {
     try {
-      logger.info('[ReportingService] Fetching average latency by day');
+      // Génération de la clé de cache unique
+      const cacheKey = `latency_${start_date || 'null'}_${end_date || 'null'}_${type_device || 'null'}_${group_by || 'null'}_${device_id || 'null'}_${limit}`;
+      
+      // Vérification du cache
+      if (use_cache) {
+        const cached = reportingCache.get(cacheKey);
+        if (cached) {
+          logger.info(`[ReportingService] Cache HIT for key: ${cacheKey}`);
+          return cached;
+        }
+      }
+
+      logger.info('[ReportingService] Fetching average latency by day (cache MISS)');
 
       const whereClauses = [];
       const params = [];
       let groupBy = 'jour';
       let hostnameSelect = '';
+      let hostnameJoinSelect = '';
 
       // Format date SQL : "YYYY-MM-DD HH:MM:SS"
       const formatDateSQL = (d) => new Date(d).toISOString().slice(0, 19).replace('T', ' ');
@@ -99,13 +120,13 @@ class ReportingService {
         params.push(formatDateSQL(start_date), formatDateSQL(end_date));
       }
 
-      // Filtre par type d’appareil
+      // Filtre par type d'appareil
       if (type_device) {
         whereClauses.push('d.type_device_id = ?');
         params.push(type_device);
       }
 
-      // Filtre par ID d’appareil
+      // Filtre par ID d'appareil
       if (device_id) {
         whereClauses.push('d.id = ?');
         params.push(device_id);
@@ -115,29 +136,69 @@ class ReportingService {
       if (group_by === 'site') {
         groupBy = 'jour, d.hostname';
         hostnameSelect = ', d.hostname AS hostname';
+        hostnameJoinSelect = ', d.hostname';
       }
 
       const whereClause = whereClauses.length > 0 ? `WHERE ${whereClauses.join(' AND ')}` : '';
 
-      const sqlQuery = `
-        SELECT 
-          DATE(e.event_time) AS jour
-          ${hostnameSelect},
-          ROUND(AVG(e.avg), 2) AS avg_latency_ms,
-          ROUND(AVG(e.min), 2) AS min_latency_ms,
-          ROUND(AVG(e.max), 2) AS max_latency_ms,
-          ROUND(AVG(e.max - e.min), 2) AS jitter_ms,
-          ROUND(SUM(CASE WHEN e.status = 'up' THEN 1 ELSE 0 END) / COUNT(*) * 100, 2) AS availability_percent
-        FROM device_events e
-        JOIN devices d ON d.id = e.device_id
-        ${whereClause}
-        GROUP BY ${groupBy}
-        ORDER BY jour ASC
-      `;
+      // Limite par défaut pour éviter les requêtes trop lourdes
+      const MAX_LIMIT = 730; // 2 ans max
+      const safeLimit = Math.min(limit || 365, MAX_LIMIT);
 
-      const [rows] = await mysqlPool.execute(sqlQuery, params.length > 0 ? params : undefined);
+      // Optimisation: Utiliser la table pré-agrégée si disponible et pas de filtre device_id spécifique
+      // et que la période est complète (jours entiers)
+      const usePreAggregated = !device_id && start_date && end_date;
 
-      logger.info(`[ReportingService] Found ${rows.length} latency records (group_by = ${group_by})`);
+      let sqlQuery;
+
+      if (usePreAggregated && group_by !== 'site') {
+        // Requête optimisée avec la table pré-agrégée
+        sqlQuery = `
+          SELECT 
+            s.date AS jour,
+            ROUND(AVG(s.avg_latency), 2) AS avg_latency_ms,
+            ROUND(AVG(s.min_latency), 2) AS min_latency_ms,
+            ROUND(AVG(s.max_latency), 2) AS max_latency_ms,
+            ROUND(AVG(s.jitter), 2) AS jitter_ms,
+            ROUND(AVG(s.availability_percent), 2) AS availability_percent
+          FROM daily_device_stats s
+          INNER JOIN devices d ON d.id = s.device_id
+          ${whereClause.replace(/e\./g, 's.').replace('s.event_time', 's.date')}
+          GROUP BY s.date
+          ORDER BY s.date ASC
+          LIMIT ?
+        `;
+      } else {
+        // Requête standard optimisée avec INNER JOIN
+        sqlQuery = `
+          SELECT 
+            DATE(e.event_time) AS jour
+            ${hostnameSelect},
+            ROUND(AVG(e.avg), 2) AS avg_latency_ms,
+            ROUND(AVG(e.min), 2) AS min_latency_ms,
+            ROUND(AVG(e.max), 2) AS max_latency_ms,
+            ROUND(AVG(e.max - e.min), 2) AS jitter_ms,
+            ROUND(SUM(e.status = 'up') / COUNT(*) * 100, 2) AS availability_percent
+          FROM device_events e
+          INNER JOIN devices d ON d.id = e.device_id
+          ${whereClause}
+          GROUP BY ${groupBy}
+          ORDER BY jour ASC
+          LIMIT ?
+        `;
+      }
+
+      // Ajout de la limite aux paramètres
+      const finalParams = params.length > 0 ? [...params, safeLimit] : [safeLimit];
+
+      const [rows] = await mysqlPool.execute(sqlQuery, finalParams);
+
+      // Mise en cache du résultat
+      if (use_cache) {
+        reportingCache.set(cacheKey, rows);
+      }
+
+      logger.info(`[ReportingService] Found ${rows.length} latency records (group_by = ${group_by}, cached = ${use_cache})`);
       return rows;
     } catch (error) {
       logger.error(`[ReportingService] Error fetching average latency by day: ${error.message}`);

@@ -2,6 +2,7 @@ import amqp from 'amqplib'
 import logger from '../../logger/logger.js'
 import deviceService from '../device.service.js'
 import SocketService from '../socket/socket.service.js'
+import monitoringSettingService from '../monitoringSetting.service.js'
 
 
 class SchedulerDevicesService {
@@ -20,6 +21,11 @@ class SchedulerDevicesService {
     if (!this.url) throw new Error('RABBIT_URL manquant')
     await this.#connect()
     await this.#assertQueues()
+    try {
+      const row = (await monitoringSettingService.getByKeyName('SCHEDULER_INTERVAL_MS'))?.[0]
+      const ms = Number(row?.value)
+      if (Number.isFinite(ms) && ms > 0) this.intervalMs = ms
+    } catch {}
     logger.info(`[SchedulerDevices] Démarré (interval: ${this.intervalMs}ms) → queue=${this.queueName}`)
 
     const wrapped = async () => {

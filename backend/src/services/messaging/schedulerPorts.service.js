@@ -1,6 +1,7 @@
 import amqp from 'amqplib'
 import logger from '../../logger/logger.js'
 import portService from '../port.service.js'
+import monitoringSettingService from '../monitoringSetting.service.js'
 
 class SchedulerPortsService {
   constructor(deviceIds) {
@@ -20,6 +21,11 @@ class SchedulerPortsService {
     await this.#assertQueue()
 
     this.intervalMs = Number(process.env.SCHEDULER_PORTS_INTERVAL_MS || 60000)
+    try {
+      const row = (await monitoringSettingService.getByKeyName('SCHEDULER_PORTS_INTERVAL_MS'))?.[0]
+      const ms = Number(row?.value)
+      if (Number.isFinite(ms) && ms > 0) this.intervalMs = ms
+    } catch {}
     logger.info(`[SchedulerPorts] Démarré (interval: ${this.intervalMs}ms) → queue=${this.queueName}`)
     this.#safeTick()
     this.timer = setInterval(this.#safeTick, this.intervalMs)

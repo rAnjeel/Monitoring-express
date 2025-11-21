@@ -102,7 +102,14 @@ ALTER TABLE device_events
     );
 -- NB: Pour que les partitions soient créées, il faut que la table existe déjà et event_time soit cle primaire.
 
-
+ALTER TABLE device_events
+PARTITION BY RANGE ( TO_DAYS(event_time) ) (
+PARTITION p_wk01_oct VALUES LESS THAN ( TO_DAYS('2025-10-06') ),
+PARTITION p_wk02_oct VALUES LESS THAN ( TO_DAYS('2025-10-13') ),
+PARTITION p_wk03_oct VALUES LESS THAN ( TO_DAYS('2025-10-20') ),
+PARTITION p_wk04_oct VALUES LESS THAN ( TO_DAYS('2025-10-27') ),
+PARTITION p_future VALUES LESS THAN MAXVALUE
+);
 
 
 SELECT

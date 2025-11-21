@@ -12,6 +12,7 @@ import portRoutes from './routes/port.routes.js';
 import deviceEventRoutes from './routes/deviceEvent.routes.js';
 import portEventRoutes from './routes/portEvent.routes.js';
 import reportingRoutes from './routes/reporting.routes.js';
+import monitoringSettingRoutes from './routes/monitoringSetting.routes.js';
 import logger from './logger/logger.js';
 import errorHandler from './middlewares/error.middleware.js';
 import deviceService from './services/device.service.js';
@@ -42,8 +43,8 @@ app.use('/ports', portRoutes);
 app.use('/device-events', deviceEventRoutes);
 app.use('/port-events', portEventRoutes);
 app.use('/reporting', reportingRoutes);
+app.use('/monitoring-settings', monitoringSettingRoutes);
 app.use(errorHandler);
-
 
 app.use((err, req, res, next) => {
   logger.error(err.message);

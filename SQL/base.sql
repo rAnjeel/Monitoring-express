@@ -1,23 +1,3 @@
-CREATE DATABASE IF NOT EXISTS monitoring;
-USE monitoring;
-CREATE TABLE type_device (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL
-);
-CREATE TABLE locations (
-    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    name varchar(255) NOT NULL,
-    lat double(10, 6) DEFAULT NULL,
-    lng double(10, 6) DEFAULT NULL,
-    inserted_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-);
-CREATE TABLE device_details (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    os text,
-    serial text,
-    icon text,
-    version text
-);
 CREATE TABLE devices (
     device_id INT DEFAULT NULL,
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -45,12 +25,36 @@ CREATE TABLE devices (
     cryptopass text,
     cryptoalgo text,
     snmpver text,
-    ne_id varchar(45)
+    ne_id varchar(45),
+    FOREIGN KEY (location_id) REFERENCES locations(id),
+    FOREIGN KEY (type_device_id) REFERENCES type_device(id),
+    FOREIGN KEY (details_id) REFERENCES device_details(id)
+
 );
 CREATE INDEX idx_devices_hostname ON devices (hostname);
 CREATE INDEX idx_type_device_id ON devices(type_device_id);
 CREATE INDEX idx_location_id ON devices(location_id);
 CREATE INDEX idx_status_ping ON devices(ping_status);
+
+CREATE TABLE type_device (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE locations (
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    name varchar(255) NOT NULL,
+    lat double(10, 6) DEFAULT NULL,
+    lng double(10, 6) DEFAULT NULL,
+    inserted_date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE device_details (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    os text,
+    serial text,
+    icon text,
+    version text
+);
 
 CREATE TABLE device_events (
     id INT PRIMARY KEY AUTO_INCREMENT,
@@ -109,3 +113,40 @@ CREATE TABLE port_events (
 CREATE INDEX idx_port_events_port_id ON port_events(port_id);
 CREATE INDEX idx_port_events_event_time ON port_events(event_time);
 CREATE INDEX idx_port_events_status ON port_events(status);
+
+CREATE TABLE monitoring_settings(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    setting_key VARCHAR(255),
+    setting_value VARCHAR(255),
+    type VARCHAR(50),
+    description VARCHAR(255),
+    inserted_date DATETIME DEFAULT CURRENT_TIMESTAMP
+)
+
+CREATE TABLE credentials_sites(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ip VARCHAR(20),
+    codeSite VARCHAR(50),
+    siteUsername VARCHAR(50),
+    sitePassword VARCHAR(255),
+    sitePort INT,
+    siteSShVersion VARCHAR(50),
+    lastDateChange TIMESTAMP
+);
+
+CREATE TABLE credentials_sites_historic(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    siteId INT,
+    connectionErrorDate TIMESTAMP,
+    errorDescription TEXT,
+    errorResolutionDate TIMESTAMP,
+    errorStatus VARCHAR(50),
+    FOREIGN KEY (siteId) REFERENCES credentials_sites(id)
+);
+
+CREATE TABLE pass_credentials(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    sitePort VARCHAR(50),
+    password VARCHAR(255),
+    siteSShVersion VARCHAR(100)
+);
